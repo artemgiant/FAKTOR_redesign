@@ -6,43 +6,37 @@
 <title>FAKTOR — Нерухомість в Одесі</title>
 <!--
   Верстка фрейму Figma "Головна" (node 2023:2, file Xd1vIzpJZTXZ85ZFp0Un9b).
-  • Канва 1:1 десктоп (1440px). Структура, відступи, типографіка й кольори відтворені за метаданими фрейму.
-  • Зображення = плейсхолдери (як у макеті). Шрифт оригіналу SFT Schrifted Sans (trial) недоступний — підставлено близький grotesque-fallback.
-  • Токени Figma: Dark #151515, Bone #F8F4EF, Dark 60%. Кольори з коду: #141414, #f7f7f7, #d9d9d9, #001638.
+  Канва 1:1 десктоп (1440px). Структура, відступи, типографіка й кольори — за метаданими фрейму.
+  Зображення = плейсхолдери (як у макеті). Шрифт оригіналу SFT Schrifted Sans (trial) → Inter (fallback).
+  Токени Figma: Dark #151515, Bone #F8F4EF, Dark 60%.
 -->
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
   :root{
-    --dark:#141414;            /* основний текст */
-    --dark-2:#151515;          /* Dark (token) / темний футер */
-    --muted:rgba(20,20,20,.55);/* Dark 60% (token) — вторинний текст */
-    --navy:#001638;            /* акцент / кнопки */
-    --bone:#f8f4ef;            /* Bone (token) — теплий фон сторінки */
-    --soft:#f7f7f7;            /* мʼякі карткові фони */
-    --placeholder:#d9d9d9;     /* плейсхолдери зображень */
-    --line:#e6e1da;            /* розділювачі */
-    --content:1344px;          /* контент 1440 - 2*48 */
-    --gutter:48px;
+    --dark:#141414;
+    --muted:rgba(20,20,20,.55);     /* Dark 60% */
+    --navy:#001638;                 /* акцент / кнопки / темний футер */
+    --soft:#f7f7f7;                 /* карткові фони */
+    --placeholder:#d9d9d9;          /* плейсхолдери зображень */
+    --hero-gray:#d2d2d2;            /* плейсхолдер hero-зображення */
+    --spec:#c2a06b;                 /* золотисті іконки характеристик */
+    --line:#ececec;
+    --content:1344px;
+    /* у макеті немає радіусів — прямокутні елементи з гострими кутами */
+    --r-ctrl:0;      /* кнопки, перемикачі */
+    --r-field:0;     /* поля вводу */
+    --r-nav:0;       /* навбар */
+    --r-card:0;      /* картки та зображення */
   }
 
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{ -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
-  body{
-    font-family:'Inter','SFT Schrifted Sans','Helvetica Neue',Arial,sans-serif;
-    color:var(--dark);
-    background:#cfccc7;            /* поле навколо канви */
-    font-size:15px;line-height:1.3;
-  }
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{font-family:'Inter','SFT Schrifted Sans','Helvetica Neue',Arial,sans-serif;color:var(--dark);background:#cfccc7;font-size:15px;line-height:1.3;}
   a{color:inherit;text-decoration:none;}
   img{display:block;max-width:100%;}
-  ul{list-style:none;}
 
-  /* ---------- канва фрейму ---------- */
-  .frame{
-    width:1440px;margin:0 auto;background:var(--bone);
-    position:relative;overflow:hidden;
-  }
+  .frame{width:1440px;margin:0 auto;background:#fff;position:relative;overflow:hidden;}
   .container{width:var(--content);margin:0 auto;}
 
   /* ---------- типографіка ---------- */
@@ -51,131 +45,103 @@
   .price-xl{font-size:40px;line-height:1;letter-spacing:-1.6px;font-weight:500;}
   .t24{font-size:24px;line-height:1.2;letter-spacing:-.96px;font-weight:500;}
   .t18{font-size:18px;line-height:1.3;letter-spacing:-.72px;}
-  .t15{font-size:15px;line-height:1.3;letter-spacing:-.3px;}
+  .t15{font-size:15px;line-height:1.35;letter-spacing:-.3px;}
   .t12{font-size:12px;line-height:1.3;letter-spacing:-.24px;}
   .muted{color:var(--muted);}
 
   /* ---------- кнопки / службові ---------- */
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    height:48px;padding:0 28px;border-radius:10px;border:none;cursor:pointer;
-    background:var(--navy);color:var(--bone);font:500 15px/1 'Inter',sans-serif;
-    letter-spacing:-.3px;
-  }
-  .see-all{display:inline-flex;align-items:center;gap:6px;font-size:15px;letter-spacing:-.3px;color:var(--dark);}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 28px;border-radius:var(--r-ctrl);border:none;cursor:pointer;background:var(--navy);color:#fff;font:500 15px/1 'Inter',sans-serif;letter-spacing:-.3px;}
+  .see-all{display:inline-flex;align-items:center;gap:8px;font-size:15px;letter-spacing:-.3px;color:var(--dark);}
   .see-all svg{transition:transform .2s;}
   .see-all:hover svg{transform:translateX(3px);}
+  .pill-tag{display:inline-flex;align-items:center;height:24px;padding:0 16px;border-radius:100px;border:1px solid rgba(20,20,20,.18);font-size:12px;letter-spacing:-.24px;color:var(--dark);}
 
-  .pill-tag{
-    display:inline-flex;align-items:center;height:24px;padding:0 16px;border-radius:100px;
-    border:1px solid rgba(20,20,20,.18);font-size:12px;letter-spacing:-.24px;color:var(--dark);
-  }
-  .heart{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.85);}
-  .heart svg{width:18px;height:18px;}
+  /* серця */
+  .heart{display:inline-grid;place-items:center;}
+  .heart svg{width:24px;height:24px;}
+  .heart-fill svg{fill:var(--navy);stroke:none;}
+  .heart-out svg{fill:none;stroke:var(--dark);stroke-width:1.6;}
+
+  /* стрілки/крапки на зображеннях */
+  .arrow-circle{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.14);cursor:pointer;z-index:2;}
+  .arrow-circle.l{left:12px;}
+  .arrow-circle.r{right:12px;}
+  .arrow-circle.filled{background:var(--navy);}
+  .arrow-circle.filled svg{stroke:#fff;}
+  .dots{display:flex;gap:6px;align-items:center;}
+  .dots i{width:6px;height:6px;border-radius:50%;background:rgba(20,20,20,.28);display:block;}
+  .dots i.on{background:var(--dark);width:18px;border-radius:3px;}
+  .img-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:2;}
+  .arrow-lg{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 6px 20px rgba(20,20,20,.10);cursor:pointer;}
 
   /* ---------- секції ---------- */
   .section{margin-top:160px;}
   .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;}
-  .sec-head--center{flex-direction:column;align-items:center;gap:18px;text-align:center;}
+  .sec-head--center{flex-direction:column;align-items:center;gap:16px;text-align:center;}
 
-  /* ===========================================================
-     HEADER + HERO
-     =========================================================== */
+  /* =================== HEADER + HERO =================== */
   .hero{position:relative;height:1180px;}
-  .hero__bg{
-    position:absolute;inset:0 0 auto 0;height:580px;
-    background:linear-gradient(180deg,#efeae3 0%,#e7e1d8 60%,#e2dcd2 100%);
-  }
-  /* nav pill */
-  .nav{
-    position:absolute;top:24px;left:50%;transform:translateX(-50%);
-    width:890px;height:56px;background:#fff;border-radius:16px;
-    display:flex;align-items:center;padding:0 20px;gap:24px;
-    box-shadow:0 8px 30px rgba(20,20,20,.06);z-index:5;
-  }
-  .nav__logo{font-weight:600;font-size:18px;letter-spacing:1px;}
+  .hero__bg{position:absolute;top:0;left:0;right:0;height:580px;background:linear-gradient(180deg,#d6d6d6,#cccccc);z-index:1;}
+  .hero__white{position:absolute;left:0;right:0;top:580px;bottom:0;background:#fff;z-index:2;}
+  .hero__wave{position:absolute;left:0;top:472px;width:1440px;height:108px;z-index:2;}
+  .hero__wave svg{display:block;width:1440px;height:108px;}
+
+  .nav{position:absolute;top:24px;left:50%;transform:translateX(-50%);width:890px;height:56px;background:#fff;border-radius:var(--r-nav);display:flex;align-items:center;padding:0 20px;gap:24px;box-shadow:0 10px 34px rgba(20,20,20,.08);z-index:5;}
+  .nav__logo{font-weight:700;font-size:18px;letter-spacing:0;color:var(--navy);}
   .nav__links{display:flex;gap:24px;margin-left:24px;}
   .nav__links a{font-size:15px;letter-spacing:-.3px;}
   .nav__right{margin-left:auto;display:flex;align-items:center;gap:18px;}
   .nav__icon{display:grid;place-items:center;width:32px;height:32px;}
   .nav__lang{display:inline-flex;align-items:center;gap:6px;font-size:15px;letter-spacing:-.3px;}
 
-  /* search bar (overlap hero bottom) */
-  .searchbar{
-    position:absolute;top:472px;left:50%;transform:translateX(-50%);
-    width:1180px;height:84px;background:#fff;border-radius:20px;
-    display:flex;align-items:center;gap:16px;padding:0 20px;
-    box-shadow:0 18px 50px rgba(20,20,20,.10);z-index:4;
-  }
-  .fld{
-    height:44px;background:var(--soft);border-radius:10px;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:0 18px;font-size:15px;letter-spacing:-.3px;color:var(--muted);
-  }
+  .searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1117px;display:flex;align-items:center;gap:16px;z-index:4;}
+  .fld{height:44px;background:#f0f0f0;border-radius:var(--r-field);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:15px;letter-spacing:-.3px;color:var(--muted);}
   .fld--search{flex:1 1 438px;}
   .fld--sel{width:211px;flex:0 0 211px;}
-  .searchbar .btn{flex:0 0 211px;height:44px;}
+  .searchbar .btn{flex:0 0 211px;height:44px;border-radius:var(--r-ctrl);}
 
-  /* hero label + words */
-  .hero__label{
-    position:absolute;top:660px;left:50%;transform:translateX(-50%);
-    height:48px;padding:0 28px;border-radius:100px;border:1px solid rgba(20,20,20,.16);
-    display:inline-flex;align-items:center;font-size:15px;letter-spacing:-.3px;background:rgba(255,255,255,.5);
-  }
-  .hero__words{position:absolute;top:756px;left:0;right:0;text-align:center;}
-  .hw{display:block;color:#d6d2cb;line-height:1.06;}
-  .hw sup{font-size:18px;letter-spacing:-.72px;color:var(--dark);vertical-align:super;margin-left:10px;font-weight:400;top:-1.4em;position:relative;}
+  .hero__label{position:absolute;top:660px;left:50%;transform:translateX(-50%);height:48px;padding:0 28px;border-radius:100px;background:#ededed;display:inline-flex;align-items:center;font-size:15px;letter-spacing:-.3px;z-index:3;}
+  .hero__words{position:absolute;top:752px;left:0;right:0;text-align:center;z-index:3;}
+  .hw{display:block;color:#a6a6a6;line-height:1.05;margin-bottom:20px;}
+  .hw sup{font-size:18px;letter-spacing:-.72px;color:#9a9a9a;vertical-align:super;margin-left:10px;font-weight:400;top:-1.3em;position:relative;}
+  .hw-img{display:inline-block;width:72px;height:50px;border-radius:var(--r-ctrl);background:#c9c7c2;vertical-align:middle;margin:0 16px;}
   .hw--1{transform:translateX(-22px);}
-  .hw--2{transform:translateX(-150px);}
+  .hw--2{transform:translateX(-150px);color:var(--dark);}
   .hw--3{transform:translateX(-19px);}
   .hw--4{transform:translateX(47px);}
 
-  /* ===========================================================
-     КАРТКИ
-     =========================================================== */
+  /* =================== КАРТКИ =================== */
   .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 
-  /* Новобудови / Забудовники — суцільна картка */
-  .card-solid{position:relative;height:480px;background:var(--soft);border-radius:16px;overflow:hidden;}
-  .card-solid .img{height:308px;background:var(--placeholder);}
+  /* суцільна картка (Новобудови / Забудовники) */
+  .card-solid{position:relative;height:480px;background:var(--soft);border-radius:var(--r-card);overflow:hidden;}
+  .card-solid .img{position:relative;height:308px;background:var(--placeholder);}
   .card-solid .body{padding:24px 16px;}
-  .card-solid .heart{position:absolute;top:14px;right:14px;}
-  .card-title{margin-bottom:18px;}
+  .card-titlerow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;}
+  .card-title{margin:0;}
+  .card-solid .card-title{font-size:20px;line-height:1.18;letter-spacing:-.6px;max-width:235px;}
   .card-sub{color:var(--muted);}
   .card-price{margin-top:6px;}
 
-  /* Лістинг (Квартири / Будинки) */
+  /* лістинг (Квартири / Будинки) */
   .card-list{position:relative;}
-  .card-list .img{position:relative;height:240px;background:var(--placeholder);border-radius:16px;}
-  .card-list .img .heart{position:absolute;top:12px;right:12px;}
-  .card-list .price{margin-top:24px;}
+  .card-list .img{position:relative;height:240px;background:var(--placeholder);border-radius:var(--r-card);overflow:hidden;}
+  .card-row{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
   .card-list .name{margin-top:14px;}
   .card-list .addr{margin-top:8px;color:var(--muted);}
   .card-list .specs{margin-top:18px;display:flex;gap:18px;}
   .spec{display:inline-flex;align-items:center;gap:6px;font-size:18px;letter-spacing:-.72px;}
-  .spec svg{width:18px;height:18px;opacity:.85;}
+  .spec svg{width:18px;height:18px;stroke:var(--spec);}
 
-  /* dots / arrows на картках */
-  .dots{display:flex;gap:6px;}
-  .dots i{width:6px;height:6px;border-radius:50%;background:rgba(20,20,20,.25);display:block;}
-  .dots i.on{background:var(--dark);width:18px;border-radius:3px;}
-  .arrow-circle{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.9);}
-  .arrow-lg{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 6px 20px rgba(20,20,20,.10);cursor:pointer;}
-
-  /* ===========================================================
-     ЕКСКЛЮЗИВНІ ПРОПОЗИЦІЇ
-     =========================================================== */
-  .excl{position:relative;height:620px;margin-top:60px;}
-  .excl__img{
-    position:absolute;top:0;left:275px;width:435px;height:568px;border-radius:16px;
-    background:linear-gradient(135deg,#cdc8c1,#bdb7ae);
-  }
-  .excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:16px;background:var(--placeholder);opacity:.7;}
+  /* =================== ЕКСКЛЮЗИВНІ =================== */
+  .excl{position:relative;height:620px;margin-top:48px;}
+  .excl__img{position:absolute;top:0;left:275px;width:435px;height:568px;border-radius:var(--r-card);background:linear-gradient(135deg,#c9c4bd,#b6b0a7);}
+  .excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:var(--r-card);background:var(--placeholder);opacity:.7;}
   .excl__thumb--r{left:1298px;}
   .excl__thumb--l{left:-69px;}
   .excl__info{position:absolute;top:154px;left:844px;width:437px;}
   .excl__tags{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
-  .excl__tags .heart{width:24px;height:24px;background:transparent;margin-left:auto;}
+  .excl__tags .heart svg{width:22px;height:22px;}
   .excl__info .price-xl{margin-bottom:24px;}
   .excl__name{margin-bottom:8px;}
   .excl__addr{color:var(--muted);margin-bottom:24px;max-width:321px;}
@@ -183,246 +149,171 @@
   .excl__arrow{position:absolute;top:260px;}
   .excl__arrow--l{left:96px;}
   .excl__arrow--r{left:1344px;}
-  .excl__dots{position:absolute;top:528px;left:464px;}
+  .excl__dots{position:absolute;top:524px;left:492px;transform:translateX(-50%);}
+  .excl__dots i{background:rgba(255,255,255,.55);}
+  .excl__dots i.on{background:#fff;width:6px;border-radius:50%;}
 
-  /* ===========================================================
-     ІНДИВІДУАЛЬНИЙ ПІДБІР
-     =========================================================== */
+  /* =================== ПІДБІР =================== */
   .pick__head{text-align:center;max-width:664px;margin:0 auto 56px;}
-  .pick__head p{color:var(--muted);margin-top:12px;}
+  .pick__head p{color:var(--muted);margin:12px auto 0;max-width:540px;}
   .pick__cols{display:flex;justify-content:space-between;}
   .pick__form{width:549px;}
-  .field{border-bottom:1px solid var(--line);padding:12px 0 18px;margin-bottom:16px;}
+  .field{border-bottom:1px solid #d8d4ce;padding:14px 0 28px;margin-bottom:20px;}
   .field label{display:block;color:var(--muted);}
   .field .val{margin-top:10px;color:var(--dark);}
-  .pick__form .btn{margin-top:24px;}
-  .pick__contacts{width:300px;}
-  .pick__contacts h4{margin-bottom:10px;}
-  .pick__contacts a{display:block;color:var(--muted);margin-top:6px;}
+  .pick__form .btn{margin-top:24px;padding:0 46px;}
+  .pick__contacts{width:320px;}
+  .pick__contacts h4{margin-bottom:10px;color:var(--muted);font-weight:400;}
+  .pick__contacts a{display:block;margin-top:8px;}
+  .pick__contacts a.tg{color:var(--muted);text-decoration:underline;}
+  .pick__contacts a.wa{color:var(--dark);text-decoration:underline;font-weight:500;}
 
-  /* ===========================================================
-     ВІДГУКИ
-     =========================================================== */
+  /* =================== ВІДГУКИ =================== */
   .reviews{position:relative;}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-  .rev-card{height:248px;background:var(--soft);border-radius:16px;padding:32px 28px;}
-  .rev-card h4{margin-bottom:8px;}
+  .rev-card{height:248px;background:var(--soft);border-radius:var(--r-card);padding:32px 28px;}
+  .rev-card h4{margin-bottom:10px;}
   .rev-meta{display:flex;align-items:center;gap:8px;color:var(--muted);margin-bottom:16px;}
+  .rev-meta .sep{color:var(--muted);}
+  .google b{font-weight:500;font-size:15px;letter-spacing:-.4px;}
   .rev-card p{color:var(--dark);}
-  .rev-readmore{color:var(--dark);font-weight:500;margin-top:8px;display:inline-block;}
-  .reviews .arrow-lg{position:absolute;top:88px;}
-  .reviews .arrow-lg.l{left:-72px;}
-  .reviews .arrow-lg.r{right:-72px;}
+  .rev-readmore{color:var(--dark);font-weight:400;margin-top:8px;display:inline-block;text-decoration:underline;text-underline-offset:3px;}
+  .reviews .arrow-lg{position:absolute;top:50%;transform:translateY(-50%);}
+  .reviews .arrow-lg.l{left:-24px;}
+  .reviews .arrow-lg.r{right:-24px;}
 
-  /* ===========================================================
-     ФУТЕР (sitemap + SEO + dark)
-     =========================================================== */
+  /* =================== ФУТЕР =================== */
   .footer-divider{height:1px;background:var(--line);margin:120px 0 0;}
-  .sitemap{display:grid;grid-template-columns:repeat(5,1fr);gap:40px;padding:80px 0 0 114px;}
-  .sitemap col,.sitemap .col{display:block;}
+  .sitemap{display:grid;grid-template-columns:227px 228px 228px 226px 207px;gap:0;padding:80px 0 0 114px;}
   .sitemap .col h5{margin-bottom:24px;}
-  .sitemap .col a{display:block;color:var(--muted);margin-bottom:5px;font-size:15px;letter-spacing:-.3px;}
-  .sitemap .col a:hover{color:var(--dark);}
-  .sitemap .col .gap{margin-top:18px;}
+  .sitemap .col a{display:block;color:var(--dark);margin-bottom:5px;font-size:15px;letter-spacing:-.3px;}
+  .sitemap .col a:hover{opacity:.6;}
+  .sitemap .col a.gap{margin-top:18px;color:var(--muted);}
 
   .seo{background:var(--soft);margin-top:80px;padding:64px 0;}
   .seo__in{width:890px;margin:0 auto;}
   .seo__in h3{font-weight:500;margin-bottom:12px;}
   .seo__in p{color:var(--muted);}
-  .seo__more{color:var(--dark);font-weight:500;margin-top:12px;display:inline-block;}
+  .seo__more{color:var(--dark);font-weight:400;margin-top:22px;display:inline-block;text-decoration:underline;text-underline-offset:3px;}
 
-  .dark{background:var(--dark-2);color:var(--bone);padding:80px 0 0;}
-  .dark .container{position:relative;min-height:460px;}
+  .dark{background:var(--navy);color:#fff;padding:80px 0 0;}
+  .dark .container{min-height:460px;display:flex;flex-direction:column;}
   .dark__logo{font-weight:600;font-size:20px;letter-spacing:1px;margin-bottom:60px;}
-  .dark__cols{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.1fr 1fr;gap:24px;}
-  .dark__cols h5{margin-bottom:18px;color:var(--bone);}
-  .dark__cols a{display:block;color:rgba(248,244,239,.6);margin-bottom:6px;font-size:15px;letter-spacing:-.3px;}
-  .dark__cols a:hover{color:var(--bone);}
-  .dark__bottom{display:flex;align-items:center;gap:40px;margin-top:64px;padding:28px 0;border-top:1px solid rgba(248,244,239,.12);font-size:15px;letter-spacing:-.3px;}
-  .dark__bottom .muted2{color:rgba(248,244,239,.55);}
-  .dark__switch{margin-left:auto;display:flex;gap:12px;}
-  .dark__switch .sw{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border:1px solid rgba(248,244,239,.2);border-radius:8px;font-size:12px;}
+  .dark__cols{display:grid;grid-template-columns:227px 228px 228px 226px 228px 1fr;gap:0;}
+  .dark__cols h5{margin-bottom:18px;color:#fff;font-weight:500;}
+  .dark__cols a{display:block;color:rgba(255,255,255,.55);margin-bottom:7px;font-size:15px;letter-spacing:-.3px;}
+  .dark__cols a:hover{color:#fff;}
+  .dark__bottom{display:grid;grid-template-columns:227px 228px 228px 226px 228px 1fr;align-items:center;margin-top:auto;padding:40px 0 28px;font-size:15px;letter-spacing:-.3px;}
+  .dark__bottom .muted2{color:rgba(255,255,255,.55);white-space:nowrap;}
+  .dark__switch{justify-self:end;display:flex;gap:12px;}
+  .dark__switch .sw{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r-ctrl);font-size:12px;}
 </style>
 </head>
 <body>
 <div class="frame">
 
-  <!-- ============================ HERO + HEADER ============================ -->
+  <!-- ===================== HERO + HEADER ===================== -->
   <section class="hero">
     <div class="hero__bg"></div>
+    <div class="hero__white"></div>
+    <div class="hero__wave">
+      <svg width="1440" height="108" viewBox="0 0 1440 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M81.5897 32.8617L115.354 11.881C127.573 4.28823 144.409 0 162 0V108H0V47.52H24.0394C45.7425 47.52 66.5143 42.2293 81.5897 32.8617Z" fill="white"/>
+        <path d="M1358.41 32.8617L1324.65 11.881C1312.43 4.28823 1295.59 0 1278 0V108H1440V47.52H1415.96C1394.26 47.52 1373.49 42.2293 1358.41 32.8617Z" fill="white"/>
+        <path d="M162 0H1278V108H162V0Z" fill="white"/>
+      </svg>
+    </div>
 
-    <!-- NAV -->
     <nav class="nav">
       <span class="nav__logo">FAKTOR</span>
       <div class="nav__links">
-        <a href="#">Купити</a>
-        <a href="#">Продати</a>
-        <a href="#">Новобудови</a>
-        <a href="#">Квартири</a>
-        <a href="#">Будинки</a>
+        <a href="#">Купити</a><a href="#">Продати</a><a href="#">Новобудови</a><a href="#">Квартири</a><a href="#">Будинки</a>
       </div>
       <div class="nav__right">
-        <span class="nav__icon" title="Подзвонити">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-        </span>
-        <span class="nav__icon" title="Обране">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg>
-        </span>
-        <span class="nav__lang">Ua / Usd
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg>
-        </span>
-        <span class="nav__icon" title="Меню">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        </span>
+        <span class="nav__icon" title="Подзвонити"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+        <span class="nav__icon" title="Обране"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>
+        <span class="nav__lang">UA / USD <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></span>
+        <span class="nav__icon" title="Меню"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg></span>
       </div>
     </nav>
 
-    <!-- SEARCH BAR -->
     <div class="searchbar">
-      <div class="fld fld--search">
-        <span>Місто, район, вулиця або ЖК...</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6" opacity=".5"><path d="M6 9l6 6 6-6"/></svg>
-      </div>
-      <div class="fld fld--sel">
-        <span>Продаж квартир</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6" opacity=".5"><path d="M6 9l6 6 6-6"/></svg>
-      </div>
-      <div class="fld fld--sel">
-        <span>Ціна від – до $</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6" opacity=".5"><path d="M6 9l6 6 6-6"/></svg>
-      </div>
+      <div class="fld fld--search"><span>Місто, район,вулиця або ЖК...</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6" opacity=".5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="fld fld--sel"><span>Продаж квартир</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6" opacity=".5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="fld fld--sel"><span>Ціна від – до $</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6" opacity=".5"><path d="M6 9l6 6 6-6"/></svg></div>
       <button class="btn">Знайти</button>
     </div>
 
-    <!-- LABEL + WORDS -->
     <span class="hero__label">Каталог продажу</span>
     <div class="hero__words">
-      <span class="hw h-hero hw--1">Квартири<sup>129</sup></span>
-      <span class="hw h-hero hw--2">Будинки<sup>56</sup></span>
-      <span class="hw h-hero hw--3">Земельні ділянки<sup>243</sup></span>
-      <span class="hw h-hero hw--4">Комерція<sup>34</sup></span>
+      <span class="hw h-hero hw--1">Квартири<sup>/129/</sup></span>
+      <span class="hw h-hero hw--2">Будинки<span class="hw-img"></span><sup>/56/</sup></span>
+      <span class="hw h-hero hw--3">Земельні ділянки<sup>/243/</sup></span>
+      <span class="hw h-hero hw--4">Комерція<sup>/34/</sup></span>
     </div>
   </section>
 
-  <!-- ============================ НОВОБУДОВИ ============================ -->
+  <!-- ===================== НОВОБУДОВИ ===================== -->
   <section class="section">
     <div class="container">
       <div class="sec-head">
         <h2 class="h-sec">Новобудови</h2>
-        <a href="#" class="see-all">Дивитись усі
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
-      <div class="grid4">
-        <!-- card -->
-        <article class="card-solid">
-          <div class="img"></div>
-          <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>
-          <div class="body">
-            <h3 class="t24 card-title">ЖК Перший Французький</h3>
-            <p class="t15 card-sub">Київський район, ТЦ “Аркадія Сіті”</p>
-            <p class="t18 card-price">від 2.4 млн. грн.</p>
-          </div>
-        </article>
-        <article class="card-solid">
-          <div class="img"></div>
-          <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>
-          <div class="body">
-            <h3 class="t24 card-title">ЖК Перлинний квартал на Сахарова</h3>
-            <p class="t15 card-sub">Київський район, ТЦ “Аркадія Сіті”</p>
-            <p class="t18 card-price">від 2.4 млн. грн.</p>
-          </div>
-        </article>
-        <article class="card-solid">
-          <div class="img"></div>
-          <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>
-          <div class="body">
-            <h3 class="t24 card-title">ЖК Модерн</h3>
-            <p class="t15 card-sub">Київський район, ТЦ “Аркадія Сіті”</p>
-            <p class="t18 card-price">від 2.4 млн. грн.</p>
-          </div>
-        </article>
-        <article class="card-solid">
-          <div class="img"></div>
-          <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>
-          <div class="body">
-            <h3 class="t24 card-title">Арт-резиденція Garden City</h3>
-            <p class="t15 card-sub">Київський район, ТЦ “Аркадія Сіті”</p>
-            <p class="t18 card-price">від 2.4 млн. грн.</p>
-          </div>
-        </article>
-      </div>
+      <div class="grid4" id="grid-nb"></div>
     </div>
   </section>
 
-  <!-- ============================ ЕКСКЛЮЗИВНІ ПРОПОЗИЦІЇ ============================ -->
+  <!-- ===================== ЕКСКЛЮЗИВНІ ===================== -->
   <section class="section">
     <div class="sec-head sec-head--center">
       <h2 class="h-sec">Ексклюзивні пропозиції</h2>
-      <a href="#" class="see-all">Дивитись усі
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+      <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
     </div>
     <div class="excl">
       <div class="excl__thumb excl__thumb--l"></div>
       <div class="excl__img"></div>
       <div class="excl__thumb excl__thumb--r"></div>
-
-      <div class="excl__arrow excl__arrow--l">
-        <span class="arrow-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
-      </div>
-      <div class="excl__arrow excl__arrow--r">
-        <span class="arrow-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-
+      <div class="excl__arrow excl__arrow--l"><span class="arrow-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M15 6l-6 6 6 6"/></svg></span></div>
+      <div class="excl__arrow excl__arrow--r"><span class="arrow-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></span></div>
       <div class="excl__info">
         <div class="excl__tags">
-          <span class="pill-tag">Продаж</span>
-          <span class="pill-tag">Квартира</span>
-          <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>
+          <span class="pill-tag">Продаж</span><span class="pill-tag">Квартира</span>
+          <span class="heart heart-out"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>
         </div>
         <div class="price-xl">$ 515 000</div>
         <div class="t18 excl__name">ЖК OZONE</div>
         <div class="t15 excl__addr">Одесса,&nbsp;Приморский р-н, Шевченко-Французский,&nbsp;ул. Вице-Адмирала Азарова</div>
-        <div class="excl__specs">
-          <span class="spec">3 <svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.5"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 18h18M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg></span>
-          <span class="spec">2/5 <svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.5"><path d="M3 21h6v-6h6V9h6"/></svg></span>
-          <span class="spec">147 м² <svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="1"/></svg></span>
-        </div>
+        <div class="excl__specs" id="excl-specs"></div>
         <button class="btn">Детальніше</button>
       </div>
-
-      <div class="excl__dots dots"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="excl__dots dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
     </div>
   </section>
 
-  <!-- ============================ КВАРТИРИ ============================ -->
+  <!-- ===================== КВАРТИРИ ===================== -->
   <section class="section">
     <div class="container">
       <div class="sec-head">
         <h2 class="h-sec">Квартири</h2>
-        <a href="#" class="see-all">Дивитись усі
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
       <div class="grid4" id="grid-flats"></div>
     </div>
   </section>
 
-  <!-- ============================ БУДИНКИ ============================ -->
+  <!-- ===================== БУДИНКИ ===================== -->
   <section class="section">
     <div class="container">
       <div class="sec-head">
         <h2 class="h-sec">Будинки</h2>
-        <a href="#" class="see-all">Дивитись усі
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
       <div class="grid4" id="grid-houses"></div>
     </div>
   </section>
 
-  <!-- ============================ ІНДИВІДУАЛЬНИЙ ПІДБІР ============================ -->
+  <!-- ===================== ІНДИВІДУАЛЬНИЙ ПІДБІР ===================== -->
   <section class="section">
     <div class="container">
       <div class="pick__head">
@@ -438,90 +329,53 @@
         </form>
         <div class="pick__contacts">
           <h4 class="t15">Чи напишіть нам:</h4>
-          <a href="#" class="t15">Telegram</a>
-          <a href="#" class="t15">What's App</a>
+          <a href="#" class="tg t15">Telegram</a>
+          <a href="#" class="wa t15">What's App</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ ВІДГУКИ ============================ -->
+  <!-- ===================== ВІДГУКИ ===================== -->
   <section class="section">
-    <div class="sec-head sec-head--center">
-      <h2 class="h-sec">Відгуки компанії</h2>
-    </div>
+    <div class="sec-head sec-head--center"><h2 class="h-sec">Відгуки компанії</h2></div>
     <div class="container reviews">
-      <span class="arrow-lg l"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
-      <span class="arrow-lg r"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      <div class="grid3">
-        <article class="rev-card">
-          <h4 class="t24">Денис</h4>
-          <div class="rev-meta">
-            <span class="t12">2 дні тому</span>
-            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-2 3.2-4.9 3.2-7.9z"/><path fill="#34A853" d="M12 23c2.9 0 5.3-1 7.1-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.5 1.1-2.7 0-5-1.8-5.8-4.3H2.5v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M6.2 14.5a6.6 6.6 0 0 1 0-4.2V7.5H2.5a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.5c1.5 0 2.9.5 4 1.5l3-3A11 11 0 0 0 2.5 7.5l3.7 2.8C7 7.8 9.3 5.5 12 5.5z"/></svg>
-            <span class="t12">Google</span>
-          </div>
-          <p class="t15">We bought an apartment. Everything was very professional. Special thanks to Anna. She selected the best option for us and promptly organized on-line and live viewing. I did everything else myself. Very conscientious and punctual.</p>
-        </article>
-        <article class="rev-card">
-          <h4 class="t24">Єкатерина</h4>
-          <div class="rev-meta">
-            <span class="t12">2 дні тому</span>
-            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-2 3.2-4.9 3.2-7.9z"/><path fill="#34A853" d="M12 23c2.9 0 5.3-1 7.1-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.5 1.1-2.7 0-5-1.8-5.8-4.3H2.5v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M6.2 14.5a6.6 6.6 0 0 1 0-4.2V7.5H2.5a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.5c1.5 0 2.9.5 4 1.5l3-3A11 11 0 0 0 2.5 7.5l3.7 2.8C7 7.8 9.3 5.5 12 5.5z"/></svg>
-            <span class="t12">Google</span>
-          </div>
-          <p class="t15">We bought an apartment. Everything was very professional. Special thanks to Anna. She selected the best option for us and promptly organized on-line and live viewing. I did everything else myself. Very conscientious and punctual.</p>
-        </article>
-        <article class="rev-card">
-          <h4 class="t24">Валерія</h4>
-          <div class="rev-meta">
-            <span class="t12">2 дні тому</span>
-            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-2 3.2-4.9 3.2-7.9z"/><path fill="#34A853" d="M12 23c2.9 0 5.3-1 7.1-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.5 1.1-2.7 0-5-1.8-5.8-4.3H2.5v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M6.2 14.5a6.6 6.6 0 0 1 0-4.2V7.5H2.5a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.5c1.5 0 2.9.5 4 1.5l3-3A11 11 0 0 0 2.5 7.5l3.7 2.8C7 7.8 9.3 5.5 12 5.5z"/></svg>
-            <span class="t12">Google</span>
-          </div>
-          <p class="t15">We bought an apartment. Everything was very professional. Special thanks to Anna. She selected the best option for us and promptly organized on-line and live viewing. I did everything else myself...</p>
-          <a href="#" class="rev-readmore t15">Читати повністю</a>
-        </article>
-      </div>
+      <span class="arrow-lg l"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M15 6l-6 6 6 6"/></svg></span>
+      <span class="arrow-lg r"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></span>
+      <div class="grid3" id="grid-rev"></div>
     </div>
   </section>
 
-  <!-- ============================ ЗАБУДОВНИКИ ============================ -->
+  <!-- ===================== ЗАБУДОВНИКИ ===================== -->
   <section class="section">
     <div class="container">
       <div class="sec-head">
         <h2 class="h-sec">Забудовники</h2>
-        <a href="#" class="see-all">Дивитись усі
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
       <div class="grid4" id="grid-dev"></div>
     </div>
   </section>
 
-  <!-- ============================ SITEMAP ============================ -->
+  <!-- ===================== SITEMAP ===================== -->
   <div class="container">
     <div class="footer-divider"></div>
     <nav class="sitemap">
       <div class="col">
         <h5 class="t24">Квартири</h5>
-        <a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a>
-        <a href="#">4-кімнатні</a><a href="#">5+ кімнатні</a><a href="#">Студії</a>
+        <a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">4-кімнатні</a><a href="#">5+ кімнатні</a><a href="#">Студії</a>
         <a href="#" class="gap">За районом</a>
         <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
       </div>
       <div class="col">
         <h5 class="t24">Будинки і дачі</h5>
-        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a>
-        <a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
+        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a><a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
         <a href="#" class="gap">За районом</a>
         <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
       </div>
       <div class="col">
         <h5 class="t24">Комерційна</h5>
-        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a>
-        <a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a>
-        <a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
+        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a><a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a><a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
       </div>
       <div class="col">
         <h5 class="t24">Райони Одеси</h5>
@@ -531,15 +385,14 @@
       </div>
       <div class="col">
         <h5 class="t24">Новобудови</h5>
-        <a href="#">Усі ЖК</a><a href="#">Квартири в Новобудові</a><a href="#">1-кімнатні</a>
-        <a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">Багатокімнатні</a>
+        <a href="#">Усі ЖК</a><a href="#">Квартири в Новобудові</a><a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">Багатокімнатні</a>
         <a href="#" class="gap">Зарубіжна нерухомість</a>
         <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
       </div>
     </nav>
   </div>
 
-  <!-- ============================ SEO ============================ -->
+  <!-- ===================== SEO ===================== -->
   <div class="seo">
     <div class="seo__in">
       <h3 class="t15">Агентство нерухомості «FAKTOR» – кваліфікована допомога для придбання житла в Одесі</h3>
@@ -548,54 +401,45 @@
     </div>
   </div>
 
-  <!-- ============================ DARK FOOTER ============================ -->
+  <!-- ===================== DARK FOOTER ===================== -->
   <footer class="dark">
     <div class="container">
       <div class="dark__logo">FAKTOR</div>
       <div class="dark__cols">
         <div>
           <h5 class="t15">Контакти</h5>
-          <a href="#">+38 (073) 355 98 54</a>
-          <a href="#">Telegram</a>
-          <a href="#">Канал “Нові об'єкти Одеси”</a>
-          <a href="#">Instagram</a>
-          <a href="#">TikTok</a>
-          <a href="#">Facebook</a>
+          <a href="#">+38 (073) 355 98 54</a><a href="#">Telegram</a><a href="#">Канал “Нові об'єкти Одеси”</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
         </div>
         <div>
           <h5 class="t15">Компанія</h5>
-          <a href="#">Про нас</a><a href="#">Курси рієлторів</a><a href="#">Кар'єра</a>
-          <a href="#">Франшиза</a><a href="#">Блог</a><a href="#">Продати об'єкт</a>
+          <a href="#">Про нас</a><a href="#">Курси рієлторів</a><a href="#">Кар'єра</a><a href="#">Франшиза</a><a href="#">Блог</a><a href="#">Продати об'єкт</a>
         </div>
         <div>
           <h5 class="t15">Продаж</h5>
-          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a>
-          <a href="#">Новобудови</a><a href="#">Комерційна нерухомість</a>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Новобудови</a><a href="#">Комерційна нерухомість</a>
         </div>
         <div>
           <h5 class="t15">Аренда</h5>
-          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a>
-          <a href="#">Комерційна нерухомість</a>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Комерційна нерухомість</a>
         </div>
         <div>
           <h5 class="t15">Зарубіжна нерухомість</h5>
           <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Комерційна нерухомість</a>
-          <a href="#" style="margin-top:18px">Вхід для агентів</a>
         </div>
         <div>
           <h5 class="t15">Сервіси</h5>
-          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a>
-          <a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
+          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a><a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
         </div>
       </div>
-
       <div class="dark__bottom">
         <a href="#">Політика конфіденційності</a>
         <a href="#">Умови користувача</a>
-        <span class="muted2">© 2015-2026 Faktor. Всі права захищено.</span>
+        <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
+        <span></span>
+        <a href="#">Вхід для агентів</a>
         <div class="dark__switch">
-          <span class="sw">USD <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f8f4ef" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></span>
-          <span class="sw">UA <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f8f4ef" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></span>
+          <span class="sw">USD <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></span>
+          <span class="sw">UA <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></span>
         </div>
       </div>
     </div>
@@ -604,56 +448,90 @@
 </div>
 
 <script>
-  // Лістингові картки (Квартири / Будинки) — генеруються з даних макета,
-  // щоб не дублювати розмітку. Іконки: спальні / поверх / площа (+ сотки для будинку).
-  const heart = '<span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>';
-  const icBed = '<svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.5"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 18h18M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg>';
-  const icFloor = '<svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.5"><path d="M3 21h6v-6h6V9h6"/></svg>';
-  const icArea = '<svg viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="1"/></svg>';
+  /* ---- іконки ---- */
+  const heartFill = '<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg>';
+  const heartOut  = heartFill;
+  const icBed   = '<svg viewBox="0 0 24 24" fill="none" stroke="#c2a06b" stroke-width="1.5"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 18h18M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg>';
+  const icFloor = '<svg viewBox="0 0 24 24" fill="none" stroke="#c2a06b" stroke-width="1.5"><path d="M3 21h6v-6h6V9h6"/></svg>';
+  const icArea  = '<svg viewBox="0 0 24 24" fill="none" stroke="#c2a06b" stroke-width="1.5"><path d="M4 20V4h16M4 20h16V4"/><path d="M4 20L20 4"/></svg>';
+  const chevL = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>';
+  const chevR = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>';
+  const dots5 = '<span class="dots img-dots"><i></i><i></i><i class="on"></i><i></i><i></i></span>';
 
-  function listingCard(d){
-    const land = d.land ? `<span class="spec">${d.land} ${icArea}</span>` : '';
-    return `<article class="card-list">
-      <div class="img">${heart}</div>
-      <div class="price t24">${d.price}</div>
-      <div class="name t18">${d.name}</div>
-      <div class="addr t15">${d.addr}</div>
-      <div class="specs">
-        <span class="spec">3 ${icBed}</span>
-        <span class="spec">2/5 ${icFloor}</span>
-        <span class="spec">147 м² ${icArea}</span>
-        ${land}
+  function specsRow(land){
+    return `<span class="spec">3 ${icBed}</span><span class="spec">2/5 ${icFloor}</span><span class="spec">147 м² ${icArea}</span>${land?`<span class="spec">${land} ${icArea}</span>`:''}`;
+  }
+  document.getElementById('excl-specs').innerHTML = specsRow();
+
+  /* ---- суцільні картки (Новобудови / Забудовники) ---- */
+  function solidCard(d){
+    const ctrls = d.active ? `<span class="arrow-circle l">${chevL}</span><span class="arrow-circle r">${chevR}</span>${dots5}` : '';
+    const heart = d.heart===false ? '' : `<span class="heart heart-fill">${heartFill}</span>`;
+    return `<article class="card-solid">
+      <div class="img">${ctrls}</div>
+      <div class="body">
+        <div class="card-titlerow"><h3 class="t24 card-title">${d.title}</h3>${heart}</div>
+        <p class="t15 card-sub">${d.sub}</p>
+        <p class="t18 card-price">${d.price}</p>
       </div>
     </article>`;
   }
+  const tc = 'Київський район, ТЦ “Аркадія Сіті”';
+  document.getElementById('grid-nb').innerHTML = [
+    {title:'ЖК Перший Французький', sub:tc, price:'від 2.4 млн. грн.'},
+    {title:'ЖК Перлинний квартал на Сахарова', sub:tc, price:'від 2.4 млн. грн.'},
+    {title:'ЖК Модерн', sub:tc, price:'від 2.4 млн. грн.', active:true},
+    {title:'Арт-резиденція Garden City', sub:tc, price:'від 2.4 млн. грн.'},
+  ].map(solidCard).join('');
+  document.getElementById('grid-dev').innerHTML = [
+    {title:'Назва забудовника', sub:'2002 рік заснування', price:'134 комплекси', heart:false},
+    {title:'Назва забудовника', sub:'2002 рік заснування', price:'134 комплекси', heart:false},
+    {title:'Назва забудовника', sub:'2002 рік заснування', price:'134 комплекси', heart:false, active:true},
+    {title:'Назва забудовника', sub:'2002 рік заснування', price:'134 комплекси', heart:false},
+  ].map(solidCard).join('');
+
+  /* ---- лістингові картки (Квартири / Будинки) ---- */
+  function listingCard(d){
+    const ctrls = d.active ? `<span class="arrow-circle l">${chevL}</span><span class="arrow-circle r filled">${chevR}</span>${dots5}` : '';
+    const heartCls = d.fav ? 'heart heart-fill' : 'heart heart-out';
+    return `<article class="card-list">
+      <div class="img">${ctrls}</div>
+      <div class="card-row"><div class="price t24">${d.price}</div><span class="${heartCls}">${d.fav?heartFill:heartOut}</span></div>
+      <div class="name t18">${d.name}</div>
+      <div class="addr t15">${d.addr}</div>
+      <div class="specs">${specsRow(d.land)}</div>
+    </article>`;
+  }
   const addr = 'Одесса, Приморский р-н, Шевченко-Французский, ул. Вице-Адмирала Азарова';
-  const flats = [
+  document.getElementById('grid-flats').innerHTML = [
     {price:'$ 124 000', name:'ЖК OZONE', addr},
-    {price:'$ 74 000',  name:'ЖК OZONE', addr},
+    {price:'$ 74 000',  name:'ЖК OZONE', addr, active:true, fav:true},
     {price:'$ 210 000', name:'ЖК OZONE', addr},
     {price:'$ 170 000', name:'ЖК OZONE', addr},
-  ];
-  const houses = [
+  ].map(listingCard).join('');
+  document.getElementById('grid-houses').innerHTML = [
     {price:'$ 124 000', name:'ЖК OZONE', addr},
     {price:'$ 300 000', name:'ЖК OZONE', addr},
     {price:'$ 210 000', name:'ЖК OZONE', addr, land:'4 сот.'},
     {price:'$ 170 000', name:'ЖК OZONE', addr},
-  ];
-  document.getElementById('grid-flats').innerHTML  = flats.map(listingCard).join('');
-  document.getElementById('grid-houses').innerHTML = houses.map(listingCard).join('');
+  ].map(listingCard).join('');
 
-  // Забудовники
-  function devCard(){
-    return `<article class="card-solid">
-      <div class="img"></div>
-      <div class="body">
-        <h3 class="t24 card-title">Назва забудовника</h3>
-        <p class="t15 card-sub">2002 рік заснування</p>
-        <p class="t18 card-price">134 комплекси</p>
-      </div>
+  /* ---- відгуки ---- */
+  const google = '<span class="google"><b style="color:#4285F4">G</b><b style="color:#EA4335">o</b><b style="color:#FBBC05">o</b><b style="color:#4285F4">g</b><b style="color:#34A853">l</b><b style="color:#EA4335">e</b></span>';
+  const revFull = 'We bought an apartment. Everything was very professional. Special thanks to Anna. She selected the best option for us and promptly organized on-line and live viewing. I did everything else myself. Very conscientious and punctual.';
+  const revShort= 'We bought an apartment. Everything was very professional. Special thanks to Anna. She selected the best option for us and promptly organized on-line and live viewing. I did everything else myself...';
+  function revCard(d){
+    return `<article class="rev-card">
+      <h4 class="t24">${d.name}</h4>
+      <div class="rev-meta"><span class="t12">2 дні тому</span><span class="sep">•</span>${google}</div>
+      <p class="t15">${d.text}</p>${d.more?'<a href="#" class="rev-readmore t15">Читати повністю</a>':''}
     </article>`;
   }
-  document.getElementById('grid-dev').innerHTML = [0,1,2,3].map(devCard).join('');
+  document.getElementById('grid-rev').innerHTML = [
+    {name:'Денис', text:revFull},
+    {name:'Єкатерина', text:revFull},
+    {name:'Валерія', text:revShort, more:true},
+  ].map(revCard).join('');
 </script>
 </body>
 </html>
