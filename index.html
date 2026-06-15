@@ -51,28 +51,31 @@
 
   /* ---------- кнопки / службові ---------- */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 28px;border-radius:var(--r-ctrl);border:none;cursor:pointer;background:var(--navy);color:#fff;font:500 15px/1 'Inter',sans-serif;letter-spacing:-.3px;}
-  .see-all{display:inline-flex;align-items:center;gap:8px;font-size:15px;letter-spacing:-.3px;color:var(--dark);}
-  .see-all svg{transition:transform .2s;}
-  .see-all:hover svg{transform:translateX(3px);}
+  .see-all{display:inline-flex;align-items:center;gap:6px;font-size:15px;letter-spacing:-.3px;color:var(--dark);}
+  .see-all img{width:20px;height:20px;display:block;transition:transform .2s;}
+  .see-all:hover img{transform:translateX(3px);}
   .pill-tag{display:inline-flex;align-items:center;height:24px;padding:0 16px;border-radius:100px;border:1px solid rgba(20,20,20,.18);font-size:12px;letter-spacing:-.24px;color:var(--dark);}
 
-  /* серця */
+  /* серця (іконки fav.svg / like.svg) */
   .heart{display:inline-grid;place-items:center;}
-  .heart svg{width:24px;height:24px;}
-  .heart-fill svg{fill:var(--navy);stroke:none;}
-  .heart-out svg{fill:none;stroke:var(--dark);stroke-width:1.6;}
+  .heart img{display:block;width:32px;height:32px;}
 
   /* стрілки/крапки на зображеннях */
   .arrow-circle{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.14);cursor:pointer;z-index:2;}
   .arrow-circle.l{left:12px;}
   .arrow-circle.r{right:12px;}
+  .arrow-circle img{width:14px;height:14px;display:block;}
+  .arrow-circle.l img{transform:scaleX(-1);}
   .arrow-circle.filled{background:var(--navy);}
-  .arrow-circle.filled svg{stroke:#fff;}
+  .arrow-circle.filled img{filter:brightness(0) invert(1);}
   .dots{display:flex;gap:6px;align-items:center;}
   .dots i{width:6px;height:6px;border-radius:50%;background:rgba(20,20,20,.28);display:block;}
   .dots i.on{background:var(--dark);width:18px;border-radius:3px;}
   .img-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:2;}
   .arrow-lg{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 6px 20px rgba(20,20,20,.10);cursor:pointer;}
+  .arrow-lg img{width:48px;height:48px;display:block;border-radius:50%;}
+  .arrow-lg.l img,.excl__arrow--l img{transform:scaleX(-1);}
+  .cd{display:block;transform:rotate(90deg);}
 
   /* ---------- секції ---------- */
   .section{margin-top:160px;}
@@ -87,7 +90,8 @@
   .hero__wave svg{display:block;width:1440px;height:108px;}
 
   .nav{position:absolute;top:24px;left:50%;transform:translateX(-50%);width:890px;height:56px;background:#fff;border-radius:var(--r-nav);display:flex;align-items:center;padding:0 20px;gap:24px;box-shadow:0 10px 34px rgba(20,20,20,.08);z-index:5;}
-  .nav__logo{font-weight:700;font-size:18px;letter-spacing:0;color:var(--navy);}
+  .nav__logo{display:flex;align-items:center;}
+  .nav__logo img{height:16px;width:auto;display:block;}
   .nav__links{display:flex;gap:24px;margin-left:24px;}
   .nav__links a{font-size:15px;letter-spacing:-.3px;}
   .nav__right{margin-left:auto;display:flex;align-items:center;gap:18px;}
@@ -131,7 +135,7 @@
   .card-list .addr{margin-top:8px;color:var(--muted);}
   .card-list .specs{margin-top:18px;display:flex;gap:18px;}
   .spec{display:inline-flex;align-items:center;gap:6px;font-size:18px;letter-spacing:-.72px;}
-  .spec svg{width:18px;height:18px;stroke:var(--spec);}
+  .spec img{width:20px;height:20px;display:block;}
 
   /* =================== ЕКСКЛЮЗИВНІ =================== */
   .excl{position:relative;height:620px;margin-top:48px;}
@@ -141,7 +145,7 @@
   .excl__thumb--l{left:-69px;}
   .excl__info{position:absolute;top:154px;left:844px;width:437px;}
   .excl__tags{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
-  .excl__tags .heart svg{width:22px;height:22px;}
+  .excl__tags .heart img{width:24px;height:24px;}
   .excl__info .price-xl{margin-bottom:24px;}
   .excl__name{margin-bottom:8px;}
   .excl__addr{color:var(--muted);margin-bottom:24px;max-width:321px;}
@@ -198,7 +202,8 @@
 
   .dark{background:var(--navy);color:#fff;padding:80px 0 0;}
   .dark .container{min-height:460px;display:flex;flex-direction:column;}
-  .dark__logo{font-weight:600;font-size:20px;letter-spacing:1px;margin-bottom:60px;}
+  .dark__logo{margin-bottom:60px;}
+  .dark__logo img{height:18px;width:auto;display:block;filter:brightness(0) invert(1);}
   .dark__cols{display:grid;grid-template-columns:227px 228px 228px 226px 228px 1fr;gap:0;}
   .dark__cols h5{margin-bottom:18px;color:#fff;font-weight:500;}
   .dark__cols a{display:block;color:rgba(255,255,255,.55);margin-bottom:7px;font-size:15px;letter-spacing:-.3px;}
@@ -225,22 +230,22 @@
     </div>
 
     <nav class="nav">
-      <span class="nav__logo">FAKTOR</span>
+      <span class="nav__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></span>
       <div class="nav__links">
         <a href="#">Купити</a><a href="#">Продати</a><a href="#">Новобудови</a><a href="#">Квартири</a><a href="#">Будинки</a>
       </div>
       <div class="nav__right">
-        <span class="nav__icon" title="Подзвонити"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
-        <span class="nav__icon" title="Обране"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>
-        <span class="nav__lang">UA / USD <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></span>
-        <span class="nav__icon" title="Меню"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg></span>
+        <span class="nav__icon" title="Подзвонити"><img src="img/icons/phone-call.svg" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Обране"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
+        <span class="nav__lang">UA / USD <img src="img/icons/small-arrow.svg" class="cd" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Меню"><img src="img/icons/menu.svg" width="24" height="24" alt=""></span>
       </div>
     </nav>
 
     <div class="searchbar">
-      <div class="fld fld--search"><span>Місто, район,вулиця або ЖК...</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6" opacity=".5"><path d="M6 9l6 6 6-6"/></svg></div>
-      <div class="fld fld--sel"><span>Продаж квартир</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6" opacity=".5"><path d="M6 9l6 6 6-6"/></svg></div>
-      <div class="fld fld--sel"><span>Ціна від – до $</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.6" opacity=".5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="fld fld--search"><span>Місто, район,вулиця або ЖК...</span><img src="img/icons/small-arrow.svg" class="cd" width="20" height="20" alt="" style="opacity:.5"></div>
+      <div class="fld fld--sel"><span>Продаж квартир</span><img src="img/icons/small-arrow.svg" class="cd" width="20" height="20" alt="" style="opacity:.5"></div>
+      <div class="fld fld--sel"><span>Ціна від – до $</span><img src="img/icons/small-arrow.svg" class="cd" width="20" height="20" alt="" style="opacity:.5"></div>
       <button class="btn">Знайти</button>
     </div>
 
@@ -258,7 +263,7 @@
     <div class="container">
       <div class="sec-head">
         <h2 class="h-sec">Новобудови</h2>
-        <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
+        <a href="#" class="see-all">Дивитись усі <img src="img/icons/small-arrow.svg" width="20" height="20" alt=""></a>
       </div>
       <div class="grid4" id="grid-nb"></div>
     </div>
@@ -268,18 +273,18 @@
   <section class="section">
     <div class="sec-head sec-head--center">
       <h2 class="h-sec">Ексклюзивні пропозиції</h2>
-      <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
+      <a href="#" class="see-all">Дивитись усі <img src="img/icons/small-arrow.svg" width="20" height="20" alt=""></a>
     </div>
     <div class="excl">
       <div class="excl__thumb excl__thumb--l"></div>
       <div class="excl__img"></div>
       <div class="excl__thumb excl__thumb--r"></div>
-      <div class="excl__arrow excl__arrow--l"><span class="arrow-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M15 6l-6 6 6 6"/></svg></span></div>
-      <div class="excl__arrow excl__arrow--r"><span class="arrow-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></span></div>
+      <div class="excl__arrow excl__arrow--l"><span class="arrow-lg"><img src="img/icons/arrow-right-48.svg" width="48" height="48" alt=""></span></div>
+      <div class="excl__arrow excl__arrow--r"><span class="arrow-lg"><img src="img/icons/arrow-right-48.svg" width="48" height="48" alt=""></span></div>
       <div class="excl__info">
         <div class="excl__tags">
           <span class="pill-tag">Продаж</span><span class="pill-tag">Квартира</span>
-          <span class="heart heart-out"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg></span>
+          <span class="heart heart-out"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
         </div>
         <div class="price-xl">$ 515 000</div>
         <div class="t18 excl__name">ЖК OZONE</div>
@@ -296,7 +301,7 @@
     <div class="container">
       <div class="sec-head">
         <h2 class="h-sec">Квартири</h2>
-        <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
+        <a href="#" class="see-all">Дивитись усі <img src="img/icons/small-arrow.svg" width="20" height="20" alt=""></a>
       </div>
       <div class="grid4" id="grid-flats"></div>
     </div>
@@ -307,7 +312,7 @@
     <div class="container">
       <div class="sec-head">
         <h2 class="h-sec">Будинки</h2>
-        <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
+        <a href="#" class="see-all">Дивитись усі <img src="img/icons/small-arrow.svg" width="20" height="20" alt=""></a>
       </div>
       <div class="grid4" id="grid-houses"></div>
     </div>
@@ -340,8 +345,8 @@
   <section class="section">
     <div class="sec-head sec-head--center"><h2 class="h-sec">Відгуки компанії</h2></div>
     <div class="container reviews">
-      <span class="arrow-lg l"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M15 6l-6 6 6 6"/></svg></span>
-      <span class="arrow-lg r"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></span>
+      <span class="arrow-lg l"><img src="img/icons/arrow-right-48.svg" width="48" height="48" alt=""></span>
+      <span class="arrow-lg r"><img src="img/icons/arrow-right-48.svg" width="48" height="48" alt=""></span>
       <div class="grid3" id="grid-rev"></div>
     </div>
   </section>
@@ -351,7 +356,7 @@
     <div class="container">
       <div class="sec-head">
         <h2 class="h-sec">Забудовники</h2>
-        <a href="#" class="see-all">Дивитись усі <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.7"><path d="M9 6l6 6-6 6"/></svg></a>
+        <a href="#" class="see-all">Дивитись усі <img src="img/icons/small-arrow.svg" width="20" height="20" alt=""></a>
       </div>
       <div class="grid4" id="grid-dev"></div>
     </div>
@@ -404,7 +409,7 @@
   <!-- ===================== DARK FOOTER ===================== -->
   <footer class="dark">
     <div class="container">
-      <div class="dark__logo">FAKTOR</div>
+      <div class="dark__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
       <div class="dark__cols">
         <div>
           <h5 class="t15">Контакти</h5>
@@ -438,8 +443,8 @@
         <span></span>
         <a href="#">Вхід для агентів</a>
         <div class="dark__switch">
-          <span class="sw">USD <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></span>
-          <span class="sw">UA <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></span>
+          <span class="sw">USD <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+          <span class="sw">UA <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
         </div>
       </div>
     </div>
@@ -448,14 +453,14 @@
 </div>
 
 <script>
-  /* ---- іконки ---- */
-  const heartFill = '<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.7-10-9.3C.3 8.2 2 4.5 5.5 4.5c2 0 3.4 1.1 4.2 2.3.4.6.6 1 .8 1.4.2-.4.4-.8.8-1.4.8-1.2 2.2-2.3 4.2-2.3 3.5 0 5.2 3.7 3.5 7.2C19.5 16.3 12 21 12 21z"/></svg>';
-  const heartOut  = heartFill;
-  const icBed   = '<svg viewBox="0 0 24 24" fill="none" stroke="#c2a06b" stroke-width="1.5"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 18h18M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg>';
-  const icFloor = '<svg viewBox="0 0 24 24" fill="none" stroke="#c2a06b" stroke-width="1.5"><path d="M3 21h6v-6h6V9h6"/></svg>';
-  const icArea  = '<svg viewBox="0 0 24 24" fill="none" stroke="#c2a06b" stroke-width="1.5"><path d="M4 20V4h16M4 20h16V4"/><path d="M4 20L20 4"/></svg>';
-  const chevL = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>';
-  const chevR = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>';
+  /* ---- іконки (з img/icons) ---- */
+  const heartFill = '<img src="img/icons/like.svg" width="32" height="32" alt="">';
+  const heartOut  = '<img src="img/icons/fav.svg" width="32" height="32" alt="">';
+  const icBed   = '<img src="img/icons/bedrooms-icon-black.svg" width="20" height="20" alt="">';
+  const icFloor = '<img src="img/icons/bathroom-icon.svg" width="20" height="20" alt="">';
+  const icArea  = '<img src="img/icons/area-icon.svg" width="20" height="20" alt="">';
+  const chevL = '<img src="img/icons/arrow-right-14.svg" width="14" height="14" alt="">';
+  const chevR = '<img src="img/icons/arrow-right-14.svg" width="14" height="14" alt="">';
   const dots5 = '<span class="dots img-dots"><i></i><i></i><i class="on"></i><i></i><i></i></span>';
 
   function specsRow(land){
@@ -517,7 +522,7 @@
   ].map(listingCard).join('');
 
   /* ---- відгуки ---- */
-  const google = '<span class="google"><b style="color:#4285F4">G</b><b style="color:#EA4335">o</b><b style="color:#FBBC05">o</b><b style="color:#4285F4">g</b><b style="color:#34A853">l</b><b style="color:#EA4335">e</b></span>';
+  const google = '<img src="img/icons/rating-stars.svg" width="60" height="19" alt="Google">';
   const revFull = 'We bought an apartment. Everything was very professional. Special thanks to Anna. She selected the best option for us and promptly organized on-line and live viewing. I did everything else myself. Very conscientious and punctual.';
   const revShort= 'We bought an apartment. Everything was very professional. Special thanks to Anna. She selected the best option for us and promptly organized on-line and live viewing. I did everything else myself...';
   function revCard(d){
