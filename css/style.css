@@ -233,3 +233,97 @@ img{display:block;max-width:100%;}
 /* тост */
 .toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(16px);background:var(--navy);color:#fff;padding:14px 24px;font-size:15px;letter-spacing:-.3px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* =================== КАТАЛОГ (сторінка лістингу) =================== */
+.cat-header{position:relative;height:80px;}
+
+.cat-crumbs{display:flex;align-items:center;gap:8px;margin-top:18px;color:var(--muted);font-size:13px;letter-spacing:-.26px;}
+.cat-crumbs .crumb-home{display:inline-flex;align-items:center;opacity:.8;}
+.cat-crumbs .crumb-home .logo{height:11px;width:auto;display:block;}
+.cat-crumbs .sep{display:grid;place-items:center;color:rgba(20,20,20,.4);}
+.cat-crumbs .sep svg{width:12px;height:12px;}
+.cat-crumbs .cur{color:var(--dark);}
+
+.cat-title{text-align:center;margin-top:42px;}
+
+/* --- панель фільтрів --- */
+.cat-filters{margin-top:56px;}
+.cat-frow1{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.cat-frow2{display:flex;align-items:flex-end;gap:18px;margin-top:24px;}
+.ff{min-width:0;}
+.ff-label,.ff-labelrow{display:block;margin-bottom:12px;font-size:15px;letter-spacing:-.3px;color:rgba(20,20,20,.6);}
+.ff-labelrow{display:flex;align-items:center;justify-content:space-between;}
+.ff-labelrow .ff-label{margin-bottom:0;}
+
+.cur-tabs{display:flex;gap:9px;font-size:15px;letter-spacing:-.3px;}
+.cur-tabs span{color:var(--muted);cursor:pointer;}
+.cur-tabs span.on{color:var(--dark);font-weight:500;}
+
+.fld2{position:relative;height:48px;background:#f1f0ed;border:1px solid rgba(20,20,20,.08);display:flex;align-items:center;padding:0 16px;font-size:15px;letter-spacing:-.3px;color:var(--dark);cursor:pointer;user-select:none;border-radius:var(--r-field);}
+.fld2 .val{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.fld2 .cd{flex:0 0 auto;margin-left:10px;opacity:.5;transition:transform .2s;}
+.fld2.open .cd{transform:rotate(-90deg);}
+.fld2.open .fld-menu{display:block;}
+
+/* пошук */
+.fld2--search{cursor:text;}
+.fld2--search input{flex:1;min-width:0;border:none;background:none;outline:none;font:400 15px/1 'Inter',sans-serif;letter-spacing:-.3px;color:var(--dark);}
+.fld2--search input::placeholder{color:var(--muted);}
+.fld2--search .ic{flex:0 0 auto;margin-left:10px;color:rgba(20,20,20,.55);display:grid;place-items:center;}
+
+/* діапазонний слайдер у полі */
+.fld2--range{flex-direction:column;align-items:stretch;justify-content:center;cursor:default;}
+.rng-vals{display:flex;justify-content:space-between;align-items:center;}
+.rng-vals i{color:var(--muted);font-style:normal;margin-right:6px;}
+.rng-vals b{font-weight:400;}
+.rng{position:absolute;left:14px;right:14px;bottom:-6px;height:13px;}
+.rng-track{position:absolute;top:5px;left:0;right:0;height:3px;background:#d7d3cc;border-radius:2px;}
+.rng-fill{position:absolute;top:5px;height:3px;background:var(--navy);border-radius:2px;}
+.rng-h{position:absolute;top:0;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;background:#fff;border:2px solid var(--navy);cursor:grab;box-shadow:0 1px 3px rgba(20,20,20,.18);}
+.rng-h:active{cursor:grabbing;}
+
+/* кіл-сть кімнат (сегментований перемикач) */
+.beds{display:flex;height:48px;}
+.beds button{width:43px;height:48px;margin-left:-1px;border:1px solid rgba(20,20,20,.12);background:#fff;font:400 15px/1 'Inter',sans-serif;letter-spacing:-.3px;color:var(--dark);cursor:pointer;display:grid;place-items:center;border-radius:var(--r-field);}
+.beds button:first-child{margin-left:0;}
+.beds button.on{background:var(--navy);border-color:var(--navy);color:#fff;position:relative;z-index:1;}
+
+/* скинути + знайти */
+.reset-link{display:inline-flex;align-items:center;gap:8px;height:48px;margin-left:auto;color:var(--muted);font-size:15px;letter-spacing:-.3px;cursor:pointer;white-space:nowrap;}
+.reset-link svg{width:16px;height:16px;flex:0 0 auto;}
+.reset-link:hover{color:var(--dark);}
+.find-btn{flex:0 0 207px;width:207px;height:48px;}
+
+/* --- обрані фільтри (чипи між лініями) --- */
+.cat-hr{height:1px;background:var(--line);}
+.cat-hr--top{margin-top:56px;}
+.chips-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:18px 0;}
+.chips-label{color:var(--muted);font-size:13px;letter-spacing:-.26px;margin-right:8px;}
+.chip{display:inline-flex;align-items:center;gap:10px;height:32px;padding:0 14px;background:var(--navy);color:#fff;font-size:13px;letter-spacing:-.26px;border-radius:100px;}
+.chip .x{display:grid;place-items:center;cursor:pointer;opacity:.8;}
+.chip .x:hover{opacity:1;}
+
+/* --- сортування --- */
+.cat-sortrow{display:flex;justify-content:flex-end;margin-top:33px;margin-bottom:56px;}
+.sort-wrap{position:relative;}
+.sort-btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;background:#fff;border:1px solid rgba(20,20,20,.14);color:var(--dark);font:400 15px/1 'Inter',sans-serif;letter-spacing:-.3px;cursor:pointer;border-radius:var(--r-ctrl);}
+.sort-btn svg{flex:0 0 auto;}
+.sort-menu{position:absolute;top:calc(100% + 8px);right:0;width:230px;list-style:none;background:#fff;border:1px solid #ececec;box-shadow:0 18px 44px rgba(20,20,20,.14);z-index:30;padding:6px;display:none;}
+.sort-wrap.open .sort-menu{display:block;}
+.sort-menu li{padding:11px 14px;font-size:15px;letter-spacing:-.3px;color:var(--dark);cursor:pointer;}
+.sort-menu li:hover{background:var(--soft);}
+.sort-menu li.sel{color:var(--navy);font-weight:500;}
+
+/* --- сітка карток --- */
+.cat-grid{gap:48px 20px;}
+
+/* --- пагінація --- */
+.pagination{margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:20px;}
+.showmore{display:inline-flex;align-items:center;gap:10px;color:var(--dark);font-size:15px;letter-spacing:-.3px;cursor:pointer;}
+.showmore svg{width:16px;height:16px;flex:0 0 auto;}
+.pages{display:flex;gap:7px;}
+.pg{width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(20,20,20,.14);background:#fff;color:var(--dark);font:400 15px/1 'Inter',sans-serif;letter-spacing:-.3px;cursor:pointer;border-radius:var(--r-ctrl);}
+.pg:hover{border-color:rgba(20,20,20,.4);}
+.pg.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+.pg.arrow{color:var(--dark);}
+.pg.arrow.prev svg{transform:scaleX(-1);}

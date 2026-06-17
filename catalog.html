@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>FAKTOR — Продаж квартир в Одесі</title>
+<!--
+  Верстка фрейму Figma "Каталог загальний" (node 2304:4836, file Xd1vIzpJZTXZ85ZFp0Un9b).
+  Сторінка лістингу: шапка-пігулка → breadcrumb → заголовок → панель фільтрів (2 ряди:
+  селекти, діапазонні слайдери, кіл-сть кімнат, пошук, скинути/знайти) → обрані фільтри
+  (чипи між лініями) → сортування → сітка карток 4×3 → пагінація → sitemap + SEO + темний футер.
+  Шапка, sitemap, SEO та футер — спільні з головною (index.html). Канва 1440px, без адаптиву.
+-->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="frame">
+
+  <!-- ===================== HEADER (пігулка) ===================== -->
+  <header class="cat-header">
+    <nav class="nav">
+      <span class="nav__logo"><a href="index.html"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></a></span>
+      <div class="nav__links">
+        <a href="#">Купити</a><a href="#">Продати</a><a href="#">Новобудови</a><a href="catalog.html">Квартири</a><a href="#">Будинки</a>
+      </div>
+      <div class="nav__right">
+        <span class="nav__icon" title="Подзвонити"><img src="img/icons/phone-call.svg" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Обране"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
+        <span class="nav__lang">UA / USD <img src="img/icons/small-arrow.svg" class="cd" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Меню"><img src="img/icons/menu.svg" width="24" height="24" alt=""></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== BREADCRUMB + ЗАГОЛОВОК ===================== -->
+  <div class="container cat-crumbs">
+    <a href="index.html" class="crumb-home"><img class="logo" src="img/icons/faktor-logo.svg" alt="FAKTOR"></a>
+    <span class="sep" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></span>
+    <span class="cur">Продаж квартир</span>
+  </div>
+
+  <h1 class="h-sec cat-title">Продаж квартир в Одесі</h1>
+
+  <!-- ===================== ПАНЕЛЬ ФІЛЬТРІВ ===================== -->
+  <div class="container cat-filters">
+    <!-- ряд 1 -->
+    <div class="cat-frow1">
+      <div class="ff">
+        <label class="ff-label">Тип угоди</label>
+        <div class="fld2 select" data-opts="Купити|Орендувати|Купити, орендувати">
+          <span class="val">Купити, орендувати</span>
+          <img src="img/icons/small-arrow.svg" class="cd" width="20" height="20" alt="">
+        </div>
+      </div>
+
+      <div class="ff">
+        <label class="ff-label">Тип нерухомості</label>
+        <div class="fld2 select" data-opts="Квартири|Будинки|Комерційна|Земельні ділянки|Квартири, будинки, комерційна, буд...">
+          <span class="val">Квартири, будинки, комерційна, буд...</span>
+          <img src="img/icons/small-arrow.svg" class="cd" width="20" height="20" alt="">
+        </div>
+      </div>
+
+      <div class="ff">
+        <label class="ff-label">Площа, м²</label>
+        <div class="fld2 fld2--range" data-min="0" data-max="5000" data-from="40" data-to="5000">
+          <div class="rng-vals"><span class="rng-from"><i>від</i> <b>40</b></span><span class="rng-to"><i>до</i> <b>5 000</b></span></div>
+          <div class="rng"><div class="rng-track"></div><div class="rng-fill"></div><span class="rng-h rng-h1"></span><span class="rng-h rng-h2"></span></div>
+        </div>
+      </div>
+
+      <div class="ff">
+        <div class="ff-labelrow">
+          <label class="ff-label">Вартість</label>
+          <div class="cur-tabs"><span>UAH</span><span class="on">USD</span><span>EUR</span></div>
+        </div>
+        <div class="fld2 fld2--range" data-min="0" data-max="120000000" data-from="300000" data-to="120000000">
+          <div class="rng-vals"><span class="rng-from"><i>від</i> <b>300 000</b></span><span class="rng-to"><i>до</i> <b>120 000 000</b></span></div>
+          <div class="rng"><div class="rng-track"></div><div class="rng-fill"></div><span class="rng-h rng-h1"></span><span class="rng-h rng-h2"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ряд 2 -->
+    <div class="cat-frow2">
+      <div class="ff cat-searchwrap">
+        <label class="ff-label">Пошук</label>
+        <div class="fld2 fld2--search">
+          <input type="text" placeholder="Місто, район,вулиця або ЖК...">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="5.2"/><path d="M12 12l3.4 3.4"/></svg></span>
+        </div>
+      </div>
+
+      <div class="ff">
+        <label class="ff-label">Кіл-сть кімнат</label>
+        <div class="beds">
+          <button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5+</button>
+        </div>
+      </div>
+
+      <a class="reset-link" id="reset-filters">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 8a5.4 5.4 0 1 0 1.7-3.9"/><path d="M2.4 3.1v3h3"/></svg>
+        Скинути всі фільтри
+      </a>
+      <button class="btn find-btn">Знайти</button>
+    </div>
+  </div>
+
+  <!-- ===================== ОБРАНІ ФІЛЬТРИ (чипи) ===================== -->
+  <div class="cat-hr cat-hr--top"></div>
+  <div class="container chips-row" id="chips-row">
+    <span class="chips-label">Обрані фільтри:</span>
+    <span class="chip">Купити <span class="x"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M1 1l6 6M7 1L1 7"/></svg></span></span>
+    <span class="chip">Квартири <span class="x"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M1 1l6 6M7 1L1 7"/></svg></span></span>
+    <span class="chip">Площа від 40 м² <span class="x"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M1 1l6 6M7 1L1 7"/></svg></span></span>
+  </div>
+  <div class="cat-hr"></div>
+
+  <!-- ===================== СОРТУВАННЯ ===================== -->
+  <div class="container cat-sortrow">
+    <div class="sort-wrap">
+      <button class="sort-btn" id="sort-btn">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5v11M5 14.5l-2.4-2.4M5 14.5l2.4-2.4M13 14.5v-11M13 3.5l-2.4 2.4M13 3.5l2.4 2.4"/></svg>
+        Сортування
+      </button>
+      <ul class="sort-menu" id="sort-menu">
+        <li data-sort="cheap">Спочатку дешевші</li>
+        <li data-sort="expensive">Спочатку дорожчі</li>
+        <li data-sort="new">Спочатку новіші</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== СІТКА КАРТОК ===================== -->
+  <div class="container">
+    <div class="grid4 cat-grid" id="cat-grid"></div>
+
+    <!-- ===================== ПАГІНАЦІЯ ===================== -->
+    <div class="pagination">
+      <a class="showmore" id="show-more">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 8a5.4 5.4 0 1 0 1.7-3.9"/><path d="M2.4 3.1v3h3"/></svg>
+        Показати ще 12 пропозицій
+      </a>
+      <div class="pages" id="pages">
+        <button class="pg arrow prev" aria-label="Назад"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></button>
+        <button class="pg on">1</button>
+        <button class="pg">2</button>
+        <button class="pg">3</button>
+        <button class="pg">4</button>
+        <button class="pg arrow next" aria-label="Далі"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SITEMAP (спільний) ===================== -->
+  <div class="container">
+    <div class="footer-divider"></div>
+    <nav class="sitemap">
+      <div class="col">
+        <h5 class="t24">Квартири</h5>
+        <a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">4-кімнатні</a><a href="#">5+ кімнатні</a><a href="#">Студії</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Будинки і дачі</h5>
+        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a><a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Комерційна</h5>
+        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a><a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a><a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Райони Одеси</h5>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+        <a href="#" class="gap">Локації</a>
+        <a href="#">Аркадія</a><a href="#">Фонтан</a><a href="#">Таїрова</a><a href="#">Центр</a><a href="#">Черемушки</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Новобудови</h5>
+        <a href="#">Усі ЖК</a><a href="#">Квартири в Новобудові</a><a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">Багатокімнатні</a>
+        <a href="#" class="gap">Зарубіжна нерухомість</a>
+        <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===================== SEO (спільний) ===================== -->
+  <div class="seo">
+    <div class="seo__in">
+      <h3 class="t15">Агентство нерухомості «FAKTOR» – кваліфікована допомога для придбання житла в Одесі</h3>
+      <p class="t15">Звернення до агентства нерухомості «FAKTOR» допоможе уникнути ризиків, які зазвичай виникають у процесі угоди під час продажу, придбання або оренди будинку, квартири, земельної ділянки. Залучення ріелторів для супроводу подібного процесу – це оптимальний спосіб грамотно підготуватися та отримати комплексний супровід на всіх етапах угоди.</p>
+      <a href="#" class="seo__more t15">Читати повністю</a>
+    </div>
+  </div>
+
+  <!-- ===================== DARK FOOTER (спільний) ===================== -->
+  <footer class="dark">
+    <div class="container">
+      <div class="dark__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+      <div class="dark__cols">
+        <div>
+          <h5 class="t15">Контакти</h5>
+          <a href="#">+38 (073) 355 98 54</a><a href="#">Telegram</a><a href="#">Канал “Нові об'єкти Одеси”</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
+        </div>
+        <div>
+          <h5 class="t15">Компанія</h5>
+          <a href="#">Про нас</a><a href="#">Курси рієлторів</a><a href="#">Кар'єра</a><a href="#">Франшиза</a><a href="#">Блог</a><a href="#">Продати об'єкт</a>
+        </div>
+        <div>
+          <h5 class="t15">Продаж</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Новобудови</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Аренда</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Зарубіжна нерухомість</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Сервіси</h5>
+          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a><a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
+        </div>
+      </div>
+      <div class="dark__bottom">
+        <a href="#">Політика конфіденційності</a>
+        <a href="#">Умови користувача</a>
+        <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
+        <span></span>
+        <a href="#">Вхід для агентів</a>
+        <div class="dark__switch">
+          <span class="sw">USD <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+          <span class="sw">UA <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+  <script src="js/catalog.js"></script>
+</body>
+</html>
