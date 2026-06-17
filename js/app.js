@@ -158,14 +158,15 @@ const REVS = [
 
 /* ---------------- ексклюзивні: карусель + автоплей ---------------- */
 const EXCL = [
-  {price:'$ 515 000', name:'ЖК OZONE',         addr:'Одесса, Приморский р-н, Шевченко-Французский, ул. Вице-Адмирала Азарова', tags:['Продаж','Квартира'],  g:['#c9c4bd','#b6b0a7']},
-  {price:'$ 348 000', name:'ЖК Sea View',      addr:'Одеса, Аркадія, Гагарінське плато, 5б',                                   tags:['Продаж','Квартира'],  g:['#cdbfae','#b3a594']},
-  {price:'$ 612 000', name:'ЖК Premier Tower', addr:'Одеса, Фонтан, Французький бульвар, 22',                                  tags:['Продаж','Пентхаус'],  g:['#bcc4c7','#a4adb1']},
-  {price:'$ 274 000', name:'ЖК Modern',        addr:'Одеса, Центр, вул. Рішельєвська, 14',                                     tags:['Продаж','Квартира'],  g:['#c8c2bb','#afa89e']},
+  {price:'$ 515 000', name:'ЖК OZONE',         addr:'Одесса, Приморский р-н, Шевченко-Французский, ул. Вице-Адмирала Азарова', tags:['Продаж','Квартира'],  g:['#c9c4bd','#b6b0a7'], img:'img/0d781488fd8d1108a2a5de31321d9f48063bf514.jpg'},
+  {price:'$ 348 000', name:'ЖК Sea View',      addr:'Одеса, Аркадія, Гагарінське плато, 5б',                                   tags:['Продаж','Квартира'],  g:['#cdbfae','#b3a594'], img:'img/d953e11a88863ad18a3758974c4c98173a3e93ed.jpg'},
+  {price:'$ 612 000', name:'ЖК Premier Tower', addr:'Одеса, Фонтан, Французький бульвар, 22',                                  tags:['Продаж','Пентхаус'],  g:['#bcc4c7','#a4adb1'], img:'img/e783f737a16e88c83a794fa54e3b053b5c6715a1.jpg'},
+  {price:'$ 274 000', name:'ЖК Modern',        addr:'Одеса, Центр, вул. Рішельєвська, 14',                                     tags:['Продаж','Квартира'],  g:['#c8c2bb','#afa89e'], img:'img/0d781488fd8d1108a2a5de31321d9f48063bf514.jpg'},
 ];
 (function initExclusive(){
   const el = s => document.querySelector(s);
   const grad = g => `linear-gradient(135deg,${g[0]},${g[1]})`;
+  const bg = o => o.img ? `center/cover no-repeat url("${o.img}")` : grad(o.g);
   const dotsBox = el('.excl__dots');
   dotsBox.innerHTML = EXCL.map((_, k) => `<i${k === 0 ? ' class="on"' : ''}></i>`).join('');
   const dots = dotsBox.querySelectorAll('i');
@@ -177,9 +178,9 @@ const EXCL = [
     el('.excl .price-xl').textContent = o.price;
     el('.excl__name').textContent     = o.name;
     el('.excl__addr').textContent     = o.addr;
-    el('.excl__img').style.background      = grad(o.g);
-    el('.excl__thumb--l').style.background = grad(p.g);
-    el('.excl__thumb--r').style.background = grad(n.g);
+    el('.excl__img').style.background      = bg(o);
+    el('.excl__thumb--l').style.background = bg(p);
+    el('.excl__thumb--r').style.background = bg(n);
     const tg = document.querySelectorAll('.excl__tags .pill-tag');
     o.tags.forEach((t, k) => { if(tg[k]) tg[k].textContent = t; });
     dots.forEach((d, k) => d.classList.toggle('on', k === e));
