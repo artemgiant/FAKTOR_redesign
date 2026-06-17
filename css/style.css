@@ -147,7 +147,7 @@ img{display:block;max-width:100%;}
 /* =================== ПІДБІР =================== */
 .pick__head{text-align:center;max-width:664px;margin:0 auto 56px;}
 .pick__head p{color:var(--muted);margin:12px auto 0;max-width:540px;}
-.pick__cols{display:flex;justify-content:space-between;}
+.pick__cols{display:flex;justify-content:center;gap:130px;}
 .pick__form{width:549px;}
 .field{border-bottom:1px solid #d8d4ce;padding:14px 0 28px;margin-bottom:20px;}
 .field label{display:block;color:var(--muted);}
