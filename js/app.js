@@ -241,6 +241,4 @@ const EXCL = [
 const phone = document.querySelector('.nav__icon[title="Подзвонити"]');
 if(phone) phone.addEventListener('click', () => toast('☎  +38 (073) 355 98 54'));
 
-document.querySelectorAll('.see-all').forEach(a =>
-  a.addEventListener('click', e => { e.preventDefault(); toast('Перехід до повного каталогу'); })
-);
+// «Дивитись усі» тепер веде на сторінку каталогу (catalog.html) — без перехоплення кліку.
