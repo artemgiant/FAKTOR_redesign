@@ -1,9 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap');
+
+/* Фірмовий шрифт NAMU-1990 (за ТЗ). Покласти файли у css/fonts/ і розкоментувати —
+   тоді він автоматично підхопиться першим у стеку --font-brand, Manrope лишиться fallback.
+@font-face{
+  font-family:'NAMU-1990';
+  src:url('fonts/NAMU-1990.woff2') format('woff2'),
+      url('fonts/NAMU-1990.woff')  format('woff');
+  font-weight:400 700;font-style:normal;font-display:swap;
+}
+*/
 
 :root{
   --dark:#141414;
   --muted:rgba(20,20,20,.55);     /* Dark 60% */
-  --navy:#001638;                 /* акцент / кнопки / темний футер */
+  --navy:#001D4B;                 /* бренд (темно-синій, ТЗ) — лого, «Знайти», заливки, футер */
+  --font-brand:'NAMU-1990','Manrope','Inter',system-ui,sans-serif; /* H1 / великі категорії (ТЗ) */
   --soft:#f7f7f7;                 /* карткові фони */
   --placeholder:#d9d9d9;          /* плейсхолдери зображень */
   --hero-gray:#d2d2d2;            /* плейсхолдер hero-зображення */
@@ -27,7 +38,7 @@ img{display:block;max-width:100%;}
 .container{width:var(--content);margin:0 auto;}
 
 /* ---------- типографіка ---------- */
-.h-hero{font-size:72px;line-height:1.05;letter-spacing:-2.88px;font-weight:500;text-transform:uppercase;}
+.h-hero{font-family:var(--font-brand);font-size:72px;line-height:1.05;letter-spacing:-2.88px;font-weight:500;text-transform:uppercase;}
 .h-sec {font-size:56px;line-height:1.05;letter-spacing:-2.24px;font-weight:500;}
 .price-xl{font-size:40px;line-height:1;letter-spacing:-1.6px;font-weight:500;}
 .t24{font-size:24px;line-height:1.2;letter-spacing:-.96px;font-weight:500;}
@@ -37,7 +48,7 @@ img{display:block;max-width:100%;}
 .muted{color:var(--muted);}
 
 /* ---------- кнопки / службові ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 28px;border-radius:var(--r-ctrl);border:none;cursor:pointer;background:var(--navy);color:#fff;font:500 15px/1 'Inter',sans-serif;letter-spacing:-.3px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 28px;border-radius:30px;border:none;cursor:pointer;background:var(--navy);color:#fff;font:500 15px/1 'Inter',sans-serif;letter-spacing:-.3px;}
 .see-all{display:inline-flex;align-items:center;gap:6px;font-size:15px;letter-spacing:-.3px;color:var(--dark);}
 .see-all img{width:20px;height:20px;display:block;transition:transform .2s;}
 .see-all:hover img{transform:translateX(3px);}
@@ -71,7 +82,11 @@ img{display:block;max-width:100%;}
 
 /* =================== HEADER + HERO =================== */
 .hero{position:relative;height:1180px;}
-.hero__bg{position:absolute;top:0;left:0;right:0;height:580px;background:#cccccc url("../img/photos/faktor-hero-1440x580.png") center/cover no-repeat;z-index:1;}
+.hero__bg{position:absolute;top:0;left:0;right:0;height:580px;z-index:1;
+  background:
+    radial-gradient(95% 95% at 50% 45%, rgba(13,22,38,.45) 0%, rgba(13,22,38,.74) 100%),
+    linear-gradient(180deg, rgba(10,18,32,.62) 0%, rgba(13,22,38,.48) 45%, rgba(10,18,32,.66) 100%),
+    #cccccc url("../img/photos/faktor-hero-1440x580.png") center/cover no-repeat;}
 .hero__white{position:absolute;left:0;right:0;top:580px;bottom:0;background:#fff;z-index:2;}
 .hero__wave{position:absolute;left:0;top:472px;width:1440px;height:108px;z-index:2;}
 .hero__wave svg{display:block;width:1440px;height:108px;}
@@ -80,21 +95,21 @@ img{display:block;max-width:100%;}
 .nav__logo{display:flex;align-items:center;}
 .nav__logo img{height:16px;width:auto;display:block;}
 .nav__links{display:flex;gap:24px;margin-left:24px;}
-.nav__links a{font-size:15px;letter-spacing:-.3px;}
+.nav__links a{font-size:15px;letter-spacing:-.3px;color:#2a3344;}
 .nav__right{margin-left:auto;display:flex;align-items:center;gap:18px;}
 .nav__icon{display:grid;place-items:center;width:32px;height:32px;}
 .nav__lang{display:inline-flex;align-items:center;gap:6px;font-size:15px;letter-spacing:-.3px;}
 
 .searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1117px;display:flex;align-items:center;gap:16px;z-index:4;}
-.fld{height:44px;background:#f0f0f0;border-radius:var(--r-field);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:15px;letter-spacing:-.3px;color:var(--muted);}
+.fld{height:44px;background:#F5F6F8;border:1px solid #E5E7EC;border-radius:var(--r-field);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:15px;letter-spacing:-.3px;color:var(--muted);}
 .fld--search{flex:1 1 438px;}
 .fld--sel{width:211px;flex:0 0 211px;}
-.searchbar .btn{flex:0 0 211px;height:44px;border-radius:var(--r-ctrl);}
+.searchbar .btn{flex:0 0 211px;height:44px;border-radius:30px;}
 
 .hero__label{position:absolute;top:660px;left:50%;transform:translateX(-50%);height:48px;padding:0 28px;border-radius:100px;background:#ededed;display:inline-flex;align-items:center;font-size:15px;letter-spacing:-.3px;z-index:3;}
 .hero__words{position:absolute;top:752px;left:0;right:0;text-align:center;z-index:3;}
-.hw{display:block;color:#a6a6a6;line-height:1.05;margin-bottom:20px;}
-.hw sup{font-size:18px;letter-spacing:-.72px;color:#9a9a9a;vertical-align:super;margin-left:10px;font-weight:400;top:-1.3em;position:relative;}
+.hw{display:block;color:#C5C8D0;line-height:1.05;margin-bottom:20px;}
+.hw sup{font-size:18px;letter-spacing:-.72px;color:#aeb3bd;vertical-align:super;margin-left:10px;font-weight:400;top:-1.3em;position:relative;}
 .hw-img{display:inline-block;width:72px;height:50px;border-radius:var(--r-ctrl);background:#c9c7c2 url("../img/photos/residential-complex-dusk.jpg") center/cover no-repeat;vertical-align:middle;margin:0 16px;}
 .hw--1{transform:translateX(-22px);}
 .hw--2{transform:translateX(-150px);color:var(--dark);}
