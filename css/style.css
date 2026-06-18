@@ -116,6 +116,16 @@ img{display:block;max-width:100%;}
 .hw--3{transform:translateX(-19px);}
 .hw--4{transform:translateX(47px);}
 
+/* контент на фото: H1 + підзаголовок + CTA (ТЗ §3,5) */
+.hero__content{position:absolute;left:0;right:0;top:80px;height:424px;z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 24px;}
+.hero__h1{font-family:var(--font-brand);font-size:clamp(26px,3.7vw,50px);font-weight:700;line-height:1.08;letter-spacing:-.015em;color:#fff;white-space:nowrap;}
+.hero__sub{margin:18px auto 0;max-width:560px;font-size:17px;line-height:1.55;color:rgba(255,255,255,.82);}
+.hero__cta{margin-top:32px;display:flex;justify-content:center;gap:15px;}
+.hero__btn{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 38px;border-radius:30px;font:500 15px/1 'Inter',sans-serif;letter-spacing:-.3px;cursor:pointer;transition:opacity .2s;}
+.hero__btn:hover{opacity:.92;}
+.hero__btn--primary{background:#fff;color:var(--navy);}
+.hero__btn--ghost{background:rgba(255,255,255,.06);color:#fff;border:1.5px solid rgba(255,255,255,.6);}
+
 /* =================== КАРТКИ =================== */
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 
