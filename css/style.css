@@ -198,6 +198,15 @@ img{display:block;max-width:100%;}
 .reviews .arrow-lg.l{left:-24px;}
 .reviews .arrow-lg.r{right:-24px;}
 
+/* =================== АГЕНТИ РОКУ =================== */
+.agents{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
+.agent{background:#fff;border:1px solid #ececec;overflow:hidden;box-shadow:0 8px 24px rgba(20,20,20,.05);}
+.agent__ava{height:208px;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:34px;font-weight:700;letter-spacing:.04em;}
+.agent:nth-child(even) .agent__ava{background:#4e5d7e;}
+.agent__body{padding:18px 16px 22px;text-align:center;}
+.agent__name{font-size:16px;font-weight:600;letter-spacing:-.4px;}
+.agent__office{margin-top:6px;color:var(--muted);font-size:14px;letter-spacing:-.2px;}
+
 /* =================== ФУТЕР =================== */
 .footer-divider{height:1px;background:var(--line);margin:120px 0 0;}
 .sitemap{display:grid;grid-template-columns:227px 228px 228px 226px 207px;gap:0;padding:80px 0 0 114px;}
