@@ -95,7 +95,7 @@ img{display:block;max-width:100%;}
 .hero__words{position:absolute;top:752px;left:0;right:0;text-align:center;z-index:3;}
 .hw{display:block;color:#a6a6a6;line-height:1.05;margin-bottom:20px;}
 .hw sup{font-size:18px;letter-spacing:-.72px;color:#9a9a9a;vertical-align:super;margin-left:10px;font-weight:400;top:-1.3em;position:relative;}
-.hw-img{display:inline-block;width:72px;height:50px;border-radius:var(--r-ctrl);background:#c9c7c2;vertical-align:middle;margin:0 16px;}
+.hw-img{display:inline-block;width:72px;height:50px;border-radius:var(--r-ctrl);background:#c9c7c2 url("../img/e783f737a16e88c83a794fa54e3b053b5c6715a1.jpg") center/cover no-repeat;vertical-align:middle;margin:0 16px;}
 .hw--1{transform:translateX(-22px);}
 .hw--2{transform:translateX(-150px);color:var(--dark);}
 .hw--3{transform:translateX(-19px);}
