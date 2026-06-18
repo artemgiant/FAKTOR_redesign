@@ -158,10 +158,10 @@ const REVS = [
 
 /* ---------------- ексклюзивні: карусель + автоплей ---------------- */
 const EXCL = [
-  {price:'$ 515 000', name:'ЖК OZONE',         addr:'Одесса, Приморский р-н, Шевченко-Французский, ул. Вице-Адмирала Азарова', tags:['Продаж','Квартира'],  g:['#c9c4bd','#b6b0a7'], img:'img/0d781488fd8d1108a2a5de31321d9f48063bf514.jpg'},
-  {price:'$ 348 000', name:'ЖК Sea View',      addr:'Одеса, Аркадія, Гагарінське плато, 5б',                                   tags:['Продаж','Квартира'],  g:['#cdbfae','#b3a594'], img:'img/d953e11a88863ad18a3758974c4c98173a3e93ed.jpg'},
-  {price:'$ 612 000', name:'ЖК Premier Tower', addr:'Одеса, Фонтан, Французький бульвар, 22',                                  tags:['Продаж','Пентхаус'],  g:['#bcc4c7','#a4adb1'], img:'img/e783f737a16e88c83a794fa54e3b053b5c6715a1.jpg'},
-  {price:'$ 274 000', name:'ЖК Modern',        addr:'Одеса, Центр, вул. Рішельєвська, 14',                                     tags:['Продаж','Квартира'],  g:['#c8c2bb','#afa89e'], img:'img/0d781488fd8d1108a2a5de31321d9f48063bf514.jpg'},
+  {price:'$ 515 000', name:'ЖК OZONE',         addr:'Одесса, Приморский р-н, Шевченко-Французский, ул. Вице-Адмирала Азарова', tags:['Продаж','Квартира'],  g:['#c9c4bd','#b6b0a7'], img:'img/photos/interior-marble-bathroom.jpg'},
+  {price:'$ 348 000', name:'ЖК Sea View',      addr:'Одеса, Аркадія, Гагарінське плато, 5б',                                   tags:['Продаж','Квартира'],  g:['#cdbfae','#b3a594'], img:'img/photos/house-modern-exterior.jpg'},
+  {price:'$ 612 000', name:'ЖК Premier Tower', addr:'Одеса, Фонтан, Французький бульвар, 22',                                  tags:['Продаж','Пентхаус'],  g:['#bcc4c7','#a4adb1'], img:'img/photos/residential-complex-dusk.jpg'},
+  {price:'$ 274 000', name:'ЖК Modern',        addr:'Одеса, Центр, вул. Рішельєвська, 14',                                     tags:['Продаж','Квартира'],  g:['#c8c2bb','#afa89e'], img:'img/photos/interior-marble-bathroom.jpg'},
 ];
 (function initExclusive(){
   const el = s => document.querySelector(s);
