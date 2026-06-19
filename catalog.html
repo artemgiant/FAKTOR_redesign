@@ -11,6 +11,7 @@
   (чипи між лініями) → сортування → сітка карток 4×3 → пагінація → sitemap + SEO + темний футер.
   Шапка, sitemap, SEO та футер — спільні з головною (index.html). Канва 1440px, без адаптиву.
 -->
+<link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -40,6 +41,15 @@
   </div>
 
   <h1 class="h-sec cat-title">Продаж квартир в Одесі</h1>
+
+  <!-- ===================== ШВИДКІ ТЕГИ (прямий перехід на готові підбірки) ===================== -->
+  <div class="container cat-tags">
+    <a href="catalog.html?rooms=2" class="cat-tag">2-кімнатні</a>
+    <a href="catalog.html?rooms=3" class="cat-tag">3-кімнатні</a>
+    <a href="catalog.html?type=studio" class="cat-tag">Студії</a>
+    <a href="catalog.html?type=houses" class="cat-tag">Будинки</a>
+    <a href="catalog.html?type=dacha" class="cat-tag">Дачі</a>
+  </div>
 
   <!-- ===================== ПАНЕЛЬ ФІЛЬТРІВ ===================== -->
   <div class="container cat-filters">
