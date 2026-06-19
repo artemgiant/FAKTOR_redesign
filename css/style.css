@@ -79,6 +79,7 @@ img{display:block;max-width:100%;}
 .section{margin-top:160px;}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;}
 .sec-head--center{flex-direction:column;align-items:center;gap:16px;text-align:center;}
+.sec-head--left{flex-direction:column;align-items:flex-start;gap:16px;text-align:left;}
 
 /* =================== HEADER + HERO =================== */
 .hero{position:relative;height:1180px;}
