@@ -30,7 +30,6 @@
 
 .fa-agents__grid{
   display:grid; grid-template-columns:repeat(5,1fr); gap:16px;
-  max-width:1240px; /* картки розміру 1240, шапка — на повну ширину inner */
 }
 
 .fa-card{
