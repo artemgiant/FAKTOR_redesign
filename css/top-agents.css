@@ -8,7 +8,7 @@
    ===================================================================== */
 .fa-agents{ font-family:inherit; color:var(--navy); padding:64px 0; }
 .fa-agents *{ box-sizing:border-box; }
-.fa-agents__inner{ max-width:1240px; margin:0 auto; padding:0 20px; }
+.fa-agents__inner{ margin:0 auto; padding:0 20px; }
 
 .fa-agents__head{
   display:flex; align-items:baseline; justify-content:space-between;

@@ -7,7 +7,7 @@
    ===================================================================== */
 .fr-reviews{ font-family:inherit; color:#001738; padding:64px 0; background:#fff; }
 .fr-reviews *{ box-sizing:border-box; }
-.fr-reviews__inner{ max-width:1240px; margin:0 auto; padding:0 20px; }
+.fr-reviews__inner{ margin:0 auto; padding:0 20px; }
 
 .fr-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:8px; }
 .fr-title{ margin:0; font-size:var(--fs-h1); line-height:var(--lh-tight); letter-spacing:var(--ls-h1); font-weight:var(--fw-medium); }
