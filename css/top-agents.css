@@ -6,7 +6,7 @@
    без локальних magic-значень кольору/кегля. Відступи лишаються в px
    (у проєкті немає spacing-токенів — як і в style.css).
    ===================================================================== */
-.fa-agents{ font-family:inherit; color:var(--navy); padding:64px 0; }
+.fa-agents{ font-family:inherit; color:var(--navy); margin-top:160px; } /* той самий міжсекційний ритм, що й .section */
 .fa-agents *{ box-sizing:border-box; }
 .fa-agents__inner{ margin:0 auto; padding:0 20px; }
 
