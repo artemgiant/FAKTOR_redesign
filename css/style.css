@@ -186,19 +186,7 @@ img{display:block;max-width:100%;}
 .reviews .arrow-lg.l{left:-24px;}
 .reviews .arrow-lg.r{right:-24px;}
 
-/* =================== АГЕНТИ РОКУ =================== */
-.agents{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
-.agent{position:relative;aspect-ratio:3/4;background:var(--white);border:1px solid var(--line);overflow:hidden;box-shadow:0 8px 24px var(--ink-05);}
-.agent__ava{position:absolute;inset:0;display:grid;place-items:center;background:var(--navy);color:var(--white);font-size:34px;font-weight:var(--fw-bold);letter-spacing:.04em;}
-.agent__ava img{width:104px;height:auto;}
-.agent__ava--photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
-.agent:nth-child(even) .agent__ava{background:var(--agent-alt);}
-.agent__body{position:absolute;left:0;right:0;bottom:0;z-index:1;background:var(--white);padding:12px 14px 14px;text-align:center;}
-.agent__name{font-size:var(--fs-base);font-weight:var(--fw-semibold);letter-spacing:var(--ls-base);}
-.agent__office{margin-top:4px;color:var(--navy);font-size:var(--fs-sm);font-weight:var(--fw-medium);letter-spacing:var(--ls-sm);}
-.agent__phone{margin-top:2px;color:var(--muted);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);}
-.agent__phone a{color:inherit;text-decoration:none;}
-.agent__phone a:hover{color:var(--navy);}
+/* Блок «ТОП АГЕНТИ FAKTOR» винесено в окремий css/top-agents.css (.fa-*) */
 
 /* =================== ФУТЕР =================== */
 .footer-divider{height:1px;background:var(--line);margin:120px 0 0;}

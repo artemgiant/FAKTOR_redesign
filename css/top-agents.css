@@ -1,0 +1,98 @@
+/* =====================================================================
+   БЛОК «ТОП АГЕНТИ FAKTOR» — стилі секції (handoff-пакет)
+   Самодостатній компонент: усі класи з префіксом .fa- не конфліктують
+   з рештою стилів сайту. Шрифт успадковується від сайту (inherit).
+   Палітра й кеглі — через дизайн-токени css/tokens.css (var(--…)),
+   без локальних magic-значень кольору/кегля. Відступи лишаються в px
+   (у проєкті немає spacing-токенів — як і в style.css).
+   ===================================================================== */
+.fa-agents{ font-family:inherit; color:var(--navy); padding:64px 0; }
+.fa-agents *{ box-sizing:border-box; }
+.fa-agents__inner{ max-width:1240px; margin:0 auto; padding:0 20px; }
+
+.fa-agents__head{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:20px; flex-wrap:wrap; margin-bottom:6px;
+}
+.fa-agents__title{ /* кегль як у .h-sec (заголовки секцій) */
+  margin:0; font-size:var(--fs-h1); font-weight:var(--fw-medium);
+  line-height:var(--lh-tight); letter-spacing:var(--ls-h1); color:var(--navy);
+}
+.fa-agents__all{
+  font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--muted);
+  letter-spacing:var(--ls-sm); text-decoration:none; white-space:nowrap;
+}
+.fa-agents__all:hover{ color:var(--navy); }
+.fa-agents__sub{
+  margin:0 0 28px; font-size:var(--fs-base); font-weight:var(--fw-regular);
+  letter-spacing:var(--ls-base); color:var(--muted);
+}
+
+.fa-agents__grid{
+  display:grid; grid-template-columns:repeat(5,1fr); gap:16px;
+}
+
+.fa-card{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-card);
+  overflow:hidden; box-shadow:0 1px 3px var(--ink-05);
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+.fa-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 32px var(--ink-14);
+}
+
+.fa-card__photo{
+  position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--placeholder);
+}
+.fa-card__photo::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:4px;
+  background:var(--navy); z-index:2;
+}
+.fa-card__photo img{
+  width:100%; height:100%; object-fit:cover; object-position:center top;
+  display:block; transition:transform .5s ease;
+}
+.fa-card:hover .fa-card__photo img{ transform:scale(1.06); }
+
+/* Заглушка, якщо агент без фото — логотип FAKTOR на нейтральному фоні */
+.fa-card__photo--empty{
+  display:flex; align-items:center; justify-content:center;
+  background:var(--soft); padding:0 22px;
+}
+.fa-card__photo--empty img{
+  width:100%; max-width:150px; height:auto; opacity:.92;
+}
+
+.fa-card__body{ padding:13px 13px 15px; display:flex; flex-direction:column; gap:8px; }
+.fa-card__name{
+  margin:0; font-size:var(--fs-base); font-weight:var(--fw-bold);
+  letter-spacing:var(--ls-base); color:var(--navy);
+}
+.fa-card__office{
+  display:inline-flex; align-items:center; gap:5px; align-self:flex-start;
+  white-space:nowrap; background:var(--soft); border:1px solid var(--line);
+  color:var(--navy); padding:3px 9px 3px 7px; border-radius:var(--r-pill);
+  font-size:var(--fs-sm); font-weight:var(--fw-semibold); letter-spacing:var(--ls-sm);
+}
+.fa-card__office svg{ width:10px; height:10px; fill:var(--navy); flex:none; }
+.fa-card__phone{
+  font-size:var(--fs-sm); font-weight:var(--fw-medium); letter-spacing:var(--ls-sm);
+  color:var(--muted); text-decoration:none;
+}
+.fa-card__phone:hover{ color:var(--navy); }
+
+/* Планшет */
+@media (max-width:1024px){
+  .fa-agents__grid{ grid-template-columns:repeat(3,1fr); }
+}
+/* Мобайл — горизонтальна стрічка */
+@media (max-width:680px){
+  .fa-agents__grid{
+    grid-auto-flow:column; grid-template-columns:none;
+    grid-auto-columns:72%; overflow-x:auto;
+    scroll-snap-type:x mandatory; padding-bottom:8px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .fa-card{ scroll-snap-align:start; }
+}
