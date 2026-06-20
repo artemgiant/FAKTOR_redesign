@@ -31,7 +31,6 @@ img{display:block;max-width:100%;}
 .t24{font-size:var(--fs-h3);line-height:var(--lh-snug);letter-spacing:var(--ls-h3);font-weight:var(--fw-medium);}
 .t18{font-size:var(--fs-lg);line-height:var(--lh-base);letter-spacing:var(--ls-lg);}
 .t15{font-size:var(--fs-base);line-height:var(--lh-base);letter-spacing:var(--ls-base);}
-.t12{font-size:var(--fs-xs);line-height:var(--lh-base);letter-spacing:var(--ls-xs);}
 .muted{color:var(--muted);}
 
 /* ---------- кнопки / службові ---------- */
@@ -66,7 +65,6 @@ img{display:block;max-width:100%;}
 .section{margin-top:160px;}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;}
 .sec-head--center{flex-direction:column;align-items:center;gap:16px;text-align:center;}
-.sec-head--left{flex-direction:column;align-items:flex-start;gap:16px;text-align:left;}
 
 /* =================== HEADER + HERO =================== */
 .hero{position:relative;height:1180px;}
@@ -74,7 +72,7 @@ img{display:block;max-width:100%;}
   background:
     radial-gradient(95% 95% at 50% 45%, rgba(13,22,38,.45) 0%, rgba(13,22,38,.74) 100%),
     linear-gradient(180deg, rgba(10,18,32,.62) 0%, rgba(13,22,38,.48) 45%, rgba(10,18,32,.66) 100%),
-    #cccccc url("../img/photos/faktor-hero-1440x580.png") center/cover no-repeat;}
+    var(--hero-bg-fallback) url("../img/photos/faktor-hero-1440x580.png") center/cover no-repeat;}
 .hero__white{position:absolute;left:0;right:0;top:580px;bottom:0;background:var(--white);z-index:2;}
 .hero__wave{position:absolute;left:0;top:472px;width:1440px;height:108px;z-index:2;}
 .hero__wave svg{display:block;width:1440px;height:108px;}
@@ -97,8 +95,8 @@ img{display:block;max-width:100%;}
 .hero__label{position:absolute;top:660px;left:50%;transform:translateX(-50%);height:48px;padding:0 28px;border-radius:100px;background:var(--chip-bg);display:inline-flex;align-items:center;font-size:var(--fs-base);letter-spacing:var(--ls-base);z-index:3;}
 .hero__words{position:absolute;top:752px;left:0;right:0;text-align:center;z-index:3;}
 .hw{display:block;color:var(--hero-word);line-height:var(--lh-tight);margin-bottom:20px;}
-.hw sup{font-size:var(--fs-lg);letter-spacing:var(--ls-lg);color:#aeb3bd;vertical-align:super;margin-left:10px;font-weight:var(--fw-regular);top:-1.3em;position:relative;}
-.hw-img{display:inline-block;width:72px;height:50px;border-radius:var(--r-ctrl);background:#c9c7c2 url("../img/photos/residential-complex-dusk.jpg") center/cover no-repeat;vertical-align:middle;margin:0 16px;}
+.hw sup{font-size:var(--fs-lg);letter-spacing:var(--ls-lg);color:var(--hero-sup);vertical-align:super;margin-left:10px;font-weight:var(--fw-regular);top:-1.3em;position:relative;}
+.hw-img{display:inline-block;width:72px;height:50px;border-radius:var(--r-ctrl);background:var(--img-fallback) url("../img/photos/residential-complex-dusk.jpg") center/cover no-repeat;vertical-align:middle;margin:0 16px;}
 .hw--1{transform:translateX(-22px);}
 .hw--2{transform:translateX(-150px);color:var(--dark);}
 .hw--3{transform:translateX(-19px);}
@@ -139,7 +137,7 @@ img{display:block;max-width:100%;}
 
 /* =================== ЕКСКЛЮЗИВНІ =================== */
 .excl{position:relative;height:620px;margin-top:48px;}
-.excl__img{position:absolute;top:0;left:275px;width:435px;height:568px;border-radius:var(--r-card);background:linear-gradient(135deg,#c9c4bd,#b6b0a7);}
+.excl__img{position:absolute;top:0;left:275px;width:435px;height:568px;border-radius:var(--r-card);background:linear-gradient(135deg,var(--excl-ph-1),var(--excl-ph-2));}
 .excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:var(--r-card);background:var(--placeholder);opacity:.7;}
 .excl__thumb--r{left:1298px;}
 .excl__thumb--l{left:-69px;}
@@ -172,21 +170,7 @@ img{display:block;max-width:100%;}
 .pick__contacts a.tg{color:var(--muted);text-decoration:underline;}
 .pick__contacts a.wa{color:var(--dark);text-decoration:underline;font-weight:var(--fw-medium);}
 
-/* =================== ВІДГУКИ =================== */
-.reviews{position:relative;}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.rev-card{height:248px;background:var(--soft);border-radius:var(--r-card);padding:32px 28px;}
-.rev-card h4{margin-bottom:10px;}
-.rev-meta{display:flex;align-items:center;gap:8px;color:var(--muted);margin-bottom:16px;}
-.rev-meta .sep{color:var(--muted);}
-.google b{font-weight:var(--fw-medium);font-size:var(--fs-base);letter-spacing:var(--ls-base);}
-.rev-card p{color:var(--dark);}
-.rev-readmore{color:var(--dark);font-weight:var(--fw-regular);margin-top:8px;display:inline-block;text-decoration:underline;text-underline-offset:3px;}
-.reviews .arrow-lg{position:absolute;top:50%;transform:translateY(-50%);}
-.reviews .arrow-lg.l{left:-24px;}
-.reviews .arrow-lg.r{right:-24px;}
-
-/* Блок «ТОП АГЕНТИ FAKTOR» винесено в окремий css/top-agents.css (.fa-*) */
+/* Блоки «ВІДГУКИ» (.fr-*) і «ТОП АГЕНТИ» (.fa-*) — у власних css/reviews.css та css/top-agents.css */
 
 /* =================== ФУТЕР =================== */
 .footer-divider{height:1px;background:var(--line);margin:120px 0 0;}
@@ -231,19 +215,13 @@ img{display:block;max-width:100%;}
 /* випадаючі фільтри */
 .fld{position:relative;cursor:pointer;user-select:none;}
 .fld.has-val span{color:var(--dark);}
-.fld .cd{transition:transform .2s;}
+.fld .cd{opacity:.5;transition:transform .2s;}
 .fld.open .cd{transform:rotate(-90deg);}
 .fld-menu{position:absolute;top:calc(100% + 8px);left:0;right:0;list-style:none;background:var(--white);border:1px solid var(--line);box-shadow:0 18px 44px var(--ink-14);z-index:30;max-height:300px;overflow:auto;padding:6px;display:none;}
 .fld.open .fld-menu{display:block;}
 .fld-menu li{padding:11px 14px;font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--dark);cursor:pointer;}
 .fld-menu li:hover{background:var(--soft);}
 .fld-menu li.sel{color:var(--navy);font-weight:var(--fw-medium);}
-
-/* слайдер відгуків */
-.rev-viewport{overflow:hidden;}
-.rev-track{display:flex;gap:20px;transition:transform .45s cubic-bezier(.4,0,.2,1);}
-.rev-track .rev-card{flex:0 0 calc((1344px - 40px) / 3);}
-.reviews .arrow-lg{cursor:pointer;z-index:5;}
 
 /* тост */
 .toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(16px);background:var(--navy);color:var(--white);padding:14px 24px;font-size:var(--fs-base);letter-spacing:var(--ls-base);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
