@@ -1,0 +1,174 @@
+<!-- =====================================================================
+     БЛОК «ТОП АГЕНТИ FAKTOR»  —  готовий до вставки
+     ---------------------------------------------------------------------
+     Як вставити:
+     1) Скопіюйте всю папку assets/ (5 фото) у проєкт.
+        Якщо ваш шлях до фото інший — поправте src у тегах <img> нижче
+        та шляхи у CSS не потрібні (фото лише в <img>).
+     2) Вставте <style>...</style> один раз у <head> (або у загальний CSS,
+        прибравши теги <style>).
+     3) Вставте <section class="fa-agents">...</section> у потрібне місце
+        сторінки.
+     Залежностей немає: чистий HTML + CSS, без JS і без бібліотек.
+     Шрифт succeeds від сайту автоматично (font-family: inherit).
+====================================================================== -->
+
+<style>
+  .fa-agents{ font-family:inherit; color:#001738; padding:64px 0; }
+  .fa-agents *{ box-sizing:border-box; }
+  .fa-agents__inner{ max-width:1240px; margin:0 auto; padding:0 20px; }
+
+  .fa-agents__head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:20px; flex-wrap:wrap; margin-bottom:6px;
+  }
+  .fa-agents__title{
+    margin:0; font-size:28px; font-weight:700; line-height:1.15;
+    letter-spacing:0; color:#001738;
+  }
+  .fa-agents__all{
+    font-size:13px; font-weight:500; color:#5b6470;
+    text-decoration:none; white-space:nowrap;
+  }
+  .fa-agents__all:hover{ color:#001738; }
+  .fa-agents__sub{
+    margin:0 0 28px; font-size:14px; font-weight:400; color:#5b6470;
+  }
+
+  .fa-agents__grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:16px;
+  }
+
+  .fa-card{
+    background:#fff; border:1px solid #e6e9ef; border-radius:10px;
+    overflow:hidden; box-shadow:0 1px 3px rgba(0,22,56,.06);
+    transition:transform .22s ease, box-shadow .22s ease;
+  }
+  .fa-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 32px rgba(0,22,56,.14);
+  }
+
+  .fa-card__photo{
+    position:relative; aspect-ratio:4/5; overflow:hidden; background:#eceef1;
+  }
+  .fa-card__photo::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:4px;
+    background:#001738; z-index:2;
+  }
+  .fa-card__photo img{
+    width:100%; height:100%; object-fit:cover; object-position:center top;
+    display:block; transition:transform .5s ease;
+  }
+  .fa-card:hover .fa-card__photo img{ transform:scale(1.06); }
+
+  /* Заглушка, якщо агент без фото — логотип FAKTOR на нейтральному фоні */
+  .fa-card__photo--empty{
+    display:flex; align-items:center; justify-content:center;
+    background:#f1f3f7; padding:0 22px;
+  }
+  .fa-card__photo--empty img{
+    width:100%; max-width:150px; height:auto; opacity:.92;
+  }
+
+  .fa-card__body{ padding:13px 13px 15px; display:flex; flex-direction:column; gap:8px; }
+  .fa-card__name{ margin:0; font-size:15px; font-weight:700; color:#001738; }
+  .fa-card__office{
+    display:inline-flex; align-items:center; gap:5px; align-self:flex-start;
+    white-space:nowrap; background:#f1f3f7; border:1px solid #e2e6ee;
+    color:#001738; padding:3px 9px 3px 7px; border-radius:999px;
+    font-size:11px; font-weight:600;
+  }
+  .fa-card__office svg{ width:10px; height:10px; fill:#001738; flex:none; }
+  .fa-card__phone{ font-size:13px; font-weight:500; color:#3b434f; text-decoration:none; }
+  .fa-card__phone:hover{ color:#001738; }
+
+  /* Планшет */
+  @media (max-width:1024px){
+    .fa-agents__grid{ grid-template-columns:repeat(3,1fr); }
+  }
+  /* Мобайл — горизонтальна стрічка */
+  @media (max-width:680px){
+    .fa-agents__grid{
+      grid-auto-flow:column; grid-template-columns:none;
+      grid-auto-columns:72%; overflow-x:auto;
+      scroll-snap-type:x mandatory; padding-bottom:8px;
+      -webkit-overflow-scrolling:touch;
+    }
+    .fa-card{ scroll-snap-align:start; }
+  }
+</style>
+
+<section class="fa-agents">
+  <div class="fa-agents__inner">
+
+    <div class="fa-agents__head">
+      <h2 class="fa-agents__title">ТОП АГЕНТИ FAKTOR</h2>
+      <a class="fa-agents__all" href="#">Дивитись усі →</a>
+    </div>
+    <p class="fa-agents__sub">Ріелтори агентства FAKTOR в Одесі — понад 150 спеціалістів</p>
+
+    <div class="fa-agents__grid">
+
+      <article class="fa-card">
+        <div class="fa-card__photo"><img src="assets/q-shevchenko.png" alt="Шевченко Ольга"></div>
+        <div class="fa-card__body">
+          <h3 class="fa-card__name">Шевченко Ольга</h3>
+          <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Manhattan</span>
+          <a class="fa-card__phone" href="tel:+380951379300">+38 (095) 137-93-00</a>
+        </div>
+      </article>
+
+      <article class="fa-card">
+        <div class="fa-card__photo"><img src="assets/q-bardanova.png" alt="Барданова Альона"></div>
+        <div class="fa-card__body">
+          <h3 class="fa-card__name">Барданова Альона</h3>
+          <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Arcadia</span>
+          <a class="fa-card__phone" href="tel:+380971477258">+38 (097) 147-72-58</a>
+        </div>
+      </article>
+
+      <article class="fa-card">
+        <div class="fa-card__photo"><img src="assets/q-tsalker.png" alt="Цалькер Олена"></div>
+        <div class="fa-card__body">
+          <h3 class="fa-card__name">Цалькер Олена</h3>
+          <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Manhattan</span>
+          <a class="fa-card__phone" href="tel:+380674831023">+38 (067) 483-10-23</a>
+        </div>
+      </article>
+
+      <article class="fa-card">
+        <div class="fa-card__photo"><img src="assets/q-ignat.png" alt="Ігнат Анна"></div>
+        <div class="fa-card__body">
+          <h3 class="fa-card__name">Ігнат Анна</h3>
+          <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Manhattan</span>
+          <a class="fa-card__phone" href="tel:+380685023075">+38 (068) 502-30-75</a>
+        </div>
+      </article>
+
+      <article class="fa-card">
+        <div class="fa-card__photo"><img src="assets/q-grek.png" alt="Грек Лілія"></div>
+        <div class="fa-card__body">
+          <h3 class="fa-card__name">Грек Лілія</h3>
+          <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Arcadia</span>
+          <a class="fa-card__phone" href="tel:+380966346964">+38 (096) 634-69-64</a>
+        </div>
+      </article>
+
+      <!-- ВАРІАНТ БЕЗ ФОТО (заглушка): замість блоку .fa-card__photo з <img фото>
+           використайте такий блок — покаже логотип FAKTOR.
+      <article class="fa-card">
+        <div class="fa-card__photo fa-card__photo--empty">
+          <img src="assets/faktor-logo.svg" alt="FAKTOR">
+        </div>
+        <div class="fa-card__body">
+          <h3 class="fa-card__name">Ім'я Прізвище</h3>
+          <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Arcadia</span>
+          <a class="fa-card__phone" href="tel:+380000000000">+38 (000) 000-00-00</a>
+        </div>
+      </article>
+      -->
+
+    </div>
+  </div>
+</section>
