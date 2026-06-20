@@ -12,6 +12,8 @@
 -->
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/top-agents.css">
+<link rel="stylesheet" href="css/reviews.css">
 </head>
 <body>
 <div class="frame">
@@ -151,28 +153,147 @@
   </section>
 
   <!-- ===================== ВІДГУКИ ===================== -->
-  <section class="section">
-    <div class="sec-head sec-head--center"><h2 class="h-sec">Відгуки компанії</h2></div>
-    <div class="container reviews">
-      <span class="arrow-lg l"><img src="img/icons/arrow-right-48.svg" width="48" height="48" alt=""></span>
-      <span class="arrow-lg r"><img src="img/icons/arrow-right-48.svg" width="48" height="48" alt=""></span>
-      <div class="rev-viewport"><div class="rev-track" id="grid-rev"></div></div>
+  <!-- Стилі: css/reviews.css. Стрілки гортання — інлайновий <script> у кінці блоку.
+       Відгуки — приклади; замініть текст/імена/дати на реальні з Google. -->
+  <section class="fr-reviews">
+    <div class="fr-reviews__inner">
+
+      <div class="fr-head">
+        <div>
+          <h2 class="fr-title">Відгуки компанії</h2>
+          <p class="fr-sub">Реальні відгуки клієнтів з Google-сторінок офісів FAKTOR</p>
+        </div>
+        <div class="fr-tools">
+          <div class="fr-summary">
+            <svg width="18" height="18" viewBox="0 0 48 48" aria-label="Google"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span style="font-size:13px;font-weight:600;color:#3b434f;">Google</span><span style="width:1px;height:15px;background:#dfe3ea;"></span>
+            <span class="fr-rate">4,9</span>
+            <span class="fr-srow">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg>
+            </span>
+            <span class="fr-cnt">127 відгуків</span>
+          </div>
+          <div class="fr-arrows">
+            <button class="fr-arrow" data-dir="-1" aria-label="Назад"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button class="fr-arrow" data-dir="1" aria-label="Далі"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fr-track">
+
+        <article class="fr-card">
+          <div class="fr-ctop"><div class="fr-who"><span class="fr-av" style="background:#1F8A5B;">Д</span><div><div class="fr-name">Денис Морозов</div><div class="fr-date">2 дні тому</div></div></div><svg width="20" height="20" viewBox="0 0 48 48" aria-label="Відгук з Google" style="flex:none;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          <div class="fr-cstars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg></div>
+          <p class="fr-text">Купували квартиру в Аркадії. Усе пройшло чітко й прозоро — від першого показу до підписання угоди. Окрема подяка за терпіння та чесні поради.</p>
+        </article>
+
+        <article class="fr-card">
+          <div class="fr-ctop"><div class="fr-who"><span class="fr-av" style="background:#C0492B;">К</span><div><div class="fr-name">Катерина Лисенко</div><div class="fr-date">тиждень тому</div></div></div><svg width="20" height="20" viewBox="0 0 48 48" aria-label="Відгук з Google" style="flex:none;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          <div class="fr-cstars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg></div>
+          <p class="fr-text">Продали будинок швидше, ніж очікували. Менеджер тримав у курсі на кожному етапі, без жодного тиску. Рекомендую FAKTOR друзям.</p>
+        </article>
+
+        <article class="fr-card">
+          <div class="fr-ctop"><div class="fr-who"><span class="fr-av" style="background:#2A6FDB;">В</span><div><div class="fr-name">Валерія Ткаченко</div><div class="fr-date">2 тижні тому</div></div></div><svg width="20" height="20" viewBox="0 0 48 48" aria-label="Відгук з Google" style="flex:none;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          <div class="fr-cstars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg></div>
+          <p class="fr-text">Допомогли підібрати першу квартиру в межах бюджету. Показали лише реальні варіанти, без «води». Дуже задоволена результатом!</p>
+        </article>
+
+        <article class="fr-card">
+          <div class="fr-ctop"><div class="fr-who"><span class="fr-av" style="background:#7A4FB5;">О</span><div><div class="fr-name">Олександр Гуцу</div><div class="fr-date">3 тижні тому</div></div></div><svg width="20" height="20" viewBox="0 0 48 48" aria-label="Відгук з Google" style="flex:none;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          <div class="fr-cstars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg></div>
+          <p class="fr-text">Супровід угоди на найвищому рівні. Усі документи перевірили, ризиків — нуль. Відчувалося, що команда захищає мої інтереси.</p>
+        </article>
+
+        <article class="fr-card">
+          <div class="fr-ctop"><div class="fr-who"><span class="fr-av" style="background:#1F8A5B;">І</span><div><div class="fr-name">Ірина Поліщук</div><div class="fr-date">місяць тому</div></div></div><svg width="20" height="20" viewBox="0 0 48 48" aria-label="Відгук з Google" style="flex:none;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          <div class="fr-cstars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg></div>
+          <p class="fr-text">Шукали комерційне приміщення під оренду — знайшли за тиждень. Професійний підхід, чесні умови й швидка комунікація.</p>
+        </article>
+
+        <article class="fr-card">
+          <div class="fr-ctop"><div class="fr-who"><span class="fr-av" style="background:#C77D11;">М</span><div><div class="fr-name">Михайло Реус</div><div class="fr-date">місяць тому</div></div></div><svg width="20" height="20" viewBox="0 0 48 48" aria-label="Відгук з Google" style="flex:none;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div>
+          <div class="fr-cstars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88-5-4.87 7.1-1.01z"/></svg></div>
+          <p class="fr-text">Інвестував у новобудову через FAKTOR. Усе прозоро, з повним юридичним супроводом. Однозначно повернуся за наступним об’єктом.</p>
+        </article>
+
+      </div>
     </div>
+
+    <script>
+      (function(){
+        var s = document.currentScript.closest('.fr-reviews');
+        var track = s.querySelector('.fr-track');
+        s.querySelectorAll('.fr-arrow').forEach(function(b){
+          b.addEventListener('click', function(){
+            track.scrollBy({ left: 408 * parseInt(b.dataset.dir, 10), behavior: 'smooth' });
+          });
+        });
+      })();
+    </script>
   </section>
 
-  <!-- ===================== АГЕНТИ РОКУ ===================== -->
-  <section class="section">
-    <div class="container">
-      <div class="sec-head sec-head--left">
-        <h2 class="h-sec">ТОП АГЕНТИ FAKTOR</h2>
-        <p class="t15 muted">Ріелтори агентства FAKTOR в Одесі — понад 150 спеціалістів</p>
+  <!-- ===================== ТОП АГЕНТИ FAKTOR ===================== -->
+  <section class="fa-agents">
+    <div class="fa-agents__inner">
+
+      <div class="fa-agents__head">
+        <h2 class="fa-agents__title">ТОП АГЕНТИ FAKTOR</h2>
+        <a class="fa-agents__all" href="#">Дивитись усі →</a>
       </div>
-      <div class="agents">
-        <div class="agent"><div class="agent__ava agent__ava--photo"><img src="img/photos/agents/agent-shevchenko-olha.png" alt="Шевченко Ольга"></div><div class="agent__body"><div class="agent__name">Шевченко Ольга</div><div class="agent__office">FAKTOR Manhattan</div><div class="agent__phone"><a href="tel:+380951379300">+38 (095) 137-93-00</a></div></div></div>
-        <div class="agent"><div class="agent__ava agent__ava--photo"><img src="img/photos/agents/agent-bardanova-alona.jpg" alt="Барданова Альона"></div><div class="agent__body"><div class="agent__name">Барданова Альона</div><div class="agent__office">FAKTOR Arcadia</div><div class="agent__phone"><a href="tel:+380971477258">+38 (097) 147-72-58</a></div></div></div>
-        <div class="agent"><div class="agent__ava agent__ava--photo"><img src="img/photos/agents/agent-tsalker-olena.jpg" alt="Цалькер Олена"></div><div class="agent__body"><div class="agent__name">Цалькер Олена</div><div class="agent__office">FAKTOR Manhattan</div><div class="agent__phone"><a href="tel:+380674831023">+38 (067) 483-10-23</a></div></div></div>
-        <div class="agent"><div class="agent__ava agent__ava--photo"><img src="img/photos/agents/agent-ihnat-anna.jpg" alt="Ігнат Анна"></div><div class="agent__body"><div class="agent__name">Ігнат Анна</div><div class="agent__office">FAKTOR Manhattan</div><div class="agent__phone"><a href="tel:+380685023075">+38 (068) 502-30-75</a></div></div></div>
-        <div class="agent"><div class="agent__ava agent__ava--photo"><img src="img/photos/agents/agent-grek-liliia.png" alt="Грек Лілія"></div><div class="agent__body"><div class="agent__name">Грек Лілія</div><div class="agent__office">FAKTOR Arcadia</div><div class="agent__phone"><a href="tel:+380966346964">+38 (096) 634-69-64</a></div></div></div>
+      <p class="fa-agents__sub">Ріелтори агентства FAKTOR в Одесі — понад 150 спеціалістів</p>
+
+      <div class="fa-agents__grid">
+
+        <article class="fa-card">
+          <div class="fa-card__photo"><img src="img/photos/agents/q-shevchenko.png" alt="Шевченко Ольга"></div>
+          <div class="fa-card__body">
+            <h3 class="fa-card__name">Шевченко Ольга</h3>
+            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Manhattan</span>
+            <a class="fa-card__phone" href="tel:+380951379300">+38 (095) 137-93-00</a>
+          </div>
+        </article>
+
+        <article class="fa-card">
+          <div class="fa-card__photo"><img src="img/photos/agents/q-bardanova.png" alt="Барданова Альона"></div>
+          <div class="fa-card__body">
+            <h3 class="fa-card__name">Барданова Альона</h3>
+            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Arcadia</span>
+            <a class="fa-card__phone" href="tel:+380971477258">+38 (097) 147-72-58</a>
+          </div>
+        </article>
+
+        <article class="fa-card">
+          <div class="fa-card__photo"><img src="img/photos/agents/q-tsalker.png" alt="Цалькер Олена"></div>
+          <div class="fa-card__body">
+            <h3 class="fa-card__name">Цалькер Олена</h3>
+            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Manhattan</span>
+            <a class="fa-card__phone" href="tel:+380674831023">+38 (067) 483-10-23</a>
+          </div>
+        </article>
+
+        <article class="fa-card">
+          <div class="fa-card__photo"><img src="img/photos/agents/q-ignat.png" alt="Ігнат Анна"></div>
+          <div class="fa-card__body">
+            <h3 class="fa-card__name">Ігнат Анна</h3>
+            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Manhattan</span>
+            <a class="fa-card__phone" href="tel:+380685023075">+38 (068) 502-30-75</a>
+          </div>
+        </article>
+
+        <article class="fa-card">
+          <div class="fa-card__photo"><img src="img/photos/agents/q-grek.png" alt="Грек Лілія"></div>
+          <div class="fa-card__body">
+            <h3 class="fa-card__name">Грек Лілія</h3>
+            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Arcadia</span>
+            <a class="fa-card__phone" href="tel:+380966346964">+38 (096) 634-69-64</a>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>

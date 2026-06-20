@@ -129,35 +129,8 @@ document.addEventListener('click', e => {
   toast(isFav ? 'Додано до обраного' : 'Видалено з обраного');
 });
 
-/* ---------------- відгуки: слайдер стрічки ---------------- */
-const google   = '<img src="img/icons/rating-stars.svg" width="60" height="19" alt="Google">';
-const revFull  = 'We bought an apartment. Everything was very professional. Special thanks to Anna. She selected the best option for us and promptly organized on-line and live viewing. I did everything else myself. Very conscientious and punctual.';
-const revShort = 'We bought an apartment. Everything was very professional. Special thanks to Anna. She selected the best option for us and promptly organized on-line and live viewing. I did everything else myself...';
-function revCard(d){
-  return `<article class="rev-card">
-    <h4 class="t24">${d.name}</h4>
-    <div class="rev-meta"><span class="t12">${d.when || '2 дні тому'}</span><span class="sep">•</span>${google}</div>
-    <p class="t15">${d.text}</p>${d.more ? '<a href="#" class="rev-readmore t15">Читати повністю</a>' : ''}
-  </article>`;
-}
-const REVS = [
-  {name:'Денис',      text:revFull},
-  {name:'Єкатерина',  text:revFull},
-  {name:'Валерія',    text:revShort, more:true},
-  {name:'Олександр',  text:revFull,  when:'5 днів тому'},
-  {name:'Марина',     text:revShort, more:true, when:'тиждень тому'},
-  {name:'Ігор',       text:revFull,  when:'2 тижні тому'},
-];
-(function initReviews(){
-  const track = document.getElementById('grid-rev');
-  track.innerHTML = REVS.map(revCard).join('');
-  const per = 3, max = Math.max(0, REVS.length - per);
-  let r = 0;
-  const step = () => { const c = track.querySelector('.rev-card'); return c ? c.getBoundingClientRect().width + 20 : 0; };
-  const go = k => { r = Math.min(max, Math.max(0, k)); track.style.transform = `translateX(${-r * step()}px)`; };
-  document.querySelector('.reviews .arrow-lg.l').addEventListener('click', () => go(r - 1));
-  document.querySelector('.reviews .arrow-lg.r').addEventListener('click', () => go(r + 1));
-})();
+/* Відгуки тепер у самодостатньому блоці .fr-reviews (css/reviews.css +
+   інлайновий <script> у index.html). Старий слайдер #grid-rev видалено. */
 
 /* ---------------- ексклюзивні: карусель + автоплей ---------------- */
 const EXCL = [
