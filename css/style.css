@@ -127,7 +127,11 @@ img{display:block;max-width:100%;}
 
 /* лістинг (Квартири / Будинки) */
 .card-list{position:relative;}
-.card-list .img{position:relative;height:240px;background:var(--placeholder);border-radius:var(--r-card);overflow:hidden;}
+/* Висота фото — 240px на повноцінних моніторах (≥1440), плавно нижча на
+   менших (16.7vw ≈ 240 при 1440), з нижньою межею 200px. Картка стає трохи
+   компактнішою на маленьких моніторах ПОВЕРХ загального zoom — без різких
+   стрибків і без переходу на горизонтальну стрічку. */
+.card-list .img{position:relative;height:clamp(200px,16.7vw,240px);background:var(--placeholder);border-radius:var(--r-card);overflow:hidden;}
 .card-row{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
 .card-list .name{margin-top:14px;}
 .card-list .addr{margin-top:8px;color:var(--muted);}
@@ -136,12 +140,17 @@ img{display:block;max-width:100%;}
 .spec img{width:20px;height:20px;display:block;}
 
 /* =================== ЕКСКЛЮЗИВНІ =================== */
-.excl{position:relative;height:620px;margin-top:48px;}
-.excl__img{position:absolute;top:0;left:275px;width:435px;height:568px;border-radius:var(--r-card);background:linear-gradient(135deg,var(--excl-ph-1),var(--excl-ph-2));}
+/* .excl завширшки рівно з .container (1344) і відцентрований — секція «в рамках
+   контейнера», як решта. Координати стиснуто на 96px відносно старого 1440-макета:
+   ліва частина (фото, ліва стрілка, крапки) лишилась на місці, права (інфо, праве
+   прев'ю, права стрілка) підтягнута всередину. Бічні прев'ю визирають по 142px із
+   КРАЇВ КОНТЕЙНЕРА; overflow:hidden обрізає їх локально саме по межах контейнера. */
+.excl{position:relative;width:var(--content);margin:48px auto 0;height:620px;overflow:hidden;}
+.excl__img{position:absolute;top:0;left:227px;width:435px;height:568px;border-radius:var(--r-card);background:linear-gradient(135deg,var(--excl-ph-1),var(--excl-ph-2));}
 .excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:var(--r-card);background:var(--placeholder);opacity:.7;}
-.excl__thumb--r{left:1298px;}
+.excl__thumb--r{left:1202px;}
 .excl__thumb--l{left:-69px;}
-.excl__info{position:absolute;top:154px;left:844px;width:437px;}
+.excl__info{position:absolute;top:154px;left:748px;width:437px;}
 .excl__tags{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
 .excl__tags .heart img{width:24px;height:24px;}
 .excl__info .price-xl{margin-bottom:24px;}
@@ -149,9 +158,9 @@ img{display:block;max-width:100%;}
 .excl__addr{color:var(--muted);margin-bottom:24px;max-width:321px;}
 .excl__specs{display:flex;gap:16px;margin-bottom:40px;}
 .excl__arrow{position:absolute;top:260px;}
-.excl__arrow--l{left:96px;}
-.excl__arrow--r{left:1344px;}
-.excl__dots{position:absolute;top:524px;left:492px;transform:translateX(-50%);}
+.excl__arrow--l{left:48px;}
+.excl__arrow--r{left:1248px;}
+.excl__dots{position:absolute;top:524px;left:444px;transform:translateX(-50%);}
 .excl__dots i{background:var(--white-55);}
 .excl__dots i.on{background:var(--white);width:6px;border-radius:50%;}
 
@@ -173,8 +182,14 @@ img{display:block;max-width:100%;}
 /* Блоки «ВІДГУКИ» (.fr-*) і «ТОП АГЕНТИ» (.fa-*) — у власних css/reviews.css та css/top-agents.css */
 
 /* =================== ФУТЕР =================== */
-.footer-divider{height:1px;background:var(--line);margin:120px 0 0;}
-.sitemap{display:grid;grid-template-columns:227px 228px 228px 226px 207px;gap:0;padding:80px 0 0 114px;}
+/* Розділювач + карта сайту вирівняні з рештою макета: колонки починаються
+   від лівого краю .container (як секції вище і темний футер нижче), а не з
+   відступом 114px. Вертикаль на ритмі секцій: 80px над лінією + 80px під нею
+   = 160px до контенту (як проміжок між .section). Сітка — 5 рівних колонок на
+   повну ширину .container (repeat(5,1fr)): однакові поля зліва й справа, а
+   зайвий простір іде в ширші проміжки між колонками, а не в порожнечу праворуч. */
+.footer-divider{height:1px;background:var(--line);margin:80px 0 0;}
+.sitemap{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:80px 0 0;}
 .sitemap .col h5{margin-bottom:24px;}
 .sitemap .col a{display:block;color:var(--dark);margin-bottom:5px;font-size:var(--fs-base);letter-spacing:var(--ls-base);}
 .sitemap .col a:hover{opacity:.6;}
