@@ -12,6 +12,8 @@ const icArea  = '<img src="img/icons/area-icon.svg" width="20" height="20" alt="
 const chevL   = '<img src="img/icons/arrow-right-14.svg" width="14" height="14" alt="">';
 const chevR   = '<img src="img/icons/arrow-right-14.svg" width="14" height="14" alt="">';
 const arrows  = `<span class="arrow-circle l">${chevL}</span><span class="arrow-circle r filled">${chevR}</span>`;
+const icWallet  = '<img src="img/icons/wallet.svg" width="18" height="18" alt="">';      // пігулка «Перший внесок»
+const detailArr = '<img src="img/icons/arrow-right-14.svg" width="16" height="16" alt="">'; // стрілка біля «Детальніше»
 
 /* ---------------- хелпери ---------------- */
 // слайди прозорі — крізь них видно картинку-заглушку контейнера .img (.card-* .img)
@@ -33,7 +35,6 @@ function specsRow(land){
 }
 
 /* ---------------- дані + рендер карток ---------------- */
-const tc   = 'Київський район, ТЦ “Аркадія Сіті”';
 const addr = 'Одесса, Приморский р-н, Шевченко-Французский, ул. Вице-Адмирала Азарова';
 
 function solidCard(d, i){
@@ -41,12 +42,29 @@ function solidCard(d, i){
   const heart = d.heart === false ? '' : `<span class="heart">${heartFill}</span>`;
   // одна картинка — без слайдера (без стрілок і крапок)
   const media = n > 1 ? `${slides(n, i)}${arrows}${dotsHTML(n)}` : slides(1, i);
-  return `<article class="card-solid">
-    <div class="img">${media}</div>
+  // оверлеї на фото: рік (ліворуч) і лого забудовника (праворуч) — лише для новобудов
+  const year = d.year ? `<span class="nb-year">${d.year}</span>` : '';
+  const dev  = d.dev  ? `<span class="nb-dev"><img src="${d.dev.icon}" width="26" height="26" alt=""><b>${d.dev.name}</b></span>` : '';
+  // картка новобудови (є firstPay): ціна + «грн/м²» ліворуч, пігулка та «Детальніше» праворуч
+  const isNb = !!d.firstPay;
+  const foot = isNb
+    ? `<div class="nb-foot">
+        <div class="nb-foot__price">
+          <p class="nb-price">${d.price}</p>
+          ${d.perMeter ? `<p class="t15 nb-permeter">${d.perMeter}</p>` : ''}
+        </div>
+        <div class="nb-foot__cta">
+          <span class="nb-pill">${icWallet}<b>Перший внесок<br>${d.firstPay}</b></span>
+          <a class="nb-detail" href="${d.href || 'property.html'}">Детальніше ${detailArr}</a>
+        </div>
+      </div>`
+    : `<p class="t18 card-price">${d.price}</p>`;
+  return `<article class="card-solid${isNb ? ' card-solid--nb' : ''}">
+    <div class="img">${media}${year}${dev}</div>
     <div class="body">
       <div class="card-titlerow"><h3 class="t24 card-title">${d.title}</h3>${heart}</div>
       <p class="t15 card-sub">${d.sub}</p>
-      <p class="t18 card-price">${d.price}</p>
+      ${foot}
     </div>
   </article>`;
 }
@@ -61,12 +79,22 @@ function listingCard(d, i){
   </article>`;
 }
 
+const gefest = {icon:'img/icons/dev-portico.svg', name:'Гефест'};
 document.getElementById('grid-nb').innerHTML = [
-  {title:'ЖК Перший Французький', sub:tc, price:'від 2.4 млн. грн.', n:4},
-  {title:'ЖК Перлинний квартал на Сахарова', sub:tc, price:'від 2.4 млн. грн.', n:3},
-  {title:'ЖК Модерн', sub:tc, price:'від 2.4 млн. грн.', n:5},
-  {title:'Арт-резиденція Garden City', sub:tc, price:'від 2.4 млн. грн.', n:4},
+  {title:'ЖК Перший Французький',            sub:'Київський район', price:'від 2.4 млн. грн.', perMeter:'від 32 000 грн/м²', firstPay:'від 20%', year:'2026', dev:gefest, n:4},
+  {title:'ЖК Перлинний квартал на Сахарова', sub:'Київський район', price:'від 2.4 млн. грн.', perMeter:'від 32 000 грн/м²', firstPay:'від 20%', year:'2026', dev:gefest, n:3},
+  {title:'ЖК Модерн',                        sub:'Київський район', price:'від 2.4 млн. грн.', perMeter:'від 32 000 грн/м²', firstPay:'від 20%', year:'2026', dev:gefest, n:5},
+  {title:'Арт-резиденція Garden City',       sub:'Київський район', price:'від 2.4 млн. грн.', perMeter:'від 32 000 грн/м²', firstPay:'від 20%', year:'2026', dev:gefest, n:4},
 ].map(solidCard).join('');
+
+// Квартири в новобудовах — та сама картка лістингу, що й у блоці «Квартири»,
+// тільки об'єкти з новобудов (ЖК зі списку «Новобудови»).
+document.getElementById('grid-flats-nb').innerHTML = [
+  {price:'$ 96 000',  name:'ЖК Перший Французький',      addr, n:4},
+  {price:'$ 132 000', name:'ЖК Перлинний квартал',       addr, fav:true, n:3},
+  {price:'$ 88 000',  name:'ЖК Модерн',                  addr, n:5},
+  {price:'$ 154 000', name:'Арт-резиденція Garden City', addr, n:4},
+].map(listingCard).join('');
 
 document.getElementById('grid-dev').innerHTML = [0,1,2,3].map((_, i) =>
   solidCard({title:'Назва забудовника', sub:'2002 рік заснування', price:'134 комплекси', heart:false, n:1}, i)

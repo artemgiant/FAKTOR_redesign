@@ -256,9 +256,13 @@
   // ── Ініціалізація ──────────────────────────────────────────────────
   var root = document.getElementById('ff-catalog-filters');
   if (!root) return;
+  // прихід із блоку «Квартири в новобудовах» (index.html) → одразу застосувати фільтр
+  var params = new URLSearchParams(window.location.search);
+  var initial = params.get('filter') === 'novobud' ? { tags: ['Квартири в новобудові'] } : {};
   window.FaktorCatalogFilters = mount(root, {
     logoSrc: 'img/icons/faktor-logo.svg',
     homeHref: 'index.html',
+    initial: initial,
     onChange: function (state) { /* тут можна оновлювати URL / прев'ю результатів */ },
     onSearch: function (state) { if (window.toast) window.toast('Шукаємо пропозиції за фільтрами…'); },
     onReset:  function (state) { if (window.toast) window.toast('Фільтри скинуто'); }
