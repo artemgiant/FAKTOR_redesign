@@ -45,18 +45,16 @@ function solidCard(d, i){
   // оверлеї на фото: рік (ліворуч) і лого забудовника (праворуч) — лише для новобудов
   const year = d.year ? `<span class="nb-year">${d.year}</span>` : '';
   const dev  = d.dev  ? `<span class="nb-dev"><img src="${d.dev.icon}" width="26" height="26" alt=""><b>${d.dev.name}</b></span>` : '';
-  // картка новобудови (є firstPay): ціна + «грн/м²» ліворуч, пігулка та «Детальніше» праворуч
+  // картка новобудови (є firstPay): ціна + «грн/м²», під ними ряд «Перший внесок» + «Детальніше»
   const isNb = !!d.firstPay;
   const foot = isNb
-    ? `<div class="nb-foot">
-        <div class="nb-foot__price">
-          <p class="nb-price">${d.price}</p>
-          ${d.perMeter ? `<p class="t15 nb-permeter">${d.perMeter}</p>` : ''}
-        </div>
-        <div class="nb-foot__cta">
-          <span class="nb-pill">${icWallet}<b>Перший внесок<br>${d.firstPay}</b></span>
-          <a class="nb-detail" href="${d.href || 'property.html'}">Детальніше ${detailArr}</a>
-        </div>
+    ? `<div class="nb-price-block">
+        <p class="nb-price">${d.price}</p>
+        ${d.perMeter ? `<p class="t15 nb-permeter">${d.perMeter}</p>` : ''}
+      </div>
+      <div class="nb-foot">
+        <span class="nb-pill">${icWallet}<b>Перший внесок<br>${d.firstPay}</b></span>
+        <a class="nb-detail" href="${d.href || 'property.html'}">Детальніше ${detailArr}</a>
       </div>`
     : `<p class="t18 card-price">${d.price}</p>`;
   return `<article class="card-solid${isNb ? ' card-solid--nb' : ''}">

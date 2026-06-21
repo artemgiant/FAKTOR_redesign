@@ -133,12 +133,13 @@ img{display:block;max-width:100%;}
 .card-price{margin-top:6px;}
 
 /* картка новобудови — розширює .card-solid:
-   рік + лого забудовника на фото; у тілі ціна та «грн/м²» ліворуч,
-   пігулка «Перший внесок» (текст у два рядки) і «Детальніше» — праворуч від ціни.
-   Тіло — flex-колонка, нижній блок притиснутий донизу (margin-top:auto), тож
-   ряди карток вирівняні попри різну висоту назв. Висота 500 (проти базових 480)
-   лишає місце дворядковій назві, зберігаючи пропорції фото:тіло. */
-.card-solid--nb{height:500px;display:flex;flex-direction:column;}
+   рік + лого забудовника на фото; у тілі — ціна та «грн/м²», під ними
+   ряд: пігулка «Перший внесок» ліворуч і «Детальніше» праворуч (в одну лінію).
+   Тіло — flex-колонка, цей ряд притиснутий донизу (margin-top:auto), тож ряди
+   карток вирівняні попри різну висоту назв. Висота 542 розрахована під найвищий
+   контент (дворядкова назва + ціна + «грн/м²» + ряд пігулки): фото 308 + тіло 234,
+   щоб overflow:hidden нічого не обрізав. */
+.card-solid--nb{height:542px;display:flex;flex-direction:column;}
 .card-solid--nb .img{flex:none;}
 .card-solid--nb .body{flex:1;display:flex;flex-direction:column;padding:20px 16px;}
 .card-solid--nb .card-titlerow{margin-bottom:8px;}
@@ -149,15 +150,17 @@ img{display:block;max-width:100%;}
 .nb-dev img{width:26px;height:26px;display:block;}
 .nb-dev b{font-size:var(--fs-xs);line-height:var(--lh-none);letter-spacing:var(--ls-xs);font-weight:var(--fw-semibold);color:var(--navy);}
 
-/* нижній блок: ціна ліворуч, пігулка + «Детальніше» праворуч */
-.nb-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;}
-.nb-foot__price{min-width:0;display:flex;flex-direction:column;gap:6px;}
-.nb-price{font-size:var(--fs-lg);line-height:var(--lh-none);letter-spacing:var(--ls-lg);font-weight:var(--fw-semibold);color:var(--navy);white-space:nowrap;}
+/* ціна + «грн/м²» — кегль узгоджено з рештою картки: ціна (18) трохи менша за
+   назву ЖК (20), виділяється вагою й кольором; «грн/м²» — вторинний текст (15). */
+.nb-price-block{margin-top:12px;display:flex;flex-direction:column;gap:4px;}
+.nb-price{font-size:var(--fs-lg);line-height:var(--lh-snug);letter-spacing:var(--ls-lg);font-weight:var(--fw-semibold);color:var(--navy);white-space:nowrap;}
 .nb-permeter{color:var(--muted);white-space:nowrap;}
-.nb-foot__cta{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
-.nb-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:var(--r-pill);background:var(--pay-pill);color:var(--navy);font-size:var(--fs-xs);line-height:var(--lh-snug);letter-spacing:var(--ls-xs);font-weight:var(--fw-medium);}
+
+/* ряд під ціною: пігулка «Перший внесок» + «Детальніше» в одну лінію */
+.nb-foot{margin-top:auto;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.nb-pill{flex:none;display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:var(--r-pill);background:var(--pay-pill);color:var(--navy);font-size:var(--fs-xs);line-height:var(--lh-snug);letter-spacing:var(--ls-xs);font-weight:var(--fw-medium);}
 .nb-pill img{flex:none;width:18px;height:18px;display:block;}
-.nb-detail{display:inline-flex;align-items:center;gap:6px;color:var(--navy);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);white-space:nowrap;}
+.nb-detail{flex:none;display:inline-flex;align-items:center;gap:6px;color:var(--navy);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);white-space:nowrap;}
 .nb-detail img{width:16px;height:16px;display:block;transition:transform .2s;}
 .nb-detail:hover img{transform:translateX(3px);}
 
