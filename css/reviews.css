@@ -7,7 +7,8 @@
    ===================================================================== */
 .fr-reviews{ font-family:inherit; color:#001738; margin-top:160px; background:#fff; } /* той самий міжсекційний ритм, що й .section */
 .fr-reviews *{ box-sizing:border-box; }
-.fr-reviews__inner{ margin:0 auto; padding:0 20px; }
+/* той самий боковий відступ, що й .container (=48px при 1440) — секція в одну лінію з рештою */
+.fr-reviews__inner{ margin:0 auto; padding:0 calc((100% - var(--content)) / 2); }
 
 .fr-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:8px; }
 .fr-title{ margin:0; font-size:var(--fs-h1); line-height:var(--lh-tight); letter-spacing:var(--ls-h1); font-weight:var(--fw-medium); }
@@ -38,4 +39,7 @@
 .fr-cstars{ display:flex; gap:2px; }
 .fr-text{ margin:0; font-size:14px; line-height:1.62; color:#3b434f; }
 
-@media (max-width:680px){ .fr-card{ flex:0 0 80%; } }
+/* Адаптив: окремого брейкпоінта немає навмисно — сторінка масштабується як
+   єдине ціле через zoom на .frame (css/style.css + js/responsive.js).
+   Картки лишаються 384px і зменшуються разом з усім макетом; стрічка
+   гортається горизонтально на всіх ширинах (.fr-track{overflow-x:auto}). */

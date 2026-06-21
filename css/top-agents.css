@@ -8,15 +8,16 @@
    ===================================================================== */
 .fa-agents{ font-family:inherit; color:var(--navy); margin-top:160px; } /* той самий міжсекційний ритм, що й .section */
 .fa-agents *{ box-sizing:border-box; }
-.fa-agents__inner{ margin:0 auto; padding:0 20px; }
+/* той самий боковий відступ, що й .container (=48px при 1440) — секція в одну лінію з рештою */
+.fa-agents__inner{ margin:0 auto; padding:0 calc((100% - var(--content)) / 2); }
 
 .fa-agents__head{
   display:flex; align-items:baseline; justify-content:space-between;
   gap:20px; flex-wrap:wrap; margin-bottom:6px;
 }
-.fa-agents__title{ /* кегль як у .h-sec (заголовки секцій) */
+.fa-agents__title{ /* кегль і колір як у .h-sec (заголовки секцій) */
   margin:0; font-size:var(--fs-h1); font-weight:var(--fw-medium);
-  line-height:var(--lh-tight); letter-spacing:var(--ls-h1); color:var(--navy);
+  line-height:var(--lh-tight); letter-spacing:var(--ls-h1); color:var(--dark);
 }
 .fa-agents__all{
   font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--muted);
@@ -82,17 +83,10 @@
 }
 .fa-card__phone:hover{ color:var(--navy); }
 
-/* Планшет */
-@media (max-width:1024px){
-  .fa-agents__grid{ grid-template-columns:repeat(3,1fr); }
-}
-/* Мобайл — горизонтальна стрічка */
-@media (max-width:680px){
-  .fa-agents__grid{
-    grid-auto-flow:column; grid-template-columns:none;
-    grid-auto-columns:72%; overflow-x:auto;
-    scroll-snap-type:x mandatory; padding-bottom:8px;
-    -webkit-overflow-scrolling:touch;
-  }
-  .fa-card{ scroll-snap-align:start; }
-}
+/* Адаптив: окремих брейкпоінтів тут НЕМАЄ навмисно.
+   Сторінка масштабується як єдине ціле — .frame зафіксований на 1440px і
+   пропорційно зменшується через zoom (див. css/style.css + js/responsive.js).
+   Власні @media-перебудови ламали б цю цілісність: на вузьких вікнах сітка
+   агентів «розпухала» (3 великі колонки), поки решта карток сайту лишалася
+   дрібною. Тому 5 колонок зберігаються на всіх ширинах і зменшуються разом
+   з усім макетом. */
