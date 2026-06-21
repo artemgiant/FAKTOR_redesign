@@ -21,6 +21,13 @@ body{font-family:var(--font-base);color:var(--dark);background:var(--white);font
 a{color:inherit;text-decoration:none;}
 img{display:block;max-width:100%;}
 
+/* .page — обгортка над .frame. На широких екранах фрейм віддає горизонтальне
+   обрізання сюди (.frame стає overflow:visible >1440), щоб фони-банери лилися в
+   бічні поля. .page обрізає все зайве по ширині контенту: бічні прев'ю, hero-слова
+   та надлишок 100vw-фонів від скролбара — тож сторінка не отримує горизонтального
+   скролу. overflow-x:clip (не hidden) не створює scroll-контейнер і не обрізає
+   position:fixed навбар, на відміну від overflow на корені (html/body). */
+.page{overflow-x:clip;}
 .frame{width:1440px;margin:0 auto;background:var(--white);position:relative;overflow:hidden;}
 .container{width:var(--content);margin:0 auto;}
 
@@ -252,69 +259,11 @@ img{display:block;max-width:100%;}
 .cat-crumbs .sep svg{width:12px;height:12px;}
 .cat-crumbs .cur{color:var(--dark);}
 
-.cat-title{text-align:center;margin-top:42px;}
+/* Заголовок, швидкі теги, панель фільтрів та обрані чипи каталогу — окремий
+   самодостатній компонент .ff-block (css/catalog-filters.css + js/catalog-filters.js). */
 
-/* --- швидкі теги (перехід на готові підбірки) --- */
-.cat-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:30px;}
-.cat-tag{display:inline-flex;align-items:center;height:40px;padding:0 20px;border-radius:100px;background:var(--field-2);border:1px solid var(--ink-10);color:var(--dark);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);white-space:nowrap;cursor:pointer;transition:background .15s ease,color .15s ease,border-color .15s ease;}
-.cat-tag:hover{background:var(--navy);border-color:var(--navy);color:var(--white);}
-
-/* --- панель фільтрів --- */
-.cat-filters{margin-top:56px;}
-.cat-frow1{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-.cat-frow2{display:flex;align-items:flex-end;gap:18px;margin-top:24px;}
-.ff{min-width:0;}
-.ff-label,.ff-labelrow{display:block;margin-bottom:12px;font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--muted);}
-.ff-labelrow{display:flex;align-items:center;justify-content:space-between;}
-.ff-labelrow .ff-label{margin-bottom:0;}
-
-.cur-tabs{display:flex;gap:9px;font-size:var(--fs-base);letter-spacing:var(--ls-base);}
-.cur-tabs span{color:var(--muted);cursor:pointer;}
-.cur-tabs span.on{color:var(--dark);font-weight:var(--fw-medium);}
-
-.fld2{position:relative;height:48px;background:var(--field-2);border:1px solid var(--ink-08);display:flex;align-items:center;padding:0 16px;font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--dark);cursor:pointer;user-select:none;border-radius:var(--r-field);}
-.fld2 .val{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-.fld2 .cd{flex:0 0 auto;margin-left:10px;opacity:.5;transition:transform .2s;}
-.fld2.open .cd{transform:rotate(-90deg);}
-.fld2.open .fld-menu{display:block;}
-
-/* пошук */
-.fld2--search{cursor:text;}
-.fld2--search input{flex:1;min-width:0;border:none;background:none;outline:none;font-family:var(--font-base);font-weight:var(--fw-regular);font-size:var(--fs-base);line-height:var(--lh-none);letter-spacing:var(--ls-base);color:var(--dark);}
-.fld2--search input::placeholder{color:var(--muted);}
-.fld2--search .ic{flex:0 0 auto;margin-left:10px;color:var(--muted);display:grid;place-items:center;}
-
-/* діапазонний слайдер у полі */
-.fld2--range{flex-direction:column;align-items:stretch;justify-content:center;cursor:default;}
-.rng-vals{display:flex;justify-content:space-between;align-items:center;}
-.rng-vals i{color:var(--muted);font-style:normal;margin-right:6px;}
-.rng-vals b{font-weight:var(--fw-regular);}
-.rng{position:absolute;left:14px;right:14px;bottom:-6px;height:13px;}
-.rng-track{position:absolute;top:5px;left:0;right:0;height:3px;background:var(--track);border-radius:2px;}
-.rng-fill{position:absolute;top:5px;height:3px;background:var(--navy);border-radius:2px;}
-.rng-h{position:absolute;top:0;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;background:var(--white);border:2px solid var(--navy);cursor:grab;box-shadow:0 1px 3px var(--ink-18);}
-.rng-h:active{cursor:grabbing;}
-
-/* кіл-сть кімнат (сегментований перемикач) */
-.beds{display:flex;height:48px;}
-.beds button{width:43px;height:48px;margin-left:-1px;border:1px solid var(--ink-12);background:var(--white);font-family:var(--font-base);font-weight:var(--fw-regular);font-size:var(--fs-base);line-height:var(--lh-none);letter-spacing:var(--ls-base);color:var(--dark);cursor:pointer;display:grid;place-items:center;border-radius:var(--r-field);}
-.beds button:first-child{margin-left:0;}
-.beds button.on{background:var(--navy);border-color:var(--navy);color:var(--white);position:relative;z-index:1;}
-
-/* скинути + знайти */
-.reset-link{display:inline-flex;align-items:center;gap:8px;height:48px;margin-left:auto;color:var(--muted);font-size:var(--fs-base);letter-spacing:var(--ls-base);cursor:pointer;white-space:nowrap;}
-.reset-link svg{width:16px;height:16px;flex:0 0 auto;}
-.reset-link:hover{color:var(--dark);}
-.find-btn{flex:0 0 207px;width:207px;height:48px;}
-
-/* --- обрані фільтри (чипи між лініями) --- */
+/* розділювач під блоком фільтрів */
 .cat-hr{height:1px;background:var(--line);}
-.cat-hr--top{margin-top:56px;}
-.chips-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:18px 0;}
-.chips-label{color:var(--muted);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);margin-right:8px;}
-.chip{display:inline-flex;align-items:center;gap:10px;height:32px;padding:0 14px;background:var(--navy);color:var(--white);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);border-radius:100px;}
-.chip .x{display:grid;place-items:center;cursor:pointer;opacity:.8;}
-.chip .x:hover{opacity:1;}
 
 /* --- сортування --- */
 .cat-sortrow{display:flex;justify-content:flex-end;margin-top:33px;margin-bottom:56px;}
@@ -340,3 +289,41 @@ img{display:block;max-width:100%;}
 .pg.on{background:var(--navy);border-color:var(--navy);color:var(--white);}
 .pg.arrow{color:var(--dark);}
 .pg.arrow.prev svg{transform:scaleX(-1);}
+
+/* =================== АДАПТИВ · підгонка 1440-макета =================== */
+/* Макет зафіксований на 1440px. На вужчих екранах (13" ноутбуки тощо)
+   пропорційно зменшуємо весь .frame через zoom — композиція 1:1, без
+   горизонтального скролу. js/responsive.js уточнює масштаб до точного
+   заповнення ширини; ці кроки — миттєвий фолбек без стрибка (і коли JS
+   вимкнено). Кожен крок підібрано так, щоб zoom×1440 влазив у нижню межу
+   свого діапазону навіть зі скролбаром. Порядок: від ширшого до вужчого —
+   спрацьовує найвужчий збіг. */
+@media (max-width:1439px){ .frame{ zoom:.93; } }   /* 1367–1439 */
+@media (max-width:1366px){ .frame{ zoom:.87; } }   /* 1281–1366 (типові 13") */
+@media (max-width:1280px){ .frame{ zoom:.82; } }   /* 1201–1280 */
+@media (max-width:1200px){ .frame{ zoom:.76; } }   /* 1121–1200 */
+@media (max-width:1120px){ .frame{ zoom:.69; } }   /* 1025–1120 */
+@media (max-width:1024px){ .frame{ zoom:.65; } }   /*  961–1024 */
+@media (max-width: 960px){ .frame{ zoom:.58; } }   /*  861–960  */
+@media (max-width: 860px){ .frame{ zoom:.52; } }   /*  769–860  */
+@media (max-width: 768px){ .frame{ zoom:.46; } }   /*  ≤768 (нижче — планшет/моб., окрема історія) */
+
+/* =================== FULL-BLEED ФОНІВ (екрани > 1440) ===================
+   Макет зафіксований на 1440px (.frame центрований). На вузьких екранах він
+   масштабується zoom-ом і вже заповнює всю ширину — там нічого не потрібно.
+   На широких (Full HD тощо) zoom = 1, тож фрейм стоїть 1440px по центру, а
+   ліворуч/праворуч лишалися білі поля. Тут фон-фото хедера і темний футер
+   розтягуються на всю ширину вікна, а КОНТЕНТ (контейнери) лишається в колонці
+   1440px — вирівняний з рештою секцій. Бо медіазапит вмикається лише >1440,
+   де zoom завжди = 1, прийом із 100vw не конфліктує з масштабуванням. */
+@media (min-width:1441px){
+  /* фрейм перестає обрізати по горизонталі — зайве підбирає обгортка .page вище */
+  .frame{overflow:visible;}
+
+  /* фон-фото хедера — на всю ширину екрану (контент hero лишається в межах 1440) */
+  .hero__bg{left:50%;right:auto;width:100vw;margin-left:-50vw;}
+
+  /* темний футер: ФОН на всю ширину через псевдоелемент, колонки лишаються центровані в 1440 */
+  .dark{position:relative;isolation:isolate;}
+  .dark::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;margin-left:-50vw;background:var(--navy);z-index:-1;}
+}
