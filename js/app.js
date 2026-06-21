@@ -14,13 +14,11 @@ const chevR   = '<img src="img/icons/arrow-right-14.svg" width="14" height="14" 
 const arrows  = `<span class="arrow-circle l">${chevL}</span><span class="arrow-circle r filled">${chevR}</span>`;
 
 /* ---------------- хелпери ---------------- */
-// набір слайдів-плейсхолдерів (різні відтінки) для слайдера картки
-function slides(n, seed){
+// слайди прозорі — крізь них видно картинку-заглушку контейнера .img (.card-* .img)
+function slides(n){
   let s = '';
   for(let k = 0; k < n; k++){
-    const l = 84 - k * 5;
-    const h = 34 + ((seed + k) % 4) * 5;
-    s += `<div class="slide" style="background:linear-gradient(135deg,hsl(${h} 9% ${l}%),hsl(${h} 9% ${l - 7}%))"></div>`;
+    s += '<div class="slide"></div>';
   }
   return `<div class="slides">${s}</div>`;
 }

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>FAKTOR — Простора 3-кімнатна квартира в ЖК OZONE, Одеса</title>
+<!--
+  Сторінка одного об'єкта нерухомості (Property Page).
+  Джерело дизайну: design_handoff_property_page/ (Montserrat-прототип) —
+  відтворено в дизайн-системі сайту: канва 1440px, шрифт Inter, гострі кути,
+  navy #001D4B, кольори/кеглі через css/tokens.css. Спільні шапка-пігулка,
+  sitemap, SEO та темний футер — як на index.html / catalog.html.
+  Картки каталогу ведуть сюди (js/catalog.js → href="property.html").
+  Демо-перемикачі типу/ЖК з прототипу прибрано: показуємо один реальний
+  об'єкт — квартиру в ЖК OZONE.
+-->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/property.css">
+<script defer src="js/responsive.js"></script>
+</head>
+<body>
+<div class="page">
+<div class="frame">
+
+  <!-- ===================== HEADER (спільна пігулка) ===================== -->
+  <header class="cat-header">
+    <nav class="nav">
+      <span class="nav__logo"><a href="index.html"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></a></span>
+      <div class="nav__links">
+        <a href="#">Новобудови</a><a href="catalog.html">Квартири</a><a href="#">Будинки</a><a href="#">Комерційна</a><a href="#">Зарубіжна</a>
+      </div>
+      <div class="nav__right">
+        <span class="nav__icon" title="Подзвонити"><img src="img/icons/phone-call.svg" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Обране"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
+        <span class="nav__lang">UA / USD <img src="img/icons/small-arrow.svg" class="cd" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Меню"><img src="img/icons/menu.svg" width="24" height="24" alt=""></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== BREADCRUMB + КОД ОБ'ЄКТА ===================== -->
+  <div class="container pp-topbar" style="margin-top:18px;">
+    <div class="cat-crumbs">
+      <a href="index.html" class="crumb-home"><img class="logo" src="img/icons/faktor-logo.svg" alt="FAKTOR"></a>
+      <span class="sep" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></span>
+      <a href="catalog.html" style="color:var(--muted);">Продаж квартир</a>
+      <span class="sep" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></span>
+      <span class="cur">ЖК OZONE</span>
+    </div>
+    <div class="pp-meta">Код об'єкта: <b>OZ-12480</b>&nbsp;&nbsp;·&nbsp;&nbsp;Оновлено: <b>3 дні тому</b></div>
+  </div>
+
+  <div class="container">
+
+    <!-- ===================== ШАПКА ОБ'ЄКТА ===================== -->
+    <div class="pp-head">
+      <div class="pp-head__l">
+        <h1 class="pp-title">Простора 3-кімнатна квартира в ЖК OZONE</h1>
+        <div class="pp-addr">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+          Одеса, Приморський р-н, вул. Віце-Адмірала Азарова
+        </div>
+      </div>
+      <div class="pp-pricebox">
+        <div class="pp-price">$ 124 000</div>
+        <div class="pp-perm">$ 843/м²</div>
+        <div class="pp-btc">≈ <b>1.85 ₿</b></div>
+      </div>
+    </div>
+
+    <!-- ===================== ШВИДКІ ФАКТИ ===================== -->
+    <div class="pp-facts">
+      <span class="pp-fact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M12 4v16"/></svg>3 кімнати</span>
+      <span class="pp-fact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9V3h6M21 15v6h-6M21 9V3h-6M3 15v6h6"/></svg>147 м²</span>
+      <span class="pp-fact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20h4v-4h4v-4h4V8h4"/></svg>2 / 5 поверх</span>
+      <span class="pp-fact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l2.4 5 5.6.8-4 4 1 5.6L12 17l-5 2.4 1-5.6-4-4 5.6-.8z"/></svg>Дизайнерський</span>
+    </div>
+
+    <!-- ===================== ДВОКОЛОНКОВИЙ ЛЕЙАУТ ===================== -->
+    <div class="pp-cols">
+
+      <!-- ---------- ЛІВА КОЛОНКА ---------- -->
+      <div class="pp-main">
+
+        <!-- галерея -->
+        <div class="pp-gallery">
+          <img id="pp-main-img" class="pp-gallery__img" src="img/photos/interior-marble-bathroom.jpg" alt="">
+          <div class="pp-count"><span id="pp-count-cur">1</span> / <span id="pp-count-total">5</span></div>
+          <button class="pp-iconbtn pp-iconbtn--dark pp-gallery__zoom" id="pp-open-lb" aria-label="На весь екран"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+          <div class="pp-gallery__tools">
+            <button class="pp-iconbtn" id="pp-fav" aria-label="В обране"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3.2 1 4 2.2.8-1.2 2-2.2 4-2.2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z"/></svg></button>
+            <button class="pp-iconbtn" aria-label="Поділитися"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button>
+            <button class="pp-iconbtn" aria-label="Зберегти PDF"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg></button>
+            <button class="pp-iconbtn" aria-label="Поскаржитися"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></svg></button>
+          </div>
+        </div>
+        <div class="pp-thumbs pp-scroll" id="pp-thumbs"></div>
+
+        <!-- характеристики -->
+        <div class="pp-card pp-card--gallerygap">
+          <h2 class="pp-card__title">Характеристики</h2>
+          <div class="pp-chargroup">
+            <div class="pp-cat">Площа</div>
+            <div class="pp-rows">
+              <div class="pp-row"><span class="k">Загальна</span><span class="v">147 м²</span></div>
+              <div class="pp-row"><span class="k">Житлова</span><span class="v">98 м²</span></div>
+            </div>
+          </div>
+          <div class="pp-chargroup">
+            <div class="pp-rows">
+              <div class="pp-row"><span class="k">Поверх</span><span class="v">2</span></div>
+              <div class="pp-row"><span class="k">Поверховість</span><span class="v">5</span></div>
+            </div>
+          </div>
+          <div class="pp-chargroup">
+            <div class="pp-rows">
+              <div class="pp-row"><span class="k">Кімнат</span><span class="v">3</span></div>
+              <div class="pp-row"><span class="k">Стан</span><span class="v">Дизайнерський ремонт</span></div>
+            </div>
+          </div>
+          <div class="pp-tags">
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Доступна за держпрограмами</span>
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Вид на море</span>
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Тераса</span>
+          </div>
+        </div>
+
+        <!-- будинок і інфраструктура (ЖК) -->
+        <div class="pp-card">
+          <h2 class="pp-card__title" style="margin-bottom:16px;">Будинок і інфраструктура</h2>
+          <a href="#" class="pp-complex">
+            <span class="pp-complex__thumb"><img src="img/photos/residential-complex-dusk.jpg" alt=""></span>
+            <span class="pp-complex__name">ЖК OZONE&nbsp;→</span>
+          </a>
+          <div class="pp-rows">
+            <div class="pp-row"><span class="k">Рік побудови</span><span class="v">2021</span></div>
+            <div class="pp-row"><span class="k">Поверховість</span><span class="v">9</span></div>
+            <div class="pp-row"><span class="k">Матеріал</span><span class="v">Монолітно-каркасний</span></div>
+            <div class="pp-row"><span class="k">Висота стелі</span><span class="v">3.0 м</span></div>
+            <div class="pp-row"><span class="k">Опалення</span><span class="v">Індивідуальне</span></div>
+            <div class="pp-row"><span class="k">Забудовник</span><span class="v">OZONE Development</span></div>
+          </div>
+          <div class="pp-tags">
+            <span class="pp-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Резервне живлення</span>
+            <span class="pp-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Укриття</span>
+            <span class="pp-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Автономне опалення</span>
+            <span class="pp-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Закрита територія</span>
+            <span class="pp-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Підземний паркінг</span>
+            <span class="pp-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Охорона / Відео</span>
+            <span class="pp-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Консьєрж / Ресепшн</span>
+            <span class="pp-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Дитячий майданчик</span>
+            <span class="pp-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Ліфт</span>
+          </div>
+        </div>
+
+        <!-- опис від агента -->
+        <div class="pp-card">
+          <h2 class="pp-card__title" style="margin-bottom:13px;">Опис від агента</h2>
+          <p class="pp-desc">Простора нерухомість з дизайнерським ремонтом за 300 метрів від моря. Панорамні вікна, продумане планування та власна тераса з видом на парк. Будинок із підземним паркінгом, охороною та закритою територією. Уся документація готова до угоди — супроводжуємо перевірку та оформлення «під ключ».</p>
+        </div>
+
+        <!-- чому через FAKTOR -->
+        <div class="pp-card">
+          <h2 class="pp-card__title" style="margin-bottom:4px;">Чому через FAKTOR</h2>
+          <div class="pp-why">
+            <div class="pp-why__item">
+              <div class="pp-why__ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v6c0 4-3 7-7 8-4-1-7-4-7-8V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+              <div><div class="pp-why__h">Юридична перевірка</div><div class="pp-why__t">Перевіряємо документи та чистоту об'єкта до угоди</div></div>
+            </div>
+            <div class="pp-why__item">
+              <div class="pp-why__ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg></div>
+              <div><div class="pp-why__h">Супровід угоди</div><div class="pp-why__t">Ведемо клієнта на всіх етапах — від показу до підпису</div></div>
+            </div>
+            <div class="pp-why__item">
+              <div class="pp-why__ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+              <div><div class="pp-why__h">Безпека розрахунку</div><div class="pp-why__t">Безпечна передача коштів та оформлення «під ключ»</div></div>
+            </div>
+            <div class="pp-why__item">
+              <div class="pp-why__ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
+              <div><div class="pp-why__h">10+ років на ринку</div><div class="pp-why__t">Понад 10 000 перевірених об'єктів в Одесі</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- розташування -->
+        <div class="pp-card">
+          <h2 class="pp-card__title">Розташування</h2>
+          <div class="pp-map">
+            <svg class="pp-map__pin" width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+            <div class="pp-map__lbl">Leaflet / OpenStreetMap · Одеса, вул. Віце-Адмірала Азарова</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ---------- ПРАВА КОЛОНКА (sticky) ---------- -->
+      <div class="pp-side">
+        <div class="pp-agent">
+          <div class="pp-agent__top">
+            <div class="pp-agent__ava"><img src="img/photos/agents/agent-shevchenko-olha.png" alt="Шевченко Ольга"></div>
+            <div>
+              <div class="pp-agent__name">Шевченко Ольга</div>
+              <div class="pp-agent__office">FAKTOR Arcadia</div>
+            </div>
+          </div>
+          <a href="tel:+380951379300" class="pp-call"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>Зателефонувати</a>
+        </div>
+
+        <div class="pp-form">
+          <div class="pp-form__title">Замовити перегляд</div>
+          <div class="pp-form__sub">Оберемо зручний час — онлайн або наживо</div>
+          <form class="pp-form__fields" id="pp-form">
+            <input class="pp-input" type="text" placeholder="Ваше ім'я" required>
+            <input class="pp-input" type="tel" placeholder="+380 __ ___ __ __" required>
+            <input class="pp-input" type="date">
+            <textarea class="pp-input" rows="3" placeholder="Коментар — побажання, зручний час тощо"></textarea>
+            <button class="pp-submit" type="submit">Надіслати запит</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== ДИВІТЬСЯ ТАКОЖ ===================== -->
+    <div class="pp-feed">
+      <div class="pp-feed__head">
+        <h2 class="pp-feed__title">Дивіться також</h2>
+        <a href="catalog.html" class="see-all">Показати всі <img src="img/icons/arrow-right-14.svg" alt=""></a>
+      </div>
+      <div class="pp-feed__tabs" id="pp-feed-tabs"></div>
+      <div class="pp-feed__grid" id="pp-feed-grid"></div>
+    </div>
+
+    <!-- ===================== ПОВЕРНУТИСЬ ДО ПЕРЕГЛЯНУТИХ ===================== -->
+    <div class="pp-feed">
+      <div class="pp-feed__head">
+        <h2 class="pp-feed__title">Повернутись до переглянутих</h2>
+        <a href="catalog.html" class="see-all">Показати всі <img src="img/icons/arrow-right-14.svg" alt=""></a>
+      </div>
+      <div class="pp-feed__grid" id="pp-recent-grid"></div>
+    </div>
+
+  </div>
+
+  <!-- ===================== SITEMAP (спільний) ===================== -->
+  <div class="container">
+    <div class="footer-divider"></div>
+    <nav class="sitemap">
+      <div class="col">
+        <h5 class="t24">Квартири</h5>
+        <a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">4-кімнатні</a><a href="#">5+ кімнатні</a><a href="#">Студії</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Будинки і дачі</h5>
+        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a><a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Комерційна</h5>
+        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a><a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a><a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Райони Одеси</h5>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+        <a href="#" class="gap">Локації</a>
+        <a href="#">Аркадія</a><a href="#">Фонтан</a><a href="#">Таїрова</a><a href="#">Центр</a><a href="#">Черемушки</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Новобудови</h5>
+        <a href="#">Усі ЖК</a><a href="#">Квартири в Новобудові</a><a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">Багатокімнатні</a>
+        <a href="#" class="gap">Зарубіжна нерухомість</a>
+        <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===================== SEO (спільний) ===================== -->
+  <div class="seo">
+    <div class="seo__in">
+      <h3 class="t15">Агентство нерухомості «FAKTOR» – кваліфікована допомога для придбання житла в Одесі</h3>
+      <p class="t15">Звернення до агентства нерухомості «FAKTOR» допоможе уникнути ризиків, які зазвичай виникають у процесі угоди під час продажу, придбання або оренди будинку, квартири, земельної ділянки. Залучення ріелторів для супроводу подібного процесу – це оптимальний спосіб грамотно підготуватися та отримати комплексний супровід на всіх етапах угоди.</p>
+      <a href="#" class="seo__more t15">Читати повністю</a>
+    </div>
+  </div>
+
+  <!-- ===================== DARK FOOTER (спільний) ===================== -->
+  <footer class="dark">
+    <div class="container">
+      <div class="dark__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+      <div class="dark__cols">
+        <div>
+          <h5 class="t15">Контакти</h5>
+          <a href="#">+38 (073) 355 98 54</a><a href="#">Telegram</a><a href="#">Канал “Нові об'єкти Одеси”</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
+        </div>
+        <div>
+          <h5 class="t15">Компанія</h5>
+          <a href="#">Про нас</a><a href="#">Курси рієлторів</a><a href="#">Кар'єра</a><a href="#">Франшиза</a><a href="#">Блог</a><a href="#">Продати об'єкт</a>
+        </div>
+        <div>
+          <h5 class="t15">Продаж</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Новобудови</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Аренда</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Зарубіжна нерухомість</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Сервіси</h5>
+          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a><a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
+        </div>
+      </div>
+      <div class="dark__bottom">
+        <a href="#">Політика конфіденційності</a>
+        <a href="#">Умови користувача</a>
+        <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
+        <span></span>
+        <a href="#">Вхід для агентів</a>
+        <div class="dark__switch">
+          <span class="sw">USD <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+          <span class="sw">UA <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<!-- ===================== ЛАЙТБОКС (фуллскрин галерея) ===================== -->
+<div class="pp-lb" id="pp-lb">
+  <div class="pp-lb__bar">
+    <span class="pp-lb__label"><span id="pp-lb-label">Вітальня</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="pp-lb-cur">1</span> / <span id="pp-lb-total">5</span></span>
+    <button class="pp-lb__btn" id="pp-lb-close" aria-label="Закрити"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="pp-lb__stage">
+    <button class="pp-lb__btn pp-lb__nav" id="pp-lb-prev" aria-label="Попереднє"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="pp-lb__imgwrap"><img id="pp-lb-img" src="img/photos/interior-marble-bathroom.jpg" alt=""></div>
+    <button class="pp-lb__btn pp-lb__nav" id="pp-lb-next" aria-label="Наступне"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="pp-lb__thumbs pp-scroll" id="pp-lb-thumbs"></div>
+</div>
+
+<script src="js/property.js"></script>
+</body>
+</html>

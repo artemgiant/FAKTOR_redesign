@@ -124,7 +124,7 @@ img{display:block;max-width:100%;}
 
 /* суцільна картка (Новобудови / Забудовники) */
 .card-solid{position:relative;height:480px;background:var(--soft);border-radius:var(--r-card);overflow:hidden;}
-.card-solid .img{position:relative;height:308px;background:var(--placeholder);}
+.card-solid .img{position:relative;height:308px;background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;}
 .card-solid .body{padding:24px 16px;}
 .card-titlerow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;}
 .card-title{margin:0;}
@@ -138,7 +138,7 @@ img{display:block;max-width:100%;}
    менших (16.7vw ≈ 240 при 1440), з нижньою межею 200px. Картка стає трохи
    компактнішою на маленьких моніторах ПОВЕРХ загального zoom — без різких
    стрибків і без переходу на горизонтальну стрічку. */
-.card-list .img{position:relative;height:clamp(200px,16.7vw,240px);background:var(--placeholder);border-radius:var(--r-card);overflow:hidden;}
+.card-list .img{position:relative;height:clamp(200px,16.7vw,240px);background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;border-radius:var(--r-card);overflow:hidden;}
 .card-row{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
 .card-list .name{margin-top:14px;}
 .card-list .addr{margin-top:8px;color:var(--muted);}
@@ -154,7 +154,7 @@ img{display:block;max-width:100%;}
    КРАЇВ КОНТЕЙНЕРА; overflow:hidden обрізає їх локально саме по межах контейнера. */
 .excl{position:relative;width:var(--content);margin:48px auto 0;height:620px;overflow:hidden;}
 .excl__img{position:absolute;top:0;left:227px;width:435px;height:568px;border-radius:var(--r-card);background:linear-gradient(135deg,var(--excl-ph-1),var(--excl-ph-2));}
-.excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:var(--r-card);background:var(--placeholder);opacity:.7;}
+.excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:var(--r-card);background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;opacity:.7;}
 .excl__thumb--r{left:1202px;}
 .excl__thumb--l{left:-69px;}
 .excl__info{position:absolute;top:154px;left:748px;width:437px;}

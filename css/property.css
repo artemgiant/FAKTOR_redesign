@@ -1,0 +1,153 @@
+/* =====================================================================
+   FAKTOR — СТОРІНКА ОБ'ЄКТА (Property Page)
+   Картка одного об'єкта нерухомості. Розмітка: property.html.
+   Самодостатній компонент — усі класи з префіксом .pp- не конфліктують
+   з рештою сайту. Палітра й кеглі — через дизайн-токени css/tokens.css
+   (var(--…)), без локальних magic-значень кольору/кегля. Гострі кути
+   (--r-card/--r-ctrl/--r-field:0) — як на решті сайту; пігулки/чипи 100px,
+   круглі іконки 50% — наявні патерни сайту. Відступи лишаються в px
+   (у проєкті немає spacing-токенів — як і в style.css).
+   Шапка, breadcrumb, sitemap, SEO, футер — спільні зі style.css.
+   ===================================================================== */
+
+/* ---------------- верхня панель: breadcrumb + код об'єкта ---------------- */
+.pp-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.pp-topbar .cat-crumbs{margin-top:0;}
+.pp-meta{color:var(--muted);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);white-space:nowrap;}
+.pp-meta b{color:var(--dark);font-weight:var(--fw-medium);}
+
+/* ---------------- шапка об'єкта: назва/адреса + ціна ---------------- */
+.pp-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:28px;}
+.pp-head__l{min-width:280px;}
+.pp-title{font-size:var(--fs-h3);line-height:var(--lh-snug);letter-spacing:var(--ls-h3);font-weight:var(--fw-bold);max-width:680px;}
+.pp-addr{margin-top:10px;display:flex;align-items:center;gap:7px;color:var(--muted);font-size:var(--fs-base);letter-spacing:var(--ls-base);}
+.pp-addr svg{flex:0 0 auto;}
+.pp-pricebox{text-align:right;}
+.pp-price{font-size:var(--fs-h2);line-height:var(--lh-none);letter-spacing:var(--ls-h2);font-weight:var(--fw-bold);}
+.pp-perm{margin-top:8px;color:var(--muted);font-size:var(--fs-base);letter-spacing:var(--ls-base);}
+.pp-btc{margin-top:6px;color:var(--muted);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);}
+.pp-btc b{color:var(--btc);font-weight:var(--fw-bold);}
+
+/* ---------------- ряд швидких фактів ---------------- */
+.pp-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.pp-fact{display:inline-flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--line);padding:10px 15px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-medium);color:var(--dark);border-radius:var(--r-card);}
+.pp-fact svg{flex:0 0 auto;}
+
+/* ---------------- двоколонковий лейаут ---------------- */
+.pp-cols{display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start;margin-top:30px;}
+.pp-main{flex:1 1 600px;min-width:320px;}
+.pp-side{flex:1 1 340px;min-width:300px;max-width:384px;position:sticky;top:92px;display:flex;flex-direction:column;gap:16px;}
+
+/* ---------------- галерея ---------------- */
+.pp-gallery{position:relative;overflow:hidden;background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;aspect-ratio:16/10;border-radius:var(--r-card);}
+.pp-gallery__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:zoom-in;}
+.pp-count{position:absolute;right:16px;bottom:16px;background:rgba(0,29,75,.82);color:var(--white);font-size:var(--fs-xs);letter-spacing:var(--ls-xs);font-weight:var(--fw-medium);padding:7px 13px;border-radius:100px;}
+.pp-iconbtn{width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.94);color:var(--navy);transition:background .15s;}
+.pp-iconbtn:hover{background:var(--white);}
+.pp-iconbtn--dark{background:rgba(0,29,75,.8);color:var(--white);}
+.pp-iconbtn--dark:hover{background:var(--navy);}
+.pp-gallery__zoom{position:absolute;left:16px;bottom:16px;}
+.pp-gallery__tools{position:absolute;right:16px;top:16px;display:flex;gap:8px;}
+.pp-thumbs{display:flex;gap:10px;margin-top:11px;overflow-x:auto;padding-bottom:4px;}
+.pp-thumb{flex:0 0 96px;height:70px;overflow:hidden;cursor:pointer;background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;border:2px solid transparent;padding:0;border-radius:var(--r-card);}
+.pp-thumb.on{border-color:var(--navy);}
+.pp-thumb img{width:100%;height:100%;object-fit:cover;}
+.pp-scroll::-webkit-scrollbar{height:6px;}
+.pp-scroll::-webkit-scrollbar-thumb{background:var(--ink-18);border-radius:100px;}
+.pp-scroll::-webkit-scrollbar-track{background:transparent;}
+
+/* ---------------- картка-секція ---------------- */
+.pp-card{background:var(--soft);padding:26px 28px;margin-top:22px;border-radius:var(--r-card);}
+.pp-card--gallerygap{margin-top:26px;}
+.pp-card__title{font-size:var(--fs-h4);line-height:var(--lh-snug);letter-spacing:var(--ls-h4);font-weight:var(--fw-bold);}
+
+/* ---------------- характеристики ---------------- */
+.pp-chargroup{margin-top:18px;}
+.pp-cat{font-size:var(--fs-xs);font-weight:var(--fw-semibold);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.pp-rows{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;}
+.pp-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);}
+.pp-row .k{font-size:var(--fs-sm);letter-spacing:var(--ls-sm);color:var(--muted);}
+.pp-row .v{font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-semibold);color:var(--dark);text-align:right;}
+
+/* ---------------- теги / інфраструктура (пігулки) ---------------- */
+.pp-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.pp-tag{display:inline-flex;align-items:center;gap:6px;background:var(--field-2);color:var(--dark);border-radius:100px;padding:7px 14px;font-size:var(--fs-xs);letter-spacing:var(--ls-xs);font-weight:var(--fw-medium);}
+.pp-tag svg{flex:0 0 auto;color:var(--navy);}
+
+/* ---------------- будинок і інфраструктура ---------------- */
+.pp-complex{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}
+.pp-complex__thumb{width:128px;height:96px;flex:none;overflow:hidden;background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;border-radius:var(--r-card);}
+.pp-complex__thumb img{width:100%;height:100%;object-fit:cover;}
+.pp-complex__name{flex:1;min-width:200px;font-size:var(--fs-lg);letter-spacing:var(--ls-lg);font-weight:var(--fw-bold);color:var(--dark);}
+
+/* ---------------- опис ---------------- */
+.pp-desc{font-size:var(--fs-base);line-height:var(--lh-relaxed);letter-spacing:var(--ls-base);color:var(--dark);}
+
+/* ---------------- чому через FAKTOR ---------------- */
+.pp-why{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 24px;margin-top:20px;}
+.pp-why__item{display:flex;gap:14px;align-items:flex-start;}
+.pp-why__ic{width:44px;height:44px;flex:none;border-radius:50%;background:var(--navy);color:var(--white);display:inline-flex;align-items:center;justify-content:center;}
+.pp-why__h{font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-bold);color:var(--dark);}
+.pp-why__t{margin-top:4px;font-size:var(--fs-sm);line-height:var(--lh-base);letter-spacing:var(--ls-sm);color:var(--muted);}
+
+/* ---------------- розташування / карта ---------------- */
+.pp-map{position:relative;overflow:hidden;background:var(--placeholder);height:280px;display:flex;align-items:center;justify-content:center;border-radius:var(--r-card);margin-top:15px;}
+.pp-map__pin{color:var(--navy);}
+.pp-map__lbl{position:absolute;left:18px;bottom:18px;background:var(--white);border:1px solid var(--line);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);color:var(--muted);padding:9px 13px;border-radius:var(--r-card);}
+
+/* ---------------- сайдбар: агент ---------------- */
+.pp-agent{background:var(--soft);padding:24px;border-radius:var(--r-card);}
+.pp-agent__top{display:flex;align-items:center;gap:18px;}
+.pp-agent__ava{width:96px;height:96px;flex:none;border-radius:50%;overflow:hidden;background:var(--placeholder);display:flex;align-items:center;justify-content:center;}
+.pp-agent__ava img{width:100%;height:100%;object-fit:cover;}
+.pp-agent__name{font-size:var(--fs-lg);letter-spacing:var(--ls-lg);font-weight:var(--fw-bold);color:var(--dark);}
+.pp-agent__office{font-size:var(--fs-sm);letter-spacing:var(--ls-sm);color:var(--muted);margin-top:5px;}
+.pp-call{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;background:var(--navy);color:var(--white);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);padding:14px;border-radius:var(--r-ctrl);}
+
+/* ---------------- сайдбар: форма ---------------- */
+.pp-form{background:var(--soft);padding:24px;border-radius:var(--r-card);}
+.pp-form__title{font-size:var(--fs-lg);letter-spacing:var(--ls-lg);font-weight:var(--fw-bold);color:var(--dark);}
+.pp-form__sub{margin-top:5px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);color:var(--muted);}
+.pp-form__fields{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+.pp-input{width:100%;border:1px solid var(--border-field);padding:12px 14px;font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--dark);background:var(--white);border-radius:var(--r-field);}
+.pp-input::placeholder{color:var(--muted);}
+.pp-input:focus{outline:none;border-color:var(--navy);}
+textarea.pp-input{resize:vertical;font-family:var(--font-base);}
+.pp-submit{background:var(--navy);color:var(--white);border:none;font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);padding:14px;cursor:pointer;border-radius:var(--r-ctrl);}
+
+/* ---------------- стрічки «Дивіться також» / «Переглянуті» ---------------- */
+.pp-feed{margin-top:56px;}
+.pp-feed__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 18px;}
+.pp-feed__title{font-size:var(--fs-h3);line-height:var(--lh-snug);letter-spacing:var(--ls-h3);font-weight:var(--fw-medium);}
+.pp-feed__tabs{display:flex;gap:28px;border-bottom:1px solid var(--line);margin-bottom:26px;flex-wrap:wrap;}
+.pp-feed__tab{border:none;background:none;cursor:pointer;font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);padding:0 0 14px;margin-bottom:-1px;white-space:nowrap;color:var(--muted);border-bottom:2px solid transparent;transition:color .15s,border-color .15s;}
+.pp-feed__tab.on{color:var(--dark);border-bottom-color:var(--navy);}
+.pp-feed__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+
+.pp-fcard{display:block;background:var(--soft);overflow:hidden;border-radius:var(--r-card);}
+.pp-fcard__img{position:relative;aspect-ratio:16/10;background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;}
+.pp-fcard__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.pp-fcard__heart{position:absolute;right:11px;top:11px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--navy);display:inline-flex;align-items:center;justify-content:center;}
+.pp-fcard__body{padding:14px 16px 16px;}
+.pp-fcard__price{font-size:var(--fs-lg);letter-spacing:var(--ls-lg);font-weight:var(--fw-bold);color:var(--dark);}
+.pp-fcard__cx{margin-top:6px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-semibold);color:var(--dark);}
+.pp-fcard__ad{margin-top:4px;font-size:var(--fs-xs);letter-spacing:var(--ls-xs);color:var(--muted);line-height:var(--lh-base);min-height:34px;}
+.pp-fcard__row{display:flex;gap:14px;margin-top:11px;padding-top:12px;border-top:1px solid var(--line);font-size:var(--fs-xs);letter-spacing:var(--ls-xs);font-weight:var(--fw-medium);color:var(--muted);}
+.pp-fcard__row span{display:inline-flex;align-items:center;gap:5px;}
+.pp-fcard__row svg{flex:0 0 auto;color:var(--muted);}
+
+/* ---------------- лайтбокс (фуллскрин) ---------------- */
+.pp-lb{position:fixed;inset:0;z-index:9999;background:rgba(4,10,24,.985);display:none;flex-direction:column;}
+.pp-lb.open{display:flex;}
+.pp-lb__bar{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;color:var(--white);}
+.pp-lb__label{font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);}
+.pp-lb__btn{width:44px;height:44px;border-radius:50%;border:none;background:var(--white-22);color:var(--white);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s;}
+.pp-lb__btn:hover{background:rgba(255,255,255,.34);}
+.pp-lb__stage{flex:1;display:flex;align-items:center;justify-content:center;gap:18px;padding:0 18px 16px;min-height:0;}
+.pp-lb__nav{width:52px;height:52px;flex:none;}
+.pp-lb__imgwrap{flex:1;max-width:1100px;height:100%;display:flex;align-items:center;justify-content:center;}
+.pp-lb__imgwrap img{max-width:100%;max-height:100%;object-fit:contain;}
+.pp-lb__thumbs{display:flex;gap:8px;justify-content:center;padding:0 18px 22px;overflow-x:auto;}
+.pp-lb__thumb{flex:0 0 72px;height:52px;overflow:hidden;cursor:pointer;padding:0;background:none;border:2px solid transparent;opacity:.5;}
+.pp-lb__thumb.on{opacity:1;border-color:var(--white);}
+.pp-lb__thumb img{width:100%;height:100%;object-fit:cover;}

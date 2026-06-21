@@ -1,0 +1,98 @@
+/* =====================================================================
+   FAKTOR — ФІЛЬТРИ КАТАЛОГУ (динамічні, за категоріями)
+   Самодостатній компонент .ff-block (breadcrumb → H1 → фільтри → обрані
+   чипи → популярні підбірки). Розмітку рендерить js/catalog-filters.js.
+   Кольори/межі/радіуси тягнуться з css/tokens.css через локальні --ff-*,
+   тож блок виглядає як решта сайту (navy, поля фільтрів, гострі кути).
+   Структурні розміри (висоти полів, відступи, кеглі UI) — локальні до
+   компонента, як і в решті каталожних стилів style.css.
+   ===================================================================== */
+.ff-block{
+  /* палітра компонента → дизайн-токени сайту */
+  --ff-navy:var(--navy);
+  --ff-field:var(--field-2);
+  --ff-muted:var(--muted);
+  --ff-faint:var(--ink-40);
+  --ff-line:var(--line);
+  --ff-border:var(--ink-12);
+  --ff-r:var(--r-field);     /* поля — гострі кути, як .fld2 */
+  --ff-pill:var(--r-pill);   /* чипи / CTA — пігулка */
+  --ff-h:48px;               /* висота контролів — як .fld2 / .btn каталогу */
+  --ff-fborder:1px solid var(--ink-08); /* хайрлайн полів — як .fld2 */
+  color:var(--ff-navy); padding:8px 0 4px;
+}
+.ff-block *{ box-sizing:border-box; }
+.ff-block__inner{ width:var(--content); margin:0 auto; }
+
+.ff-crumbs{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:var(--fs-sm); letter-spacing:var(--ls-sm); color:var(--ff-faint); }
+.ff-crumbs a{ color:var(--ff-faint); text-decoration:none; }
+.ff-crumbs a.current{ color:var(--ff-muted); font-weight:var(--fw-semibold); cursor:default; }
+.ff-crumbs .sep{ color:var(--ink-28); }
+.ff-crumbs img{ height:13px; opacity:.9; }
+.ff-h1{ margin:18px 0 26px; font-size:30px; font-weight:var(--fw-bold); letter-spacing:-.01em; text-align:center; }
+
+.ff-mainrow{ display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; }
+.ff-col{ flex:1 1 280px; min-width:240px; }
+.ff-col--deal{ flex:1 1 320px; min-width:280px; }
+.ff-lbl{ font-size:11px; font-weight:var(--fw-semibold); letter-spacing:.04em; text-transform:uppercase; color:var(--ff-faint); margin-bottom:8px; }
+.ff-field{ display:flex; align-items:center; gap:10px; padding:0 16px; height:var(--ff-h); background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r); transition:border-color .15s; }
+.ff-field:focus-within{ border-color:var(--ink-18); }
+.ff-in{ flex:1; min-width:0; border:none; background:transparent; font-family:inherit; font-size:var(--fs-sm); color:var(--ff-navy); }
+.ff-in::placeholder{ color:var(--ff-faint); }
+.ff-in:focus{ outline:none; }
+.ff-dash{ color:var(--ink-28); }
+
+.ff-deal{ display:flex; height:var(--ff-h); background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r); overflow:hidden; }
+.ff-seg{ position:relative; flex:1; }
+.ff-seg--deal{ flex:0 0 42%; }
+.ff-seg-div{ width:1px; background:var(--ff-border); margin:10px 0; }
+.ff-seg select{ appearance:none; -webkit-appearance:none; width:100%; height:100%; border:none; background:transparent; font-family:inherit; font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--ff-navy); padding:0 30px 0 16px; cursor:pointer; }
+.ff-chev{ position:absolute; right:10px; top:50%; transform:translateY(-50%); pointer-events:none; }
+
+.ff-num{ display:flex; align-items:center; gap:8px; height:var(--ff-h); background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r); padding:0 16px; transition:border-color .15s; }
+.ff-num:focus-within{ border-color:var(--ink-18); }
+
+.ff-search{ flex:0 0 auto; height:var(--ff-h); padding:0 46px; border:none; border-radius:var(--ff-pill); background:var(--ff-navy); color:var(--white); font-family:inherit; font-size:var(--fs-base); font-weight:var(--fw-semibold); cursor:pointer; transition:opacity .15s; }
+.ff-search:hover{ opacity:.92; }
+
+.ff-controls{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:18px; }
+.ff-more{ display:inline-flex; align-items:center; gap:10px; height:var(--ff-h); padding:0 22px; border:1px solid var(--ff-border); border-radius:var(--ff-r); background:var(--white); color:var(--ff-navy); font-family:inherit; font-size:var(--fs-sm); font-weight:var(--fw-semibold); cursor:pointer; transition:border-color .15s,background .15s; }
+.ff-more:hover{ border-color:var(--ink-18); background:var(--soft); }
+.ff-badge{ display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 6px; border-radius:var(--ff-pill); background:var(--ff-navy); color:var(--white); font-size:11px; font-weight:var(--fw-bold); }
+.ff-reset{ border:none; background:none; color:var(--ff-muted); font-family:inherit; font-size:var(--fs-sm); font-weight:var(--fw-semibold); cursor:pointer; display:inline-flex; align-items:center; gap:7px; }
+
+.ff-add{ max-height:0; overflow:hidden; opacity:0; transition:max-height .34s ease, opacity .25s ease, margin-top .25s ease; }
+.ff-add.open{ max-height:3000px; opacity:1; margin-top:14px; overflow:visible; }
+.ff-add-inner{ border-top:1px solid var(--ff-line); padding-top:24px; padding-bottom:4px; }
+.ff-addgrid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px 20px; align-items:end; }
+.ff-add-field{ min-width:0; }   /* без цього inputs у range-полях розпирають колонку → грід вилазить за макет */
+.ff-field-full{ grid-column:1 / -1; }
+.ff-fieldlabel{ font-size:11px; font-weight:var(--fw-semibold); letter-spacing:.04em; text-transform:uppercase; color:var(--ff-faint); margin-bottom:9px; }
+.ff-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.ff-chip{ cursor:pointer; font-family:inherit; font-size:var(--fs-sm); font-weight:var(--fw-semibold); padding:10px 17px; transition:.15s; background:var(--ff-field); color:var(--ff-muted); border:none; border-radius:var(--ff-pill); }
+.ff-chip.active{ background:var(--ff-navy); color:var(--white); }
+
+.ff-ms{ position:relative; }
+.ff-ms-btn{ display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; height:var(--ff-h); border:var(--ff-fborder); border-radius:var(--ff-r); background:var(--ff-field); font-family:inherit; font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--ff-faint); padding:0 14px; cursor:pointer; text-align:left; transition:border-color .15s; }
+.ff-ms-btn:hover{ border-color:var(--ink-18); }
+.ff-ms-btn.has-val{ color:var(--ff-navy); }
+.ff-ms-btn > span{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ff-ms-panel{ position:absolute; left:0; right:0; top:calc(var(--ff-h) + 6px); z-index:30; background:var(--white); border:1px solid var(--ff-line); box-shadow:0 12px 30px var(--ink-14); padding:6px; max-height:240px; overflow:auto; }
+.ff-ms-opt{ display:flex; align-items:center; gap:10px; padding:9px 10px; cursor:pointer; font-size:var(--fs-sm); color:var(--ff-navy); }
+.ff-ms-opt:hover{ background:var(--soft); }
+.ff-ms-box{ width:16px; height:16px; flex:none; display:inline-flex; align-items:center; justify-content:center; background:var(--white); border:1px solid var(--ink-28); }
+.ff-ms-opt.on .ff-ms-box{ background:var(--ff-navy); border-color:var(--ff-navy); }
+
+.ff-selected{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:20px; }
+.ff-selected-label{ font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--ff-muted); }
+.ff-selchip{ display:inline-flex; align-items:center; gap:7px; background:var(--ff-navy); color:var(--white); border-radius:var(--ff-pill); padding:7px 12px 7px 14px; font-size:12.5px; font-weight:var(--fw-semibold); }
+.ff-selchip button{ display:inline-flex; align-items:center; border:none; background:none; color:var(--white-82); cursor:pointer; padding:0; }
+
+.ff-il-title{ font-size:var(--fs-sm); font-weight:var(--fw-bold); color:var(--ff-navy); margin:30px 0 13px; }
+.ff-il{ display:flex; flex-wrap:wrap; gap:9px; }
+.ff-il a{ display:inline-flex; align-items:center; background:var(--field-2); color:var(--slate); border:1px solid var(--ff-line); border-radius:var(--ff-pill); padding:8px 16px; font-size:12.5px; font-weight:var(--fw-medium); text-decoration:none; transition:.15s; }
+.ff-il a:hover{ background:var(--ff-navy); border-color:var(--ff-navy); color:var(--white); }
+
+/* Сторінка — фіксована канва 1440px зі zoom-підгонкою (js/responsive.js), тож
+   блок завжди в десктоп-розкладці (4 колонки). Власних брейкпоінтів немає —
+   масштабування під вузькі екрани робить zoom .frame, як і решта каталогу. */
