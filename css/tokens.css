@@ -58,7 +58,6 @@
   --field      :#F5F6F8;         /* поля пошуку (головна) */
   --field-2    :#f1f0ed;         /* поля фільтрів (каталог) */
   --chip-bg    :#ededed;         /* пігулка-лейбл під hero */
-  --pay-pill   :#FAEFD5;         /* фон пігулки «Перший внесок» (картка новобудови) */
   --placeholder:#d9d9d9;         /* плейсхолдери зображень (колір-fallback) */
   --placeholder-img:url("../img/decor/property-placeholder.png"); /* картинка-заглушка фото об'єктів */
   --hero-word  :#C5C8D0;         /* watermark-слова hero */
