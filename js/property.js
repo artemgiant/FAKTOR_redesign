@@ -66,9 +66,9 @@ lbThumbs.addEventListener('click', e => { const b = e.target.closest('.pp-lb__th
 /* ---------------- обране (сердечко на галереї) ---------------- */
 const favBtn = document.getElementById('pp-fav');
 favBtn.addEventListener('click', () => {
-  const svg = favBtn.querySelector('svg');
-  const on = svg.getAttribute('fill') === 'currentColor';
-  svg.setAttribute('fill', on ? 'none' : 'currentColor');
+  const img = favBtn.querySelector('img');
+  const on = img.src.includes('like.svg');
+  img.src = on ? 'img/icons/fav.svg' : 'img/icons/like.svg';
   toast(on ? 'Видалено з обраного' : 'Додано до обраного');
 });
 
