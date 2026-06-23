@@ -70,7 +70,7 @@ img{display:block;max-width:100%;}
 
 /* ---------- секції ---------- */
 .section{margin-top:160px;}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;}
 .sec-head--center{flex-direction:column;align-items:center;gap:16px;text-align:center;}
 .sec-sub{margin-top:8px;font-size:var(--fs-base);font-weight:var(--fw-regular);line-height:var(--lh-base);letter-spacing:var(--ls-base);color:var(--muted);}
 /* компенсація лівого side-bearing великого заголовка: вирівнюємо перші гліфи назви й підзаголовка */
