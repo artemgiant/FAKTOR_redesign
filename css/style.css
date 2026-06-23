@@ -28,7 +28,7 @@ img{display:block;max-width:100%;}
    скролу. overflow-x:clip (не hidden) не створює scroll-контейнер і не обрізає
    position:fixed навбар, на відміну від overflow на корені (html/body). */
 .page{overflow-x:clip;}
-.frame{width:1440px;margin:0 auto;background:var(--white);position:relative;overflow:hidden;}
+.frame{width:1440px;margin:0 auto;background:var(--white);position:relative;overflow-x:clip;}
 .container{width:var(--content);margin:0 auto;}
 
 /* ---------- типографіка ---------- */
