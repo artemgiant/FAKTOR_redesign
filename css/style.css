@@ -145,6 +145,9 @@ img{display:block;max-width:100%;}
 
 /* оверлеї на фото */
 .nb-year{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:var(--r-badge);background:var(--white);color:var(--navy);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-semibold);box-shadow:0 4px 14px var(--ink-14);}
+.nb-dev{position:absolute;top:16px;right:16px;z-index:2;width:64px;height:64px;border-radius:50%;background:var(--white);box-shadow:0 4px 14px var(--ink-14);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;}
+.nb-dev img{width:26px;height:26px;display:block;}
+.nb-dev b{font-size:var(--fs-xs);line-height:var(--lh-none);letter-spacing:var(--ls-xs);font-weight:var(--fw-semibold);color:var(--navy);}
 
 /* «підвал» картки новобудови — вертикальний стек: ціна + «грн/м²», тонкий
    горизонтальний розділювач, далі ряд «Перший внесок» (в один рядок, без переносу)
