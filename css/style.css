@@ -72,6 +72,7 @@ img{display:block;max-width:100%;}
 .section{margin-top:160px;}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;}
 .sec-head--center{flex-direction:column;align-items:center;gap:16px;text-align:center;}
+.sec-sub{margin-top:8px;font-size:var(--fs-base);font-weight:var(--fw-regular);line-height:var(--lh-base);letter-spacing:var(--ls-base);color:var(--muted);}
 
 /* =================== HEADER + HERO =================== */
 .hero{position:relative;height:1180px;}
@@ -138,7 +139,7 @@ img{display:block;max-width:100%;}
    підвал притиснутий донизу (margin-top:auto), тож ряди карток вирівняні попри
    різну висоту назв. Висота 505 підігнана під найвищий контент (дворядкова назва),
    щоб відступ над підвалом був мінімальним, а overflow:hidden нічого не обрізав. */
-.card-solid--nb{height:505px;display:flex;flex-direction:column;}
+.card-solid--nb{height:513px;display:flex;flex-direction:column;}
 .card-solid--nb .img{flex:none;}
 .card-solid--nb .body{flex:1;display:flex;flex-direction:column;padding:20px 16px;}
 .card-solid--nb .card-titlerow{margin-bottom:8px;}
@@ -159,7 +160,7 @@ img{display:block;max-width:100%;}
 .nb-permeter{color:var(--muted);font-size:var(--fs-base);letter-spacing:var(--ls-base);white-space:nowrap;}
 .nb-div{height:1px;background:var(--line);}
 .nb-act{display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.nb-pay{display:flex;align-items:center;gap:8px;white-space:nowrap;color:var(--navy);font-size:var(--fs-xs);line-height:var(--lh-snug);letter-spacing:var(--ls-xs);font-weight:var(--fw-medium);}
+.nb-pay{flex:none;display:inline-flex;align-items:center;gap:8px;padding:5px 10px;border-radius:var(--r-pill);background:var(--pay-pill);white-space:nowrap;color:var(--navy);font-size:var(--fs-xs);line-height:var(--lh-snug);letter-spacing:var(--ls-xs);font-weight:var(--fw-medium);}
 .nb-pay img{flex:none;width:18px;height:18px;display:block;}
 .nb-detail{flex:none;display:inline-flex;align-items:center;gap:6px;color:var(--navy);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-medium);white-space:nowrap;}
 .nb-detail img{width:14px;height:14px;display:block;transition:transform .2s;}
