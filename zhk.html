@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>FAKTOR — ЖК OZONE, Одеса · новобудова від забудовника без комісії</title>
+<!--
+  Сторінка новобудови (ЖК). Джерело дизайну: handoff-zhk/ (Montserrat-прототип) —
+  відтворено в дизайн-системі сайту: канва 1440px, шрифт Inter, гострі кути,
+  navy #001D4B, кольори/кеглі через css/tokens.css. Спільні шапка-пігулка,
+  breadcrumb, sitemap, SEO та темний футер — як на index.html / property.html.
+  Структура за README handoff: шапка ЖК → галерея → плашка партнера →
+  особливості → акція (з CRM) → умови купівлі → планування → розташування →
+  сайдбар «Відділ продажу» → пропозиції в ЖК → схожі новобудови → переглянуті.
+  Сторінка об'єкта (property.html) посилається сюди через «Будинок і інфраструктура».
+-->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/property.css">
+<link rel="stylesheet" href="css/zhk.css">
+<script defer src="js/responsive.js"></script>
+</head>
+<body>
+<div class="page">
+<div class="frame">
+
+  <!-- ===================== HEADER (спільна пігулка) ===================== -->
+  <header class="cat-header">
+    <nav class="nav">
+      <span class="nav__logo"><a href="index.html"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></a></span>
+      <div class="nav__links">
+        <a href="#">Новобудови</a><a href="catalog.html">Квартири</a><a href="#">Будинки</a><a href="#">Комерційна</a><a href="#">Зарубіжна</a>
+      </div>
+      <div class="nav__right">
+        <span class="nav__icon" title="Подзвонити"><img src="img/icons/phone-call.svg" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Обране"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
+        <span class="nav__lang">UA / USD <img src="img/icons/small-arrow.svg" class="cd" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Меню"><img src="img/icons/menu.svg" width="24" height="24" alt=""></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== BREADCRUMB + ЗАБУДОВНИК/ОНОВЛЕНО ===================== -->
+  <div class="container pp-topbar" style="margin-top:18px;">
+    <div class="cat-crumbs">
+      <a href="index.html" class="crumb-home"><img class="logo" src="img/icons/faktor-logo.svg" alt="FAKTOR"></a>
+      <span class="sep" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></span>
+      <a href="#" style="color:var(--muted);">Новобудови</a>
+      <span class="sep" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></span>
+      <a href="#" style="color:var(--muted);">Приморський</a>
+      <span class="sep" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></span>
+      <span class="cur">ЖК OZONE</span>
+    </div>
+    <div class="pp-meta">Забудовник: <b>OZONE Development</b>&nbsp;&nbsp;·&nbsp;&nbsp;Оновлено: <b>2 дні тому</b></div>
+  </div>
+
+  <div class="container">
+
+    <!-- ===================== ШАПКА ЖК ===================== -->
+    <div class="pp-head">
+      <div class="pp-head__l">
+        <h1 class="pp-title">ЖК OZONE</h1>
+        <div class="pp-addr">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+          Одеса, Приморський р-н, вул. Віце-Адмірала Азарова
+        </div>
+        <div class="zhk-deadline">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+          Здача — II квартал 2026
+        </div>
+      </div>
+      <div class="pp-pricebox">
+        <div class="pp-perm" style="margin-top:0;">Ціна від</div>
+        <div class="pp-price">$ 54 000</div>
+        <div class="pp-perm">від $ 1 050/м²</div>
+      </div>
+    </div>
+
+    <!-- ===================== ШВИДКІ ФАКТИ ===================== -->
+    <div class="pp-facts">
+      <span class="pp-fact"><img src="img/icons/area-icon.svg" width="16" height="16" alt="">38–147 м²</span>
+      <span class="pp-fact"><img src="img/icons/bedrooms-icon-black.svg" width="16" height="16" alt="">1–4 кімнати</span>
+      <span class="pp-fact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21V8l6-4 6 4v13M15 21V11l6 4v6M6 12h0M6 16h0"/></svg>3 корпуси</span>
+      <span class="pp-fact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l2.4 5 5.6.8-4 4 1 5.6L12 17l-5 2.4 1-5.6-4-4 5.6-.8z"/></svg>Ремонт від забудовника</span>
+    </div>
+
+    <!-- ===================== ДВОКОЛОНКОВИЙ ЛЕЙАУТ ===================== -->
+    <div class="pp-cols">
+
+      <!-- ---------- ЛІВА КОЛОНКА ---------- -->
+      <div class="pp-main">
+
+        <!-- галерея (фото + генплан) -->
+        <div class="pp-gallery">
+          <img id="zhk-main-img" class="pp-gallery__img" src="img/photos/residential-complex-dusk.jpg" alt="ЖК OZONE — фасад">
+          <div class="zhk-gallery__label" id="zhk-main-label">Фасад</div>
+          <div class="pp-count"><span id="zhk-count-cur">1</span> / <span id="zhk-count-total">7</span></div>
+          <button class="pp-iconbtn pp-iconbtn--dark pp-gallery__zoom" id="zhk-open-lb" aria-label="На весь екран"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+          <div class="pp-gallery__tools">
+            <button class="pp-iconbtn" id="zhk-fav" aria-label="В обране"><img src="img/icons/fav.svg" width="18" height="18" alt=""></button>
+            <button class="pp-iconbtn" aria-label="Поділитися"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button>
+          </div>
+        </div>
+        <div class="pp-thumbs pp-scroll" id="zhk-thumbs"></div>
+
+        <!-- плашка: FAKTOR — офіційний партнер -->
+        <div class="zhk-partner">
+          <div class="zhk-partner__ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v6c0 4-3 7-7 8-4-1-7-4-7-8V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div>
+            <div class="zhk-partner__h">FAKTOR — офіційний партнер забудовника</div>
+            <div class="zhk-partner__t">Об'єкти продаються <b>без комісії</b>, за цінами забудовника. Супровід угоди та перевірка документів — безкоштовно.</div>
+          </div>
+        </div>
+
+        <!-- особливості комплексу (теги-чипи) -->
+        <div class="pp-card">
+          <h2 class="pp-card__title">Особливості комплексу</h2>
+          <div class="pp-tags" style="margin-top:18px;">
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Закрита територія</span>
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Підземний паркінг</span>
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Своя інфраструктура</span>
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Море за 400 м</span>
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Дитячий майданчик</span>
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Охорона 24/7</span>
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Резервне живлення</span>
+            <span class="pp-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Укриття</span>
+          </div>
+        </div>
+
+        <!-- акція (з CRM; ховається, якщо порожня) -->
+        <div class="zhk-promo" id="zhk-promo">
+          <div class="zhk-promo__ic"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.6 13.4L13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 2.8 12V4a2 2 0 0 1 2-2h8a2 2 0 0 1 1.4.6l6.4 6.4a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg></div>
+          <div>
+            <span class="zhk-promo__badge">Акція</span>
+            <div class="zhk-promo__h">Знижка 5% на 2-кімнатні до кінця кварталу</div>
+            <div class="zhk-promo__t">При 100% оплаті — додатковий бонус: паркомісце за спеціальною ціною. Деталі акції — у відділі продажу.</div>
+          </div>
+        </div>
+
+        <!-- умови купівлі -->
+        <div class="pp-card">
+          <h2 class="pp-card__title" style="margin-bottom:20px;">Умови купівлі</h2>
+          <div class="zhk-buy">
+            <div class="zhk-buy__item">
+              <div class="zhk-buy__badge">30%</div>
+              <div><div class="zhk-buy__h">Перший внесок від 30%</div><div class="zhk-buy__t">Решта — рівними платежами до здачі</div></div>
+            </div>
+            <div class="zhk-buy__item">
+              <div class="zhk-buy__badge">0%</div>
+              <div><div class="zhk-buy__h">Розстрочка до 2 років</div><div class="zhk-buy__t">Безвідсоткова, від забудовника</div></div>
+            </div>
+            <div class="zhk-buy__item">
+              <div class="zhk-buy__badge">іп</div>
+              <div><div class="zhk-buy__h">Іпотека / єОселя</div><div class="zhk-buy__t">Допомагаємо з оформленням держпрограм</div></div>
+            </div>
+            <div class="zhk-buy__item">
+              <div class="zhk-buy__badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></div>
+              <div><div class="zhk-buy__h">Без комісії</div><div class="zhk-buy__t">За цінами забудовника, FAKTOR — партнер</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- планування — галерея планів -->
+        <div class="pp-card">
+          <h2 class="pp-card__title" style="margin-bottom:20px;">Планування</h2>
+          <div class="zhk-plans" id="zhk-plans"></div>
+        </div>
+
+        <!-- розташування -->
+        <div class="pp-card">
+          <h2 class="pp-card__title">Розташування</h2>
+          <div class="pp-map">
+            <svg class="pp-map__pin" width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+            <div class="pp-map__lbl">Leaflet / OpenStreetMap · Одеса, вул. Віце-Адмірала Азарова</div>
+          </div>
+          <div class="zhk-nearby">
+            <span class="zhk-near">🌊 Море — 5 хв</span>
+            <span class="zhk-near">🏫 Школа, садок поруч</span>
+            <span class="zhk-near">🛒 ТРЦ за 700 м</span>
+            <span class="zhk-near">🚌 Транспортна розв'язка</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ---------- ПРАВА КОЛОНКА (sticky) ---------- -->
+      <div class="pp-side">
+        <div class="pp-agent">
+          <div class="pp-agent__top">
+            <div class="pp-agent__ava zhk-dept__ava"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+            <div>
+              <div class="zhk-dept__kicker">Відділ продажу новобудов</div>
+              <div class="pp-agent__name">FAKTOR Новобудови</div>
+              <div class="pp-agent__office">Пн–Нд · 9:00–20:00</div>
+            </div>
+          </div>
+          <a href="tel:+380733808454" class="pp-call"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>Зателефонувати</a>
+        </div>
+
+        <div class="pp-form">
+          <div class="pp-form__title">Призначити огляд об'єкту</div>
+          <div class="pp-form__sub">Покажемо об'єкт та шоурум — оберіть зручний час</div>
+          <form class="pp-form__fields" id="zhk-form">
+            <input class="pp-input" type="text" placeholder="Ваше ім'я" required>
+            <input class="pp-input" type="tel" placeholder="+380 __ ___ __ __" required>
+            <input class="pp-input" type="date">
+            <textarea class="pp-input" rows="3" placeholder="Які планування цікавлять, зручний час тощо"></textarea>
+            <button class="pp-submit" type="submit">Записатися на показ</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== ПРОПОЗИЦІЇ В ЦЬОМУ ЖК ===================== -->
+    <div class="pp-feed">
+      <div class="pp-feed__head">
+        <h2 class="pp-feed__title">Пропозиції в цьому ЖК</h2>
+        <a href="catalog.html" class="see-all">Усі пропозиції <img src="img/icons/arrow-right-14.svg" alt=""></a>
+      </div>
+      <div class="pp-feed__grid" id="zhk-flats-grid"></div>
+    </div>
+
+    <!-- ===================== СХОЖІ НОВОБУДОВИ ===================== -->
+    <div class="pp-feed">
+      <div class="pp-feed__head">
+        <h2 class="pp-feed__title">Схожі новобудови</h2>
+        <a href="#" class="see-all">Показати всі <img src="img/icons/arrow-right-14.svg" alt=""></a>
+      </div>
+      <div class="pp-feed__tabs" id="zhk-feed-tabs"></div>
+      <div class="pp-feed__grid" id="zhk-feed-grid"></div>
+    </div>
+
+    <!-- ===================== НЕЩОДАВНО ПЕРЕГЛЯНУТІ ===================== -->
+    <div class="pp-feed">
+      <div class="pp-feed__head">
+        <h2 class="pp-feed__title">Нещодавно переглянуті</h2>
+        <a href="catalog.html" class="see-all">Показати всі <img src="img/icons/arrow-right-14.svg" alt=""></a>
+      </div>
+      <div class="pp-feed__grid" id="zhk-recent-grid"></div>
+    </div>
+
+  </div>
+
+  <!-- ===================== SITEMAP (спільний) ===================== -->
+  <div class="container">
+    <div class="footer-divider"></div>
+    <nav class="sitemap">
+      <div class="col">
+        <h5 class="t24">Квартири</h5>
+        <a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">4-кімнатні</a><a href="#">5+ кімнатні</a><a href="#">Студії</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Будинки і дачі</h5>
+        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a><a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Комерційна</h5>
+        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a><a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a><a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Райони Одеси</h5>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+        <a href="#" class="gap">Локації</a>
+        <a href="#">Аркадія</a><a href="#">Фонтан</a><a href="#">Таїрова</a><a href="#">Центр</a><a href="#">Черемушки</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Новобудови</h5>
+        <a href="#">Усі ЖК</a><a href="#">Квартири в Новобудові</a><a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">Багатокімнатні</a>
+        <a href="#" class="gap">Зарубіжна нерухомість</a>
+        <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===================== SEO (спільний) ===================== -->
+  <div class="seo">
+    <div class="seo__in">
+      <h3 class="t15">Агентство нерухомості «FAKTOR» – кваліфікована допомога для придбання житла в Одесі</h3>
+      <p class="t15">Звернення до агентства нерухомості «FAKTOR» допоможе уникнути ризиків, які зазвичай виникають у процесі угоди під час продажу, придбання або оренди будинку, квартири, земельної ділянки. Залучення ріелторів для супроводу подібного процесу – це оптимальний спосіб грамотно підготуватися та отримати комплексний супровід на всіх етапах угоди.</p>
+      <a href="#" class="seo__more t15">Читати повністю</a>
+    </div>
+  </div>
+
+  <!-- ===================== DARK FOOTER (спільний) ===================== -->
+  <footer class="dark">
+    <div class="container">
+      <div class="dark__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+      <div class="dark__cols">
+        <div>
+          <h5 class="t15">Контакти</h5>
+          <a href="#">+38 (073) 355 98 54</a><a href="#">Telegram</a><a href="#">Канал “Нові об'єкти Одеси”</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
+        </div>
+        <div>
+          <h5 class="t15">Компанія</h5>
+          <a href="#">Про нас</a><a href="#">Курси рієлторів</a><a href="#">Кар'єра</a><a href="#">Франшиза</a><a href="#">Блог</a><a href="#">Продати об'єкт</a>
+        </div>
+        <div>
+          <h5 class="t15">Продаж</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Новобудови</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Аренда</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Зарубіжна нерухомість</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Сервіси</h5>
+          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a><a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
+        </div>
+      </div>
+      <div class="dark__bottom">
+        <a href="#">Політика конфіденційності</a>
+        <a href="#">Умови користувача</a>
+        <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
+        <span></span>
+        <a href="#">Вхід для агентів</a>
+        <div class="dark__switch">
+          <span class="sw">USD <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+          <span class="sw">UA <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<!-- ===================== ЛАЙТБОКС (фуллскрин галерея) ===================== -->
+<div class="pp-lb" id="zhk-lb">
+  <div class="pp-lb__bar">
+    <span class="pp-lb__label">ЖК OZONE&nbsp;&nbsp;·&nbsp;&nbsp;<span id="zhk-lb-label">Фасад</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="zhk-lb-cur">1</span> / <span id="zhk-lb-total">7</span></span>
+    <button class="pp-lb__btn" id="zhk-lb-close" aria-label="Закрити"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="pp-lb__stage">
+    <button class="pp-lb__btn pp-lb__nav" id="zhk-lb-prev" aria-label="Попереднє"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="pp-lb__imgwrap"><img id="zhk-lb-img" src="img/photos/residential-complex-dusk.jpg" alt=""></div>
+    <button class="pp-lb__btn pp-lb__nav" id="zhk-lb-next" aria-label="Наступне"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="pp-lb__thumbs pp-scroll" id="zhk-lb-thumbs"></div>
+</div>
+
+<script src="js/zhk.js"></script>
+</body>
+</html>

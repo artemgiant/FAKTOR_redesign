@@ -1,0 +1,55 @@
+/* =====================================================================
+   FAKTOR — СТОРІНКА НОВОБУДОВИ (ЖК). Розмітка: zhk.html.
+   Будується на патернах сторінки об'єкта (css/property.css, префікс .pp-):
+   галерея, картки-секції, стрічки карток, лайтбокс, сайдбар-форма —
+   спільні. Тут лише класи, унікальні для ЖК (префікс .zhk-): термін здачі,
+   плашка партнера, акція з CRM, умови купівлі, сітка планувань, «що поряд».
+   Палітра й кеглі — лише через дизайн-токени css/tokens.css (var(--…)),
+   без локальних magic-значень. Гострі кути (--r-card/--r-ctrl:0), пігулки
+   100px — як на решті сайту. Канва 1440px (.frame), без мобільних брейків.
+   ===================================================================== */
+
+/* ---------------- термін здачі (пігулка в шапці ЖК) ---------------- */
+.zhk-deadline{margin-top:12px;display:inline-flex;align-items:center;gap:7px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-semibold);color:var(--dark);background:var(--soft);border:1px solid var(--line);padding:8px 15px;border-radius:100px;}
+.zhk-deadline svg{flex:0 0 auto;color:var(--navy);}
+
+/* ---------------- плашка: FAKTOR — офіційний партнер ---------------- */
+.zhk-partner{display:flex;gap:18px;align-items:center;background:var(--navy);color:var(--white);padding:24px 28px;margin-top:26px;border-radius:var(--r-card);}
+.zhk-partner__ic{width:52px;height:52px;flex:none;border-radius:13px;background:var(--white-06);color:var(--white);display:inline-flex;align-items:center;justify-content:center;}
+.zhk-partner__h{font-size:var(--fs-lg);letter-spacing:var(--ls-lg);font-weight:var(--fw-bold);}
+.zhk-partner__t{margin-top:6px;font-size:var(--fs-sm);line-height:var(--lh-relaxed);letter-spacing:var(--ls-sm);color:var(--white-82);}
+.zhk-partner__t b{color:var(--white);font-weight:var(--fw-semibold);}
+
+/* ---------------- акція (з CRM) ---------------- */
+.zhk-promo{display:flex;gap:16px;align-items:flex-start;background:var(--pay-pill);padding:22px 26px;margin-top:22px;border-radius:var(--r-card);}
+.zhk-promo.is-hidden{display:none;}
+.zhk-promo__ic{width:46px;height:46px;flex:none;border-radius:12px;background:var(--white);color:var(--btc);display:inline-flex;align-items:center;justify-content:center;}
+.zhk-promo__badge{display:inline-block;font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:.06em;text-transform:uppercase;color:var(--btc);background:var(--white);padding:3px 10px;border-radius:100px;}
+.zhk-promo__h{margin-top:9px;font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-bold);color:var(--dark);}
+.zhk-promo__t{margin-top:5px;font-size:var(--fs-sm);line-height:var(--lh-relaxed);letter-spacing:var(--ls-sm);color:var(--muted);}
+
+/* ---------------- умови купівлі ---------------- */
+.zhk-buy{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 24px;}
+.zhk-buy__item{display:flex;gap:14px;align-items:flex-start;}
+.zhk-buy__badge{width:44px;height:44px;flex:none;border-radius:50%;background:var(--navy);color:var(--white);display:inline-flex;align-items:center;justify-content:center;font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-bold);}
+.zhk-buy__badge svg{display:block;}
+.zhk-buy__h{font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-bold);color:var(--dark);}
+.zhk-buy__t{margin-top:4px;font-size:var(--fs-sm);line-height:var(--lh-base);letter-spacing:var(--ls-sm);color:var(--muted);}
+
+/* ---------------- планування (сітка планів → лайтбокс) ---------------- */
+.zhk-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.zhk-plan{aspect-ratio:1/1;overflow:hidden;cursor:zoom-in;display:flex;align-items:center;justify-content:center;padding:0;border:1px solid var(--line);background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;border-radius:var(--r-card);transition:border-color .15s;}
+.zhk-plan:hover{border-color:var(--navy);}
+.zhk-plan span{font-family:var(--font-base);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-semibold);color:var(--white);background:rgba(0,29,75,.78);padding:6px 12px;border-radius:100px;}
+
+/* ---------------- що поряд (під картою) ---------------- */
+.zhk-nearby{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.zhk-near{display:inline-flex;align-items:center;gap:7px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);color:var(--muted);background:var(--white);border:1px solid var(--line);padding:7px 13px;border-radius:100px;}
+
+/* ---------------- сайдбар: «Відділ продажу новобудов» ---------------- */
+.zhk-dept__ava{border-radius:var(--r-card);background:var(--soft);}
+.zhk-dept__ava img{width:52px;height:auto;object-fit:contain;opacity:.85;}
+.zhk-dept__kicker{font-size:var(--fs-xs);letter-spacing:.04em;text-transform:uppercase;font-weight:var(--fw-semibold);color:var(--muted);margin-bottom:4px;}
+
+/* ---------------- галерея: лейбл сцени (Фасад/Двір/Генплан…) ---------------- */
+.zhk-gallery__label{position:absolute;left:16px;top:16px;background:rgba(0,29,75,.8);color:var(--white);font-size:var(--fs-xs);letter-spacing:var(--ls-xs);font-weight:var(--fw-medium);padding:7px 13px;border-radius:100px;}
