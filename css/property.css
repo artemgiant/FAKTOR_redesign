@@ -17,7 +17,7 @@
 .pp-meta b{color:var(--dark);font-weight:var(--fw-medium);}
 
 /* ---------------- шапка об'єкта: назва/адреса + ціна ---------------- */
-.pp-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:28px;}
+.pp-head{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:28px;}
 .pp-head__l{min-width:280px;}
 .pp-title{font-size:var(--fs-h3);line-height:var(--lh-snug);letter-spacing:var(--ls-h3);font-weight:var(--fw-bold);max-width:680px;}
 .pp-addr{margin-top:10px;display:flex;align-items:center;gap:7px;color:var(--muted);font-size:var(--fs-base);letter-spacing:var(--ls-base);}
