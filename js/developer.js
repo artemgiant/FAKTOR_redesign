@@ -31,13 +31,40 @@
   // Системна іконка девелопера (коло на фото картки) — спільна для сайту.
   var DEV_ICON = 'img/icons/dev-portico.svg';
 
-  var DEV = {
-    slug: 'kadorr-group', name: 'KADORR Group', mono: 'K', founded: 2010,
-    locations: 'Одеса · Приморський, Київський р-ни', count: 18,
-    web: 'kadorr.com', webHref: 'https://kadorr.com',
-    salesPhone: '+380 48 705 05 05',
-    about: "KADORR Group — один із найбільших девелоперів Одеси, на ринку з 2010 року. Компанія зводить житлові та апарт-комплекси бізнес- і преміумкласу переважно в Приморському районі та біля моря, з власною інфраструктурою, закритою територією й керуючою компанією. FAKTOR — офіційний партнер забудовника: квартири продаються за цінами девелопера, без комісії, з можливістю розтермінування."
+  // Довідник забудовників (slug → дані плашки). Slug-и збігаються з картками на
+  // developers.js. Повна копія є лише для KADORR; решта — з полів DEVS[]
+  // (name/founded/city/count/areas) + згенерований generic-опис.
+  var DEVS = {
+    'kadorr-group': { name: 'KADORR Group', mono: 'K', founded: 2010, areas: ['Приморський','Київський'], count: 18,
+      web: 'kadorr.com', webHref: 'https://kadorr.com', salesPhone: '+380 48 705 05 05',
+      about: "KADORR Group — один із найбільших девелоперів Одеси, на ринку з 2010 року. Компанія зводить житлові та апарт-комплекси бізнес- і преміумкласу переважно в Приморському районі та біля моря, з власною інфраструктурою, закритою територією й керуючою компанією. FAKTOR — офіційний партнер забудовника: квартири продаються за цінами девелопера, без комісії, з можливістю розтермінування." },
+    'gefest':     { name: 'Гефест',               mono: 'Г', founded: 2004, areas: ['Київський','Приморський','Фонтан'], count: 12 },
+    'stikon':     { name: 'Stikon',               mono: 'S', founded: 1994, areas: ['Приморський','Аркадія'],            count: 7 },
+    'budova':     { name: 'Будова',               mono: 'Б', founded: 2008, areas: ['Приморський','Малиновський'],       count: 5 },
+    'inkor-grup': { name: 'Інкор Груп',           mono: 'І', founded: 2006, areas: ['Малиновський','Київський','Таїрова'], count: 6 },
+    'altair':     { name: 'Альтаїр',              mono: 'А', founded: 2011, areas: ['Приморський','Аркадія'],            count: 4 },
+    'inter-bud':  { name: 'Інтер-Буд',            mono: 'І', founded: 2003, areas: ['Київський','Пересипський'],         count: 9 },
+    'atlant':     { name: 'Атлант',               mono: 'А', founded: 2014, areas: ['Приморський','Фонтан'],             count: 5 },
+    'rozmarin':   { name: 'Розмарин Девелопмент', mono: 'Р', founded: 2016, areas: ['Приморський','Аркадія','Совіньйон'], count: 3 },
+    'prime-park': { name: 'Prime Park',           mono: 'P', founded: 2012, areas: ['Київський','Таїрова'],              count: 8 }
   };
+
+  // Slug із ?dev=… (із developers.html). Невідомий/відсутній → KADORR як дефолт.
+  var slug = (new URLSearchParams(window.location.search).get('dev') || 'kadorr-group');
+  if (!DEVS[slug]) slug = 'kadorr-group';
+
+  // Доповнюємо запис до повного вигляду плашки (locations/web/phone/about),
+  // якщо в довіднику задані лише базові поля.
+  var DEV = (function (base) {
+    var d = {
+      slug: slug, name: base.name, mono: base.mono, founded: base.founded, count: base.count,
+      locations: 'Одеса · ' + (base.areas || []).slice(0, 2).join(', ') + ((base.areas || []).length ? ' р-ни' : ''),
+      web: base.web || '', webHref: base.webHref || '',
+      salesPhone: base.salesPhone || '+380 48 705 05 05',
+      about: base.about || (base.name + ' — забудовник Одеси, на ринку з ' + base.founded + ' року. Зводить житлові комплекси в ' + (base.areas || []).join(', ') + ' районах міста. FAKTOR — офіційний партнер забудовника: квартири продаються за цінами девелопера, без комісії, з можливістю розтермінування.')
+    };
+    return d;
+  })(DEVS[slug]);
 
   var OBJECTS = [
     { id: 'k1', name: 'ЖК Аркадія Сіті',          addr: 'Одеса, Приморський р-н, Аркадія',             year: '2027', price: '3.1 млн грн', installment: 'Перший внесок від 20%' },
@@ -62,11 +89,13 @@
     var founded = document.getElementById('dev-founded');
     var locations = document.getElementById('dev-locations');
     var countLbl = document.getElementById('dev-count');
+    var about = document.getElementById('dev-about');
     if (mono) mono.textContent = DEV.mono;
     if (title) title.textContent = DEV.name;
     if (founded) founded.textContent = 'На ринку з ' + DEV.founded;
     if (locations) locations.textContent = DEV.locations;
     if (countLbl) countLbl.textContent = DEV.count + ' ' + plural(DEV.count, ['комплекс', 'комплекси', 'комплексів']);
+    if (about) about.textContent = DEV.about;
   }
 
   /* ---------------- рендер сітки об'єктів (ЕТАЛОН FCard, kind:newbuild) ---------------- */

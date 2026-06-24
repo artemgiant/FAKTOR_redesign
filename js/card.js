@@ -95,11 +95,12 @@
       const rows = [];
       if (item.founded) rows.push(`<span class="card__drow">${ROW_CAL}<span>На ринку з <b>${item.founded}</b></span></span>`);
       if (item.city)    rows.push(`<span class="card__drow">${ROW_PIN}<span class="card__dval">${item.city}</span></span>`);
-      if (item.count)   rows.push(`<span class="card__drow">${ROW_BLD}<span><b>${item.count}</b> ${item.countWord || ''}</span></span>`);
+      // останній рядок (кількість комплексів) несе праворуч «Детальніше ›»
+      // — той самий рядок, тож окремого .card__devfoot із роздільником немає.
+      if (item.count)   rows.push(`<span class="card__drow card__drow--foot"><span class="card__drow-main">${ROW_BLD}<span><b>${item.count}</b> ${item.countWord || ''}</span></span><span class="card__detail">Детальніше ${DETAIL}</span></span>`);
       body = `<div class="card__body">
         <div class="card__title">${item.title || ''}</div>
         <div class="card__drows">${rows.join('')}</div>
-        <div class="card__devfoot"><span class="card__detail">Детальніше ${DETAIL}</span></div>
       </div>`;
     } else if (nb) {
       const price = String(item.price || '').replace(/^\s*від\s*/i, '');
