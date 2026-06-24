@@ -1,0 +1,104 @@
+/* =====================================================================
+   FAKTOR — Сторінка ЗАБУДОВНИКА (developer.html)
+   Джерело дизайну: design_handoff_developer/ («Забудовник FAKTOR»).
+   Структура: breadcrumb → плашка-шапка (монограма + H1 + мета + CTA) →
+   «Про девелопера» → «Об'єкти забудовника · N» (сітка ЕТАЛОН .card
+   kind:newbuild у 3 колонки + sticky-вікно: відділ продажу + форма) →
+   «Об'єкти на карті» (стилізована заглушка з пінами).
+
+   Картки об'єктів рендеряться через спільний FCard (js/card.js, css/card.css)
+   — тут лише page-specific блоки. Палітра/радіуси — css/tokens.css; на цій
+   сторінці радіуси «гострі» (--r-card:0), як і всюди на сайті.
+   Канва 1440px (zoom-підгонка js/responsive.js), брейкпоінти — для майбутньої
+   адаптивної версти (зараз макет фіксований, як на інших сторінках).
+   ===================================================================== */
+
+/* колір body-тексту абзацу «Про девелопера» (між --dark і --secondary) */
+.dev-page{--dev-body:#3b434f;--dev-soft:#f5f6f8;--dev-border:#e6e9ef;}
+
+/* ---------- BREADCRUMB ---------- (використовує спільні .cat-crumbs зі style.css) */
+
+/* ---------- ПЛАШКА-ШАПКА ЗАБУДОВНИКА ---------- */
+.dev-head{display:flex;gap:26px;align-items:center;flex-wrap:wrap;border:1px solid var(--dev-border);background:var(--white);box-shadow:0 1px 4px rgba(0,0,0,.06);padding:26px 28px;margin-top:18px;}
+.dev-head__mono{width:104px;height:104px;flex:none;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--white);font-size:40px;font-weight:var(--fw-bold);letter-spacing:.02em;}
+.dev-head__main{flex:1;min-width:240px;}
+.dev-head__title{margin:0;font-size:30px;font-weight:var(--fw-bold);letter-spacing:-0.015em;color:var(--navy);}
+.dev-head__meta{margin-top:11px;display:flex;flex-wrap:wrap;gap:18px;font-size:13.5px;color:var(--secondary);}
+.dev-head__meta span{display:inline-flex;align-items:center;gap:7px;}
+.dev-head__meta svg{flex:none;color:var(--gold);}
+.dev-head__cta{flex:none;display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 26px;background:var(--navy);color:var(--white);font-size:14px;font-weight:var(--fw-bold);text-decoration:none;transition:background .15s;}
+.dev-head__cta:hover{background:var(--navy-hover);}
+.dev-head__cta svg{flex:none;}
+
+/* ---------- СЕКЦІЙНІ ЗАГОЛОВКИ ---------- */
+.dev-sec{margin-top:48px;}
+.dev-h2{margin:0;font-size:21px;font-weight:var(--fw-bold);letter-spacing:-0.01em;color:var(--navy);}
+.dev-h2 .muted{color:var(--addr);font-weight:var(--fw-bold);}
+
+/* ---------- ПРО ДЕВЕЛОПЕРА ---------- */
+.dev-about{margin-top:40px;max-width:880px;}
+.dev-about .dev-h2{margin-bottom:14px;}
+.dev-about p{margin:0;font-size:15px;line-height:1.7;color:var(--dev-body);}
+
+/* ---------- ОБ'ЄКТИ: заголовок-ряд ---------- */
+.dev-objhead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 20px;}
+.dev-objhead__all{font-size:13.5px;font-weight:var(--fw-bold);color:var(--navy);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;}
+.dev-objhead__all:hover{text-decoration:underline;}
+
+/* ---------- ОБ'ЄКТИ: лейаут сітка + sticky-вікно ---------- */
+.dev-layout{display:flex;gap:30px;align-items:flex-start;}
+.dev-grid{flex:1;min-width:0;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+
+/* sticky-вікно праворуч */
+.dev-aside{flex:0 0 360px;display:flex;flex-direction:column;gap:18px;position:sticky;top:20px;}
+.dev-box{background:var(--dev-soft);padding:26px;}
+
+/* картка «Відділ продажу» */
+.dev-sales{display:flex;align-items:center;gap:18px;}
+.dev-sales__logo{width:104px;height:84px;flex:none;background:var(--white);display:flex;align-items:center;justify-content:center;}
+.dev-sales__logo img{width:66px;height:auto;display:block;}
+.dev-sales__tag{font-size:11px;font-weight:var(--fw-bold);letter-spacing:.06em;color:var(--addr);text-transform:uppercase;line-height:1.3;}
+.dev-sales__name{margin-top:5px;font-size:19px;font-weight:var(--fw-bold);color:var(--navy);letter-spacing:-0.01em;}
+.dev-sales__hours{margin-top:6px;font-size:13px;color:var(--addr);}
+.dev-call{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;height:52px;background:var(--navy);color:var(--white);font-size:14px;font-weight:var(--fw-semibold);text-decoration:none;transition:background .15s;}
+.dev-call:hover{background:var(--navy-hover);}
+.dev-call svg{flex:none;}
+
+/* картка форми «Призначити огляд» */
+.dev-form__title{font-size:19px;font-weight:var(--fw-bold);color:var(--navy);letter-spacing:-0.01em;}
+.dev-form__sub{margin-top:7px;font-size:13.5px;color:var(--secondary);}
+.dev-form__fields{display:flex;flex-direction:column;gap:12px;margin-top:18px;}
+.dev-fin{width:100%;border:1px solid #e2e6ec;background:var(--white);font-family:inherit;font-size:14px;color:var(--navy);padding:14px 16px;}
+.dev-fin:focus{outline:none;border-color:var(--navy);}
+.dev-fin::placeholder{color:#9aa1ad;}
+textarea.dev-fin{resize:vertical;min-height:88px;}
+.dev-submit{height:52px;border:none;background:var(--navy);color:var(--white);font-family:inherit;font-size:14px;font-weight:var(--fw-semibold);cursor:pointer;transition:background .15s;}
+.dev-submit:hover{background:var(--navy-hover);}
+.dev-submit.is-done{background:#1f8a4c;cursor:default;}
+
+/* ---------- КАРТА ОБ'ЄКТІВ (стилізована заглушка) ---------- */
+.dev-map{position:relative;overflow:hidden;height:420px;background:#e7eaef;border:1px solid var(--dev-border);box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.dev-map__grid{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 63px,#dde2e9 63px 65px),repeating-linear-gradient(90deg,transparent 0 83px,#dde2e9 83px 85px);}
+.dev-map__sea{position:absolute;right:0;top:0;bottom:0;width:33%;background:rgba(159,192,236,.34);}
+.dev-map__shore{position:absolute;right:33%;top:0;bottom:0;width:64px;background:linear-gradient(90deg,transparent,rgba(159,192,236,.34));}
+.dev-pin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;}
+.dev-pin svg{fill:var(--navy);filter:drop-shadow(0 2px 3px rgba(0,23,56,.3));}
+.dev-pin__bubble{background:var(--navy);color:var(--white);font-size:11px;font-weight:var(--fw-bold);padding:4px 8px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,23,56,.25);margin-bottom:3px;}
+.dev-map__attr{position:absolute;left:18px;bottom:18px;background:var(--white);border:1px solid var(--dev-border);font-size:12.5px;color:var(--secondary);padding:9px 13px;}
+
+/* =====================================================================
+   Адаптив (для майбутньої гумової верстки; на фіксованій канві 1440px
+   не спрацьовує — підгонка масштабом через js/responsive.js).
+   980 — вікно вниз; 880 — сітка→2 кол. + шапка стовпчиком; 560 — 1 кол.
+   ===================================================================== */
+@media(max-width:980px){
+  .dev-layout{flex-direction:column;}
+  .dev-aside{position:static;flex:none;width:100%;max-width:520px;}
+}
+@media(max-width:880px){
+  .dev-grid{grid-template-columns:repeat(2,1fr);}
+  .dev-head{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:560px){
+  .dev-grid{grid-template-columns:1fr;}
+}

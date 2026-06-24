@@ -3,18 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1440">
-<title>FAKTOR — Продаж квартир в Одесі</title>
+<title>Забудовники Одеси — перевірені девелопери | FAKTOR</title>
 <!--
-  Сторінка лістингу: шапка-пігулка → динамічний блок фільтрів (.ff-block: breadcrumb →
-  H1 → панель фільтрів за категоріями → обрані чипи → популярні підбірки; рендериться
-  з js/catalog-filters.js, стилі css/catalog-filters.css) → сортування → сітка карток
-  4×3 → пагінація → sitemap + SEO + темний футер.
-  Шапка, sitemap, SEO та футер — спільні з головною (index.html). Канва 1440px, без адаптиву.
+  Сторінка «Забудовники» (список девелоперів). Джерело дизайну:
+  design_handoff_developers/ («Забудовники FAKTOR»). Структура:
+  шапка-пігулка → блок .ff-block (breadcrumb → H1 → підзаголовок →
+  пікер локацій; рендериться з js/developers.js у #dev-filters,
+  стилі css/developers.css + спільні .ff-*/.fk-*) → лічильник →
+  сітка карток забудовників 4×N (ЕТАЛОН .card, kind:developer — рік
+  на ринку, місто, к-сть комплексів, «Детальніше ›») → «Показати ще»
+  / порожній стан → sitemap + SEO + темний футер.
+  Шапка, sitemap, SEO та футер — спільні з головною/каталогом.
+  Канва 1440px, без адаптиву (zoom-підгонка через js/responsive.js).
 -->
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/card.css">
 <link rel="stylesheet" href="css/catalog-filters.css">
+<link rel="stylesheet" href="css/developers.css">
 <script defer src="js/responsive.js"></script>
 </head>
 <body>
@@ -37,52 +43,40 @@
     </nav>
   </header>
 
-  <!-- ===================== ФІЛЬТРИ КАТАЛОГУ (динамічні, за категоріями) =====================
-       Самодостатній компонент: breadcrumb → H1 → панель фільтрів → обрані чипи → популярні
-       підбірки. Рендериться повністю з js/catalog-filters.js у #ff-catalog-filters.
-       Стилі — css/catalog-filters.css (палітра тягнеться з tokens.css). -->
+  <!-- ===================== ЗАБУДОВНИКИ: шапка блоку (динамічна) =====================
+       Самодостатній компонент: breadcrumb → H1 (від обраного міста) →
+       підзаголовок → пікер локацій. Рендериться повністю з js/developers.js
+       у #dev-filters. Стилі — css/developers.css + спільні .ff-* / .fk-*. -->
   <section class="ff-block">
     <div class="ff-block__inner">
-      <div id="ff-catalog-filters"></div>
+      <div id="dev-filters"></div>
     </div>
   </section>
 
   <div class="cat-hr"></div>
 
-  <!-- ===================== РЕЗУЛЬТАТИ: лічильник + сортування ===================== -->
-  <div class="container cat-resultrow">
-    <div class="cat-count" id="cat-count"></div>
-    <div class="sort-wrap">
-      <button class="sort-btn" id="sort-btn">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5v11M5 14.5l-2.4-2.4M5 14.5l2.4-2.4M13 14.5v-11M13 3.5l-2.4 2.4M13 3.5l2.4 2.4"/></svg>
-        Сортування
-      </button>
-      <ul class="sort-menu" id="sort-menu">
-        <li data-sort="cheap">Спочатку дешевші</li>
-        <li data-sort="expensive">Спочатку дорожчі</li>
-        <li data-sort="new">Спочатку новіші</li>
-      </ul>
-    </div>
+  <!-- ===================== РЕЗУЛЬТАТИ: лічильник ===================== -->
+  <div class="container cat-resultrow dev-resultrow">
+    <div class="cat-count" id="dev-count"></div>
   </div>
 
-  <!-- ===================== СІТКА КАРТОК ===================== -->
+  <!-- ===================== СІТКА КАРТОК ЗАБУДОВНИКІВ ===================== -->
   <div class="container">
-    <div class="grid4 cat-grid" id="cat-grid"></div>
+    <div class="grid4 cat-grid" id="dev-grid"></div>
 
-    <!-- ===================== ПАГІНАЦІЯ ===================== -->
+    <!-- порожній стан (коли під фільтр не підпав жоден забудовник) -->
+    <div class="dev-empty" id="dev-empty" style="display:none;">
+      <div class="dev-empty__title">Забудовників за цим запитом не знайдено</div>
+      <div class="dev-empty__sub">Спробуйте іншу локацію або скиньте фільтр.</div>
+      <button class="dev-empty__btn" id="dev-reset" type="button">Показати всіх забудовників</button>
+    </div>
+
+    <!-- «Показати ще» -->
     <div class="pagination">
-      <a class="showmore" id="show-more">
+      <a class="showmore" id="dev-more">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 8a5.4 5.4 0 1 0 1.7-3.9"/><path d="M2.4 3.1v3h3"/></svg>
-        Показати ще 12 пропозицій
+        Показати ще забудовників
       </a>
-      <div class="pages" id="pages">
-        <button class="pg arrow prev" aria-label="Назад"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></button>
-        <button class="pg on">1</button>
-        <button class="pg">2</button>
-        <button class="pg">3</button>
-        <button class="pg">4</button>
-        <button class="pg arrow next" aria-label="Далі"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></button>
-      </div>
     </div>
   </div>
 
@@ -92,7 +86,7 @@
     <nav class="sitemap">
       <div class="col">
         <h5 class="t24">Квартири</h5>
-        <a href="#">1-кімнатні</a><a href="#">2-кімнатні</a><a href="#">3-кімнатні</a><a href="#">4-кімнатні</a><a href="#">5+ кімнатні</a><a href="#">Студії</a>
+        <a href="catalog.html">1-кімнатні</a><a href="catalog.html">2-кімнатні</a><a href="catalog.html">3-кімнатні</a><a href="catalog.html">4-кімнатні</a><a href="catalog.html">5+ кімнатні</a><a href="catalog.html">Студії</a>
         <a href="#" class="gap">За районом</a>
         <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
       </div>
@@ -114,7 +108,7 @@
       </div>
       <div class="col">
         <h5 class="t24">Новобудови</h5>
-        <a href="novobudovy.html">Усі ЖК</a><a href="catalog.html?filter=novobud">Квартири в Новобудові</a><a href="novobudovy.html">1-кімнатні</a><a href="novobudovy.html">2-кімнатні</a><a href="novobudovy.html">3-кімнатні</a><a href="novobudovy.html">Багатокімнатні</a>
+        <a href="novobudovy.html">Усі ЖК</a><a href="developers.html">Забудовники</a><a href="novobudovy.html">1-кімнатні</a><a href="novobudovy.html">2-кімнатні</a><a href="novobudovy.html">3-кімнатні</a><a href="novobudovy.html">Багатокімнатні</a>
         <a href="#" class="gap">Зарубіжна нерухомість</a>
         <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
       </div>
@@ -124,8 +118,8 @@
   <!-- ===================== SEO (спільний) ===================== -->
   <div class="seo">
     <div class="seo__in">
-      <h3 class="t15">Агентство нерухомості «FAKTOR» – кваліфікована допомога для придбання житла в Одесі</h3>
-      <p class="t15">Звернення до агентства нерухомості «FAKTOR» допоможе уникнути ризиків, які зазвичай виникають у процесі угоди під час продажу, придбання або оренди будинку, квартири, земельної ділянки. Залучення ріелторів для супроводу подібного процесу – це оптимальний спосіб грамотно підготуватися та отримати комплексний супровід на всіх етапах угоди.</p>
+      <h3 class="t15">Забудовники Одеси — перевірені девелопери в каталозі агентства «FAKTOR»</h3>
+      <p class="t15">Каталог забудовників Одеси — це перевірені девелопери, з якими агентство «FAKTOR» співпрацює напряму. Ми перевіряємо репутацію компанії, дозвільні документи та терміни введення об'єктів в експлуатацію, тож купівля квартири в новобудові відбувається за ціною забудовника й без додаткової комісії. Оберіть девелопера за роком виходу на ринок, містом і кількістю житлових комплексів — і переходьте до його об'єктів із повним юридичним супроводом угоди.</p>
       <a href="#" class="seo__more t15">Читати повністю</a>
     </div>
   </div>
@@ -145,7 +139,7 @@
         </div>
         <div>
           <h5 class="t15">Продаж</h5>
-          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="novobudovy.html">Новобудови</a><a href="#">Комерційна нерухомість</a>
+          <a href="catalog.html">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="novobudovy.html">Новобудови</a><a href="#">Комерційна нерухомість</a>
         </div>
         <div>
           <h5 class="t15">Аренда</h5>
@@ -178,7 +172,6 @@
 </div>
 
   <script src="js/card.js"></script>
-  <script src="js/catalog.js"></script>
-  <script src="js/catalog-filters.js"></script>
+  <script src="js/developers.js"></script>
 </body>
 </html>

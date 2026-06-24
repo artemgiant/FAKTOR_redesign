@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>FAKTOR — Забудовник Одеси · об'єкти й ціни без комісії</title>
+<!--
+  Сторінка одного забудовника. Джерело дизайну: design_handoff_developer/
+  («Забудовник FAKTOR»). Структура: шапка-пігулка → breadcrumb
+  (Головна › Забудовники › {Назва}) → плашка-шапка забудовника (монограма +
+  H1 + мета-рядок + CTA) → «Про девелопера» → «Об'єкти забудовника · N»
+  (зліва сітка ЕТАЛОН .card kind:newbuild у 3 колонки → zhk.html; справа
+  sticky-вікно: відділ продажу + форма «Призначити огляд») → «Об'єкти на
+  карті» (стилізована заглушка) → sitemap + SEO + темний футер.
+  Шапка, sitemap, SEO та футер — спільні з головною/каталогом/новобудовами.
+  Дані забудовника й об'єктів — у js/developer.js (підключити CRM).
+  Канва 1440px, без адаптиву (zoom-підгонка через js/responsive.js).
+-->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/developer.css">
+<script defer src="js/responsive.js"></script>
+</head>
+<body class="dev-page">
+<div class="page">
+<div class="frame">
+
+  <!-- ===================== HEADER (пігулка, спільний) ===================== -->
+  <header class="cat-header">
+    <nav class="nav">
+      <span class="nav__logo"><a href="index.html"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></a></span>
+      <div class="nav__links">
+        <a href="novobudovy.html">Новобудови</a><a href="catalog.html">Квартири</a><a href="#">Будинки</a><a href="#">Комерційна</a><a href="developers.html">Забудовники</a>
+      </div>
+      <div class="nav__right">
+        <span class="nav__icon" title="Подзвонити"><img src="img/icons/phone-call.svg" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Обране"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
+        <span class="nav__lang">UA / USD <img src="img/icons/small-arrow.svg" class="cd" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Меню"><img src="img/icons/menu.svg" width="24" height="24" alt=""></span>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    <!-- ===================== BREADCRUMB ===================== -->
+    <div class="cat-crumbs">
+      <a href="index.html" class="crumb-home"><img class="logo" src="img/logos/Faktor Sign Navi.svg" alt="FAKTOR"></a>
+      <span class="sep" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></span>
+      <a href="developers.html" style="color:var(--muted);">Забудовники</a>
+      <span class="sep" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></span>
+      <span class="cur" id="dev-crumb">KADORR Group</span>
+    </div>
+
+    <!-- ===================== ПЛАШКА-ШАПКА ЗАБУДОВНИКА ===================== -->
+    <div class="dev-head">
+      <div class="dev-head__mono" id="dev-mono">K</div>
+      <div class="dev-head__main">
+        <h1 class="dev-head__title" id="dev-title">KADORR Group</h1>
+        <div class="dev-head__meta">
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="17"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span id="dev-founded">На ринку з 2010</span></span>
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.35-7-10a7 7 0 0 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.4"/></svg><span id="dev-locations">Одеса · Приморський, Київський р-ни</span></span>
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 2 8v2h20V8L12 3zM4 11v7H3v2h18v-2h-1v-7h-2v7h-3v-7h-2v7h-2v-7H7v7H6v-7H4z"/></svg><span id="dev-count">18 комплексів</span></span>
+        </div>
+      </div>
+      <a href="#dev-form" class="dev-head__cta"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 15h18M6 11V8h5v3"/></svg>Підібрати в цього забудовника</a>
+    </div>
+
+    <!-- ===================== ПРО ДЕВЕЛОПЕРА ===================== -->
+    <div class="dev-about">
+      <h2 class="dev-h2">Про девелопера</h2>
+      <p id="dev-about">KADORR Group — один із найбільших девелоперів Одеси, на ринку з 2010 року. Компанія зводить житлові та апарт-комплекси бізнес- і преміумкласу переважно в Приморському районі та біля моря, з власною інфраструктурою, закритою територією й керуючою компанією. FAKTOR — офіційний партнер забудовника: квартири продаються за цінами девелопера, без комісії, з можливістю розтермінування.</p>
+    </div>
+
+    <!-- ===================== ОБ'ЄКТИ ЗАБУДОВНИКА ===================== -->
+    <div class="dev-sec">
+      <div class="dev-objhead">
+        <h2 class="dev-h2">Об'єкти забудовника <span class="muted">· <span data-dev-objcount>18</span></span></h2>
+        <a href="novobudovy.html" class="dev-objhead__all" id="dev-all">Дивитись усі об'єкти забудовника&nbsp;<span style="font-size:16px;">→</span></a>
+      </div>
+
+      <div class="dev-layout">
+        <!-- сітка об'єктів (ЕТАЛОН .card, kind:newbuild) — рендериться js/developer.js -->
+        <div class="dev-grid" id="dev-grid"></div>
+
+        <!-- sticky-вікно праворуч -->
+        <aside class="dev-aside" id="dev-form">
+
+          <!-- відділ продажу новобудов -->
+          <div class="dev-box">
+            <div class="dev-sales">
+              <div class="dev-sales__logo"><img src="img/logos/Faktor Sign Navi.svg" alt="FAKTOR"></div>
+              <div style="min-width:0;">
+                <div class="dev-sales__tag">Відділ продажу новобудов</div>
+                <div class="dev-sales__name">FAKTOR Новобудови</div>
+                <div class="dev-sales__hours">Пн–Нд · 9:00–20:00</div>
+              </div>
+            </div>
+            <a href="tel:+380487050505" class="dev-call" id="dev-call"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>Зателефонувати</a>
+          </div>
+
+          <!-- форма «Призначити огляд» -->
+          <div class="dev-box">
+            <div class="dev-form__title">Призначити огляд об'єкту</div>
+            <div class="dev-form__sub">Покажемо об'єкт та шоурум — оберіть зручний час</div>
+            <div class="dev-form__fields">
+              <input class="dev-fin" placeholder="Ваше ім'я">
+              <input class="dev-fin" inputmode="tel" placeholder="+380 __ ___ __ __">
+              <input class="dev-fin" type="date">
+              <textarea class="dev-fin" rows="3" placeholder="Які планування цікавлять, зручний час тощо"></textarea>
+              <button class="dev-submit" id="dev-submit" type="button">Записатися на показ</button>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+
+    <!-- ===================== ОБ'ЄКТИ НА КАРТІ (стилізована заглушка) ===================== -->
+    <div class="dev-sec">
+      <h2 class="dev-h2" style="margin-bottom:16px;">Об'єкти на карті</h2>
+      <div class="dev-map">
+        <div class="dev-map__grid"></div>
+        <div class="dev-map__sea"></div>
+        <div class="dev-map__shore"></div>
+        <div class="dev-pin" style="left:13%;top:36%;"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+        <div class="dev-pin" style="left:27%;top:62%;"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+        <div class="dev-pin" style="left:39%;top:32%;"><span class="dev-pin__bubble">від 1.9 млн</span><svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+        <div class="dev-pin" style="left:50%;top:70%;"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+        <div class="dev-pin" style="left:56%;top:46%;"><span class="dev-pin__bubble">від 3.9 млн</span><svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+        <div class="dev-pin" style="left:61%;top:24%;"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+        <div class="dev-map__attr" id="dev-map-attr">Leaflet / OpenStreetMap · 18 об’єктів KADORR Group в Одесі</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== SITEMAP (спільний) ===================== -->
+  <div class="container">
+    <div class="footer-divider"></div>
+    <nav class="sitemap">
+      <div class="col">
+        <h5 class="t24">Квартири</h5>
+        <a href="catalog.html">1-кімнатні</a><a href="catalog.html">2-кімнатні</a><a href="catalog.html">3-кімнатні</a><a href="catalog.html">4-кімнатні</a><a href="catalog.html">5+ кімнатні</a><a href="catalog.html">Студії</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Будинки і дачі</h5>
+        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a><a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Комерційна</h5>
+        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a><a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a><a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Райони Одеси</h5>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+        <a href="#" class="gap">Локації</a>
+        <a href="#">Аркадія</a><a href="#">Фонтан</a><a href="#">Таїрова</a><a href="#">Центр</a><a href="#">Черемушки</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Новобудови</h5>
+        <a href="novobudovy.html">Усі ЖК</a><a href="catalog.html?filter=novobud">Квартири в Новобудові</a><a href="novobudovy.html">1-кімнатні</a><a href="novobudovy.html">2-кімнатні</a><a href="novobudovy.html">3-кімнатні</a><a href="novobudovy.html">Багатокімнатні</a>
+        <a href="#" class="gap">Зарубіжна нерухомість</a>
+        <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===================== SEO (спільний) ===================== -->
+  <div class="seo">
+    <div class="seo__in">
+      <h3 class="t15">Забудовники Одеси — купівля квартир у новобудовах за ціною девелопера з агентством «FAKTOR»</h3>
+      <p class="t15">Агентство «FAKTOR» працює напряму з перевіреними девелоперами Одеси: ми супроводжуємо угоду на всіх етапах — перевірка забудовника й документів, підбір житлового комплексу за класом, терміном здачі та бюджетом, юридичний супровід і допомога з державними програмами (єОселя). Квартири в новобудовах продаються за цінами забудовника, без додаткових комісій, із можливістю розтермінування.</p>
+      <a href="#" class="seo__more t15">Читати повністю</a>
+    </div>
+  </div>
+
+  <!-- ===================== DARK FOOTER (спільний) ===================== -->
+  <footer class="dark">
+    <div class="container">
+      <div class="dark__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+      <div class="dark__cols">
+        <div>
+          <h5 class="t15">Контакти</h5>
+          <a href="#">+38 (073) 355 98 54</a><a href="#">Telegram</a><a href="#">Канал “Нові об'єкти Одеси”</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
+        </div>
+        <div>
+          <h5 class="t15">Компанія</h5>
+          <a href="#">Про нас</a><a href="#">Курси рієлторів</a><a href="#">Кар'єра</a><a href="#">Франшиза</a><a href="#">Блог</a><a href="#">Продати об'єкт</a>
+        </div>
+        <div>
+          <h5 class="t15">Продаж</h5>
+          <a href="catalog.html">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="novobudovy.html">Новобудови</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Аренда</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Зарубіжна нерухомість</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Сервіси</h5>
+          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a><a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
+        </div>
+      </div>
+      <div class="dark__bottom">
+        <a href="#">Політика конфіденційності</a>
+        <a href="#">Умови користувача</a>
+        <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
+        <span></span>
+        <a href="#">Вхід для агентів</a>
+        <div class="dark__switch">
+          <span class="sw">USD <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+          <span class="sw">UA <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+  <script src="js/card.js"></script>
+  <script src="js/developer.js"></script>
+</body>
+</html>

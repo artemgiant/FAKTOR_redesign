@@ -66,19 +66,16 @@ document.getElementById('grid-houses').innerHTML = [
 
 document.getElementById('excl-specs').innerHTML = specsRow();
 
-/* ---------------- картки забудовників (НЕ об'єкти — окремий вид) ----------------
-   Суцільна картка з лого/назвою/«N комплексів», без серця і стат-рядка. */
-function devCard(){
-  return `<article class="card-solid">
-    <div class="img">${slides(1)}</div>
-    <div class="body">
-      <div class="card-titlerow"><h3 class="t24 card-title">Назва забудовника</h3></div>
-      <p class="t15 card-sub">2002 рік заснування</p>
-      <p class="t18 card-price">134 комплекси</p>
-    </div>
-  </article>`;
-}
-document.getElementById('grid-dev').innerHTML = [0,1,2,3].map(devCard).join('');
+/* ---------------- картки забудовників (ЕТАЛОН .card, kind:'developer') ----------------
+   Той самий компонент-картка, але без серця/ціни/статів: назва + інфо-рядки
+   (на ринку з року, місто, N комплексів) + підвал «Детальніше ›».
+   Лого забудовника — коло на фото (.card__dev). */
+document.getElementById('grid-dev').innerHTML = [
+  {kind:'developer', dev:gefest, title:'Гефест',       founded:'2002', city:'Одеса', count:'134', countWord:'комплекси',  href:'novobudovy.html'},
+  {kind:'developer', dev:gefest, title:'KADORR Group', founded:'2008', city:'Одеса', count:'87',  countWord:'комплексів', href:'novobudovy.html'},
+  {kind:'developer', dev:gefest, title:'Stikon',       founded:'2011', city:'Одеса', count:'52',  countWord:'комплекси',  href:'novobudovy.html'},
+  {kind:'developer', dev:gefest, title:'Будова',       founded:'2005', city:'Одеса', count:'68',  countWord:'комплексів', href:'novobudovy.html'},
+].map(d => FCard.html(d)).join('');
 
 /* ---------------- тост ---------------- */
 function toast(msg){
