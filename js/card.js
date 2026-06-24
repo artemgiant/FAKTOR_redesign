@@ -53,12 +53,24 @@
     const cls = 'card' + (opts.strip ? ' card--strip' : '');
     const nb = item.kind === 'newbuild';
 
-    // фото + бейдж/рік
-    const badge = nb && /^\d{4}$/.test(String(item.badge || ''))
-      ? `<span class="card__year">${item.badge}</span>`
-      : (item.badge ? `<span class="card__badge">${item.badge}</span>` : '');
+    // оверлеї на фото:
+    //   новобудова з роком/забудовником → рік (білий бейдж зліва) + коло
+    //     забудовника (праворуч), як у прототипі/на головній;
+    //   рік-як-бейдж (4 цифри) → білий бейдж року зліва;
+    //   інакше → бейдж типу (navy 82%) зліва.
+    let badge = '';
+    if (nb && item.year) {
+      badge = `<span class="card__year">${item.year}</span>`;
+    } else if (nb && /^\d{4}$/.test(String(item.badge || ''))) {
+      badge = `<span class="card__year">${item.badge}</span>`;
+    } else if (item.badge) {
+      badge = `<span class="card__badge">${item.badge}</span>`;
+    }
+    const dev = item.dev
+      ? `<span class="card__dev"><img src="${item.dev.icon}" width="24" height="24" alt=""><b>${item.dev.name}</b></span>`
+      : '';
     const img = item.img ? `<img src="${item.img}" alt="${(item.title || '') + ' — ' + (item.addr || '')}" loading="lazy">` : '';
-    const media = `<div class="card__media">${badge}${img}</div>`;
+    const media = `<div class="card__media">${badge}${dev}${img}</div>`;
 
     // серце — системна іконка <img>; стан в обраному = like.svg
     let heart = '';

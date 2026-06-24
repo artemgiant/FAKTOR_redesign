@@ -4,16 +4,9 @@
    ============================================================ */
 
 /* ---------------- іконки (з img/icons) ---------------- */
-const heartFill = '<img src="img/icons/like.svg" width="32" height="32" alt="">';
-const heartOut  = '<img src="img/icons/fav.svg" width="32" height="32" alt="">';
-const icBed   = '<img src="img/icons/bedrooms-icon-black.svg" width="20" height="20" alt="">';
-const icFloor = '<img src="img/icons/bathroom-icon.svg" width="20" height="20" alt="">';
-const icArea  = '<img src="img/icons/area-icon.svg" width="20" height="20" alt="">';
 const chevL   = '<img src="img/icons/arrow-right-14.svg" width="14" height="14" alt="">';
 const chevR   = '<img src="img/icons/arrow-right-14.svg" width="14" height="14" alt="">';
 const arrows  = `<span class="arrow-circle l">${chevL}</span><span class="arrow-circle r filled">${chevR}</span>`;
-const icWallet  = '<img src="img/icons/wallet.svg" width="18" height="18" alt="">';      // пігулка «Перший внесок»
-const detailArr = '<img src="img/icons/arrow-right-14.svg" width="16" height="16" alt="">'; // стрілка біля «Детальніше»
 
 /* ---------------- хелпери ---------------- */
 // слайди прозорі — крізь них видно картинку-заглушку контейнера .img (.card-* .img)
@@ -29,94 +22,63 @@ function dotsHTML(n){
   for(let k = 0; k < n; k++) s += `<i${k === 0 ? ' class="on"' : ''}></i>`;
   return `<span class="dots img-dots">${s}</span>`;
 }
+// стат-рядок ексклюзивної каруселі через ЕТАЛОН FCard (золоті іконки)
 function specsRow(land){
-  return `<span class="spec">3 ${icBed}</span><span class="spec">2/5 ${icFloor}</span><span class="spec">147 м² ${icArea}</span>` +
-         (land ? `<span class="spec">${land} ${icArea}</span>` : '');
+  const stats = [{k:'rooms',text:'3 кімн.'},{k:'floor',text:'2/5'},{k:'area',text:'147 м²'}];
+  if(land) stats.push({k:'plot',text:land});
+  return FCard.statsHTML(stats);
 }
 
-/* ---------------- дані + рендер карток ---------------- */
-const addr = 'Одесса, Приморский р-н, Шевченко-Французский, ул. Вице-Адмирала Азарова';
+/* ---------------- дані + рендер карток (ЕТАЛОН .card через FCard) ----------------
+   Картки об'єктів на головній — той самий компонент, що на сторінці «Обране».
+   Серце контурне ('out'); fav:true → залите. */
+const addr = 'Одеса, Приморський р-н, Шевченко-Французький, вул. Віце-Адмірала Азарова';
 
-function solidCard(d, i){
-  const n = d.n || 4;
-  const heart = d.heart === false ? '' : `<span class="heart">${heartFill}</span>`;
-  // одна картинка — без слайдера (без стрілок і крапок)
-  const media = n > 1 ? `${slides(n, i)}${arrows}${dotsHTML(n)}` : slides(1, i);
-  // оверлеї на фото: рік (ліворуч) і лого забудовника (праворуч) — лише для новобудов
-  const year = d.year ? `<span class="nb-year">${d.year}</span>` : '';
-  const dev  = d.dev  ? `<span class="nb-dev"><img src="${d.dev.icon}" width="26" height="26" alt=""><b>${d.dev.name}</b></span>` : '';
-  // картка новобудови (є firstPay): «підвал» у два стовпці з вертикальним
-  // розділювачем — ліворуч ціна + «грн/м²», праворуч «Перший внесок» над «Детальніше».
-  const isNb = !!d.firstPay;
-  const foot = isNb
-    ? `<div class="nb-foot">
-        <div class="nb-price-block">
-          <p class="nb-price">${d.price}</p>
-          ${d.perMeter ? `<p class="nb-permeter">${d.perMeter}</p>` : ''}
-        </div>
-        <span class="nb-div" aria-hidden="true"></span>
-        <div class="nb-act">
-          <span class="nb-pay">${icWallet}<span>Перший внесок ${d.firstPay}</span></span>
-          <a class="nb-detail" href="${d.href || 'property.html'}">Детальніше ${detailArr}</a>
-        </div>
-      </div>`
-    : `<p class="t18 card-price">${d.price}</p>`;
-  return `<article class="card-solid${isNb ? ' card-solid--nb' : ''}">
-    <div class="img">${media}${year}${dev}</div>
+const gefest = {icon:'img/icons/dev-portico.svg', name:'Гефест'};   // лого/назва забудовника (коло на фото)
+document.getElementById('grid-nb').innerHTML = [
+  {kind:'newbuild', year:'2026', dev:gefest, title:'ЖК Перший Французький',            addr, price:'від 2.4 млн. грн.', installment:'Перший внесок від 20%'},
+  {kind:'newbuild', year:'2026', dev:gefest, title:'ЖК Перлинний квартал на Сахарова', addr, price:'від 2.4 млн. грн.', installment:'Перший внесок від 20%'},
+  {kind:'newbuild', year:'2026', dev:gefest, title:'ЖК Модерн',                        addr, price:'від 2.4 млн. грн.', installment:'Перший внесок від 20%'},
+  {kind:'newbuild', year:'2026', dev:gefest, title:'Арт-резиденція Garden City',       addr, price:'від 2.4 млн. грн.', installment:'Перший внесок від 20%'},
+].map(d => FCard.html(d, {heart:'out'})).join('');
+
+// Квартири в новобудовах — той самий ЕТАЛОН (звичайна картка), об'єкти з ЖК.
+document.getElementById('grid-flats-nb').innerHTML = [
+  {kind:'apartment', badge:'Квартира', price:'$ 96 000',  title:'ЖК Перший Французький',      addr, stats:[{k:'rooms',text:'3 кімн.'},{k:'floor',text:'2/5'},{k:'area',text:'147 м²'}]},
+  {kind:'apartment', badge:'Квартира', price:'$ 132 000', title:'ЖК Перлинний квартал',       addr, stats:[{k:'rooms',text:'3 кімн.'},{k:'floor',text:'2/5'},{k:'area',text:'147 м²'}]},
+  {kind:'apartment', badge:'Квартира', price:'$ 88 000',  title:'ЖК Модерн',                  addr, stats:[{k:'rooms',text:'3 кімн.'},{k:'floor',text:'2/5'},{k:'area',text:'147 м²'}]},
+  {kind:'apartment', badge:'Квартира', price:'$ 154 000', title:'Арт-резиденція Garden City', addr, stats:[{k:'rooms',text:'3 кімн.'},{k:'floor',text:'2/5'},{k:'area',text:'147 м²'}]},
+].map((d, i) => FCard.html(d, {heart: i === 1 ? 'fav' : 'out'})).join('');
+
+document.getElementById('grid-flats').innerHTML = [
+  {kind:'apartment', badge:'Квартира', price:'$ 124 000', title:'ЖК OZONE', addr, stats:[{k:'rooms',text:'3 кімн.'},{k:'floor',text:'2/5'},{k:'area',text:'147 м²'}]},
+  {kind:'apartment', badge:'Квартира', price:'$ 74 000',  title:'ЖК OZONE', addr, stats:[{k:'rooms',text:'1 кімн.'},{k:'floor',text:'4/9'},{k:'area',text:'46 м²'}]},
+  {kind:'apartment', badge:'Квартира', price:'$ 210 000', title:'ЖК OZONE', addr, stats:[{k:'rooms',text:'4 кімн.'},{k:'floor',text:'6/12'},{k:'area',text:'180 м²'}]},
+  {kind:'apartment', badge:'Квартира', price:'$ 170 000', title:'ЖК OZONE', addr, stats:[{k:'rooms',text:'2 кімн.'},{k:'floor',text:'3/16'},{k:'area',text:'88 м²'}]},
+].map((d, i) => FCard.html(d, {heart: i === 1 ? 'fav' : 'out'})).join('');
+
+document.getElementById('grid-houses').innerHTML = [
+  {kind:'house', badge:'Будинок', price:'$ 124 000', title:'Будинок',  addr, stats:[{k:'rooms',text:'3 кімн.'},{k:'area',text:'140 м²'},{k:'plot',text:'6 сот.'}]},
+  {kind:'house', badge:'Котедж',  price:'$ 300 000', title:'Котедж',   addr, stats:[{k:'rooms',text:'5 кімн.'},{k:'area',text:'240 м²'},{k:'plot',text:'8 сот.'}]},
+  {kind:'house', badge:'Будинок', price:'$ 210 000', title:'Будинок',  addr, stats:[{k:'rooms',text:'4 кімн.'},{k:'area',text:'180 м²'},{k:'plot',text:'4 сот.'}]},
+  {kind:'house', badge:'Таунхаус',price:'$ 170 000', title:'Таунхаус', addr, stats:[{k:'rooms',text:'3 кімн.'},{k:'area',text:'120 м²'},{k:'plot',text:'2 сот.'}]},
+].map(d => FCard.html(d, {heart:'out'})).join('');
+
+document.getElementById('excl-specs').innerHTML = specsRow();
+
+/* ---------------- картки забудовників (НЕ об'єкти — окремий вид) ----------------
+   Суцільна картка з лого/назвою/«N комплексів», без серця і стат-рядка. */
+function devCard(){
+  return `<article class="card-solid">
+    <div class="img">${slides(1)}</div>
     <div class="body">
-      <div class="card-titlerow"><h3 class="t24 card-title">${d.title}</h3>${heart}</div>
-      <p class="t15 card-sub">${d.sub}</p>
-      ${foot}
+      <div class="card-titlerow"><h3 class="t24 card-title">Назва забудовника</h3></div>
+      <p class="t15 card-sub">2002 рік заснування</p>
+      <p class="t18 card-price">134 комплекси</p>
     </div>
   </article>`;
 }
-function listingCard(d, i){
-  const n = d.n || 4;
-  return `<article class="card-list">
-    <div class="img">${slides(n, i + 2)}${arrows}${dotsHTML(n)}</div>
-    <div class="card-row"><div class="price t24">${d.price}</div><span class="heart">${d.fav ? heartFill : heartOut}</span></div>
-    <div class="name t18">${d.name}</div>
-    <div class="addr t15">${d.addr}</div>
-    <div class="specs">${specsRow(d.land)}</div>
-  </article>`;
-}
-
-const gefest = {icon:'img/icons/dev-portico.svg', name:'Гефест'};
-document.getElementById('grid-nb').innerHTML = [
-  {title:'ЖК Перший Французький',            sub:'Київський район', price:'від 2.4 млн. грн.', perMeter:'від 32 000 грн/м²', firstPay:'від 20%', year:'2026', dev:gefest, n:4},
-  {title:'ЖК Перлинний квартал на Сахарова', sub:'Київський район', price:'від 2.4 млн. грн.', perMeter:'від 32 000 грн/м²', firstPay:'від 20%', year:'2026', dev:gefest, n:3},
-  {title:'ЖК Модерн',                        sub:'Київський район', price:'від 2.4 млн. грн.', perMeter:'від 32 000 грн/м²', firstPay:'від 20%', year:'2026', dev:gefest, n:5},
-  {title:'Арт-резиденція Garden City',       sub:'Київський район', price:'від 2.4 млн. грн.', perMeter:'від 32 000 грн/м²', firstPay:'від 20%', year:'2026', dev:gefest, n:4},
-].map(solidCard).join('');
-
-// Квартири в новобудовах — та сама картка лістингу, що й у блоці «Квартири»,
-// тільки об'єкти з новобудов (ЖК зі списку «Новобудови»).
-document.getElementById('grid-flats-nb').innerHTML = [
-  {price:'$ 96 000',  name:'ЖК Перший Французький',      addr, n:4},
-  {price:'$ 132 000', name:'ЖК Перлинний квартал',       addr, fav:true, n:3},
-  {price:'$ 88 000',  name:'ЖК Модерн',                  addr, n:5},
-  {price:'$ 154 000', name:'Арт-резиденція Garden City', addr, n:4},
-].map(listingCard).join('');
-
-document.getElementById('grid-dev').innerHTML = [0,1,2,3].map((_, i) =>
-  solidCard({title:'Назва забудовника', sub:'2002 рік заснування', price:'134 комплекси', heart:false, n:1}, i)
-).join('');
-
-document.getElementById('grid-flats').innerHTML = [
-  {price:'$ 124 000', name:'ЖК OZONE', addr, n:4},
-  {price:'$ 74 000',  name:'ЖК OZONE', addr, fav:true, n:5},
-  {price:'$ 210 000', name:'ЖК OZONE', addr, n:3},
-  {price:'$ 170 000', name:'ЖК OZONE', addr, n:4},
-].map(listingCard).join('');
-
-document.getElementById('grid-houses').innerHTML = [
-  {price:'$ 124 000', name:'ЖК OZONE', addr, n:4},
-  {price:'$ 300 000', name:'ЖК OZONE', addr, n:3},
-  {price:'$ 210 000', name:'ЖК OZONE', addr, land:'4 сот.', n:5},
-  {price:'$ 170 000', name:'ЖК OZONE', addr, n:4},
-].map(listingCard).join('');
-
-document.getElementById('excl-specs').innerHTML = specsRow();
+document.getElementById('grid-dev').innerHTML = [0,1,2,3].map(devCard).join('');
 
 /* ---------------- тост ---------------- */
 function toast(msg){
@@ -128,8 +90,10 @@ function toast(msg){
   t._t = setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-/* ---------------- слайдер у кожній картці ---------------- */
-document.querySelectorAll('.card-solid .img, .card-list .img').forEach(img => {
+/* ---------------- слайдер у картках забудовників (.card-solid) ----------------
+   Картки об'єктів тепер ЕТАЛОН .card з одним фото (без слайдера). Слайдер
+   лишається тільки для багатофото-карток .card-solid (наразі одне фото — no-op). */
+document.querySelectorAll('.card-solid .img').forEach(img => {
   const track = img.querySelector('.slides');
   if(!track) return;
   const total = track.children.length;
@@ -146,14 +110,15 @@ document.querySelectorAll('.card-solid .img, .card-list .img').forEach(img => {
   dots.forEach((d, x) => d.addEventListener('click', () => go(x)));
 });
 
-/* ---------------- обране: перемикання серця ---------------- */
+/* ---------------- обране: перемикання серця (ЕТАЛОН .card) ---------------- */
 document.addEventListener('click', e => {
-  const h = e.target.closest('.heart');
+  const h = e.target.closest('.card__heart');
   if(!h) return;
+  e.preventDefault();   // не переходити на сторінку об'єкта при кліку по сердечку
   const img = h.querySelector('img');
   if(!img) return;
-  const isFav = img.src.includes('fav.svg');
-  img.src = isFav ? 'img/icons/like.svg' : 'img/icons/fav.svg';
+  const isFav = img.src.includes('fav.svg');   // зараз контур → стане залите
+  img.src = isFav ? FCard.HEART_FAV : FCard.HEART_OUT;
   toast(isFav ? 'Додано до обраного' : 'Видалено з обраного');
 });
 

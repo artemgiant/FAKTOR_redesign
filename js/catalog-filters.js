@@ -448,7 +448,7 @@
   if (params.get('filter') === 'novobud') initial.tags = ['Квартири в новобудові'];
 
   window.FaktorCatalogFilters = mount(root, {
-    logoSrc: 'img/icons/faktor-logo.svg',
+    logoSrc: 'img/logos/Faktor Sign Navi.svg',
     homeHref: 'index.html',
     initial: initial,
     onChange: function (state) { /* тут можна оновлювати URL / прев'ю результатів */ },

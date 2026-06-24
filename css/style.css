@@ -168,7 +168,7 @@ img{display:block;max-width:100%;}
 .fk-price__from,.fk-price__to{width:0;flex:1;min-width:0;padding:0 14px;font-size:14px;}
 
 /* 4. ЗНАЙТИ */
-.searchbar .fk-search{flex:0 0 auto;height:44px;padding:0 36px;border-radius:var(--r-pill);font-weight:var(--fw-bold);}
+.searchbar .fk-search{flex:0 0 auto;height:44px;padding:0 36px;border-radius:var(--r-field);font-weight:var(--fw-bold);}
 .searchbar .fk-search:hover{background:var(--navy-hover);}
 
 .hero__label{position:absolute;top:660px;left:50%;transform:translateX(-50%);height:48px;padding:0 28px;border-radius:100px;background:var(--chip-bg);display:inline-flex;align-items:center;font-size:var(--fs-base);letter-spacing:var(--ls-base);z-index:3;}
@@ -195,7 +195,7 @@ img{display:block;max-width:100%;}
 /* Усі картки на головній зведені до однієї висоти (--card-h), щоб ряди й секції
    були вирівняні. Виняток — картки агентів (.fa-card) у блоці «Топ агенти»,
    які мають власну розмітку й сюди не входять. */
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start;}
 
 /* суцільна картка (Новобудови / Забудовники) */
 .card-solid{position:relative;height:var(--card-h);background:var(--soft);border-radius:var(--r-card);overflow:hidden;display:flex;flex-direction:column;}
@@ -254,14 +254,8 @@ img{display:block;max-width:100%;}
 .card-list .name{margin-top:14px;}
 .card-list .addr{margin-top:8px;color:var(--muted);}
 .card-list .specs{margin-top:auto;padding-top:18px;display:flex;gap:18px;}
-.spec{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-lg);letter-spacing:var(--ls-lg);white-space:nowrap;}
+.spec{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-lg);letter-spacing:var(--ls-lg);}
 .spec img{width:20px;height:20px;display:block;}
-/* inline-іконка стату (диван/сходи/площа/ділянка) — успадковує колір тексту .spec */
-.spec-ic{display:inline-flex;color:var(--muted);}
-.spec-ic svg{width:18px;height:18px;display:block;}
-
-/* бейдж типу об'єкта поверх фото картки лістингу */
-.cat-badge{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;height:28px;padding:0 12px;background:var(--navy);color:var(--white);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-medium);border-radius:var(--r-badge);}
 
 /* =================== ЕКСКЛЮЗИВНІ =================== */
 /* .excl завширшки рівно з .container (1344) і відцентрований — секція «в рамках

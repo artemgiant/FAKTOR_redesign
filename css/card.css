@@ -38,6 +38,11 @@
 /* рік новобудови — білий бейдж зверху-ліворуч (альтернатива .card__badge) */
 .card__year{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;padding:5px 11px;border-radius:var(--r-card);background:var(--white);color:var(--navy);font-size:13px;line-height:1;font-weight:var(--fw-bold);box-shadow:0 1px 4px var(--ink-14);}
 
+/* лого/назва забудовника — біле коло зверху-праворуч (для новобудов) */
+.card__dev{position:absolute;top:12px;right:12px;z-index:2;width:58px;height:58px;border-radius:50%;background:var(--white);box-shadow:0 4px 14px var(--ink-14);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;}
+.card__dev img{width:24px;height:24px;display:block;}
+.card__dev b{font-size:var(--fs-xs);line-height:var(--lh-none);letter-spacing:var(--ls-xs);font-weight:var(--fw-semibold);color:var(--navy);}
+
 /* тіло */
 .card__body{flex:1;display:flex;flex-direction:column;padding-top:15px;}
 
