@@ -23,14 +23,21 @@
      tag      'a' | 'article'         елемент-обгортка (за замовч. 'a')
    ============================================================ */
 (function (global) {
+  // Іконки статів: де є системна іконка (img/icons/) — беремо її як <img>;
+  // де немає (поверх, ділянка) — лишаємо inline-гліф, золотистий (--gold).
+  //   кімнати → bedrooms-icon-black.svg   площа → area-icon.svg (вже золота)
+  //   поверх → inline (сходи)             ділянка → inline (мапа-парцель)
   const IC = {
-    rooms: '<svg class="card__ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 15h18M6 11V8h5v3"/></svg>',
+    rooms: '<img class="card__ic-img" src="img/icons/bedrooms-icon-black.svg" width="18" height="18" alt="">',
+    area:  '<img class="card__ic-img" src="img/icons/area-icon.svg" width="18" height="18" alt="">',
     floor: '<svg class="card__ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20h4v-4h4v-4h4V8h4"/></svg>',
-    area:  '<svg class="card__ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     plot:  '<svg class="card__ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke-linejoin="round"/></svg>',
   };
-  const HEART = '<svg width="23" height="23" viewBox="0 0 24 24" stroke-width="1.7"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3.2 1 4 2.2.8-1.2 2-2.2 4-2.2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z"/></svg>';
-  const DETAIL = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  // серце — системні іконки: fav.svg (контур) / like.svg (залите, в обраному)
+  const HEART_OUT = 'img/icons/fav.svg';
+  const HEART_FAV = 'img/icons/like.svg';
+  // «Детальніше ›» — системна стрілка
+  const DETAIL = '<img class="card__detail-arr" src="img/icons/arrow-right-14.svg" width="14" height="14" alt="">';
 
   function statsHTML(stats) {
     return (stats || []).map(s =>
@@ -53,11 +60,11 @@
     const img = item.img ? `<img src="${item.img}" alt="${(item.title || '') + ' — ' + (item.addr || '')}" loading="lazy">` : '';
     const media = `<div class="card__media">${badge}${img}</div>`;
 
-    // серце
+    // серце — системна іконка <img>; стан в обраному = like.svg
     let heart = '';
     if (opts.heart) {
-      const fav = opts.heart === 'fav' ? ' is-fav' : '';
-      heart = `<button class="card__heart${fav}" type="button" aria-label="Обране"${id}>${HEART}</button>`;
+      const src = opts.heart === 'fav' ? HEART_FAV : HEART_OUT;
+      heart = `<button class="card__heart" type="button" aria-label="Обране"${id}><img src="${src}" width="32" height="32" alt=""></button>`;
     }
 
     // тіло
@@ -82,5 +89,5 @@
     return `<${tag} class="${cls}"${href}${id}>${media}${body}</${tag}>`;
   }
 
-  global.FCard = { html, statsHTML, ICONS: IC };
+  global.FCard = { html, statsHTML, ICONS: IC, HEART_OUT: HEART_OUT, HEART_FAV: HEART_FAV };
 })(window);

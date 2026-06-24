@@ -120,7 +120,8 @@
     e.preventDefault();   // не переходити на сторінку об'єкта при кліку по сердечку
     var i = h.getAttribute('data-id'), key = state.category + '-' + i;
     state.fav[key] = !state.fav[key];
-    h.classList.toggle('is-fav', state.fav[key]);
+    var img = h.querySelector('img');
+    if (img) img.src = state.fav[key] ? FCard.HEART_FAV : FCard.HEART_OUT;
     window.toast(state.fav[key] ? 'Додано до обраного' : 'Видалено з обраного');
   });
 

@@ -174,12 +174,14 @@ renderGrid('zhk-recent-grid', [
   { price: '$ 170 000', complex: 'ЖК Перлина',      rooms: '2 кімн.', area: '88 м²',  floor: '3/16', addr: 'Приморський р-н, Одеса' },
 ]);
 
-/* серце на картках стрічок (ЕТАЛОН .card) — додає/прибирає з обраного */
+/* серце на картках стрічок (ЕТАЛОН .card) — системні fav.svg/like.svg */
 document.addEventListener('click', e => {
   const h = e.target.closest('.card__heart');
   if(!h) return;
   e.preventDefault();
-  const on = h.classList.toggle('is-fav');
+  const img = h.querySelector('img');
+  const on = img && img.src.includes('fav.svg');   // зараз контур → стане залите
+  if(img) img.src = on ? FCard.HEART_FAV : FCard.HEART_OUT;
   toast(on ? 'Додано до обраного' : 'Видалено з обраного');
 });
 
