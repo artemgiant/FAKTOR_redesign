@@ -96,11 +96,80 @@ img{display:block;max-width:100%;}
 .nav__icon{display:grid;place-items:center;width:32px;height:32px;}
 .nav__lang{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-base);letter-spacing:var(--ls-base);white-space:nowrap;}
 
-.searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1117px;display:flex;align-items:center;gap:16px;z-index:4;}
-.fld{height:44px;background:var(--field);border:1px solid var(--border-field);border-radius:var(--r-field);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--muted);}
-.fld--search{flex:1 1 438px;}
-.fld--sel{width:211px;flex:0 0 211px;}
-.searchbar .btn{flex:0 0 211px;height:44px;border-radius:var(--r-pill);}
+/* ============================================================
+   РЯДОК ПОШУКУ (hero) — 4 контролі: локація · тип · ціна · кнопка.
+   Один горизонтальний рядок, контролі заввишки 44px (як у решти hero).
+   Кольори/радіуси — через токени; пікер локацій будується в app.js.
+   ============================================================ */
+.searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1180px;display:flex;align-items:center;gap:14px;z-index:5;}
+
+/* спільна «оболонка» контролю: поле/селект/ціна */
+.fk-field{height:44px;background:var(--field);border:1px solid var(--border-field);border-radius:var(--r-field);
+  transition:border-color .15s,box-shadow .15s;}
+.fk-field:focus-within,.fk-field.is-open{border-color:var(--navy);box-shadow:0 0 0 3px var(--navy-08);}
+
+.fk-in{border:none;background:transparent;font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--dark);outline:none;}
+.fk-in::placeholder{color:var(--muted);}
+.fk-ic-cd{color:var(--muted);flex:none;}
+
+/* 1. ЛОКАЦІЯ */
+.fk-loc{position:relative;flex:2.4 1 360px;min-width:0;}
+.fk-loc__field{display:flex;align-items:center;gap:8px;padding:0 14px;cursor:text;overflow:hidden;}
+.fk-ic-pin{color:var(--muted);flex:none;}
+.fk-loc__in{flex:1;min-width:90px;}
+.fk-chips{display:inline-flex;align-items:center;gap:6px;flex:none;}
+.fk-chip{display:inline-flex;align-items:center;background:var(--navy);overflow:hidden;white-space:nowrap;flex:none;}
+.fk-chip__kind{font-size:9px;font-weight:var(--fw-bold);letter-spacing:.04em;text-transform:uppercase;color:var(--white-60);background:var(--white-06);padding:6px 8px;}
+.fk-chip__label{color:var(--white);font-weight:var(--fw-semibold);font-size:12.5px;padding:0 6px 0 8px;}
+.fk-chip__x{border:none;background:var(--white-22);color:var(--white);cursor:pointer;margin-left:3px;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex:none;}
+.fk-chip__x:hover{background:var(--white-55);}
+.fk-chip-more{display:inline-flex;align-items:center;background:var(--chip-bg);color:var(--dark);font-size:12.5px;font-weight:var(--fw-bold);padding:7px 10px;white-space:nowrap;cursor:pointer;flex:none;}
+
+/* дропдаун пікера */
+.fk-pop{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:50;background:var(--white);border:1px solid var(--line);border-radius:var(--r-field);box-shadow:0 16px 40px var(--ink-14);padding:10px;}
+.fk-pop[hidden]{display:none;}
+.fk-tabs{display:flex;gap:8px;margin-bottom:10px;}
+.fk-tab{flex:1;height:36px;border:1px solid var(--border-field);border-radius:var(--r-field);background:var(--white);color:var(--dark);font-family:var(--font-base);font-size:12.5px;font-weight:var(--fw-semibold);cursor:pointer;}
+.fk-tab.is-on{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.fk-cats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+.fk-cats[hidden]{display:none;}
+.fk-cat{cursor:pointer;font-family:var(--font-base);font-size:12.5px;font-weight:var(--fw-semibold);border:none;padding:8px 15px;border-radius:var(--r-pill);background:var(--pick-cat);color:var(--muted);transition:background .15s,color .15s;}
+.fk-cat.is-on{background:var(--navy);color:var(--white);}
+.fk-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-bottom:10px;}
+.fk-crumbs[hidden]{display:none;}
+.fk-crumb{font-size:12.5px;color:var(--muted);text-decoration:none;font-weight:var(--fw-semibold);cursor:pointer;}
+.fk-crumb-sep{color:var(--ink-28);font-size:12.5px;}
+.fk-list{max-height:340px;overflow:auto;margin:0 -4px;}
+.fk-loc-head{padding:12px 10px 5px;font-size:11px;font-weight:var(--fw-bold);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+.fk-locrow{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r-field);cursor:pointer;}
+.fk-locrow:hover{background:var(--soft);}
+.fk-box{width:18px;height:18px;border-radius:var(--r-field);flex:none;display:inline-flex;align-items:center;justify-content:center;background:var(--white);border:1.5px solid var(--ink-28);}
+.fk-box.is-checked{background:var(--navy);border-color:var(--navy);}
+.fk-box svg{color:var(--white);}
+.fk-locrow__label{flex:1;font-size:13.5px;color:var(--dark);font-weight:var(--fw-semibold);}
+.fk-locrow__label .hl{background:var(--hl-bg);color:var(--hl-fg);border-radius:var(--r-field);padding:0 1px;}
+.fk-locrow__label .sub{color:var(--muted);font-weight:var(--fw-regular);}
+.fk-locrow__count{font-size:13px;color:var(--muted);}
+.fk-locrow__drill{color:var(--muted);flex:none;}
+
+/* 2. ТИП + спільний селект */
+.fk-sel-wrap{position:relative;}
+.fk-sel-wrap--type{flex:1.2 1 200px;min-width:0;}
+.fk-sel{appearance:none;-webkit-appearance:none;width:100%;font-family:var(--font-base);font-size:var(--fs-base);font-weight:var(--fw-semibold);color:var(--dark);cursor:pointer;background:transparent;}
+.fk-type{height:44px;padding:0 40px 0 16px;}
+.fk-sel-wrap--type .fk-ic-cd{position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;}
+
+/* 3. ЦІНА */
+.fk-price{flex:1.6 1 260px;min-width:0;display:flex;align-items:center;}
+.fk-sel-wrap--cur{flex:0 0 76px;height:100%;}
+.fk-cur{height:100%;padding:0 20px 0 14px;font-size:14px;font-weight:var(--fw-bold);}
+.fk-sel-wrap--cur .fk-ic-cd{position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none;}
+.fk-div{width:1px;height:26px;background:var(--pick-div);flex:none;}
+.fk-price__from,.fk-price__to{width:0;flex:1;min-width:0;padding:0 14px;font-size:14px;}
+
+/* 4. ЗНАЙТИ */
+.searchbar .fk-search{flex:0 0 auto;height:44px;padding:0 36px;border-radius:var(--r-pill);font-weight:var(--fw-bold);}
+.searchbar .fk-search:hover{background:var(--navy-hover);}
 
 .hero__label{position:absolute;top:660px;left:50%;transform:translateX(-50%);height:48px;padding:0 28px;border-radius:100px;background:var(--chip-bg);display:inline-flex;align-items:center;font-size:var(--fs-base);letter-spacing:var(--ls-base);z-index:3;}
 .hero__words{position:absolute;top:752px;left:0;right:0;text-align:center;z-index:3;}
@@ -123,10 +192,14 @@ img{display:block;max-width:100%;}
 .hero__btn--ghost{background:var(--white-06);color:var(--white);border:1.5px solid var(--white-60);}
 
 /* =================== КАРТКИ =================== */
+/* Усі картки на головній зведені до однієї висоти (--card-h), щоб ряди й секції
+   були вирівняні. Виняток — картки агентів (.fa-card) у блоці «Топ агенти»,
+   які мають власну розмітку й сюди не входять. */
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 
 /* суцільна картка (Новобудови / Забудовники) */
-.card-solid{position:relative;height:480px;background:var(--soft);border-radius:var(--r-card);overflow:hidden;}
+.card-solid{position:relative;height:var(--card-h);background:var(--soft);border-radius:var(--r-card);overflow:hidden;display:flex;flex-direction:column;}
+.card-solid .body{flex:1;}
 .card-solid .img{position:relative;height:308px;background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;}
 .card-solid .body{padding:24px 16px;}
 .card-titlerow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;}
@@ -141,7 +214,7 @@ img{display:block;max-width:100%;}
    підвал притиснутий донизу (margin-top:auto), тож ряди карток вирівняні попри
    різну висоту назв. Висота 505 підігнана під найвищий контент (дворядкова назва),
    щоб відступ над підвалом був мінімальним, а overflow:hidden нічого не обрізав. */
-.card-solid--nb{height:513px;display:flex;flex-direction:column;}
+.card-solid--nb{display:flex;flex-direction:column;}
 .card-solid--nb .img{flex:none;}
 .card-solid--nb .body{flex:1;display:flex;flex-direction:column;padding:20px 16px;}
 .card-solid--nb .card-titlerow{margin-bottom:8px;}
@@ -168,17 +241,19 @@ img{display:block;max-width:100%;}
 .nb-detail img{width:14px;height:14px;display:block;transition:transform .2s;}
 .nb-detail:hover img{transform:translateX(3px);}
 
-/* лістинг (Квартири / Будинки) */
-.card-list{position:relative;}
+/* лістинг (Квартири / Будинки) — зведена до спільної висоти (--card-h), як і
+   суцільні картки: фіксоване фото зверху, тіло заповнює решту, ряд характеристик
+   притиснутий донизу (margin-top:auto), тож усі картки рівні по висоті. */
+.card-list{position:relative;height:var(--card-h);display:flex;flex-direction:column;}
 /* Висота фото — 240px на повноцінних моніторах (≥1440), плавно нижча на
    менших (16.7vw ≈ 240 при 1440), з нижньою межею 200px. Картка стає трохи
    компактнішою на маленьких моніторах ПОВЕРХ загального zoom — без різких
    стрибків і без переходу на горизонтальну стрічку. */
-.card-list .img{position:relative;height:clamp(200px,16.7vw,240px);background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;border-radius:var(--r-card);overflow:hidden;}
+.card-list .img{position:relative;flex:none;height:clamp(200px,16.7vw,240px);background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;border-radius:var(--r-card);overflow:hidden;}
 .card-row{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
 .card-list .name{margin-top:14px;}
 .card-list .addr{margin-top:8px;color:var(--muted);}
-.card-list .specs{margin-top:18px;display:flex;gap:18px;}
+.card-list .specs{margin-top:auto;padding-top:18px;display:flex;gap:18px;}
 .spec{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-lg);letter-spacing:var(--ls-lg);}
 .spec img{width:20px;height:20px;display:block;}
 
@@ -269,17 +344,6 @@ img{display:block;max-width:100%;}
 .dots i{cursor:pointer;transition:width .25s,background .25s;}
 .heart{cursor:pointer;}
 .arrow-lg,.excl__arrow{cursor:pointer;}
-
-/* випадаючі фільтри */
-.fld{position:relative;cursor:pointer;user-select:none;}
-.fld.has-val span{color:var(--dark);}
-.fld .cd{opacity:.5;transition:transform .2s;}
-.fld.open .cd{transform:rotate(-90deg);}
-.fld-menu{position:absolute;top:calc(100% + 8px);left:0;right:0;list-style:none;background:var(--white);border:1px solid var(--line);box-shadow:0 18px 44px var(--ink-14);z-index:30;max-height:300px;overflow:auto;padding:6px;display:none;}
-.fld.open .fld-menu{display:block;}
-.fld-menu li{padding:11px 14px;font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--dark);cursor:pointer;}
-.fld-menu li:hover{background:var(--soft);}
-.fld-menu li.sel{color:var(--navy);font-weight:var(--fw-medium);}
 
 /* тост */
 .toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(16px);background:var(--navy);color:var(--white);padding:14px 24px;font-size:var(--fs-base);letter-spacing:var(--ls-base);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}

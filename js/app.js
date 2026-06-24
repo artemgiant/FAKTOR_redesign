@@ -198,47 +198,264 @@ const EXCL = [
   restart();
 })();
 
-/* ---------------- випадаючі фільтри пошуку ---------------- */
-(function initFilters(){
-  const OPTS = [
-    ['Приморський район','Київський район','Малиновський район','Суворовський район','Аркадія','Фонтан','Таїрова','Центр','Черемушки'],
-    ['Продаж квартир','Оренда квартир','Продаж будинків','Комерційна нерухомість','Земельні ділянки'],
-    ['до $50 000','$50 000 – $100 000','$100 000 – $200 000','$200 000 – $500 000','від $500 000'],
+/* ---------------- рядок пошуку (hero): локація · тип · ціна · кнопка ----------------
+   Порт дизайн-референсу (design_handoff_home) у ванільний JS. Пікер локацій має
+   два режими — geo (країна→регіон→місто, drill-down) і local (категорії: райони,
+   вулиці, ЖК…), із живим пошуком, мультивибором у чипи та згортанням «+N».
+   Дані локацій захардкоджені (як у референсі) — згодом замінити на API. */
+(function initSearchbar(){
+  const root = document.querySelector('.searchbar');
+  if(!root) return;
+
+  /* --- дані --- */
+  const DEAL = [
+    'Новобудови',
+    'Продаж квартир','Продаж кімнат','Продаж будинків','Продаж землі','Продаж комерції','Продаж паркінг/гараж',
+    'Оренда квартир','Оренда кімнат','Оренда будинків','Оренда землі','Оренда комерції','Оренда паркінг/гараж',
   ];
-  const flds = [...document.querySelectorAll('.searchbar .fld')];
-  const closeAll = except => flds.forEach(f => { if(f !== except) f.classList.remove('open'); });
+  const CURRENCIES = ['USD','EUR','UAH'];
+  const LOC_CATS = [['all','Усі'],['district','Райони'],['street','Вулиці'],['micro','Мікрорайони'],['complex','ЖК'],['developer','Забудовники']];
+  const KIND = { district:'район', street:'вулиця', micro:'мікрорайон', complex:'жк', developer:'забудовник', city:'місто', region:'регіон', country:'країна' };
+  const COUNTRIES = [['Україна',5329],['Польща',0],['Німеччина',0],['Іспанія',0],['Туреччина',0],['ОАЕ',0],['Кіпр',0]];
+  const REGIONS = { 'Україна':[['Одеська область',90],['Київська область',0],['Львівська область',0],['Миколаївська область',0],['Харківська область',0]] };
+  const CITIES = { 'Одеська область':[['Одеса','',5329],['Фонтанка','',132],['Лиманка','',375],['Авангард','',92],['Чорноморськ','',19],['Теплодар','',3],['Таїрово, смт','',64]] };
+  const LOCDATA = {
+    district: [['Приморський','Одеса',2173],['Хаджибейський','Одеса',1336],['Київський','Одеса',1241],['Пересипський','Одеса',578],['Лиманський','Фонтанка',113],['Овідіопольський','Лиманка',346]],
+    street: [['Французький бульвар','Приморський',420],['вул. Генуезька','Приморський',311],['вул. Канатна','Приморський',208],['Гагарінське плато','Приморський',176],['Люстдорфська дорога','Київський',289],['вул. Пушкінська','Приморський',142],['вул. Дерибасівська','Приморський',64],['вул. Рішельєвська','Приморський',98],['вул. Преображенська','Приморський',151],['вул. Велика Арнаутська','Приморський',173],['вул. Фонтанська дорога','Приморський',262],['проспект Шевченка','Приморський',119]],
+    micro: [['Аркадія','Приморський',512],['Фонтан','Приморський',604],['Таїрова','Київський',433],['Черемушки','Малиновський',221],['Котовського','Пересипський',318],['Молдаванка','Малиновський',176],['Сьоме Небо','Київський',92],['Совіньйон','Овідіопольський',64]],
+    complex: [['ЖК OZONE','Приморський',64],['ЖК Аркадія Сіті','Приморський',88],['ЖК Перлина','Київський',52],['ЖК More','Приморський',41],['ЖК Sea Town','Приморський',37],['ЖК Гранд Парк','Київський',58],['ЖК Французький квартал','Приморський',46],['ЖК Sky Garden','Київський',29],['ЖК Bunin','Приморський',24],['ЖК 56 Перлина','Київський',71]],
+    developer: [['KADORR Group','',312],['Гефест','',128],['Stikon','',97],['Будова','',54],['Інкор Груп','',83],['Альтаїр','',46],['Рідна Оселя','',38]],
+  };
 
-  flds.forEach((fld, i) => {
-    const span = fld.querySelector('span');
-    const ul = document.createElement('ul');
-    ul.className = 'fld-menu';
-    ul.innerHTML = OPTS[i].map(o => `<li>${o}</li>`).join('');
-    fld.appendChild(ul);
+  /* --- стан --- */
+  const st = {
+    dealType:'Продаж квартир', currency:'USD', priceFrom:'', priceTo:'',
+    locOpen:false, locMode:'local', locCat:'all', locSel:[], locPath:[], location:'', chipVisible:99,
+  };
 
-    fld.addEventListener('click', e => {
-      if(e.target.closest('.fld-menu')) return;
-      const open = fld.classList.contains('open');
-      closeAll();
-      if(!open) fld.classList.add('open');
-    });
-    ul.addEventListener('click', e => {
-      const li = e.target.closest('li');
-      if(!li) return;
-      span.textContent = li.textContent;
-      fld.classList.add('has-val');
-      fld.dataset.value = li.textContent;
-      ul.querySelectorAll('li').forEach(x => x.classList.toggle('sel', x === li));
-      fld.classList.remove('open');
-    });
+  /* --- посилання на DOM --- */
+  const $ = s => root.querySelector(s);
+  const locWrap   = $('.fk-loc');
+  const locField  = $('.fk-loc__field');
+  const locInput  = $('.fk-loc__in');
+  const chipsBox  = $('.fk-chips');
+  const pop       = $('.fk-loc__pop');
+  const tabsBox   = $('.fk-tabs');
+  const catsBox   = $('.fk-cats');
+  const crumbsBox = $('.fk-crumbs');
+  const listBox   = $('.fk-list');
+  const typeSel   = $('.fk-type');
+  const curSel    = $('.fk-cur');
+  const fromInput = $('.fk-price__from');
+  const toInput   = $('.fk-price__to');
+  const searchBtn = $('.fk-search');
+
+  /* --- хелпери --- */
+  const fmtNum = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function kindOf(label){
+    for(const k of Object.keys(LOCDATA)) if(LOCDATA[k].some(r => r[0] === label)) return k;
+    for(const c of COUNTRIES) if(c[0] === label) return 'country';
+    for(const rk of Object.keys(REGIONS)) if(REGIONS[rk].some(r => r[0] === label)) return 'region';
+    for(const ck of Object.keys(CITIES)) if(CITIES[ck].some(r => r[0] === label)) return 'city';
+    return 'district';
+  }
+
+  /* --- індекс для живого пошуку --- */
+  function searchIndex(){
+    const out = [];
+    COUNTRIES.forEach(c => out.push({label:c[0],sub:'Країна',count:c[1],group:'Країни',gorder:0,kind:'country'}));
+    Object.keys(REGIONS).forEach(k => REGIONS[k].forEach(r => out.push({label:r[0],sub:'Регіон',count:r[1],group:'Регіони',gorder:1,kind:'region'})));
+    Object.keys(CITIES).forEach(k => CITIES[k].forEach(c => out.push({label:c[0],sub:'Місто, '+k,count:c[2],group:'Міста',gorder:2,kind:'city'})));
+    const T = {district:['Район','Райони',3],street:['Вулиця','Вулиці',4],micro:['Мікрорайон','Мікрорайони',5],complex:['ЖК','Комплекси',6],developer:['Забудовник','Девелопери',7]};
+    Object.keys(T).forEach(k => LOCDATA[k].forEach(r => out.push({label:r[0],sub:r[1]?T[k][0]+', '+r[1]:T[k][0],count:r[2],group:T[k][1],gorder:T[k][2],kind:k})));
+    return out;
+  }
+  function hl(label, q){
+    const i = label.toLowerCase().indexOf(q);
+    if(i < 0 || !q) return {pre:label, mid:'', post:''};
+    return {pre:label.slice(0,i), mid:label.slice(i,i+q.length), post:label.slice(i+q.length)};
+  }
+  function locRows(){
+    const q = (st.location || '').trim().toLowerCase();
+    if(q){
+      const hits = searchIndex().filter(r => r.label.toLowerCase().includes(q));
+      hits.sort((a,b) => a.gorder-b.gorder || a.label.toLowerCase().indexOf(q)-b.label.toLowerCase().indexOf(q) || b.count-a.count);
+      const rows = []; let lastG = null;
+      hits.forEach(r => { if(r.group !== lastG){ rows.push({header:true,label:r.group}); lastG = r.group; } rows.push({...r, selectable:true, ...hl(r.label,q)}); });
+      return rows;
+    }
+    if(st.locMode === 'geo'){
+      const p = st.locPath || [];
+      if(p.length === 0) return COUNTRIES.map(c => ({label:c[0],sub:'',count:c[1],selectable:!REGIONS[c[0]],kind:'country'}));
+      if(p.length === 1) return (REGIONS[p[0]] || []).map(r => ({label:r[0],sub:'',count:r[1],selectable:!CITIES[r[0]],kind:'region'}));
+      return (CITIES[p[1]] || []).map(c => ({label:c[0],sub:'',count:c[2],selectable:true,kind:'city'}));
+    }
+    const list = st.locCat === 'all' ? [].concat(LOCDATA.district, LOCDATA.complex) : (LOCDATA[st.locCat] || []);
+    const kindFor = st.locCat === 'all' ? null : st.locCat;
+    return list.map(r => ({label:r[0],sub:r[1],count:r[2],selectable:true,kind: kindFor || (r[0].startsWith('ЖК')?'complex':'district')}));
+  }
+  function onLocRow(row){
+    if(row.selectable){ toggleLocItem(row.label); return; }
+    st.locPath = [...(st.locPath||[]), row.label];
+    render();
+  }
+  function toggleLocItem(label){
+    st.locSel = st.locSel.includes(label) ? st.locSel.filter(x => x !== label) : [...st.locSel, label];
+    st.location = ''; st.chipVisible = 99; locInput.value = '';
+    render();
+  }
+  function removeLocChip(label){
+    st.locSel = st.locSel.filter(x => x !== label);
+    st.chipVisible = 99;
+    render();
+  }
+
+  /* --- рендер --- */
+  function render(){
+    // селекти (один раз заповнюємо опції, далі лише синхронізуємо value)
+    if(!typeSel.options.length) typeSel.innerHTML = DEAL.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('');
+    if(!curSel.options.length) curSel.innerHTML = CURRENCIES.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('');
+    typeSel.value = st.dealType;
+    curSel.value = st.currency;
+
+    locField.classList.toggle('is-open', st.locOpen);
+    pop.hidden = !st.locOpen;
+
+    // чипи + згортання «+N»
+    const vis = Math.min(st.chipVisible, st.locSel.length);
+    const hidden = st.locSel.length - vis;
+    chipsBox.innerHTML =
+      st.locSel.slice(0, vis).map((l,i) =>
+        `<span class="fk-chip" data-i="${i}">
+          <span class="fk-chip__kind">${esc(KIND[kindOf(l)] || '')}</span>
+          <span class="fk-chip__label">${esc(l)}</span>
+          <button type="button" class="fk-chip__x" data-rm="${esc(l)}" aria-label="Прибрати"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </span>`).join('') +
+      (hidden > 0 ? `<span class="fk-chip-more" data-more="1">+${hidden}</span>` : '');
+
+    locInput.placeholder = st.locSel.length ? (vis < st.locSel.length ? '' : 'Додати ще…') : 'Місто, район, вулиця або ЖК…';
+
+    if(st.locOpen) renderPop();
+    queueFit();
+  }
+  function renderPop(){
+    const q = (st.location || '').trim();
+    // вкладки
+    tabsBox.querySelectorAll('.fk-tab').forEach(t => t.classList.toggle('is-on', t.dataset.mode === st.locMode));
+
+    // категорії (тільки local, без активного пошуку)
+    const showCats = st.locMode !== 'geo' && !q;
+    catsBox.hidden = !showCats;
+    if(showCats) catsBox.innerHTML = LOC_CATS.map(c =>
+      `<button type="button" class="fk-cat${st.locCat===c[0]?' is-on':''}" data-cat="${c[0]}">${esc(c[1])}</button>`).join('');
+
+    // хлібні крихти (тільки geo, без активного пошуку)
+    const showCrumbs = st.locMode === 'geo' && !q;
+    crumbsBox.hidden = !showCrumbs;
+    if(showCrumbs){
+      const crumbs = [{label:'Усі країни', idx:0}].concat((st.locPath||[]).map((seg,i) => ({label:seg, idx:i+1})));
+      crumbsBox.innerHTML = crumbs.map(c =>
+        `<span class="fk-crumb" data-crumb="${c.idx}">${esc(c.label)}</span><span class="fk-crumb-sep">›</span>`).join('');
+    }
+
+    // список
+    listBox.innerHTML = locRows().map(r => {
+      if(r.header) return `<div class="fk-loc-head">${esc(r.label)}</div>`;
+      const checked = st.locSel.includes(r.label);
+      const box = r.selectable
+        ? `<span class="fk-box${checked?' is-checked':''}">${checked?'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>':''}</span>`
+        : '';
+      const pre = r.pre !== undefined ? r.pre : r.label;
+      const label = `<span class="fk-locrow__label"><span>${esc(pre)}</span>${r.mid?`<span class="hl">${esc(r.mid)}</span>`:''}${r.post?`<span>${esc(r.post)}</span>`:''}${r.sub?`<span class="sub">, ${esc(r.sub)}</span>`:''}</span>`;
+      const count = `<span class="fk-locrow__count">${fmtNum(r.count)}</span>`;
+      const drill = (!r.selectable) ? `<svg class="fk-locrow__drill" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>` : '';
+      return `<label class="fk-locrow" data-row="${esc(r.label)}">${box}${label}${count}${drill}</label>`;
+    }).join('');
+  }
+
+  /* --- згортання чипів за шириною поля (MutationObserver → _fit) --- */
+  let fitQueued = false;
+  function queueFit(){ if(fitQueued) return; fitQueued = true; requestAnimationFrame(() => { fitQueued = false; fit(); }); }
+  function fit(){
+    const vis = Math.min(st.chipVisible, st.locSel.length);
+    if(locField.scrollWidth > locField.clientWidth + 1 && vis > 1){
+      st.chipVisible = Math.max(1, vis - 1);
+      render();
+    }
+  }
+
+  /* --- перехід у каталог --- */
+  function go(){
+    const isNb = st.dealType === 'Новобудови';
+    const params = new URLSearchParams();
+    if(isNb) params.set('filter','novobud');
+    const locs = st.locSel.length ? st.locSel.join('|') : (st.location || '').trim();
+    if(locs) params.set('loc', locs);
+    if(st.dealType) params.set('type', st.dealType);
+    const f = String(st.priceFrom).replace(/\s/g,''), t = String(st.priceTo).replace(/\s/g,'');
+    if(f) params.set('from', f);
+    if(t) params.set('to', t);
+    if(st.currency) params.set('cur', st.currency);
+    const qs = params.toString();
+    window.location.href = 'catalog.html' + (qs ? ('?' + qs) : '');
+  }
+
+  /* --- події --- */
+  locField.addEventListener('click', e => {
+    if(e.target.closest('.fk-chip__x') || e.target.closest('.fk-chip-more')) return;
+    st.locOpen = true; render(); locInput.focus();
+  });
+  locInput.addEventListener('input', () => { st.location = locInput.value; st.locOpen = true; render(); });
+  locInput.addEventListener('focus', () => { if(!st.locOpen){ st.locOpen = true; render(); } });
+
+  chipsBox.addEventListener('click', e => {
+    const x = e.target.closest('.fk-chip__x');
+    if(x){ e.stopPropagation(); removeLocChip(x.dataset.rm); return; }
+    const more = e.target.closest('.fk-chip-more');
+    if(more){ e.stopPropagation(); st.locOpen = true; render(); }
   });
 
-  document.addEventListener('click', e => { if(!e.target.closest('.fld')) closeAll(); });
-
-  const btn = document.querySelector('.searchbar .btn');
-  if(btn) btn.addEventListener('click', () => {
-    const vals = flds.map(f => f.dataset.value).filter(Boolean);
-    toast(vals.length ? 'Пошук: ' + vals.join('  ·  ') : 'Оберіть параметри для пошуку');
+  tabsBox.addEventListener('click', e => {
+    const tab = e.target.closest('.fk-tab');
+    if(!tab) return;
+    st.locMode = tab.dataset.mode; st.locPath = []; st.location = ''; locInput.value = '';
+    render();
   });
+  catsBox.addEventListener('click', e => {
+    const cat = e.target.closest('.fk-cat');
+    if(!cat) return;
+    st.locCat = cat.dataset.cat; render();
+  });
+  crumbsBox.addEventListener('click', e => {
+    const c = e.target.closest('.fk-crumb');
+    if(!c) return;
+    st.locPath = st.locPath.slice(0, Number(c.dataset.crumb));
+    render();
+  });
+  listBox.addEventListener('click', e => {
+    const row = e.target.closest('.fk-locrow');
+    if(!row) return;
+    const label = row.dataset.row;
+    const data = locRows().find(r => !r.header && r.label === label);
+    if(data) onLocRow(data);
+  });
+
+  typeSel.addEventListener('change', () => { st.dealType = typeSel.value; });
+  curSel.addEventListener('change', () => { st.currency = curSel.value; });
+  fromInput.addEventListener('input', () => { const d = fromInput.value.replace(/\D/g,''); st.priceFrom = d ? fmtNum(d) : ''; fromInput.value = st.priceFrom; });
+  toInput.addEventListener('input', () => { const d = toInput.value.replace(/\D/g,''); st.priceTo = d ? fmtNum(d) : ''; toInput.value = st.priceTo; });
+
+  searchBtn.addEventListener('click', go);
+
+  // закриття дропдауна по кліку поза .fk-loc
+  document.addEventListener('mousedown', e => {
+    if(st.locOpen && !e.target.closest('.fk-loc')){ st.locOpen = false; render(); }
+  });
+  // на ресайз скидаємо лічильник видимих чипів — _fit() перерахує заново
+  window.addEventListener('resize', () => { st.chipVisible = 99; render(); });
+
+  render();
 })();
 
 /* ---------------- дрібний інтерактив ---------------- */
