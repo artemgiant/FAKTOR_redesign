@@ -3,25 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1440">
-<title>FAKTOR — Продаж квартир в Одесі</title>
+<title>FAKTOR — Обране · збережені об'єкти нерухомості в Одесі</title>
 <!--
-  Сторінка лістингу: шапка-пігулка → динамічний блок фільтрів (.ff-block: breadcrumb →
-  H1 → панель фільтрів за категоріями → обрані чипи → популярні підбірки; рендериться
-  з js/catalog-filters.js, стилі css/catalog-filters.css) → сортування → сітка карток
-  4×3 → пагінація → sitemap + SEO + темний футер.
-  Шапка, sitemap, SEO та футер — спільні з головною (index.html). Канва 1440px, без адаптиву.
+  Сторінка «Обране». Джерело дизайну: design_handoff_favorites/ (Montserrat-прототип) —
+  відтворено в дизайн-системі сайту: канва 1440px, шрифт Inter, гострі кути,
+  navy #001D4B, кольори/кеглі через css/tokens.css. Спільні шапка-пігулка,
+  breadcrumb, sitemap, SEO та темний футер — як на index.html / catalog.html / property.html.
+  Структура за README handoff: breadcrumb → H1 + лічильник + дії →
+  фільтр-чипи з лічильниками → двоколонковий лейаут (сітка обраного 3×N +
+  липкий сайдбар «Ваш агент» / «Замовити перегляд») → порожні стани →
+  стрічка переглянутих/рекомендованих. Логіка — js/favorites.js, стилі — css/favorites.css.
 -->
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/property.css">
 <link rel="stylesheet" href="css/card.css">
-<link rel="stylesheet" href="css/catalog-filters.css">
+<link rel="stylesheet" href="css/favorites.css">
 <script defer src="js/responsive.js"></script>
 </head>
 <body>
 <div class="page">
 <div class="frame">
 
-  <!-- ===================== HEADER (пігулка) ===================== -->
+  <!-- ===================== HEADER (спільна пігулка) ===================== -->
   <header class="cat-header">
     <nav class="nav">
       <span class="nav__logo"><a href="index.html"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></a></span>
@@ -37,53 +41,102 @@
     </nav>
   </header>
 
-  <!-- ===================== ФІЛЬТРИ КАТАЛОГУ (динамічні, за категоріями) =====================
-       Самодостатній компонент: breadcrumb → H1 → панель фільтрів → обрані чипи → популярні
-       підбірки. Рендериться повністю з js/catalog-filters.js у #ff-catalog-filters.
-       Стилі — css/catalog-filters.css (палітра тягнеться з tokens.css). -->
-  <section class="ff-block">
-    <div class="ff-block__inner">
-      <div id="ff-catalog-filters"></div>
-    </div>
-  </section>
-
-  <div class="cat-hr"></div>
-
-  <!-- ===================== РЕЗУЛЬТАТИ: лічильник + сортування ===================== -->
-  <div class="container cat-resultrow">
-    <div class="cat-count" id="cat-count"></div>
-    <div class="sort-wrap">
-      <button class="sort-btn" id="sort-btn">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5v11M5 14.5l-2.4-2.4M5 14.5l2.4-2.4M13 14.5v-11M13 3.5l-2.4 2.4M13 3.5l2.4 2.4"/></svg>
-        Сортування
-      </button>
-      <ul class="sort-menu" id="sort-menu">
-        <li data-sort="cheap">Спочатку дешевші</li>
-        <li data-sort="expensive">Спочатку дорожчі</li>
-        <li data-sort="new">Спочатку новіші</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- ===================== СІТКА КАРТОК ===================== -->
   <div class="container">
-    <div class="grid4 cat-grid" id="cat-grid"></div>
 
-    <!-- ===================== ПАГІНАЦІЯ ===================== -->
-    <div class="pagination">
-      <a class="showmore" id="show-more">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 8a5.4 5.4 0 1 0 1.7-3.9"/><path d="M2.4 3.1v3h3"/></svg>
-        Показати ще 12 пропозицій
-      </a>
-      <div class="pages" id="pages">
-        <button class="pg arrow prev" aria-label="Назад"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></button>
-        <button class="pg on">1</button>
-        <button class="pg">2</button>
-        <button class="pg">3</button>
-        <button class="pg">4</button>
-        <button class="pg arrow next" aria-label="Далі"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></button>
+    <!-- ===================== BREADCRUMB ===================== -->
+    <div class="cat-crumbs">
+      <a href="index.html" class="crumb-home"><img class="logo" src="img/icons/faktor-logo.svg" alt="FAKTOR"></a>
+      <span class="sep" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l4 4-4 4"/></svg></span>
+      <span class="cur">Обране</span>
+    </div>
+
+    <!-- ===================== ШАПКА: H1 + ЛІЧИЛЬНИК + ДІЇ ===================== -->
+    <div class="fav-head">
+      <div>
+        <h1 class="fav-title">Обране</h1>
+        <div class="fav-count" id="fav-count">Збережені об’єкти: 0</div>
+      </div>
+      <div class="fav-actions" id="fav-actions">
+        <button class="fav-act" type="button" id="fav-share">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+          <span class="fav-act__lbl">Поділитися добіркою</span>
+        </button>
+        <button class="fav-act fav-act--danger" type="button" id="fav-clear">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+          Очистити все
+        </button>
       </div>
     </div>
+
+    <!-- ===================== ФІЛЬТР-ЧИПИ (рендеряться з JS) ===================== -->
+    <div class="fav-chiprow" id="fav-chiprow"></div>
+
+    <!-- ===================== ДВОКОЛОНКОВИЙ ЛЕЙАУТ ===================== -->
+    <div class="fav-layout">
+
+      <!-- ---------- ЛІВА КОЛОНКА: сітка обраного + порожні стани ---------- -->
+      <div class="fav-main">
+
+        <div class="fav-grid" id="fav-grid"></div>
+
+        <!-- порожньо в межах вибраного типу -->
+        <div class="fav-empty fav-empty--filter" id="fav-empty-filter" hidden>
+          <div class="fav-empty__h">У цьому типі поки нічого немає</div>
+          <div class="fav-empty__t">Збережені об'єкти цього типу з'являться тут.</div>
+          <button class="fav-empty__reset" type="button">Показати всі обрані</button>
+        </div>
+
+        <!-- зовсім порожнє обране -->
+        <div class="fav-empty fav-empty--all" id="fav-empty-all" hidden>
+          <div class="fav-empty__ic">
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3.2 1 4 2.2.8-1.2 2-2.2 4-2.2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z"/></svg>
+          </div>
+          <div class="fav-empty__h">Ви ще нічого не зберегли</div>
+          <div class="fav-empty__t">Натискайте <b>♡</b> на об'єктах у каталозі, щоб додати їх сюди й не загубити.</div>
+          <a href="catalog.html" class="fav-empty__cta">
+            Перейти до каталогу
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ---------- ПРАВА КОЛОНКА (sticky): агент + форма ---------- -->
+      <aside class="fav-side">
+        <div class="fav-agent">
+          <div class="fav-agent__top">
+            <div class="fav-agent__ava"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+            <div>
+              <div class="fav-agent__name">Ваш агент</div>
+              <div class="fav-agent__office">Офіс FAKTOR</div>
+            </div>
+          </div>
+          <a href="tel:+380733808454" class="fav-agent__call">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>
+            Зателефонувати
+          </a>
+        </div>
+
+        <div class="fav-form">
+          <div class="fav-form__title">Замовити перегляд</div>
+          <div class="fav-form__sub">Оберемо зручний час — онлайн або наживо</div>
+          <form class="fav-form__fields" id="fav-form">
+            <input class="fav-input" type="text" placeholder="Ваше ім'я" required>
+            <input class="fav-input" type="tel" inputmode="tel" placeholder="+380 __ ___ __ __" required>
+            <input class="fav-input" type="date">
+            <textarea class="fav-input" rows="3" placeholder="Коментар — побажання, зручний час тощо"></textarea>
+            <button class="fav-submit" type="submit" id="fav-submit">Надіслати запит</button>
+          </form>
+        </div>
+      </aside>
+    </div>
+
+    <!-- ===================== СТРІЧКА: ПЕРЕГЛЯНУТІ / РЕКОМЕНДОВАНІ ===================== -->
+    <div class="fav-strip">
+      <div class="fav-strip__title" id="fav-strip-title">Повернутись до переглянутих</div>
+      <div class="fav-strip__track" id="fav-strip-track"></div>
+    </div>
+
   </div>
 
   <!-- ===================== SITEMAP (спільний) ===================== -->
@@ -177,8 +230,7 @@
 </div>
 </div>
 
-  <script src="js/card.js"></script>
-  <script src="js/catalog.js"></script>
-  <script src="js/catalog-filters.js"></script>
+<script src="js/card.js"></script>
+<script src="js/favorites.js"></script>
 </body>
 </html>

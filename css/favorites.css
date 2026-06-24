@@ -1,0 +1,104 @@
+/* =====================================================================
+   FAKTOR — сторінка «Обране» (Favorites)
+   Джерело дизайну: design_handoff_favorites/ (Montserrat-прототип) —
+   відтворено в дизайн-системі сайту: канва 1440px, шрифт Inter, гострі
+   кути, navy #001D4B, кольори/кеглі через css/tokens.css. Спільні
+   шапка-пігулка, breadcrumb, sitemap, SEO та темний футер — як на
+   index.html / catalog.html / property.html.
+
+   Структура за README handoff: breadcrumb → H1 + лічильник + дії
+   (поділитися / очистити) → фільтр-чипи з лічильниками → двоколонковий
+   лейаут (сітка обраного 3×N + липкий сайдбар «Ваш агент» / «Замовити
+   перегляд») → порожні стани → стрічка переглянутих/рекомендованих.
+
+   Картки повторюють .card-list та .card-solid--nb з style.css; серце в
+   рядку ціни ПРИБИРАЄ об'єкт з обраного (на проді — localStorage).
+   ===================================================================== */
+
+/* ---------------- шапка блоку: H1 + лічильник + дії ---------------- */
+.fav-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:28px 0 28px;}
+.fav-title{margin:0;font-size:var(--fs-h2);line-height:var(--lh-tight);letter-spacing:var(--ls-h2);font-weight:var(--fw-bold);color:var(--dark);}
+.fav-count{margin-top:10px;font-size:var(--fs-lg);letter-spacing:var(--ls-lg);color:var(--muted);}
+.fav-actions{display:flex;align-items:center;gap:12px;}
+.fav-actions[hidden]{display:none;}
+
+/* пігулкові кнопки дій — як CTA сайту (r-pill), на світлому фоні */
+.fav-act{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 22px;border:1px solid var(--border-field);background:var(--white);color:var(--navy);font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);border-radius:var(--r-pill);cursor:pointer;transition:border-color .15s,color .15s;}
+.fav-act:hover{border-color:var(--navy);}
+.fav-act svg{flex:none;}
+.fav-act--danger{color:var(--danger);border-color:var(--danger-bd);}
+.fav-act--danger:hover{border-color:var(--danger);}
+
+/* ---------------- фільтр-чипи з лічильниками ---------------- */
+.fav-chiprow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+.fav-chip{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:var(--r-pill);padding:11px 18px;font-family:var(--font-base);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-medium);background:var(--chip-bg);color:var(--muted);cursor:pointer;transition:background .15s,color .15s;white-space:nowrap;}
+.fav-chip:hover{color:var(--dark);}
+.fav-chip.on{background:var(--navy);color:var(--white);}
+.fav-chip__n{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);font-size:var(--fs-xs);letter-spacing:var(--ls-xs);font-weight:var(--fw-bold);background:var(--ink-08);color:var(--muted);}
+.fav-chip.on .fav-chip__n{background:var(--white-22);color:var(--white);}
+
+/* ---------------- двоколонковий лейаут: сітка + сайдбар ---------------- */
+.fav-layout{display:flex;align-items:flex-start;gap:30px;}
+.fav-main{flex:1;min-width:0;}
+.fav-side{flex:0 0 360px;display:flex;flex-direction:column;gap:18px;position:sticky;top:92px;}
+
+/* сітка обраного — 3 колонки (як у прототипі). Картки природної висоти:
+   ряд вирівнюється по найвищій картці (align-items:stretch), а підвал
+   притиснутий донизу через margin-top:auto в тілі. */
+.fav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;}
+
+/* Картки — ЕТАЛОН .card з css/card.css. Тут лише розкладка сітки/стрічки
+   та анімація прибирання серцем (.is-removing вже визначено в card.css). */
+
+/* ---------------- порожні стани ---------------- */
+@keyframes favPop{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.fav-empty{animation:favPop .3s ease both;}
+
+/* порожній у межах одного типу */
+.fav-empty--filter{text-align:center;padding:70px 20px;}
+.fav-empty--filter .fav-empty__h{font-size:var(--fs-lg);letter-spacing:var(--ls-lg);font-weight:var(--fw-bold);color:var(--navy);}
+.fav-empty--filter .fav-empty__t{margin-top:8px;font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--muted);}
+
+/* зовсім порожнє обране */
+.fav-empty--all{text-align:center;padding:80px 20px 70px;}
+.fav-empty__ic{width:96px;height:96px;margin:0 auto;border-radius:50%;background:var(--pick-cat);display:flex;align-items:center;justify-content:center;color:var(--navy);}
+.fav-empty--all .fav-empty__h{margin-top:24px;font-size:var(--fs-h3);line-height:var(--lh-snug);letter-spacing:var(--ls-h3);font-weight:var(--fw-bold);color:var(--navy);}
+.fav-empty--all .fav-empty__t{margin-top:10px;font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--muted);line-height:var(--lh-relaxed);max-width:440px;margin-left:auto;margin-right:auto;}
+.fav-empty--all .fav-empty__t b{color:var(--navy);font-weight:var(--fw-bold);}
+
+/* кнопка скидання фільтра (пігулка-аутлайн) */
+.fav-empty__reset{margin-top:20px;height:46px;padding:0 28px;border:1px solid var(--border-field);background:var(--white);color:var(--navy);font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);border-radius:var(--r-pill);cursor:pointer;transition:border-color .15s;}
+.fav-empty__reset:hover{border-color:var(--navy);}
+
+/* CTA «Перейти до каталогу» (заливка navy, пігулка) */
+.fav-empty__cta{display:inline-flex;align-items:center;gap:9px;margin-top:26px;height:50px;padding:0 32px;border-radius:var(--r-pill);background:var(--navy);color:var(--white);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);}
+.fav-empty__cta:hover{background:var(--navy-hover);}
+
+/* ---------------- сайдбар: «Ваш агент» ---------------- */
+.fav-agent{background:var(--soft);padding:26px;border-radius:var(--r-card);}
+.fav-agent__top{display:flex;align-items:center;gap:20px;}
+.fav-agent__ava{width:84px;height:84px;flex:none;border-radius:50%;background:var(--pick-cat);display:flex;align-items:center;justify-content:center;}
+.fav-agent__ava img{width:40px;height:40px;object-fit:contain;opacity:.85;}
+.fav-agent__name{font-size:var(--fs-lg);letter-spacing:var(--ls-lg);font-weight:var(--fw-bold);color:var(--navy);}
+.fav-agent__office{margin-top:6px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);color:var(--muted);}
+.fav-agent__call{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;height:52px;background:var(--navy);color:var(--white);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);border-radius:var(--r-ctrl);}
+.fav-agent__call:hover{background:var(--navy-hover);}
+.fav-agent__call svg{flex:none;}
+
+/* ---------------- сайдбар: «Замовити перегляд» ---------------- */
+.fav-form{background:var(--soft);padding:26px;border-radius:var(--r-card);}
+.fav-form__title{font-size:var(--fs-lg);letter-spacing:var(--ls-lg);font-weight:var(--fw-bold);color:var(--navy);}
+.fav-form__sub{margin-top:7px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);color:var(--muted);}
+.fav-form__fields{display:flex;flex-direction:column;gap:12px;margin-top:18px;}
+.fav-input{width:100%;border:1px solid var(--border-field);padding:14px 16px;font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--navy);background:var(--white);border-radius:var(--r-field);}
+.fav-input::placeholder{color:var(--muted);}
+.fav-input:focus{outline:none;border-color:var(--navy);}
+textarea.fav-input{resize:vertical;min-height:84px;font-family:var(--font-base);}
+.fav-submit{height:52px;border:none;background:var(--navy);color:var(--white);font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);border-radius:var(--r-ctrl);cursor:pointer;transition:background .15s;}
+.fav-submit:hover{background:var(--navy-hover);}
+
+/* ---------------- стрічка переглянутих / рекомендованих ---------------- */
+.fav-strip{margin-top:56px;}
+.fav-strip__title{font-size:var(--fs-h3);line-height:var(--lh-snug);letter-spacing:var(--ls-h3);font-weight:var(--fw-medium);color:var(--dark);margin-bottom:18px;}
+.fav-strip__track{display:flex;gap:20px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory;}
+/* ширина карток у стрічці задає модифікатор .card--strip (card.css) */

@@ -122,7 +122,7 @@ textarea.pp-input{resize:vertical;font-family:var(--font-base);}
 .pp-feed__tabs{display:flex;gap:28px;border-bottom:1px solid var(--line);margin-bottom:26px;flex-wrap:wrap;}
 .pp-feed__tab{border:none;background:none;cursor:pointer;font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);padding:0 0 14px;margin-bottom:-1px;white-space:nowrap;color:var(--muted);border-bottom:2px solid transparent;transition:color .15s,border-color .15s;}
 .pp-feed__tab.on{color:var(--dark);border-bottom-color:var(--navy);}
-.pp-feed__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.pp-feed__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:start;}
 
 .pp-fcard{display:block;background:var(--soft);overflow:hidden;border-radius:var(--r-card);}
 .pp-fcard__img{position:relative;aspect-ratio:16/10;background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;}

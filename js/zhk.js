@@ -109,26 +109,22 @@ if(!PROMO_TEXT.trim()) document.getElementById('zhk-promo').classList.add('is-hi
 /* ---------------- стрічки карток ---------------- */
 const FEED_PHOTOS = ['img/photos/residential-complex-dusk.jpg', 'img/photos/house-modern-exterior.jpg', 'img/photos/interior-marble-bathroom.jpg', 'img/photos/residential-complex-dusk.jpg'];
 
-const icRooms = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 15h18M6 11V8h5v3"/></svg>';
-const icArea  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 4H4v5M15 4h5v5M15 20h5v-5M9 20H4v-5"/></svg>';
-const icFloor = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20h4v-4h4v-4h4V8h4"/></svg>';
-const heartSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3.2 1 4 2.2.8-1.2 2-2.2 4-2.2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z"/></svg>';
-
+/* Картки стрічок — ЕТАЛОН .card через спільний білдер FCard (js/card.js).
+   Звичайні квартири → kind:apartment (стат-рядок); «схожі новобудови»
+   (ціна «від …») → kind:newbuild (підвал «Перший внесок» + «Детальніше»). */
 function fcardHTML(item, i){
-  return `<a class="pp-fcard" href="property.html">
-    <div class="pp-fcard__img">
-      <img src="${FEED_PHOTOS[i % FEED_PHOTOS.length]}" alt="">
-      <span class="pp-fcard__heart">${heartSvg}</span>
-    </div>
-    <div class="pp-fcard__body">
-      <div class="pp-fcard__price">${item.price}</div>
-      <div class="pp-fcard__cx">${item.complex}</div>
-      <div class="pp-fcard__ad">${item.addr}</div>
-      <div class="pp-fcard__row">
-        <span>${icRooms}${item.rooms}</span><span>${icArea}${item.area}</span><span>${icFloor}${item.floor}</span>
-      </div>
-    </div>
-  </a>`;
+  const nb = item.kind === 'newbuild';
+  return FCard.html({
+    kind: nb ? 'newbuild' : 'apartment',
+    badge: nb ? 'Новобудова' : 'Квартира',
+    price: item.price,
+    title: item.complex,
+    addr: item.addr,
+    img: FEED_PHOTOS[i % FEED_PHOTOS.length],
+    href: 'property.html',
+    installment: item.installment,
+    stats: nb ? null : [{ k:'rooms', text:item.rooms }, { k:'floor', text:item.floor }, { k:'area', text:item.area }]
+  }, { heart: 'out' });
 }
 function renderGrid(gridId, items){
   document.getElementById(gridId).innerHTML = items.map((it, i) => fcardHTML(it, i)).join('');
@@ -150,10 +146,10 @@ const FEED_TABS = [
   { label: 'У цьому ж районі',   complex: 'ЖК Перлина',       addr: 'Приморський р-н, вул. Генуезька' },
 ];
 const FEED_BASE = [
-  { price: 'від $ 48 000', rooms: '1–4 кімн.', area: 'від 36 м²', floor: '16 пов.' },
-  { price: 'від $ 61 000', rooms: '1–3 кімн.', area: 'від 41 м²', floor: '24 пов.' },
-  { price: 'від $ 73 000', rooms: '1–4 кімн.', area: 'від 44 м²', floor: '12 пов.' },
-  { price: 'від $ 92 000', rooms: '2–5 кімн.', area: 'від 58 м²', floor: '9 пов.' },
+  { kind: 'newbuild', price: 'від $ 48 000', installment: 'Перший внесок від 20%' },
+  { kind: 'newbuild', price: 'від $ 61 000', installment: 'Перший внесок від 20%' },
+  { kind: 'newbuild', price: 'від $ 73 000', installment: 'Перший внесок від 30%' },
+  { kind: 'newbuild', price: 'від $ 92 000', installment: 'Перший внесок від 25%' },
 ];
 function renderFeed(def){
   renderGrid('zhk-feed-grid', FEED_BASE.map(b => ({ ...b, complex: def.complex, addr: def.addr })));
@@ -177,6 +173,15 @@ renderGrid('zhk-recent-grid', [
   { price: '$ 210 000', complex: 'ЖК Arcadia Tower', rooms: '4 кімн.', area: '180 м²', floor: '6/12', addr: 'Приморський р-н, Одеса' },
   { price: '$ 170 000', complex: 'ЖК Перлина',      rooms: '2 кімн.', area: '88 м²',  floor: '3/16', addr: 'Приморський р-н, Одеса' },
 ]);
+
+/* серце на картках стрічок (ЕТАЛОН .card) — додає/прибирає з обраного */
+document.addEventListener('click', e => {
+  const h = e.target.closest('.card__heart');
+  if(!h) return;
+  e.preventDefault();
+  const on = h.classList.toggle('is-fav');
+  toast(on ? 'Додано до обраного' : 'Видалено з обраного');
+});
 
 /* ---------------- форма «Призначити огляд об'єкту» ---------------- */
 document.getElementById('zhk-form').addEventListener('submit', e => {

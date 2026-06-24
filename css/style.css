@@ -254,8 +254,14 @@ img{display:block;max-width:100%;}
 .card-list .name{margin-top:14px;}
 .card-list .addr{margin-top:8px;color:var(--muted);}
 .card-list .specs{margin-top:auto;padding-top:18px;display:flex;gap:18px;}
-.spec{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-lg);letter-spacing:var(--ls-lg);}
+.spec{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-lg);letter-spacing:var(--ls-lg);white-space:nowrap;}
 .spec img{width:20px;height:20px;display:block;}
+/* inline-іконка стату (диван/сходи/площа/ділянка) — успадковує колір тексту .spec */
+.spec-ic{display:inline-flex;color:var(--muted);}
+.spec-ic svg{width:18px;height:18px;display:block;}
+
+/* бейдж типу об'єкта поверх фото картки лістингу */
+.cat-badge{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;height:28px;padding:0 12px;background:var(--navy);color:var(--white);font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-medium);border-radius:var(--r-badge);}
 
 /* =================== ЕКСКЛЮЗИВНІ =================== */
 /* .excl завширшки рівно з .container (1344) і відцентрований — секція «в рамках
@@ -365,7 +371,10 @@ img{display:block;max-width:100%;}
 /* розділювач під блоком фільтрів */
 .cat-hr{height:1px;background:var(--line);}
 
-/* --- сортування --- */
+/* --- результати: лічильник зліва + сортування справа --- */
+.cat-resultrow{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:33px;margin-bottom:56px;}
+.cat-count{font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--muted);}
+.cat-count b{font-weight:var(--fw-medium);color:var(--dark);}
 .cat-sortrow{display:flex;justify-content:flex-end;margin-top:33px;margin-bottom:56px;}
 .sort-wrap{position:relative;}
 .sort-btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;background:var(--white);border:1px solid var(--ink-14);color:var(--dark);font-family:var(--font-base);font-weight:var(--fw-regular);font-size:var(--fs-base);line-height:var(--lh-none);letter-spacing:var(--ls-base);cursor:pointer;border-radius:var(--r-ctrl);}
@@ -376,8 +385,8 @@ img{display:block;max-width:100%;}
 .sort-menu li:hover{background:var(--soft);}
 .sort-menu li.sel{color:var(--navy);font-weight:var(--fw-medium);}
 
-/* --- сітка карток --- */
-.cat-grid{gap:48px 20px;}
+/* --- сітка карток (ЕТАЛОН .card — компактні; ряди вирівнюються згори) --- */
+.cat-grid{gap:32px 20px;align-items:start;}
 
 /* --- пагінація --- */
 .pagination{margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:20px;}

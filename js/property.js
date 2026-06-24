@@ -104,26 +104,19 @@ const FEED_TABS = [
   { label: 'Схожа площа',     complex: 'ЖК More',         addr: 'Приморський р-н, вул. Гагарінське плато' },
 ];
 
-const icRooms = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 15h18M6 11V8h5v3"/></svg>';
-const icArea  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 4H4v5M15 4h5v5M15 20h5v-5M9 20H4v-5"/></svg>';
-const icFloor = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20h4v-4h4v-4h4V8h4"/></svg>';
-const heartSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3.2 1 4 2.2.8-1.2 2-2.2 4-2.2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z"/></svg>';
-
+/* Картки стрічок — ЕТАЛОН .card через спільний білдер FCard (js/card.js).
+   Назва ЖК у назві картки, район/вулиця — в адресі; контурне серце. */
 function feedCardHTML(item, def, i){
-  return `<a class="pp-fcard" href="property.html">
-    <div class="pp-fcard__img">
-      <img src="${FEED_PHOTOS[i % FEED_PHOTOS.length]}" alt="">
-      <span class="pp-fcard__heart">${heartSvg}</span>
-    </div>
-    <div class="pp-fcard__body">
-      <div class="pp-fcard__price">${item.price}</div>
-      <div class="pp-fcard__cx">${def.complex}</div>
-      <div class="pp-fcard__ad">${def.addr}</div>
-      <div class="pp-fcard__row">
-        <span>${icRooms}${item.rooms}</span><span>${icArea}${item.area}</span><span>${icFloor}${item.floor}</span>
-      </div>
-    </div>
-  </a>`;
+  return FCard.html({
+    kind: 'apartment',
+    badge: 'Квартира',
+    price: item.price,
+    title: def.complex,
+    addr: def.addr,
+    img: FEED_PHOTOS[i % FEED_PHOTOS.length],
+    href: 'property.html',
+    stats: [{ k:'rooms', text:item.rooms }, { k:'floor', text:item.floor }, { k:'area', text:item.area }]
+  }, { heart: 'out' });
 }
 function renderFeed(gridId, def){
   document.getElementById(gridId).innerHTML = FEED_BASE.map((b, i) => feedCardHTML(b, def, i)).join('');
@@ -142,6 +135,15 @@ tabsBox.addEventListener('click', e => {
 });
 renderFeed('pp-feed-grid', FEED_TABS[0]);
 renderFeed('pp-recent-grid', { complex: 'ЖК More', addr: 'Приморський р-н, вул. Гагарінське плато' });
+
+/* серце на картках стрічок (ЕТАЛОН .card) — додає/прибирає з обраного */
+document.addEventListener('click', e => {
+  const h = e.target.closest('.card__heart');
+  if(!h) return;
+  e.preventDefault();
+  const on = h.classList.toggle('is-fav');
+  toast(on ? 'Додано до обраного' : 'Видалено з обраного');
+});
 
 /* ---------------- форма «Замовити перегляд» ---------------- */
 document.getElementById('pp-form').addEventListener('submit', e => {

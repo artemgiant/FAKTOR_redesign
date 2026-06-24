@@ -1,0 +1,78 @@
+/* =====================================================================
+   FAKTOR — .card · ЕТАЛОННА картка об'єкта (єдиний компонент для всього сайту)
+   Джерело дизайну 1:1: design_handoff_favorites/ («Обране»).
+   Використовується в: favorites.html (сітка + стрічка), catalog.html
+   (сітка лістингу), property.html / zhk.html (стрічки «Дивіться також»).
+
+   Структура:
+     .card
+       .card__media            фото 16/11, гострий кут; <img> або bg-заглушка
+         .card__badge          бейдж типу (navy 82%) зверху-ліворуч  [опц.]
+         .card__year           рік новобудови (білий бейдж)          [опц.]
+       .card__body
+         .card__top            ряд ціни + серце
+           .card__price        21px / bold / dark
+           (.card__from        «від» + ціна — для новобудови)
+           .card__heart        серце-кнопка (обране)                 [опц.]
+         .card__title          назва, 1 рядок ellipsis
+         .card__addr           адреса, 2 рядки clamp, фікс. висота
+         .card__stats          стат-рядок (золоті іконки)   — звичайні
+         .card__nbfoot         «Перший внесок» + «Детальніше» — новобудова
+
+   Модифікатори:
+     .card--strip   фіксована ширина для горизонтальних стрічок (280px)
+
+   Розміри — px-точні з прототипу; кольори/радіуси — через css/tokens.css.
+   ===================================================================== */
+.card{display:flex;flex-direction:column;cursor:pointer;transition:opacity .3s ease,transform .3s ease;color:inherit;}
+.card.is-removing{opacity:0;transform:scale(.95);}
+
+/* фото 16/11 — <img> накладається поверх bg-заглушки */
+.card__media{position:relative;aspect-ratio:16/11;background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;border-radius:var(--r-card);overflow:hidden;transition:opacity .18s;}
+.card__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.card:hover .card__media{opacity:.9;}
+
+/* бейдж типу — navy 82%, дрібний, гострий кут */
+.card__badge{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;padding:6px 11px;border-radius:var(--r-card);background:var(--navy-82);color:var(--white);font-size:11.5px;line-height:1;letter-spacing:.02em;font-weight:var(--fw-semibold);}
+
+/* рік новобудови — білий бейдж зверху-ліворуч (альтернатива .card__badge) */
+.card__year{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;padding:5px 11px;border-radius:var(--r-card);background:var(--white);color:var(--navy);font-size:13px;line-height:1;font-weight:var(--fw-bold);box-shadow:0 1px 4px var(--ink-14);}
+
+/* тіло */
+.card__body{flex:1;display:flex;flex-direction:column;padding-top:15px;}
+
+/* ряд ціни + серце */
+.card__top{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.card__price{font-size:21px;line-height:1.2;letter-spacing:-0.01em;font-weight:var(--fw-bold);color:var(--dark);white-space:nowrap;}
+.card:hover .card__price{text-decoration:underline;}
+
+/* «від» перед ціною новобудови */
+.card__from{display:flex;align-items:baseline;gap:6px;}
+.card__from-lbl{font-size:13px;color:var(--secondary);}
+
+/* серце-кнопка. За замовч. — контур navy (стан «не в обраному»);
+   .is-fav — залите серце (стан «в обраному», як на сторінці Обране) */
+.card__heart{flex:none;display:inline-grid;place-items:center;width:34px;height:34px;border:none;border-radius:50%;background:none;color:var(--navy);cursor:pointer;padding:0;margin:-4px -6px -4px 0;transition:transform .15s;}
+.card__heart:hover{transform:scale(1.1);}
+.card__heart svg{display:block;fill:none;stroke:var(--navy);}
+.card__heart.is-fav svg{fill:var(--navy);}
+
+/* назва — 1 рядок ellipsis */
+.card__title{margin-top:9px;font-size:15px;line-height:1.3;font-weight:var(--fw-semibold);color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* адреса — 2 рядки clamp, фікс. висота під вирівнювання рядів */
+.card__addr{margin-top:6px;font-size:13px;line-height:1.45;color:var(--addr);height:38px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* стат-рядок — золоті іконки, в один рядок, притиснутий донизу */
+.card__stats{margin-top:auto;padding-top:13px;display:flex;gap:12px;white-space:nowrap;}
+.card__stat{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:var(--fw-semibold);color:var(--dark);}
+.card__stat svg{flex:none;}
+.card__ic{color:var(--gold);}
+
+/* підвал новобудови — «Перший внесок» + «Детальніше ›» */
+.card__nbfoot{margin-top:auto;padding-top:13px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.card__pay{font-size:13px;font-weight:var(--fw-semibold);color:var(--gold-deep);white-space:nowrap;}
+.card__detail{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:var(--fw-bold);color:var(--navy);white-space:nowrap;}
+
+/* модифікатор: картка в горизонтальній стрічці */
+.card--strip{flex:0 0 280px;scroll-snap-align:start;}
