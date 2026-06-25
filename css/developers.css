@@ -14,10 +14,19 @@
 .dev-h1{ text-align:left; margin:16px 0 8px; }
 .dev-sub{ margin:0; max-width:680px; font-size:var(--fs-base); line-height:var(--lh-relaxed); color:var(--secondary); }
 
-/* рядок пошуку — пікер локацій обмеженої ширини, як у хендофі */
+/* рядок пошуку — пікер локацій обмеженої ширини, як у хендофі.
+   Оболонку поля (білий фон, hairline-межа, радіус 2px, висота) дає
+   .ff-mainrow .fk-field, який тут не діє (поле не в головному рядку).
+   Тож відтворюємо її локально на .ff-block, як у хендофі: 56px, біле,
+   межа #d7dce4, радіус 2px, без синього focus-glow. */
 .dev-search{ margin-top:24px; }
 .dev-search .dev-loc{ max-width:620px; flex:none; }
-.dev-search .fk-loc__field{ min-height:56px; }
+.dev-search .fk-loc__field{
+  min-height:56px; height:auto;
+  background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r);
+}
+.dev-search .fk-loc__field:focus-within,
+.dev-search .fk-loc__field.is-open{ border-color:var(--ff-fieldline); box-shadow:none; }
 
 /* лічильник результатів над сіткою */
 .dev-resultrow{ margin-top:28px; margin-bottom:18px; }
