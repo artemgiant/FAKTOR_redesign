@@ -73,9 +73,16 @@
 .ff-search{ flex:0 0 auto; height:var(--ff-h); padding:0 28px; border:none; border-radius:var(--ff-pill); background:var(--ff-navy); color:var(--white); font-family:var(--font-base); font-size:var(--fs-base); font-weight:var(--fw-bold); cursor:pointer; transition:background .15s; }
 .ff-search:hover{ background:var(--navy-hover); }
 
-/* ── РЯД КЕРУВАННЯ (скидання) ─────────────────────────────────────── */
-.ff-controls{ display:flex; align-items:center; justify-content:flex-end; gap:16px; flex-wrap:wrap; margin-top:16px; }
-.ff-reset{ border:none; background:none; color:var(--ff-navy); font-family:var(--font-base); font-size:var(--fs-sm); font-weight:var(--fw-bold); cursor:pointer; display:inline-flex; align-items:center; gap:7px; }
+/* ── РЯД ПОПУЛЯРНИХ ЗАПИТІВ (під головним рядком) ──────────────────────
+   Структура з хендофу: «Популярні запити:» · пресети-підбірки · «Скинути
+   фільтри» (притиснута праворуч). Пресет — пігулка-чип (стиль сайту); клік
+   ПЕРЕМИКАЄ відповідні поля й підсвічує активний (логіка у novobudovy-filters.js). */
+.ff-prerow{ display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin-top:16px; }
+.ff-prerow__label{ font-size:var(--fs-sm); font-weight:var(--fw-bold); color:var(--ff-navy); white-space:nowrap; margin-right:4px; }
+.ff-pre{ display:inline-flex; align-items:center; background:var(--field-2); color:var(--slate); border:1px solid var(--ff-line); border-radius:var(--ff-pill); padding:8px 16px; font-size:12.5px; font-weight:var(--fw-medium); text-decoration:none; transition:.15s; cursor:pointer; }
+.ff-pre:hover{ background:var(--ff-navy); border-color:var(--ff-navy); color:var(--white); }
+.ff-pre.is-on{ background:var(--ff-navy); border-color:var(--ff-navy); color:var(--white); font-weight:var(--fw-semibold); }
+.ff-reset{ margin-left:auto; border:none; background:none; color:var(--ff-navy); font-family:var(--font-base); font-size:var(--fs-sm); font-weight:var(--fw-bold); cursor:pointer; display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
 .ff-reset:hover{ color:var(--ff-muted); }
 
 /* ── ПАНЕЛЬ «ФІЛЬТРИ» (розкривна) ─────────────────────────────────── */
@@ -112,12 +119,6 @@
 .ff-selected-label{ font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--ff-muted); }
 .ff-selchip{ display:inline-flex; align-items:center; gap:7px; background:var(--ff-navy); color:var(--white); border-radius:var(--ff-pill); padding:7px 12px 7px 14px; font-size:12.5px; font-weight:var(--fw-semibold); }
 .ff-selchip button{ display:inline-flex; align-items:center; border:none; background:none; color:var(--white-82); cursor:pointer; padding:0; }
-
-/* ── ПОПУЛЯРНІ ПІДБІРКИ ───────────────────────────────────────────── */
-.ff-il-title{ font-size:var(--fs-sm); font-weight:var(--fw-bold); color:var(--ff-navy); margin:30px 0 13px; }
-.ff-il{ display:flex; flex-wrap:wrap; gap:9px; }
-.ff-il a{ display:inline-flex; align-items:center; background:var(--field-2); color:var(--slate); border:1px solid var(--ff-line); border-radius:var(--ff-pill); padding:8px 16px; font-size:12.5px; font-weight:var(--fw-medium); text-decoration:none; transition:.15s; cursor:pointer; }
-.ff-il a:hover{ background:var(--ff-navy); border-color:var(--ff-navy); color:var(--white); }
 
 /* Сторінка — фіксована канва 1440px зі zoom-підгонкою (js/responsive.js), тож
    блок завжди в десктоп-розкладці (4 колонки). Власних брейкпоінтів немає —

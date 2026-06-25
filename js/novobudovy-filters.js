@@ -3,9 +3,11 @@
    Самодостатній модуль, склонований із js/catalog-filters.js та
    спеціалізований під новобудови: головний рядок (тип угоди ·
    тип нерухомості · ЛОКАЦІЯ · ВАЛЮТА+ціна · «Фільтри» · «Знайти»),
-   розкривна панель ЖК-фільтрів (Категорія комплексу, Клас житла,
-   Стан, Рік здачі, Опалення, Стіни, Поверховість, Площа, Ціна за м²,
-   Забудовник, Кількість кімнат, Особливості), обрані чипи та ЖК-підбірки.
+   рядок «Популярні запити» з пресетами та скиданням, розкривна панель
+   ЖК-фільтрів (12 полів за хендофом «Каталог новобудов FAKTOR»: Категорія
+   комплексу, Тип об’єкта, Клас житла, Стан, Рік здачі, Поверховість,
+   Опалення, Площа, Ціна за м², Забудовник, Кількість кімнат, Особливості)
+   та обрані чипи.
 
    Рендериться повністю у #ff-novobudovy-filters. Стилі — спільні
    css/catalog-filters.css + css/style.css (.fk-loc) + кілька правил
@@ -28,8 +30,6 @@
   var HCLASS = ['Будь-який', 'Економ', 'Комфорт', 'Бізнес', 'Преміум / Люкс', 'Клас A', 'Клас B', 'Клас C', 'Курортний'];
   var CONDITION = ['Будь-який', 'Чорнова', 'Передчистова', 'З ремонтом', 'Під ключ'];
   var HEATING = ['Будь-яке', 'Централізоване', 'Автономне', 'Індивідуальне', 'Тепла підлога'];
-  var WALLS = ['Будь-які', 'Цегла', 'Моноліт', 'Моноліт-цегла', 'Панель', 'Газоблок'];
-  var STATUS = ['Будь-який', 'Будується', 'Здається', 'Зданий'];
   var DEVELOPERS = ['Будь-який', 'KADORR Group', 'Гефест', 'Stikon', 'Будова', 'Інкор Груп', 'Альтаїр', 'Рідна Оселя'];
   var YEAR_OPTS = ['2025', '2026', '2027', '2028', '2029+'];
   var FEATURES = ['Генератор', 'Резервне живлення', 'Укриття', 'єОселя (3%/7%)', 'єВідновлення', 'Розтермінування', 'Автономне опалення', 'Закрита територія', 'Підземний паркінг', 'Охорона / Відео', 'Консьєрж / Ресепшн', 'Зарядка електрокарів', 'Фітнес / Басейн', 'Дитячий майданчик', 'Панорамний вид', 'Перша лінія моря', 'Комерція в будинку', 'Двір без машин', 'Вид на море', 'Вид на парк', 'Біля школи', 'Біля дитсадка'];
@@ -42,17 +42,19 @@
     floors:    { from: ['1', '5', '9'], to: ['16', '24', '30'] }
   };
 
-  // набір ЖК-фільтрів у розкривній панелі (рік здачі — чипи-роки)
+  // Рік здачі — у хендофі це звичайний селект «Будь-який», а не чипи-роки
+  var YEAR_SELECT = ['Будь-який'].concat(YEAR_OPTS);
+
+  // набір ЖК-фільтрів у розкривній панелі — склад і порядок як у хендофі
+  // («Каталог новобудов FAKTOR»): 12 полів, без «Статус будівництва» / «Матеріал стін».
   var FIELDS = [
     { id: 'category',  kind: 'select', label: 'Категорія комплексу', options: CATEGORY },
     { id: 'ptype2',    kind: 'select', label: 'Тип об’єкта', options: ['Будь-який', 'Квартира', 'Пентхаус', 'Студія', 'Апартаменти', 'Дім', 'Таунхаус', 'Котедж', 'Вілла', 'Офісне', 'Торгове'] },
     { id: 'hclass',    kind: 'select', label: 'Клас житла', options: HCLASS },
     { id: 'condition', kind: 'select', label: 'Стан', options: CONDITION },
-    { id: 'years',     kind: 'years',  label: 'Рік здачі' },
-    { id: 'status',    kind: 'select', label: 'Статус будівництва', options: STATUS },
+    { id: 'year',      kind: 'select', label: 'Рік здачі', options: YEAR_SELECT },
     { id: 'floors',    kind: 'range',  label: 'Поверховість' },
     { id: 'heating',   kind: 'select', label: 'Опалення', options: HEATING },
-    { id: 'walls',     kind: 'select', label: 'Матеріал стін', options: WALLS },
     { id: 'area',      kind: 'range',  label: 'Площа, м²' },
     { id: 'pricePerM', kind: 'range',  label: 'Ціна за м², $' },
     { id: 'developer', kind: 'select', label: 'Забудовник', options: DEVELOPERS },
@@ -60,8 +62,20 @@
     { id: 'features',  kind: 'tags',   label: 'Особливості', tags: FEATURES }
   ];
 
-  // ЖК-підбірки (популярні запити з хендофу). buy/rent однакові — є лише продаж.
-  var INTERLINK_NB = ['Елітні ЖК', 'Біля моря', 'З ремонтом', 'Розтермінування', 'єОселя', 'З укриттям', 'Клубні будинки', 'Апартаменти', 'Здані ЖК', 'Однокімнатні'];
+  // Популярні запити (з хендофу «Каталог новобудов FAKTOR»). Це готові пресети
+  // фільтрів: клік ПЕРЕМИКАЄ відповідні поля й підсвічує активний пресет (без
+  // авто-пошуку) — як у дизайні. kind: 'tags' | 'rooms' | 'ptype' | <id селекта>.
+  var PRESETS = [
+    { label: 'Елітні ЖК',       kind: 'hclass',    vals: ['Преміум / Люкс'] },
+    { label: 'Біля моря',       kind: 'tags',      vals: ['Перша лінія моря'] },
+    { label: 'З ремонтом',      kind: 'condition', vals: ['З ремонтом', 'Під ключ'] },
+    { label: 'Розтермінування', kind: 'tags',      vals: ['Розтермінування'] },
+    { label: 'єОселя',          kind: 'tags',      vals: ['єОселя (3%/7%)'] },
+    { label: 'З укриттям',      kind: 'tags',      vals: ['Укриття'] },
+    { label: 'Клубні будинки',  kind: 'category',  vals: ['Клубний будинок'] },
+    { label: 'Апартаменти',     kind: 'ptype',     vals: ['Апартаменти'] },
+    { label: 'Однокімнатні',    kind: 'rooms',     vals: ['1'] }
+  ];
 
   // ── Дані пікера локацій (ідентичні головній / каталогу) ─────────────
   var LOC_CATS = [['all', 'Усі'], ['district', 'Райони'], ['street', 'Вулиці'], ['micro', 'Мікрорайони'], ['complex', 'ЖК'], ['developer', 'Забудовники']];
@@ -96,7 +110,7 @@
     opts = opts || {};
     var state = Object.assign({
       deal:'Купити', ptype:'Усі типи', currency:'USD', priceFrom:'', priceTo:'',
-      rooms:[], tags:[], years:[], ranges:{}, selects:{}, addOpen:false, page:1, openSel:null,
+      rooms:[], tags:[], ranges:{}, selects:{}, preset:'', addOpen:false, page:1, openSel:null,
       // пікер локацій
       location:'', locOpen:false, locMode:'local', locCat:'all', locSel:[], locPath:[], chipVisible:99
     }, opts.initial || {});
@@ -109,7 +123,7 @@
       return base + (state.page>1 ? ' — Сторінка ' + state.page : '');
     }
     function crumbs(){ var a=[{label:'Новобудови'}]; if(state.ptype && state.ptype!=='Усі типи') a.push({label:state.ptype}); return a; }
-    function addCount(){ var n=state.rooms.length+state.tags.length+state.years.length; Object.keys(state.ranges).forEach(function(k){var r=state.ranges[k]; if(r&&(r.from||r.to)) n++;}); Object.keys(state.selects).forEach(function(k){ n+=(state.selects[k]||[]).length; }); return n; }
+    function addCount(){ var n=state.rooms.length+state.tags.length; Object.keys(state.ranges).forEach(function(k){var r=state.ranges[k]; if(r&&(r.from||r.to)) n++;}); Object.keys(state.selects).forEach(function(k){ n+=(state.selects[k]||[]).length; }); return n; }
 
     // ── пікер локацій (логіка з каталогу) ──────────────────────────────
     function kindOf(label){
@@ -222,11 +236,10 @@
     function addField(f){
       var inner;
       if(f.kind==='rooms') inner='<div class="ff-chips">'+ROOM_OPTS.map(function(r){ return '<button type="button" class="ff-chip'+(state.rooms.indexOf(r)>-1?' active':'')+'" data-action="room" data-val="'+r+'">'+r+'</button>'; }).join('')+'</div>';
-      else if(f.kind==='years') inner='<div class="ff-chips">'+YEAR_OPTS.map(function(y){ return '<button type="button" class="ff-chip'+(state.years.indexOf(y)>-1?' active':'')+'" data-action="year" data-val="'+y+'">'+y+'</button>'; }).join('')+'</div>';
       else if(f.kind==='tags') inner='<div class="ff-chips">'+f.tags.map(function(t){ return '<button type="button" class="ff-chip'+(state.tags.indexOf(t)>-1?' active':'')+'" data-action="tag" data-val="'+esc(t)+'">'+esc(t)+'</button>'; }).join('')+'</div>';
       else if(f.kind==='select') inner=multiSelect(f);
       else inner=rangeField(f);
-      var full = (f.kind==='rooms'||f.kind==='years') ? ' ff-field-span2' : ((f.kind==='tags') ? ' ff-field-full' : '');
+      var full = (f.kind==='rooms') ? ' ff-field-span2' : ((f.kind==='tags') ? ' ff-field-full' : '');
       return '<div class="ff-add-field'+full+'"><div class="ff-fieldlabel">'+esc(f.label)+'</div>'+inner+'</div>';
     }
     function datalists(){
@@ -238,7 +251,6 @@
       state.locSel.forEach(function(l){ out.push({label:l,rm:'loc:'+l}); });
       if(!state.locSel.length && state.location.trim()) out.push({label:state.location.trim(),rm:'location'});
       if(state.priceFrom||state.priceTo){ var cu=state.currency; var t=state.priceFrom&&state.priceTo?'Ціна '+state.priceFrom+'–'+state.priceTo+' '+cu:(state.priceFrom?'Ціна від '+state.priceFrom+' '+cu:'Ціна до '+state.priceTo+' '+cu); out.push({label:t,rm:'price'}); }
-      state.years.forEach(function(y){ out.push({label:'Здача '+y,rm:'year:'+y}); });
       state.rooms.forEach(function(r){ out.push({label:r==='5+'?'5+ кімн.':r+' кімн.',rm:'room:'+r}); });
       FIELDS.forEach(function(f){
         if(f.kind==='range'){ var r=state.ranges[f.id]||{}, fr=(r.from||'').toString().trim(), to=(r.to||'').toString().trim(); if(fr||to){ var lbl=cleanLabel(f.label), u=unitFor(f), us=u?' '+u:''; out.push({label: fr&&to?lbl+' '+fr+'–'+to+us:(fr?lbl+' від '+fr+us:lbl+' до '+to+us), rm:'range:'+f.id}); } }
@@ -271,12 +283,13 @@
           '<button class="ff-more" data-action="toggle-add">'+ICONS.sliders+'Фільтри'+(addCount()?'<span class="ff-badge">'+addCount()+'</span>':'')+'</button>'+
           '<button class="ff-search" data-action="search">Знайти</button>'+
         '</div>'+
-        '<div class="ff-controls">'+
-          '<button class="ff-reset" data-action="reset">'+ICONS.reset+'Скинути всі фільтри</button>'+
+        '<div class="ff-prerow">'+
+          '<span class="ff-prerow__label">Популярні запити:</span>'+
+          PRESETS.map(function(p){ return '<a href="#" class="ff-pre'+(state.preset===p.label?' is-on':'')+'" data-action="preset" data-val="'+esc(p.label)+'">'+esc(p.label)+'</a>'; }).join('')+
+          '<button class="ff-reset" data-action="reset">'+ICONS.x+'Скинути фільтри</button>'+
         '</div>'+
         '<div class="ff-add'+(state.addOpen?' open':'')+'"><div class="ff-add-inner"><div class="ff-addgrid">'+FIELDS.map(addField).join('')+'</div></div></div>'+
-        (selectedChips().length?'<div class="ff-selected"><span class="ff-selected-label">Обрані фільтри:</span>'+selectedChips().map(function(c){ return '<span class="ff-selchip">'+esc(c.label)+'<button data-action="remove" data-rm="'+esc(c.rm)+'">'+ICONS.x+'</button></span>'; }).join('')+'</div>':'')+
-        '<div class="ff-il-title">Популярні запити</div><div class="ff-il">'+INTERLINK_NB.map(function(t){ return '<a href="#" data-action="interlink" data-val="'+esc(t)+'">'+esc(t)+'</a>'; }).join('')+'</div>';
+        (selectedChips().length?'<div class="ff-selected"><span class="ff-selected-label">Обрані фільтри:</span>'+selectedChips().map(function(c){ return '<span class="ff-selchip">'+esc(c.label)+'<button data-action="remove" data-rm="'+esc(c.rm)+'">'+ICONS.x+'</button></span>'; }).join('')+'</div>':'');
 
       var ae=document.activeElement, fk=ae&&ae.getAttribute&&ae.getAttribute('data-focus'), pos=fk?ae.selectionStart:null;
       root.innerHTML = html;
@@ -287,20 +300,21 @@
 
     function toggleSel(id,v){ var a=(state.selects[id]||[]).slice(), i=a.indexOf(v); if(i>-1) a.splice(i,1); else a.push(v); state.selects[id]=a; }
 
-    // ЖК-підбірки: застосувати готовий набір фільтрів і пошукати
-    function applyInterlink(label){
-      var setSel=function(id,v){ var a=(state.selects[id]||[]).slice(); if(a.indexOf(v)<0) a.push(v); state.selects[id]=a; };
-      var addTag=function(t){ if(state.tags.indexOf(t)<0) state.tags=state.tags.concat([t]); };
-      if(label==='Елітні ЖК') setSel('hclass','Преміум / Люкс');
-      else if(label==='Біля моря') addTag('Перша лінія моря');
-      else if(label==='З ремонтом'){ setSel('condition','З ремонтом'); setSel('condition','Під ключ'); }
-      else if(label==='Розтермінування') addTag('Розтермінування');
-      else if(label==='єОселя') addTag('єОселя (3%/7%)');
-      else if(label==='З укриттям') addTag('Укриття');
-      else if(label==='Клубні будинки') setSel('category','Клубний будинок');
-      else if(label==='Апартаменти'){ state.ptype='Апартаменти'; }
-      else if(label==='Здані ЖК') setSel('status','Зданий');
-      else if(label==='Однокімнатні'){ if(state.rooms.indexOf('1')<0) state.rooms=state.rooms.concat(['1']); }
+    // Популярні запити: клік ПЕРЕМИКАЄ пресет (вмикає / вимикає його поля) і
+    // підсвічує активний — як у хендофі. Повторний клік по активному знімає його.
+    function presetByLabel(label){ for(var i=0;i<PRESETS.length;i++){ if(PRESETS[i].label===label) return PRESETS[i]; } return null; }
+    function applyPreset(label){
+      var p=presetByLabel(label); if(!p) return;
+      var active = state.preset===label;
+      var setSel=function(id,v,on){ var a=(state.selects[id]||[]).slice(), i=a.indexOf(v); if(on && i<0) a.push(v); if(!on && i>-1) a.splice(i,1); state.selects[id]=a; };
+      var setTag=function(t,on){ var i=state.tags.indexOf(t); if(on && i<0) state.tags=state.tags.concat([t]); if(!on && i>-1) state.tags=state.tags.filter(function(x){return x!==t;}); };
+      var setRoom=function(r,on){ var i=state.rooms.indexOf(r); if(on && i<0) state.rooms=state.rooms.concat([r]); if(!on && i>-1) state.rooms=state.rooms.filter(function(x){return x!==r;}); };
+      var on=!active;
+      if(p.kind==='tags') p.vals.forEach(function(v){ setTag(v,on); });
+      else if(p.kind==='rooms') p.vals.forEach(function(v){ setRoom(v,on); });
+      else if(p.kind==='ptype') state.ptype = on ? p.vals[0] : 'Усі типи';
+      else p.vals.forEach(function(v){ setSel(p.kind,v,on); });
+      state.preset = active ? '' : label;
       state.page=1; render();
       if(opts.onSearch) opts.onSearch(snapshot());
     }
@@ -310,7 +324,6 @@
       else if(rm==='location') state.location='';
       else if(rm.indexOf('loc:')===0){ removeLocChip(rm.slice(4)); return; }
       else if(rm==='price'){ state.priceFrom=''; state.priceTo=''; }
-      else if(rm.indexOf('year:')===0) state.years=state.years.filter(function(x){return x!==rm.slice(5);});
       else if(rm.indexOf('room:')===0) state.rooms=state.rooms.filter(function(x){return x!==rm.slice(5);});
       else if(rm.indexOf('tag:')===0) state.tags=state.tags.filter(function(x){return x!==rm.slice(4);});
       else if(rm.indexOf('range:')===0) delete state.ranges[rm.slice(6)];
@@ -331,11 +344,10 @@
       if(a==='loc-row'){ var lbl=t.getAttribute('data-val'); var data=locRows().filter(function(r){return !r.header;}).find(function(r){return r.label===lbl;}); if(data) onLocRow(data); return; }
       // решта
       if(a==='search'){ e.preventDefault(); state.page=1; if(opts.onSearch) opts.onSearch(snapshot()); return; }
-      if(a==='interlink'){ e.preventDefault(); applyInterlink(t.getAttribute('data-val')); return; }
+      if(a==='preset'){ e.preventDefault(); applyPreset(t.getAttribute('data-val')); return; }
       if(a==='toggle-add'){ state.addOpen=!state.addOpen; render(); }
-      else if(a==='reset'){ Object.assign(state,{deal:'Купити',ptype:'Усі типи',currency:'USD',location:'',priceFrom:'',priceTo:'',rooms:[],tags:[],years:[],ranges:{},selects:{},openSel:null,page:1,locSel:[],locPath:[],locMode:'local',locCat:'all',chipVisible:99}); render(); if(opts.onReset) opts.onReset(snapshot()); }
+      else if(a==='reset'){ Object.assign(state,{deal:'Купити',ptype:'Усі типи',currency:'USD',location:'',priceFrom:'',priceTo:'',rooms:[],tags:[],ranges:{},selects:{},preset:'',openSel:null,page:1,locSel:[],locPath:[],locMode:'local',locCat:'all',chipVisible:99}); render(); if(opts.onReset) opts.onReset(snapshot()); }
       else if(a==='room'){ var r=t.getAttribute('data-val'); state.rooms=state.rooms.indexOf(r)>-1?state.rooms.filter(function(x){return x!==r;}):state.rooms.concat([r]); render(); }
-      else if(a==='year'){ var y=t.getAttribute('data-val'); state.years=state.years.indexOf(y)>-1?state.years.filter(function(x){return x!==y;}):state.years.concat([y]); render(); }
       else if(a==='tag'){ var g=t.getAttribute('data-val'); state.tags=state.tags.indexOf(g)>-1?state.tags.filter(function(x){return x!==g;}):state.tags.concat([g]); render(); }
       else if(a==='sel-toggle'){ var id=t.getAttribute('data-sel'); state.openSel=state.openSel===id?null:id; render(); }
       else if(a==='opt'){ toggleSel(t.getAttribute('data-sel'), t.getAttribute('data-val')); render(); }
