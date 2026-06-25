@@ -70,7 +70,9 @@
     } else if (item.badge) {
       badge = `<span class="card__badge">${item.badge}</span>`;
     }
-    const dev = item.dev
+    // оверлей забудовника на фото — лише для об'єктів (новобудови тощо);
+    // на самій картці забудовника його немає (назва вже в тілі картки).
+    const dev = item.dev && !isDev
       ? `<span class="card__dev"><img src="${item.dev.icon}" width="24" height="24" alt=""><b>${item.dev.name}</b></span>`
       : '';
     const img = item.img ? `<img src="${item.img}" alt="${(item.title || '') + ' — ' + (item.addr || '')}" loading="lazy">` : '';

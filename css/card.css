@@ -43,7 +43,7 @@
 /* лого/назва забудовника — біле коло зверху-праворуч (для новобудов).
    text-align:center + block-діти гарантують спільну горизонтальну вісь
    іконки й тексту (flex align-items давав зсув на пів-ширини). */
-.card__dev{position:absolute;top:12px;right:12px;z-index:2;width:58px;height:58px;border-radius:50%;background:var(--white);box-shadow:0 4px 14px var(--ink-14);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;}
+.card__dev{position:absolute;top:12px;right:12px;z-index:2;width:58px;height:58px;border-radius:0;background:var(--white);box-shadow:0 4px 14px var(--ink-14);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;}
 /* position:static — скидаємо absolute від ширшого .card__media img, інакше
    іконка липне в кут кола замість центрування по flex. */
 .card__dev img{position:static;inset:auto;width:24px;height:24px;display:block;flex:none;}
@@ -55,7 +55,6 @@
 /* ряд ціни + серце */
 .card__top{display:flex;align-items:center;justify-content:space-between;gap:10px;}
 .card__price{font-size:21px;line-height:1.2;letter-spacing:-0.01em;font-weight:var(--fw-bold);color:var(--dark);white-space:nowrap;}
-.card:hover .card__price{text-decoration:underline;}
 
 /* «від» перед ціною новобудови */
 .card__from{display:flex;align-items:baseline;gap:6px;}
