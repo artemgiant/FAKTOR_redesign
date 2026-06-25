@@ -12,28 +12,35 @@
    тож блок виглядає як решта сайту (navy, поля фільтрів, гострі кути).
    ===================================================================== */
 .ff-block{
-  /* палітра компонента → дизайн-токени сайту */
-  --ff-navy:var(--navy);
-  --ff-field:var(--field-2);
-  --ff-muted:var(--muted);
-  --ff-faint:var(--ink-40);
-  --ff-line:var(--line);
-  --ff-border:var(--ink-12);
-  --ff-r:var(--r-field);     /* поля — гострі кути, як .fld2 */
-  --ff-pill:var(--r-pill);   /* чипи / CTA — пігулка */
-  --ff-h:48px;               /* висота контролів — як .fld2 / .btn каталогу */
-  --ff-fborder:1px solid var(--ink-08); /* хайрлайн полів — як .fld2 */
-  color:var(--ff-navy); padding:8px 0 4px;
+  /* Палітра БЛОКУ ФІЛЬТРІВ — 1:1 із хендофом «Каталог новобудов FAKTOR».
+     Це локальні дизайн-токени саме цього компонента (не глобальні з tokens.css):
+     блок свідомо відтворює макет піксель-у-піксель, тож кольори/межі/радіуси
+     взяті з .dc.html. Решта сайту далі тягне свої значення з tokens.css. */
+  --ff-navy:#001738;          /* бренд-navy хендофу (темніший за сайтовий) */
+  --ff-ink:#141414;
+  --ff-muted:#5b6470;         /* вторинний текст, активні крихти */
+  --ff-faint:#9aa1ad;         /* плейсхолдери, лейбли полів, breadcrumb */
+  --ff-field:#fff;            /* у макеті всі поля БІЛІ */
+  --ff-fieldline:#d7dce4;     /* межа полів */
+  --ff-line:#eef0f3;          /* розділювач над панеллю «Фільтри» */
+  --ff-border:#d7dce4;        /* межа кнопки «Фільтри» */
+  --ff-chip:#e7eaef;          /* неактивний чип (кімнати / особливості) */
+  --ff-sep:#c2c8d2;           /* › у breadcrumb */
+  --ff-r:2px;                 /* поля — радіус 2px, як у макеті */
+  --ff-pill:999px;            /* кругла пігулка — чипи / обрані фільтри */
+  --ff-h:52px;                /* висота контролів головного рядка */
+  --ff-fborder:1px solid var(--ff-fieldline);
+  color:var(--ff-navy); font-family:var(--font-base); padding:8px 0 4px;
 }
 .ff-block *{ box-sizing:border-box; }
 .ff-block__inner{ width:var(--content); margin:0 auto; }
 
-.ff-crumbs{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:var(--fs-sm); letter-spacing:var(--ls-sm); color:var(--ff-faint); }
+.ff-crumbs{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:13px; color:var(--ff-faint); }
 .ff-crumbs a{ color:var(--ff-faint); text-decoration:none; }
 .ff-crumbs a.current{ color:var(--ff-muted); font-weight:var(--fw-semibold); cursor:default; }
-.ff-crumbs .sep{ color:var(--ink-28); }
-.ff-crumbs img{ height:13px; opacity:.9; }
-.ff-h1{ margin:18px 0 26px; font-size:30px; font-weight:var(--fw-bold); letter-spacing:-.01em; text-align:center; }
+.ff-crumbs .sep{ color:var(--ff-sep); }
+.ff-crumbs img{ height:14px; opacity:.9; }
+.ff-h1{ margin:0 0 24px; font-size:30px; font-weight:800; letter-spacing:-.01em; text-align:center; }
 
 /* ── ГОЛОВНИЙ РЯДОК ───────────────────────────────────────────────── */
 .ff-mainrow{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
@@ -41,48 +48,48 @@
 /* сегмент-селект (тип угоди / категорія / валюта) */
 .ff-seg{ position:relative; min-width:0; height:var(--ff-h); background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r); }
 .ff-seg--deal{ flex:0 0 116px; }
-.ff-seg--cat{ flex:1 1 130px; }
-.ff-seg select{ appearance:none; -webkit-appearance:none; width:100%; height:100%; border:none; background:transparent; font-family:var(--font-base); font-size:var(--fs-base); font-weight:var(--fw-semibold); color:var(--ff-navy); padding:0 30px 0 16px; cursor:pointer; }
+.ff-seg--cat{ flex:1 1 120px; }
+.ff-seg select{ appearance:none; -webkit-appearance:none; width:100%; height:100%; border:none; background:transparent; font-family:var(--font-base); font-size:13.5px; font-weight:var(--fw-semibold); color:var(--ff-navy); padding:0 30px 0 16px; cursor:pointer; }
 .ff-seg .ff-chev{ position:absolute; right:11px; top:50%; transform:translateY(-50%); pointer-events:none; }
 
-/* пікер локацій — підгонка спільних .fk-* до висоти/палітри каталогу */
+/* пікер локацій — підгонка спільних .fk-* до висоти/палітри хендофу */
 .ff-mainrow .fk-loc{ flex:2 1 150px; min-width:0; }
-.ff-mainrow .fk-field{ height:var(--ff-h); background:var(--ff-field); border:var(--ff-fborder); }
-.ff-mainrow .fk-field:focus-within,.ff-mainrow .fk-field.is-open{ border-color:var(--ink-18); box-shadow:none; }
-.ff-mainrow .fk-in{ font-size:var(--fs-sm); color:var(--ff-navy); }
+.ff-mainrow .fk-field{ height:var(--ff-h); background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r); }
+.ff-mainrow .fk-field:focus-within,.ff-mainrow .fk-field.is-open{ border-color:var(--ff-fieldline); box-shadow:none; }
+.ff-mainrow .fk-in{ font-size:13.5px; color:var(--ff-navy); }
+.ff-mainrow .fk-in::placeholder{ color:var(--ff-faint); }
 .ff-mainrow .fk-loc__in{ min-width:50px; }
 
 /* блок ціни: валюта + два поля */
-.ff-price{ flex:1 1 150px; min-width:0; display:flex; align-items:center; height:var(--ff-h); background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r); transition:border-color .15s; }
-.ff-price:focus-within{ border-color:var(--ink-18); }
+.ff-price{ flex:1 1 180px; min-width:0; display:flex; align-items:center; height:var(--ff-h); background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r); }
 .ff-price .ff-seg--cur{ flex:0 0 72px; height:100%; border:none; background:transparent; }
 .ff-price .ff-seg--cur select{ padding:0 24px 0 14px; }
 .ff-price .ff-seg--cur .ff-chev{ right:8px; }
-.ff-price-div{ width:1px; height:24px; background:var(--ink-12); flex:none; }
-.ff-price .ff-in{ width:0; flex:1; min-width:0; padding:0 10px; font-size:var(--fs-sm); color:var(--ff-navy); }
+.ff-price-div{ width:1px; height:24px; background:var(--ff-fieldline); flex:none; }
+.ff-price .ff-in{ width:0; flex:1; min-width:0; padding:0 10px; font-size:13px; color:var(--ff-navy); }
 
-.ff-in{ flex:1; min-width:0; border:none; background:transparent; font-family:var(--font-base); font-size:var(--fs-sm); color:var(--ff-navy); }
+.ff-in{ flex:1; min-width:0; border:none; background:transparent; font-family:var(--font-base); font-size:13.5px; color:var(--ff-navy); }
 .ff-in::placeholder{ color:var(--ff-faint); }
 .ff-in:focus{ outline:none; }
-.ff-dash{ color:var(--ink-28); }
+.ff-dash{ color:#aeb6c2; }
 
-/* «Фільтри» + «Знайти» */
-.ff-more{ position:relative; flex:0 0 auto; display:inline-flex; align-items:center; gap:9px; height:var(--ff-h); padding:0 14px; border:1px solid var(--ff-border); border-radius:var(--ff-r); background:var(--white); color:var(--ff-navy); font-family:var(--font-base); font-size:var(--fs-sm); font-weight:var(--fw-semibold); cursor:pointer; transition:border-color .15s,background .15s; }
-.ff-more:hover{ border-color:var(--ink-18); background:var(--soft); }
-.ff-badge{ display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 6px; border-radius:var(--ff-pill); background:var(--ff-navy); color:var(--white); font-size:11px; font-weight:var(--fw-bold); }
-.ff-search{ flex:0 0 auto; height:var(--ff-h); padding:0 28px; border:none; border-radius:var(--ff-pill); background:var(--ff-navy); color:var(--white); font-family:var(--font-base); font-size:var(--fs-base); font-weight:var(--fw-bold); cursor:pointer; transition:background .15s; }
-.ff-search:hover{ background:var(--navy-hover); }
+/* «Фільтри» + «Знайти» — обидві кнопки з гострими кутами (radius 2px), як у макеті */
+.ff-more{ position:relative; flex:0 0 auto; display:inline-flex; align-items:center; gap:9px; height:var(--ff-h); padding:0 14px; border:1px solid var(--ff-border); border-radius:var(--ff-r); background:#fff; color:var(--ff-navy); font-family:var(--font-base); font-size:13.5px; font-weight:var(--fw-semibold); cursor:pointer; transition:border-color .15s,background .15s; }
+.ff-more:hover{ border-color:#bcc4d0; background:#fafbfc; }
+.ff-badge{ display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 6px; border-radius:999px; background:var(--ff-navy); color:#fff; font-size:11px; font-weight:var(--fw-bold); }
+.ff-search{ flex:0 0 auto; height:var(--ff-h); padding:0 24px; border:none; border-radius:var(--ff-r); background:var(--ff-navy); color:#fff; font-family:var(--font-base); font-size:13.5px; font-weight:var(--fw-bold); letter-spacing:.02em; text-transform:uppercase; cursor:pointer; transition:background .15s; }
+.ff-search:hover{ background:#062a5c; }
 
 /* ── РЯД ПОПУЛЯРНИХ ЗАПИТІВ (під головним рядком) ──────────────────────
-   Структура з хендофу: «Популярні запити:» · пресети-підбірки · «Скинути
-   фільтри» (притиснута праворуч). Пресет — пігулка-чип (стиль сайту); клік
-   ПЕРЕМИКАЄ відповідні поля й підсвічує активний (логіка у novobudovy-filters.js). */
-.ff-prerow{ display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin-top:16px; }
-.ff-prerow__label{ font-size:var(--fs-sm); font-weight:var(--fw-bold); color:var(--ff-navy); white-space:nowrap; margin-right:4px; }
-.ff-pre{ display:inline-flex; align-items:center; background:var(--field-2); color:var(--slate); border:1px solid var(--ff-line); border-radius:var(--ff-pill); padding:8px 16px; font-size:12.5px; font-weight:var(--fw-medium); text-decoration:none; transition:.15s; cursor:pointer; }
-.ff-pre:hover{ background:var(--ff-navy); border-color:var(--ff-navy); color:var(--white); }
-.ff-pre.is-on{ background:var(--ff-navy); border-color:var(--ff-navy); color:var(--white); font-weight:var(--fw-semibold); }
-.ff-reset{ margin-left:auto; border:none; background:none; color:var(--ff-navy); font-family:var(--font-base); font-size:var(--fs-sm); font-weight:var(--fw-bold); cursor:pointer; display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
+   1:1 із хендофом: «Популярні запити:» · пресети-текстові посилання ·
+   «Скинути фільтри» (притиснута праворуч). Клік по пресету ПЕРЕМИКАЄ
+   відповідні поля й підсвічує активний (логіка у novobudovy-filters.js). */
+.ff-prerow{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:16px; }
+.ff-prerow__label{ font-size:13.5px; font-weight:var(--fw-bold); color:var(--ff-navy); white-space:nowrap; }
+.ff-pre{ text-decoration:none; font-size:13.5px; font-weight:var(--fw-semibold); color:var(--ff-muted); transition:color .15s; cursor:pointer; white-space:nowrap; }
+.ff-pre:hover{ color:var(--ff-navy); }
+.ff-pre.is-on{ color:var(--ff-navy); }
+.ff-reset{ margin-left:auto; border:none; background:none; color:var(--ff-navy); font-family:var(--font-base); font-size:13.5px; font-weight:var(--fw-bold); cursor:pointer; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; }
 .ff-reset:hover{ color:var(--ff-muted); }
 
 /* ── ПАНЕЛЬ «ФІЛЬТРИ» (розкривна) ─────────────────────────────────── */
@@ -95,30 +102,63 @@
 .ff-field-full{ grid-column:1 / -1; }
 .ff-fieldlabel{ font-size:11px; font-weight:var(--fw-semibold); letter-spacing:.04em; text-transform:uppercase; color:var(--ff-faint); margin-bottom:9px; }
 .ff-chips{ display:flex; flex-wrap:wrap; gap:8px; }
-.ff-chip{ cursor:pointer; font-family:var(--font-base); font-size:var(--fs-sm); font-weight:var(--fw-semibold); padding:10px 17px; transition:.15s; background:var(--ff-field); color:var(--ff-muted); border:none; border-radius:var(--ff-pill); }
-.ff-chip.active{ background:var(--ff-navy); color:var(--white); }
+.ff-chip{ cursor:pointer; font-family:var(--font-base); font-size:13px; font-weight:var(--fw-semibold); padding:10px 16px; transition:.15s; background:var(--ff-chip); color:var(--ff-muted); border:none; border-radius:999px; }
+.ff-chip.active{ background:var(--ff-navy); color:#fff; }
 
 /* діапазон «від / до» */
-.ff-num{ display:flex; align-items:center; gap:6px; height:50px; max-width:340px; background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r); padding:0 14px; transition:border-color .15s; }
-.ff-num:focus-within{ border-color:var(--ink-18); }
+.ff-num{ display:flex; align-items:center; gap:6px; height:50px; background:var(--ff-field); border:var(--ff-fborder); border-radius:var(--ff-r); padding:0 14px; }
 
 /* мультиселект-дропдаун */
 .ff-ms{ position:relative; }
-.ff-ms-btn{ display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; height:50px; border:var(--ff-fborder); border-radius:var(--ff-r); background:var(--ff-field); font-family:var(--font-base); font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--ff-faint); padding:0 14px; cursor:pointer; text-align:left; transition:border-color .15s; }
-.ff-ms-btn:hover{ border-color:var(--ink-18); }
+/* поки селект відкрито — підняти його КОМІРКУ над сусідніми у гріді, інакше
+   панель (position:absolute) лягає під поля, що йдуть далі за DOM-порядком */
+.ff-add-field:has(.ff-ms.is-open){ position:relative; z-index:40; }
+.ff-ms.is-open{ z-index:40; }
+.ff-ms-btn{ display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; height:50px; border:var(--ff-fborder); border-radius:var(--ff-r); background:var(--ff-field); font-family:var(--font-base); font-size:13px; font-weight:var(--fw-medium); color:var(--ff-faint); padding:0 14px; cursor:pointer; text-align:left; transition:border-color .15s; }
+.ff-ms-btn:hover{ border-color:#bcc4d0; }
 .ff-ms-btn.has-val{ color:var(--ff-navy); }
 .ff-ms-btn > span{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.ff-ms-panel{ position:absolute; left:0; right:0; top:54px; z-index:30; background:var(--white); border:1px solid var(--ff-line); box-shadow:0 12px 30px var(--ink-14); padding:6px; max-height:240px; overflow:auto; }
-.ff-ms-opt{ display:flex; align-items:center; gap:10px; padding:9px 10px; cursor:pointer; font-size:var(--fs-sm); color:var(--ff-navy); }
-.ff-ms-opt:hover{ background:var(--soft); }
-.ff-ms-box{ width:16px; height:16px; flex:none; display:inline-flex; align-items:center; justify-content:center; background:var(--white); border:1px solid var(--ink-28); }
+.ff-ms-panel{ position:absolute; left:0; right:0; top:54px; z-index:30; background:#fff; border:1px solid #e6e9ef; border-radius:var(--ff-r); box-shadow:0 12px 30px rgba(0,23,56,.14); padding:6px; max-height:260px; overflow:auto; }
+.ff-ms-opt{ display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:var(--ff-r); cursor:pointer; font-size:13px; color:var(--ff-navy); }
+.ff-ms-opt:hover{ background:#f5f6f8; }
+.ff-ms-box{ width:16px; height:16px; flex:none; display:inline-flex; align-items:center; justify-content:center; border-radius:var(--ff-r); background:#fff; border:1px solid #c2c8d2; }
 .ff-ms-opt.on .ff-ms-box{ background:var(--ff-navy); border-color:var(--ff-navy); }
 
 /* ── ОБРАНІ ФІЛЬТРИ ───────────────────────────────────────────────── */
 .ff-selected{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:20px; }
-.ff-selected-label{ font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--ff-muted); }
-.ff-selchip{ display:inline-flex; align-items:center; gap:7px; background:var(--ff-navy); color:var(--white); border-radius:var(--ff-pill); padding:7px 12px 7px 14px; font-size:12.5px; font-weight:var(--fw-semibold); }
-.ff-selchip button{ display:inline-flex; align-items:center; border:none; background:none; color:var(--white-82); cursor:pointer; padding:0; }
+.ff-selected-label{ font-size:13px; font-weight:var(--fw-semibold); color:var(--ff-muted); }
+.ff-selchip{ display:inline-flex; align-items:center; gap:7px; background:var(--ff-navy); color:#fff; border-radius:999px; padding:7px 12px 7px 14px; font-size:12.5px; font-weight:var(--fw-semibold); }
+.ff-selchip button{ display:inline-flex; align-items:center; border:none; background:none; color:rgba(255,255,255,.8); cursor:pointer; padding:0; }
+
+/* ── РЯД «СКИНУТИ ВСІ ФІЛЬТРИ» (під головним рядком, притиснутий праворуч) ──
+   1:1 із хендофом: окремий ряд, кнопка-текст вирівняна вправо. */
+.ff-controls{ display:flex; align-items:center; justify-content:flex-end; gap:16px; flex-wrap:wrap; margin-top:16px; }
+
+/* ── ПОПУЛЯРНІ ПІДБІРКИ (SEO-перелінки) ───────────────────────────────
+   1:1 із хендофом: заголовок навмисно navy/bold, нижче — світло-сірі
+   чипи-пігулки з тонкою межею; hover темнішає до navy. */
+.ff-il-title{ font-size:13px; font-weight:var(--fw-bold); color:var(--ff-navy); margin-top:30px; margin-bottom:13px; }
+.ff-il{ display:flex; flex-wrap:wrap; gap:9px; }
+.ff-il a{ display:inline-flex; align-items:center; background:#f1f3f7; color:#3b434f; border:1px solid #e6e9ef; border-radius:var(--ff-pill); padding:8px 16px; font-size:12.5px; font-weight:var(--fw-medium); text-decoration:none; transition:background .15s, color .15s; }
+.ff-il a:hover{ background:var(--ff-chip); color:var(--ff-navy); }
+
+/* ── ПІКЕР ЛОКАЦІЙ — точкові оверрайди під палітру хендофу ──────────────
+   Базові .fk-* лежать у style.css і СПІЛЬНІ з головною (там навбар-пошук).
+   Тут лише доводимо колір/радіус до макета новобудов (navy #001738, гострі
+   кути), не чіпаючи головну. */
+.ff-block .fk-pop{ top:56px; border:1px solid #e6e9ef; border-radius:var(--ff-r); box-shadow:0 16px 40px rgba(0,23,56,.16); }
+.ff-block .fk-tab{ border-radius:var(--ff-r); border-color:var(--ff-fieldline); }
+.ff-block .fk-tab.is-on{ background:var(--ff-navy); border-color:var(--ff-navy); }
+.ff-block .fk-cat{ background:var(--ff-chip); color:var(--ff-muted); }
+.ff-block .fk-cat.is-on{ background:var(--ff-navy); color:#fff; }
+.ff-block .fk-chip{ background:var(--ff-navy); border-radius:0; }
+.ff-block .fk-chip__kind{ color:#9db4d9; background:rgba(255,255,255,.10); }
+.ff-block .fk-chip-more{ background:var(--ff-chip); color:var(--ff-navy); }
+.ff-block .fk-box{ border-radius:var(--ff-r); border:1.5px solid #c2c8d2; }
+.ff-block .fk-box.is-checked{ background:var(--ff-navy); border-color:var(--ff-navy); }
+.ff-block .fk-locrow{ border-radius:var(--ff-r); }
+.ff-block .fk-locrow:hover{ background:#f5f6f8; }
+.ff-block .fk-locrow__label .hl{ background:var(--hl-bg); color:var(--hl-fg); }
 
 /* Сторінка — фіксована канва 1440px зі zoom-підгонкою (js/responsive.js), тож
    блок завжди в десктоп-розкладці (4 колонки). Власних брейкпоінтів немає —

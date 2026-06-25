@@ -231,7 +231,7 @@
       var summary = arr.length ? arr.join(', ') : f.options[0];
       var panel = '';
       if(open){ panel = '<div class="ff-ms-panel">'+f.options.slice(1).map(function(o){ var on=arr.indexOf(o)>-1; return '<div class="ff-ms-opt'+(on?' on':'')+'" data-action="opt" data-sel="'+f.id+'" data-val="'+esc(o)+'"><span class="ff-ms-box">'+(on?ICONS.check:'')+'</span>'+esc(o)+'</div>'; }).join('')+'</div>'; }
-      return '<div class="ff-ms"><button type="button" class="ff-ms-btn'+(arr.length?' has-val':'')+'" data-action="sel-toggle" data-sel="'+f.id+'"><span>'+esc(summary)+'</span>'+ICONS.chevron+'</button>'+panel+'</div>';
+      return '<div class="ff-ms'+(open?' is-open':'')+'"><button type="button" class="ff-ms-btn'+(arr.length?' has-val':'')+'" data-action="sel-toggle" data-sel="'+f.id+'"><span>'+esc(summary)+'</span>'+ICONS.chevron+'</button>'+panel+'</div>';
     }
     function addField(f){
       var inner;
