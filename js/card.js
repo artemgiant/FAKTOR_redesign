@@ -9,6 +9,7 @@
      kind        'apartment'|'house'|'land'|'commercial'|'newbuild'|'developer'
      badge       текст бейджа типу (напр. «Квартира»); для newbuild — рік
      price       ціна ('$ 96 000'); для newbuild — «від $ 61 000» або сума
+     priceM      ціна за м² (newbuild) — в один ряд із ціною, muted; «від $ 1 250 / м²»
      title       назва (ЖК / тип / забудовник)
      addr        адреса
      img         URL фото (необов'язк.; інакше bg-заглушка)
@@ -106,8 +107,10 @@
       </div>`;
     } else if (nb) {
       const price = String(item.price || '').replace(/^\s*від\s*/i, '');
+      // ціна за м² — в один ряд із ціною, тим самим muted-кольором, що й адреса
+      const priceM = item.priceM ? `<span class="card__pricem">${item.priceM}</span>` : '';
       body = `<div class="card__body">
-        <div class="card__top"><span class="card__from"><span class="card__from-lbl">від</span><span class="card__price">${price}</span></span>${heart}</div>
+        <div class="card__top"><span class="card__priceline"><span class="card__from"><span class="card__from-lbl">від</span><span class="card__price">${price}</span></span>${priceM}</span>${heart}</div>
         <div class="card__title">${item.title || ''}</div>
         <div class="card__addr">${item.addr || ''}</div>
         <div class="card__nbfoot"><span class="card__pay">${item.installment || 'Перший внесок від 20%'}</span><span class="card__detail">Детальніше ${DETAIL}</span></div>

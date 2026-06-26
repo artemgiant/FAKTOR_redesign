@@ -123,6 +123,7 @@ function fcardHTML(item, i){
     img: FEED_PHOTOS[i % FEED_PHOTOS.length],
     href: 'property.html',
     installment: item.installment,
+    priceM: item.priceM,
     stats: nb ? null : [{ k:'rooms', text:item.rooms }, { k:'floor', text:item.floor }, { k:'area', text:item.area }]
   }, { heart: 'out' });
 }
@@ -146,10 +147,10 @@ const FEED_TABS = [
   { label: 'У цьому ж районі',   complex: 'ЖК Перлина',       addr: 'Приморський р-н, вул. Генуезька' },
 ];
 const FEED_BASE = [
-  { kind: 'newbuild', price: 'від $ 48 000', installment: 'Перший внесок від 20%' },
-  { kind: 'newbuild', price: 'від $ 61 000', installment: 'Перший внесок від 20%' },
-  { kind: 'newbuild', price: 'від $ 73 000', installment: 'Перший внесок від 30%' },
-  { kind: 'newbuild', price: 'від $ 92 000', installment: 'Перший внесок від 25%' },
+  { kind: 'newbuild', price: 'від $ 48 000', priceM: 'від $ 1 050 / м²', installment: 'Перший внесок від 20%' },
+  { kind: 'newbuild', price: 'від $ 61 000', priceM: 'від $ 1 150 / м²', installment: 'Перший внесок від 20%' },
+  { kind: 'newbuild', price: 'від $ 73 000', priceM: 'від $ 1 220 / м²', installment: 'Перший внесок від 30%' },
+  { kind: 'newbuild', price: 'від $ 92 000', priceM: 'від $ 1 380 / м²', installment: 'Перший внесок від 25%' },
 ];
 function renderFeed(def){
   renderGrid('zhk-feed-grid', FEED_BASE.map(b => ({ ...b, complex: def.complex, addr: def.addr })));

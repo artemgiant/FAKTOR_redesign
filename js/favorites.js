@@ -36,14 +36,14 @@ function seed(){
     { id:'a4', kind:'apartment', badge:'Квартира', price:'$ 154 000', title:'Арт-резиденція Garden City', addr:'Одеса, Приморський р-н, вул. Віце-Адмірала Азарова', stats:[{k:'rooms',text:'3 кімн.'},{k:'floor',text:'2/5'},{k:'area',text:'147 м²'}] },
     { id:'c1', kind:'commercial', badge:'Офіс', price:'$ 210 000', title:'Офісне приміщення', addr:'Одеса, Приморський р-н, Гагарінське плато', stats:[{k:'area',text:'120 м²'},{k:'floor',text:'3/16'}] },
     { id:'a5', kind:'apartment', badge:'Пентхаус', price:'$ 415 000', title:'ЖК More', addr:'Одеса, вул. Гагарінське плато', stats:[{k:'rooms',text:'4 кімн.'},{k:'floor',text:'12/12'},{k:'area',text:'180 м²'}] },
-    { id:'n1', kind:'newbuild', badge:'Новобудова', price:'від $ 61 000', title:'ЖК Перлина', addr:'Одеса, Приморський р-н, вул. Генуезька', installment:'Перший внесок від 20%' },
+    { id:'n1', kind:'newbuild', badge:'Новобудова', price:'від $ 61 000', priceM:'від $ 1 150 / м²', title:'ЖК Перлина', addr:'Одеса, Приморський р-н, вул. Генуезька', installment:'Перший внесок від 20%' },
     { id:'h1', kind:'house', badge:'Будинок', price:'$ 189 000', title:'Будинок', addr:'Одеса, Лиманський р-н, вул. Лиманна', stats:[{k:'rooms',text:'3 кімн.'},{k:'area',text:'140 м²'},{k:'plot',text:'6 сот.'}] },
   ];
 }
 function recentSeed(){
   return [
     { id:'r1', kind:'apartment',  badge:'Квартира',   price:'$ 78 000',  title:'ЖК Sea Town', addr:'Одеса, вул. Армійська', stats:[{k:'rooms',text:'1 кімн.'},{k:'floor',text:'7/24'},{k:'area',text:'42 м²'}] },
-    { id:'r2', kind:'newbuild',   badge:'Новобудова', price:'від $ 52 000', title:'ЖК Аркадія Сіті', addr:'Одеса, Приморський р-н, Французький бульвар', installment:'Перший внесок від 20%' },
+    { id:'r2', kind:'newbuild',   badge:'Новобудова', price:'від $ 52 000', priceM:'від $ 1 100 / м²', title:'ЖК Аркадія Сіті', addr:'Одеса, Приморський р-н, Французький бульвар', installment:'Перший внесок від 20%' },
     { id:'r3', kind:'commercial', badge:'Магазин',    price:'$ 145 000', title:'Торгове приміщення', addr:'Одеса, вул. Дерибасівська', stats:[{k:'area',text:'64 м²'},{k:'floor',text:'1/9'}] },
     { id:'r4', kind:'land',       badge:'Ділянка',    price:'$ 96 000',  title:'Земельна ділянка', addr:'Одеса, Лиманський р-н, Фонтанка', stats:[{k:'plot',text:'10 сот.'}] },
     { id:'r5', kind:'house',      badge:'Будинок',    price:'$ 240 000', title:'Будинок', addr:'Совіньйон, масив 2', stats:[{k:'rooms',text:'5 кімн.'},{k:'area',text:'260 м²'},{k:'plot',text:'8 сот.'}] },
@@ -51,7 +51,7 @@ function recentSeed(){
 }
 function recommendSeed(){
   return [
-    { id:'p1', kind:'newbuild',   badge:'Новобудова',    price:'від $ 47 000', title:'ЖК Sky Garden', addr:'Одеса, Київський р-н, вул. Люстдорфська дорога', installment:'Перший внесок від 20%' },
+    { id:'p1', kind:'newbuild',   badge:'Новобудова',    price:'від $ 47 000', priceM:'від $ 1 020 / м²', title:'ЖК Sky Garden', addr:'Одеса, Київський р-н, вул. Люстдорфська дорога', installment:'Перший внесок від 20%' },
     { id:'p2', kind:'apartment',  badge:'Квартира',      price:'$ 89 000',  title:'ЖК Bunin', addr:'Одеса, вул. Буніна', stats:[{k:'rooms',text:'2 кімн.'},{k:'floor',text:'5/16'},{k:'area',text:'63 м²'}] },
     { id:'p3', kind:'house',      badge:'Котедж',        price:'$ 270 000', title:'Котедж', addr:'Фонтанка, біля моря', stats:[{k:'rooms',text:'5 кімн.'},{k:'area',text:'240 м²'},{k:'plot',text:'8 сот.'}] },
     { id:'p4', kind:'commercial', badge:'Готовий бізнес', price:'$ 320 000', title:'Готовий бізнес', addr:'Одеса, центр міста', stats:[{k:'area',text:'180 м²'},{k:'floor',text:'1/5'},{k:'plot',text:'10 сот.'}] },

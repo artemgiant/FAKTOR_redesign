@@ -28,14 +28,14 @@
   /* ---------------- дані ЖК (повторюваний набір, як у хендофі) ---------------- */
   // ціни «від» у $ (для сортування). order — стабільний індекс надходження.
   var COMPLEXES = [
-    { name: 'ЖК Перший Французький',            district: 'Київський р-н',   addr: 'вул. Академіка Корольова',   devName: 'Гефест',      year: '2026', priceUsd: 61000,  installment: 'Перший внесок від 20%' },
-    { name: 'ЖК Перлинний квартал на Сахарова', district: 'Київський р-н',   addr: 'вул. Сахарова',              devName: 'KADORR Group', year: '2026', priceUsd: 52000,  installment: 'Перший внесок від 15%' },
-    { name: 'ЖК Модерн',                        district: 'Приморський р-н', addr: 'Французький бульвар',         devName: 'Stikon',       year: '2025', priceUsd: 73000,  installment: 'Перший внесок від 30%' },
-    { name: 'Арт-резиденція Garden City',       district: 'Приморський р-н', addr: 'Гагарінське плато',           devName: 'Гефест',       year: '2027', priceUsd: 96000,  installment: 'Перший внесок від 20%' },
-    { name: 'ЖК Морська перлина',               district: 'Приморський р-н', addr: 'вул. Генуезька',              devName: 'Будова',       year: '2026', priceUsd: 112000, installment: 'Перший внесок від 25%' },
-    { name: 'ЖК Sky Garden',                    district: 'Малиновський р-н', addr: 'вул. Люстдорфська дорога',   devName: 'Інкор Груп',   year: '2025', priceUsd: 47000,  installment: 'Перший внесок від 10%' },
-    { name: 'Клубний будинок Bunin',            district: 'Приморський р-н', addr: 'вул. Буніна',                 devName: 'Альтаїр',      year: '2026', priceUsd: 134000, installment: 'Перший внесок від 30%' },
-    { name: 'ЖК Аркадія Сіті',                  district: 'Приморський р-н', addr: 'Французький бульвар',         devName: 'KADORR Group', year: '2027', priceUsd: 82000,  installment: 'Перший внесок від 20%' }
+    { name: 'ЖК Перший Французький',            district: 'Київський р-н',   addr: 'вул. Академіка Корольова',   devName: 'Гефест',      year: '2026', priceUsd: 61000,  priceUsdM: 1150, installment: 'Перший внесок від 20%' },
+    { name: 'ЖК Перлинний квартал на Сахарова', district: 'Київський р-н',   addr: 'вул. Сахарова',              devName: 'KADORR Group', year: '2026', priceUsd: 52000,  priceUsdM: 1080, installment: 'Перший внесок від 15%' },
+    { name: 'ЖК Модерн',                        district: 'Приморський р-н', addr: 'Французький бульвар',         devName: 'Stikon',       year: '2025', priceUsd: 73000,  priceUsdM: 1220, installment: 'Перший внесок від 30%' },
+    { name: 'Арт-резиденція Garden City',       district: 'Приморський р-н', addr: 'Гагарінське плато',           devName: 'Гефест',       year: '2027', priceUsd: 96000,  priceUsdM: 1450, installment: 'Перший внесок від 20%' },
+    { name: 'ЖК Морська перлина',               district: 'Приморський р-н', addr: 'вул. Генуезька',              devName: 'Будова',       year: '2026', priceUsd: 112000, priceUsdM: 1580, installment: 'Перший внесок від 25%' },
+    { name: 'ЖК Sky Garden',                    district: 'Малиновський р-н', addr: 'вул. Люстдорфська дорога',   devName: 'Інкор Груп',   year: '2025', priceUsd: 47000,  priceUsdM: 1020, installment: 'Перший внесок від 10%' },
+    { name: 'Клубний будинок Bunin',            district: 'Приморський р-н', addr: 'вул. Буніна',                 devName: 'Альтаїр',      year: '2026', priceUsd: 134000, priceUsdM: 1720, installment: 'Перший внесок від 30%' },
+    { name: 'ЖК Аркадія Сіті',                  district: 'Приморський р-н', addr: 'Французький бульвар',         devName: 'KADORR Group', year: '2027', priceUsd: 82000,  priceUsdM: 1340, installment: 'Перший внесок від 20%' }
   ];
 
   /* ---------------- валюта ---------------- */
@@ -45,6 +45,11 @@
   function priceFromText(usd, cur) {
     cur = cur || 'USD';
     return 'від ' + SYMBOL[cur] + ' ' + fmtNum(usd * (RATE[cur] || 1));
+  }
+  // ціна за м² — той самий формат/валюта, що й основна ціна
+  function priceMFromText(usdM, cur) {
+    cur = cur || 'USD';
+    return 'від ' + SYMBOL[cur] + ' ' + fmtNum(usdM * (RATE[cur] || 1)) + ' / м²';
   }
   function plural(n, forms) { var a = n % 10, b = n % 100; if (a === 1 && b !== 11) return forms[0]; if (a >= 2 && a <= 4 && (b < 10 || b >= 20)) return forms[1]; return forms[2]; }
 
@@ -71,6 +76,7 @@
       year: c.year,
       dev: dev(c.devName),
       price: priceFromText(c.priceUsd, state.currency),
+      priceM: priceMFromText(c.priceUsdM, state.currency),
       title: c.name,
       addr: 'Одеса, ' + c.district + ', ' + c.addr,
       installment: c.installment,

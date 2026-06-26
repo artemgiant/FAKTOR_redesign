@@ -60,6 +60,12 @@
 .card__from{display:flex;align-items:baseline;gap:6px;}
 .card__from-lbl{font-size:13px;color:var(--secondary);}
 
+/* ціна + ціна за м² в один ряд (новобудова): ціна зліва, «/ м²» поруч muted.
+   align-items:baseline → спільна базова лінія, висота ряду не росте. */
+.card__priceline{display:flex;align-items:baseline;gap:8px;min-width:0;flex:1;}
+/* ціна за м² — тим самим muted-кольором, що й адреса; обрізається за потреби */
+.card__pricem{font-size:13px;line-height:1.2;color:var(--addr);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
 /* серце-кнопка — системні іконки img/icons/fav.svg (контур) / like.svg
    (залите, в обраному). Кнопка без власного фону: like.svg несе пігулку. */
 .card__heart{flex:none;display:inline-grid;place-items:center;width:34px;height:34px;border:none;background:none;cursor:pointer;padding:0;margin:-4px -6px -4px 0;transition:transform .15s;}
