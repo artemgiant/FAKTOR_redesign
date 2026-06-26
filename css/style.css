@@ -70,8 +70,8 @@ img{display:block;max-width:100%;}
 .cd{display:block;transform:rotate(90deg);}
 
 /* ---------- секції ---------- */
-.section{margin-top:160px;}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;}
+.section{margin-top:var(--sec-gap);}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:var(--sec-head-gap);}
 .sec-head--center{flex-direction:column;align-items:center;gap:16px;text-align:center;}
 .sec-sub{margin-top:8px;font-size:var(--fs-base);font-weight:var(--fw-regular);line-height:var(--lh-base);letter-spacing:var(--ls-base);color:var(--muted);}
 /* компенсація лівого side-bearing великого заголовка: вирівнюємо перші гліфи назви й підзаголовка */
@@ -309,20 +309,20 @@ img{display:block;max-width:100%;}
    = 160px до контенту (як проміжок між .section). Сітка — 5 рівних колонок на
    повну ширину .container (repeat(5,1fr)): однакові поля зліва й справа, а
    зайвий простір іде в ширші проміжки між колонками, а не в порожнечу праворуч. */
-.footer-divider{height:1px;background:var(--line);margin:80px 0 0;}
-.sitemap{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:80px 0 0;}
+.footer-divider{height:1px;background:var(--line);margin:var(--sec-gap-half) 0 0;}
+.sitemap{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:var(--sec-gap-half) 0 0;}
 .sitemap .col h5{margin-bottom:24px;}
 .sitemap .col a{display:block;color:var(--dark);margin-bottom:5px;font-size:var(--fs-base);letter-spacing:var(--ls-base);}
 .sitemap .col a:hover{opacity:.6;}
 .sitemap .col a.gap{margin-top:18px;color:var(--muted);}
 
-.seo{background:var(--soft);margin-top:80px;padding:64px 0;}
+.seo{background:var(--soft);margin-top:var(--sec-gap-half);padding:64px 0;}
 .seo__in{width:890px;margin:0 auto;}
 .seo__in h3{font-weight:var(--fw-medium);margin-bottom:12px;}
 .seo__in p{color:var(--muted);}
 .seo__more{color:var(--dark);font-weight:var(--fw-regular);margin-top:22px;display:inline-block;text-decoration:underline;text-underline-offset:3px;}
 
-.dark{background:var(--navy);color:var(--white);padding:80px 0 0;}
+.dark{background:var(--navy);color:var(--white);padding:var(--sec-gap-half) 0 0;}
 .dark .container{min-height:460px;display:flex;flex-direction:column;}
 .dark__logo{margin-bottom:60px;}
 .dark__logo img{height:18px;width:auto;display:block;filter:brightness(0) invert(1);}
@@ -404,6 +404,16 @@ img{display:block;max-width:100%;}
    вимкнено). Кожен крок підібрано так, щоб zoom×1440 влазив у нижню межу
    свого діапазону навіть зі скролбаром. Порядок: від ширшого до вужчого —
    спрацьовує найвужчий збіг. */
+
+/* Вертикальний ритм окремо від zoom: zoom стискає лише ширину-композицію, тож
+   на ноутбуках сторінка лишається дуже високою. На вужчих екранах стискаємо
+   міжсекційні відступи понад zoom — сторінка стає коротшою, контент щільніший,
+   без впливу на горизонталь. --sec-gap-half тримає пропорцію 2:1 футера;
+   --sec-head-gap підтискає шапку секції в тому ж ритмі. */
+@media (max-width:1439px){ :root{ --sec-gap:104px; --sec-gap-half:52px; --sec-head-gap:28px; } }  /* 13–14" */
+@media (max-width:1200px){ :root{ --sec-gap: 88px; --sec-gap-half:44px; --sec-head-gap:24px; } }
+@media (max-width: 960px){ :root{ --sec-gap: 72px; --sec-gap-half:36px; --sec-head-gap:20px; } }
+
 @media (max-width:1439px){ .frame{ zoom:.93; } }   /* 1367–1439 */
 @media (max-width:1366px){ .frame{ zoom:.87; } }   /* 1281–1366 (типові 13") */
 @media (max-width:1280px){ .frame{ zoom:.82; } }   /* 1201–1280 */

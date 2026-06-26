@@ -5,7 +5,7 @@
    і навмисно не йде через css/tokens.css — це віджет-вставка.
    Джерело: handoff-reviews/reviews.html.
    ===================================================================== */
-.fr-reviews{ font-family:inherit; color:#001738; margin-top:160px; background:#fff; } /* той самий міжсекційний ритм, що й .section */
+.fr-reviews{ font-family:inherit; color:#001738; margin-top:var(--sec-gap); background:#fff; } /* той самий міжсекційний ритм, що й .section */
 .fr-reviews *{ box-sizing:border-box; }
 /* той самий боковий відступ, що й .container (=48px при 1440) — секція в одну лінію з рештою */
 .fr-reviews__inner{ margin:0 auto; padding:0 calc((100% - var(--content)) / 2); }
