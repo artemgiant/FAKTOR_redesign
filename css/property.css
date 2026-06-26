@@ -21,7 +21,7 @@
 .pp-head__l{min-width:280px;}
 .pp-title{font-size:var(--fs-h3);line-height:var(--lh-snug);letter-spacing:var(--ls-h3);font-weight:var(--fw-bold);max-width:680px;}
 .pp-addr{margin-top:10px;display:flex;align-items:center;gap:7px;color:var(--muted);font-size:var(--fs-base);letter-spacing:var(--ls-base);}
-.pp-addr svg{flex:0 0 auto;}
+.pp-addr svg,.pp-addr img{flex:0 0 auto;}
 .pp-pricebox{text-align:right;}
 .pp-price{font-size:var(--fs-h2);line-height:var(--lh-none);letter-spacing:var(--ls-h2);font-weight:var(--fw-bold);}
 .pp-perm{margin-top:8px;color:var(--muted);font-size:var(--fs-base);letter-spacing:var(--ls-base);}
@@ -31,7 +31,7 @@
 /* ---------------- ряд швидких фактів ---------------- */
 .pp-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
 .pp-fact{display:inline-flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--line);padding:10px 15px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-medium);color:var(--dark);border-radius:var(--r-card);}
-.pp-fact svg{flex:0 0 auto;}
+.pp-fact svg,.pp-fact img{flex:0 0 auto;}
 
 /* ---------------- двоколонковий лейаут ---------------- */
 .pp-cols{display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start;margin-top:30px;}
@@ -73,6 +73,7 @@
 .pp-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
 .pp-tag{display:inline-flex;align-items:center;gap:6px;background:var(--field-2);color:var(--dark);border-radius:100px;padding:7px 14px;font-size:var(--fs-xs);letter-spacing:var(--ls-xs);font-weight:var(--fw-medium);}
 .pp-tag svg{flex:0 0 auto;color:var(--navy);}
+.pp-tag img{flex:0 0 auto;}
 
 /* ---------------- будинок і інфраструктура ---------------- */
 .pp-complex{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}

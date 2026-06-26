@@ -33,8 +33,8 @@
   const IC = {
     rooms: '<img class="card__ic-img" src="img/icons/bedrooms-icon-black.svg" width="18" height="18" alt="">',
     area:  '<img class="card__ic-img" src="img/icons/area-icon.svg" width="18" height="18" alt="">',
-    floor: '<svg class="card__ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20h4v-4h4v-4h4V8h4"/></svg>',
-    plot:  '<svg class="card__ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke-linejoin="round"/></svg>',
+    floor: '<img class="card__ic" src="img/icons/floor.svg" width="16" height="16" alt="">',
+    plot:  '<img class="card__ic" src="img/icons/plot.svg" width="16" height="16" alt="">',
   };
   // серце — системні іконки: fav.svg (контур) / like.svg (залите, в обраному)
   const HEART_OUT = 'img/icons/fav.svg';
@@ -91,9 +91,9 @@
       // картка забудовника: назва → інфо-рядки (на ринку з року, місто,
       // N комплексів — золоті іконки, підпис muted / значення navy) →
       // роздільник → «Детальніше ›». Без серця/ціни/статів — це не об'єкт.
-      const ROW_CAL  = '<svg class="card__dic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="17"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>';
-      const ROW_PIN  = '<svg class="card__dic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.35-7-10a7 7 0 0 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.4"/></svg>';
-      const ROW_BLD  = '<svg class="card__dic" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 2 8v2h20V8L12 3zM4 11v7H3v2h18v-2h-1v-7h-2v7h-3v-7h-2v7h-2v-7H7v7H6v-7H4z"/></svg>';
+      const ROW_CAL  = '<img class="card__dic" src="img/icons/calendar-gold.svg" width="16" height="16" alt="">';
+      const ROW_PIN  = '<img class="card__dic" src="img/icons/pin-gold.svg" width="16" height="16" alt="">';
+      const ROW_BLD  = '<img class="card__dic" src="img/icons/building-gold.svg" width="16" height="16" alt="">';
       const rows = [];
       if (item.founded) rows.push(`<span class="card__drow">${ROW_CAL}<span>На ринку з <b>${item.founded}</b></span></span>`);
       if (item.city)    rows.push(`<span class="card__drow">${ROW_PIN}<span class="card__dval">${item.city}</span></span>`);

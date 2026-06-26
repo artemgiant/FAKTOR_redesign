@@ -76,7 +76,7 @@
    (кімнати, площа) + inline-гліфи золотим (поверх, ділянка). */
 .card__stats{margin-top:auto;padding-top:13px;display:flex;gap:12px;white-space:nowrap;}
 .card__stat{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:var(--fw-semibold);color:var(--dark);}
-.card__stat svg{flex:none;}
+.card__stat svg,.card__stat img{flex:none;}
 .card__ic{color:var(--gold);}                       /* inline-гліф: золотистий */
 .card__ic-img{flex:none;display:block;width:18px;height:18px;} /* системна іконка */
 

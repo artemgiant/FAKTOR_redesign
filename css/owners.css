@@ -1,0 +1,49 @@
+/* =====================================================================
+   FAKTOR — сторінка «Власникам» (owners.html)
+   Джерело: статичні сторінки/Власникам/handoff-owners/owners-block.html
+   Спільні компоненти — css/handoff.css (.hf-*). Тут лише специфіка:
+   hero з компактною формою оцінки справа, смуга довіри (4 стати),
+   кроки 3×2 з номером у рядку, велика split-форма. Префікс .ow-.
+   ===================================================================== */
+
+/* hero: дві колонки — текст + компактна форма оцінки */
+.ow-herogrid{ display:grid; grid-template-columns:1.25fr .75fr; gap:40px; align-items:start; }
+.ow-hero .hf-hero__body{ max-width:none; }
+.ow-hero{ padding:54px 52px; }
+
+/* компактна форма оцінки в hero (на світлій картці) */
+.ow-quote{ background:var(--about-surface); border-radius:var(--about-r-md); padding:26px 24px; box-shadow:var(--about-form-shadow); }
+.ow-quote__t{ font-size:17px; font-weight:700; color:var(--about-ink); line-height:1.25; }
+.ow-quote__sub{ margin:8px 0 0; font-size:12.5px; color:var(--about-muted); line-height:1.5; }
+.ow-quote__note{ margin-top:12px; font-size:11.5px; color:var(--about-muted-2); line-height:1.45; text-align:center; }
+.ow-quote .hf-in{ margin-top:16px; }
+.ow-quote .hf-btn{ margin-top:10px; }
+
+/* смуга довіри — 4 статистики на білій картці з роздільниками */
+.ow-trust{
+  margin-top:22px; background:var(--about-surface); border:1px solid var(--about-line);
+  border-radius:var(--about-r-md); padding:24px 30px; box-shadow:0 1px 4px rgba(0,0,0,.05);
+  display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+}
+.ow-trust__cell{ text-align:center; }
+.ow-trust__cell + .ow-trust__cell{ border-left:1px solid #eef0f3; }
+.ow-trust__num{ font-size:30px; font-weight:800; color:var(--about-ink); letter-spacing:-.01em; }
+.ow-trust__lbl{ margin-top:5px; font-size:12.5px; color:var(--about-muted); line-height:1.4; }
+
+/* кроки 3×2 з номером у рядку із заголовком */
+.ow-steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:32px; }
+
+/* split-форма: ліва біла, права темна (контакти) */
+.ow-split{ grid-template-columns:1.15fr .85fr; }
+.ow-split .hf-form h2{ font-size:25px; }
+
+@media (max-width:980px){
+  .ow-herogrid{ grid-template-columns:1fr; }
+  .ow-trust{ grid-template-columns:1fr 1fr; }
+  .ow-trust__cell:nth-child(3){ border-left:none; }
+  .ow-steps{ grid-template-columns:1fr; }
+}
+@media (max-width:620px){
+  .ow-trust{ grid-template-columns:1fr; }
+  .ow-trust__cell + .ow-trust__cell{ border-left:none; }
+}

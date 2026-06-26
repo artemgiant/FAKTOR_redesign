@@ -147,6 +147,7 @@ img{display:block;max-width:100%;}
 .fk-box{width:18px;height:18px;border-radius:var(--r-field);flex:none;display:inline-flex;align-items:center;justify-content:center;background:var(--white);border:1.5px solid var(--ink-28);}
 .fk-box.is-checked{background:var(--navy);border-color:var(--navy);}
 .fk-box svg{color:var(--white);}
+.fk-box img{display:block;}
 .fk-locrow__label{flex:1;font-size:13.5px;color:var(--dark);font-weight:var(--fw-semibold);}
 .fk-locrow__label .hl{background:var(--hl-bg);color:var(--hl-fg);border-radius:var(--r-field);padding:0 1px;}
 .fk-locrow__label .sub{color:var(--muted);font-weight:var(--fw-regular);}
@@ -156,8 +157,9 @@ img{display:block;max-width:100%;}
 /* 2. ТИП + спільний селект */
 .fk-sel-wrap{position:relative;}
 .fk-sel-wrap--type{flex:1.2 1 200px;min-width:0;}
-.fk-sel{appearance:none;-webkit-appearance:none;width:100%;font-family:var(--font-base);font-size:var(--fs-base);font-weight:var(--fw-semibold);color:var(--dark);cursor:pointer;background:transparent;}
-.fk-type{height:44px;padding:0 40px 0 16px;}
+.fk-sel{appearance:none;-webkit-appearance:none;width:100%;font-family:var(--font-base);font-size:var(--fs-base);font-weight:var(--fw-semibold);color:var(--dark);cursor:pointer;background:transparent;border:none;outline:none;}
+.fk-sel-wrap--type{display:flex;align-items:center;}
+.fk-type{height:42px;padding:0 40px 0 16px;}
 .fk-sel-wrap--type .fk-ic-cd{position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;}
 
 /* 3. ЦІНА */
@@ -357,7 +359,7 @@ img{display:block;max-width:100%;}
 .cat-crumbs .crumb-home{display:inline-flex;align-items:center;opacity:.8;}
 .cat-crumbs .crumb-home .logo{height:11px;width:auto;display:block;}
 .cat-crumbs .sep{display:grid;place-items:center;color:var(--ink-40);}
-.cat-crumbs .sep svg{width:12px;height:12px;}
+.cat-crumbs .sep svg,.cat-crumbs .sep img{width:12px;height:12px;}
 .cat-crumbs .cur{color:var(--dark);}
 
 /* Заголовок, швидкі теги, панель фільтрів та обрані чипи каталогу — окремий
@@ -373,7 +375,7 @@ img{display:block;max-width:100%;}
 .cat-sortrow{display:flex;justify-content:flex-end;margin-top:33px;margin-bottom:56px;}
 .sort-wrap{position:relative;}
 .sort-btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;background:var(--white);border:1px solid var(--ink-14);color:var(--dark);font-family:var(--font-base);font-weight:var(--fw-regular);font-size:var(--fs-base);line-height:var(--lh-none);letter-spacing:var(--ls-base);cursor:pointer;border-radius:var(--r-ctrl);}
-.sort-btn svg{flex:0 0 auto;}
+.sort-btn svg,.sort-btn img{flex:0 0 auto;}
 .sort-menu{position:absolute;top:calc(100% + 8px);right:0;width:230px;list-style:none;background:var(--white);border:1px solid var(--line);box-shadow:0 18px 44px var(--ink-14);z-index:30;padding:6px;display:none;}
 .sort-wrap.open .sort-menu{display:block;}
 .sort-menu li{padding:11px 14px;font-size:var(--fs-base);letter-spacing:var(--ls-base);color:var(--dark);cursor:pointer;}
@@ -386,13 +388,13 @@ img{display:block;max-width:100%;}
 /* --- пагінація --- */
 .pagination{margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:20px;}
 .showmore{display:inline-flex;align-items:center;gap:10px;color:var(--dark);font-size:var(--fs-base);letter-spacing:var(--ls-base);cursor:pointer;}
-.showmore svg{width:16px;height:16px;flex:0 0 auto;}
+.showmore svg,.showmore img{width:16px;height:16px;flex:0 0 auto;}
 .pages{display:flex;gap:7px;}
 .pg{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--ink-14);background:var(--white);color:var(--dark);font-family:var(--font-base);font-weight:var(--fw-regular);font-size:var(--fs-base);line-height:var(--lh-none);letter-spacing:var(--ls-base);cursor:pointer;border-radius:var(--r-ctrl);}
 .pg:hover{border-color:var(--ink-40);}
 .pg.on{background:var(--navy);border-color:var(--navy);color:var(--white);}
 .pg.arrow{color:var(--dark);}
-.pg.arrow.prev svg{transform:scaleX(-1);}
+.pg.arrow.prev svg,.pg.arrow.prev img{transform:scaleX(-1);}
 
 /* =================== АДАПТИВ · підгонка 1440-макета =================== */
 /* Макет зафіксований на 1440px. На вужчих екранах (13" ноутбуки тощо)

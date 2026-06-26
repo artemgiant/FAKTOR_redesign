@@ -1,0 +1,108 @@
+/* =====================================================================
+   FAKTOR — розділ «Офіси»: список (offices.html) + картка (office.html)
+   Джерело: статичні сторінки/Офіси/design_handoff_offices/.
+   Спільний контейнер .hf (css/handoff.css). Префікс .of-.
+   Фото-плейсхолдери — смугастий градієнт із лого (як у хендофі).
+   ===================================================================== */
+
+/* центрований заголовок-hero (світлий) */
+.of-hero{ text-align:center; }
+.of-hero h1{ margin:0; font-size:38px; font-weight:800; letter-spacing:-.015em; line-height:1.1; color:var(--about-ink); }
+.of-hero p{ margin:14px auto 0; max-width:560px; font-size:15.5px; color:var(--about-muted); line-height:1.6; }
+
+/* рядок фільтр + пошук */
+.of-bar{ margin-top:30px; display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+.of-chips{ display:flex; flex-wrap:wrap; gap:9px; }
+.of-chip{ padding:10px 20px; border-radius:999px; font-size:13.5px; font-weight:600; border:none; cursor:pointer; transition:all .15s; white-space:nowrap; font-family:var(--font-base); background:var(--about-chip2); color:var(--about-muted); }
+.of-chip.is-active{ background:var(--about-ink); color:var(--white); }
+.of-search{ display:flex; align-items:center; gap:10px; background:var(--about-surface); border:1px solid var(--about-fieldbd2); border-radius:12px; height:48px; padding:0 16px; min-width:280px; flex:1; max-width:360px; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+.of-search input{ flex:1; border:none; background:transparent; font-family:var(--font-base); font-size:14px; color:var(--about-ink); }
+.of-search input:focus{ outline:none; }
+.of-search input::placeholder{ color:var(--about-muted-2); }
+
+/* плейсхолдер фото (смугастий градієнт + лого) */
+.of-photo{
+  position:relative; display:flex; align-items:center; justify-content:center;
+  background:repeating-linear-gradient(135deg,#eef1f7 0,#eef1f7 14px,#e6ebf3 14px,#e6ebf3 28px);
+}
+.of-photo img.of-photo__logo{ opacity:.4; height:24px; width:auto; }
+.of-photo__badge{ position:absolute; bottom:12px; left:12px; font-family:ui-monospace,Menlo,monospace; font-size:10.5px; color:var(--about-muted-2); background:rgba(255,255,255,.78); padding:4px 9px; border-radius:6px; }
+
+/* сітка карток офісів */
+.of-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:26px; }
+.of-card{
+  background:var(--about-surface); border:1px solid var(--about-line); border-radius:var(--about-r-md);
+  overflow:hidden; box-shadow:var(--about-shadow); display:flex; flex-direction:column;
+  text-decoration:none; color:inherit; cursor:pointer; transition:transform .18s ease, box-shadow .18s ease;
+}
+.of-card:hover{ transform:translateY(-4px); box-shadow:var(--about-card-hover); }
+.of-card .of-photo{ aspect-ratio:16/10; }
+.of-card__body{ padding:22px 24px 24px; display:flex; flex-direction:column; flex:1; }
+.of-card__name{ font-size:18px; font-weight:700; color:var(--about-ink); letter-spacing:-.01em; }
+.of-card__addr{ display:flex; gap:9px; align-items:flex-start; margin-top:11px; font-size:13.5px; color:var(--about-muted); line-height:1.5; }
+.of-card__addr svg{ flex:none; margin-top:1px; }
+.of-card__tel{ display:inline-flex; gap:9px; align-items:center; margin-top:9px; font-size:13.5px; font-weight:600; color:var(--about-ink); text-decoration:none; }
+.of-card__sp{ flex:1; min-height:14px; }
+.of-card__btns{ display:flex; gap:10px; margin-top:20px; }
+.of-card__more{ flex:1; display:inline-flex; align-items:center; justify-content:center; gap:7px; background:var(--about-ink); color:var(--white); text-decoration:none; font-size:13.5px; font-weight:600; padding:12px 16px; border-radius:10px; }
+.of-card__route{ flex:none; display:inline-flex; align-items:center; justify-content:center; width:46px; height:44px; border:1px solid var(--about-fieldbd); border-radius:10px; color:var(--about-ink); text-decoration:none; }
+
+/* «офіси на карті» — стилізована мапа */
+.of-maptitle{ margin:40px 0 18px; font-size:22px; font-weight:800; letter-spacing:-.012em; color:var(--about-ink); }
+.of-map{
+  height:440px; border-radius:18px; overflow:hidden; border:1px solid var(--about-line);
+  box-shadow:var(--about-shadow); position:relative;
+  background:linear-gradient(180deg,#eef2f6 0%,#e9eef4 100%);
+}
+.of-map__grid{ position:absolute; inset:0;
+  background:
+    repeating-linear-gradient(90deg,transparent 0,transparent 78px,rgba(0,23,56,.05) 78px,rgba(0,23,56,.05) 80px),
+    repeating-linear-gradient(0deg,transparent 0,transparent 64px,rgba(0,23,56,.05) 64px,rgba(0,23,56,.05) 66px);
+}
+.of-map__sea{ position:absolute; right:0; top:0; bottom:0; width:30%; background:linear-gradient(110deg,rgba(159,192,236,0) 0%,rgba(159,192,236,.32) 55%,rgba(120,167,224,.42) 100%); }
+.of-map__note{ position:absolute; right:24px; bottom:18px; font-family:ui-monospace,Menlo,monospace; font-size:11px; color:#6b7a90; background:rgba(255,255,255,.7); padding:5px 11px; border-radius:6px; }
+.of-pin{ position:absolute; transform:translate(-50%,-100%); text-decoration:none; transition:transform .15s ease; }
+.of-pin:hover{ transform:translate(-50%,-100%) scale(1.12); z-index:5; }
+.of-pin__shape{ display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50% 50% 50% 0; background:var(--about-ink); transform:rotate(-45deg); box-shadow:0 3px 8px rgba(0,23,56,.35); border:2px solid #fff; }
+.of-pin__dot{ width:9px; height:9px; border-radius:50%; background:#fff; transform:rotate(45deg); }
+
+.of-empty{ text-align:center; padding:50px 20px; color:var(--about-crumb); font-size:15px; }
+
+/* ---------- сторінка одного офісу (office.html) ---------- */
+.ofx-head{ display:grid; grid-template-columns:1.1fr .9fr; gap:34px; margin-top:22px; align-items:start; }
+.ofx-photo{ aspect-ratio:4/3; border-radius:18px; overflow:hidden; box-shadow:var(--about-shadow); }
+.ofx-info{ background:var(--about-surface); border:1px solid var(--about-line); border-radius:18px; padding:32px; box-shadow:var(--about-shadow); }
+.ofx-badge{ display:inline-flex; background:var(--about-chip); color:var(--about-ink); font-size:11.5px; font-weight:600; letter-spacing:.02em; padding:6px 13px; border-radius:999px; }
+.ofx-info h1{ margin:16px 0 0; font-size:34px; font-weight:800; letter-spacing:-.015em; line-height:1.1; color:var(--about-ink); }
+.ofx-row{ display:flex; gap:11px; align-items:flex-start; margin-top:18px; font-size:14.5px; color:var(--about-ink-2); line-height:1.55; }
+.ofx-row svg{ flex:none; margin-top:1px; }
+.ofx-row--mid{ align-items:center; margin-top:14px; }
+.ofx-row a{ color:var(--about-ink-2); text-decoration:none; }
+.ofx-row--time{ font-size:14px; color:var(--about-muted); }
+.ofx-btns{ display:flex; gap:12px; margin-top:24px; flex-wrap:wrap; }
+.ofx-btns a{ flex:1; min-width:150px; display:inline-flex; align-items:center; justify-content:center; gap:9px; font-size:14px; font-weight:600; padding:14px 20px; border-radius:11px; text-decoration:none; }
+.ofx-btns .ofx-call{ background:var(--about-ink); color:var(--white); }
+.ofx-btns .ofx-route{ background:var(--white); border:1px solid var(--about-fieldbd); color:var(--about-ink); }
+
+.ofx-sectitle{ margin:44px 0 18px; font-size:22px; font-weight:800; letter-spacing:-.012em; color:var(--about-ink); }
+.ofx-map{ height:360px; border-radius:18px; overflow:hidden; border:1px solid var(--about-line); box-shadow:var(--about-shadow); position:relative; background:linear-gradient(180deg,#eef2f6 0%,#e9eef4 100%); }
+.ofx-map__pin{ position:absolute; left:50%; top:50%; transform:translate(-50%,-100%); }
+.ofx-map__shape{ display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50% 50% 50% 0; background:var(--about-ink); transform:rotate(-45deg); box-shadow:0 4px 10px rgba(0,23,56,.4); border:2px solid #fff; }
+.ofx-map__dot{ width:11px; height:11px; border-radius:50%; background:#fff; transform:rotate(45deg); }
+.ofx-map__btn{ position:absolute; right:18px; bottom:18px; display:inline-flex; align-items:center; gap:8px; background:#fff; color:var(--about-ink); text-decoration:none; font-size:13px; font-weight:600; padding:11px 18px; border-radius:10px; box-shadow:0 3px 10px rgba(0,23,56,.16); }
+
+.ofx-about{ margin-top:44px; background:var(--about-surface); border:1px solid var(--about-line); border-radius:18px; padding:32px 34px; box-shadow:var(--about-shadow); }
+.ofx-about h2{ font-size:21px; font-weight:800; letter-spacing:-.012em; color:var(--about-ink); }
+.ofx-about p{ margin:14px 0 0; font-size:15px; line-height:1.7; color:var(--about-ink-2); max-width:760px; text-wrap:pretty; }
+
+.ofx-photo .of-photo{ width:100%; height:100%; }
+.ofx-photo .of-photo img.of-photo__logo{ height:32px; }
+
+@media (max-width:980px){
+  .of-grid{ grid-template-columns:1fr 1fr; }
+  .ofx-head{ grid-template-columns:1fr; }
+}
+@media (max-width:620px){
+  .of-grid{ grid-template-columns:1fr; }
+  .of-map{ height:300px; }
+}

@@ -1,0 +1,207 @@
+/* =====================================================================
+   FAKTOR — сторінка «Про компанію» (about.html)
+   Джерело дизайну: статичні сторінки/Про компанію/design_handoff_about_company/
+   («Про компанію FAKTOR.dc.html», hifi-хендоф).
+
+   Відтворення хендофа засобами проекту: уся кольорова/типографічна шкала
+   винесена в css/tokens.css (--about-*), тут — лише лейаут і композиція
+   через var(). Шрифт — спільний --font-base (як решта Montserrat-прототипів
+   проекту: favorites/property/zhk). Хедер-пігулка, sitemap, SEO та темний
+   футер — спільні (style.css). Канва 1440px, zoom-підгонка — responsive.js.
+
+   Структура (зверху вниз): breadcrumb → hero → смуга 5 фактів →
+   місія (2 кол.) → переваги (3×3) → таймлайн (5 кроків) → послуги (3×3) →
+   темний блок «Команда» → два фінальні CTA-блоки.
+   ===================================================================== */
+
+/* ---------- секція-обгортка: фон + центрований контейнер 1200px ---------- */
+.ab{
+  background:var(--about-bg);
+  padding:30px 40px 80px;
+  color:var(--about-ink);
+  font-family:var(--font-base);
+}
+.ab__in{ max-width:1200px; margin:0 auto; }
+
+.ab h1, .ab h2, .ab h3, .ab p{ margin:0; }
+
+/* спільні заголовки секцій (центровані) */
+.ab-head{ text-align:center; max-width:640px; margin:0 auto; }
+.ab-head h2{ font-size:30px; font-weight:800; letter-spacing:-.012em; }
+.ab-head p{ margin-top:12px; font-size:15px; color:var(--about-muted); line-height:1.6; }
+
+/* uppercase-лейбл (над H2 у місії) */
+.ab-eyebrow{
+  font-size:12px; font-weight:600; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--about-muted-2);
+}
+
+/* ---------- breadcrumb ---------- */
+.ab-crumbs{ font-size:12.5px; color:var(--about-crumb); }
+.ab-crumbs b{ color:var(--about-muted); font-weight:400; }
+
+/* ---------- HERO ---------- */
+.ab-hero{
+  position:relative; margin-top:18px; overflow:hidden;
+  border-radius:var(--about-r-lg); padding:66px 56px; color:var(--white);
+  background:var(--about-grad); box-shadow:var(--about-shadow);
+}
+.ab-hero__deco{ position:absolute; border:1px solid var(--about-w-07); border-radius:50%; }
+.ab-hero__deco--tr{ right:-40px; top:-40px; width:300px; height:300px; }
+.ab-hero__deco--br{ right:80px; bottom:-100px; width:230px; height:230px; border-color:var(--about-w-06); }
+.ab-hero__body{ position:relative; max-width:680px; }
+.ab-hero h1{ margin-top:20px; font-size:46px; font-weight:800; line-height:1.06; letter-spacing:-.018em; }
+.ab-hero__sub{ margin-top:16px; font-size:19px; font-weight:600; color:var(--about-hero-sub); line-height:1.4; }
+.ab-hero__lead{ margin-top:18px; font-size:15px; line-height:1.7; color:var(--about-w-76); max-width:640px; }
+.ab-hero__cta{ display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+
+/* pill-лейбл у hero */
+.ab-pill{
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--about-accent); background:var(--about-w-08);
+  padding:7px 14px; border-radius:999px;
+}
+
+/* кнопки */
+.ab-btn{
+  display:inline-flex; align-items:center; gap:9px; text-decoration:none;
+  font-size:14.5px; font-weight:700; padding:15px 28px;
+  border-radius:var(--about-r-btn); cursor:pointer; transition:opacity .15s ease;
+}
+.ab-btn svg{ width:17px; height:17px; }
+.ab-btn:hover{ opacity:.9; }
+.ab-btn--light{ background:var(--white); color:var(--about-ink); }
+.ab-btn--dark{ background:var(--about-ink); color:var(--white); }
+.ab-btn--ghost{
+  background:var(--about-w-08); color:var(--white); font-weight:600; padding:15px 26px;
+  border:1px solid var(--about-w-28);
+}
+
+/* ---------- смуга ключових фактів (5 у ряд) ---------- */
+.ab-facts{
+  margin-top:22px; display:grid; grid-template-columns:repeat(5,1fr); gap:1px;
+  background:var(--about-line); border:1px solid var(--about-line);
+  border-radius:var(--about-r-md); overflow:hidden; box-shadow:var(--about-shadow);
+}
+.ab-fact{ background:var(--about-surface); padding:22px; display:flex; align-items:center; gap:14px; }
+.ab-fact__ico{
+  width:42px; height:42px; flex:none; border-radius:var(--about-r-icon);
+  background:var(--about-ink); color:var(--white);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.ab-fact__t{ font-size:16px; font-weight:800; color:var(--about-ink); letter-spacing:-.01em; line-height:1.15; }
+.ab-fact__n{ margin-top:4px; font-size:12.5px; line-height:1.4; color:var(--about-muted); }
+
+/* ---------- місія (2 колонки) ---------- */
+.ab-mission{
+  margin-top:60px; display:grid; grid-template-columns:.85fr 1.15fr;
+  gap:46px; align-items:start;
+}
+.ab-mission h2{ margin-top:14px; font-size:30px; font-weight:800; letter-spacing:-.012em; line-height:1.12; }
+.ab-mission__text{ display:flex; flex-direction:column; gap:18px; }
+.ab-mission__text p{ font-size:15.5px; line-height:1.75; color:var(--about-ink-2); text-wrap:pretty; }
+
+/* ---------- секція переваг (3×3) ---------- */
+.ab-vals{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px; }
+.ab-val{
+  background:var(--about-surface); border:1px solid var(--about-line);
+  border-radius:var(--about-r-md); padding:28px 26px; box-shadow:var(--about-shadow);
+}
+.ab-val__ico{
+  width:52px; height:52px; border-radius:var(--about-r-sm);
+  background:var(--about-ink); color:var(--white);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.ab-val__t{ margin-top:17px; font-size:17px; font-weight:700; color:var(--about-ink); }
+.ab-val__n{ margin-top:8px; font-size:14px; line-height:1.6; color:var(--about-muted); }
+
+.ab-sec{ margin-top:72px; }            /* стандартний відступ між секціями з заголовком */
+.ab-sec--tight{ margin-top:64px; }     /* переваги ідуть одразу після місії */
+
+/* ---------- таймлайн «Як ми працюємо» ---------- */
+.ab-process{ scroll-margin-top:20px; }
+.ab-tl{ position:relative; max-width:760px; margin:38px auto 0; }
+.ab-tl__line{ position:absolute; left:25px; top:18px; bottom:18px; width:2px; background:var(--about-tl-line); }
+.ab-tl__list{ display:flex; flex-direction:column; gap:20px; }
+.ab-step{ position:relative; display:flex; gap:24px; align-items:flex-start; }
+.ab-step__n{
+  position:relative; z-index:1; flex:none; width:52px; height:52px; border-radius:50%;
+  background:var(--about-ink); color:var(--white);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:18px; font-weight:800; border:5px solid var(--about-bg);
+}
+.ab-step__card{
+  flex:1; background:var(--about-surface); border:1px solid var(--about-line);
+  border-radius:var(--about-r-sm); padding:20px 24px; box-shadow:var(--about-shadow);
+}
+.ab-step__t{ font-size:17px; font-weight:700; color:var(--about-ink); }
+.ab-step__n2{ margin-top:6px; font-size:14px; line-height:1.6; color:var(--about-muted); }
+
+/* ---------- послуги (3×3, іконка + текст у рядок) ---------- */
+.ab-svc{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px; }
+.ab-svc__item{
+  display:flex; align-items:center; gap:16px;
+  background:var(--about-surface); border:1px solid var(--about-line);
+  border-radius:var(--about-r-sm); padding:22px 24px; box-shadow:var(--about-shadow);
+}
+.ab-svc__ico{
+  width:46px; height:46px; flex:none; border-radius:var(--about-r-icon);
+  background:var(--about-chip); color:var(--about-ink);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.ab-svc__t{ font-size:15.5px; font-weight:700; color:var(--about-ink); line-height:1.3; }
+
+/* ---------- темний блок «Команда» ---------- */
+.ab-team{
+  margin-top:48px; background:var(--about-ink); border-radius:var(--about-r-lg);
+  padding:48px 50px; color:var(--white); box-shadow:var(--about-shadow);
+}
+.ab-team__grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:46px; align-items:center; }
+.ab-team__eyebrow{ font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--about-accent); }
+.ab-team h2{ margin-top:14px; font-size:28px; font-weight:800; letter-spacing:-.012em; line-height:1.15; }
+.ab-team__lead{ margin-top:14px; font-size:14.5px; line-height:1.7; color:var(--about-w-74); text-wrap:pretty; }
+.ab-team__list{ display:flex; flex-direction:column; gap:14px; }
+.ab-trow{
+  display:flex; gap:16px; align-items:flex-start;
+  background:var(--about-w-06); border:1px solid var(--about-w-12);
+  border-radius:var(--about-r-sm); padding:18px 20px;
+}
+.ab-trow__ico{
+  width:42px; height:42px; flex:none; border-radius:var(--about-r-btn);
+  background:var(--white); color:var(--about-ink);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.ab-trow__t{ font-size:15.5px; font-weight:700; color:var(--white); }
+.ab-trow__n{ margin-top:5px; font-size:13.5px; line-height:1.55; color:var(--about-w-70); }
+
+/* ---------- два фінальні CTA-блоки ---------- */
+.ab-cta{ scroll-margin-top:20px; margin-top:64px; }
+.ab-cta__grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.ab-ctacard{
+  position:relative; overflow:hidden; border-radius:var(--about-r-lg);
+  padding:44px 44px 40px; box-shadow:var(--about-shadow);
+  display:flex; flex-direction:column;
+}
+.ab-ctacard__deco{ position:absolute; right:-50px; bottom:-60px; width:200px; height:200px; border-radius:50%; }
+.ab-ctacard__body{ position:relative; display:flex; flex-direction:column; height:100%; }
+.ab-ctacard__ico{
+  width:56px; height:56px; border-radius:15px;
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.ab-ctacard h3{ margin-top:22px; font-size:25px; font-weight:800; letter-spacing:-.012em; line-height:1.18; }
+.ab-ctacard p{ margin-top:13px; font-size:14.5px; line-height:1.65; }
+.ab-ctacard__spacer{ flex:1; min-height:24px; }
+.ab-ctacard .ab-btn{ margin-top:26px; align-self:flex-start; }
+
+/* варіант 1 — темний (клієнтам) */
+.ab-ctacard--dark{ background:var(--about-grad); color:var(--white); }
+.ab-ctacard--dark .ab-ctacard__deco{ border:1px solid var(--about-w-07); }
+.ab-ctacard--dark .ab-ctacard__ico{ background:var(--about-w-10); color:var(--white); }
+.ab-ctacard--dark p{ color:var(--about-w-78); }
+
+/* варіант 2 — світлий (агентам) */
+.ab-ctacard--light{ background:var(--about-surface); border:1px solid var(--about-line); color:var(--about-ink); }
+.ab-ctacard--light .ab-ctacard__deco{ border:1px solid var(--about-line); }
+.ab-ctacard--light .ab-ctacard__ico{ background:var(--about-chip); color:var(--about-ink); }
+.ab-ctacard--light p{ color:var(--about-muted); }

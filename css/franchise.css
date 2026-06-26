@@ -1,0 +1,41 @@
+/* =====================================================================
+   FAKTOR — сторінка «Франшиза» (franchise.html)
+   Джерело: статичні сторінки/франшиза/handoff-franchise/franchise-block.html
+   Спільні компоненти — css/handoff.css (.hf-*). Тут специфіка:
+   split «що отримує партнер» (темна ліва + білий список 2 кол.),
+   блок «кому підходить» (3 рядки з світлою плашкою). Префікс .fr-.
+   ===================================================================== */
+
+/* split «що отримує партнер»: темна ліва панель + білий список праворуч */
+.fr-incl{
+  margin-top:56px; display:grid; grid-template-columns:.9fr 1.1fr; gap:0;
+  border-radius:var(--about-r-lg); overflow:hidden; box-shadow:var(--about-shadow);
+}
+.fr-incl__dark{ background:var(--about-ink); color:var(--white); padding:42px 40px; display:flex; flex-direction:column; justify-content:center; }
+.fr-incl__dark h2{ font-size:26px; font-weight:800; letter-spacing:-.01em; line-height:1.15; }
+.fr-incl__dark p{ margin-top:14px; font-size:14px; color:var(--about-w-74); line-height:1.6; }
+.fr-incl__light{ background:var(--about-surface); padding:38px 40px; }
+.fr-incl__list{ display:grid; grid-template-columns:1fr 1fr; gap:16px 26px; }
+.fr-li{ display:flex; gap:11px; align-items:flex-start; font-size:13.5px; line-height:1.55; color:var(--about-ink-2); }
+.fr-li svg{ flex:none; margin-top:1px; }
+
+/* «кому підходить» — картка з 3 рядками */
+.fr-fit{
+  margin-top:56px; background:var(--about-surface); border:1px solid var(--about-line);
+  border-radius:18px; padding:36px 40px; box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+.fr-fit h2{ font-size:24px; font-weight:800; letter-spacing:-.01em; }
+.fr-fit__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:22px; }
+.fr-fit__item{ display:flex; gap:13px; align-items:flex-start; font-size:13.5px; line-height:1.5; color:var(--about-ink-2); }
+.fr-fit__ico{
+  width:40px; height:40px; flex:none; border-radius:var(--about-r-btn);
+  background:var(--about-chip); color:var(--about-ink);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.fr-fit__item b{ color:var(--about-ink); }
+
+@media (max-width:980px){
+  .fr-incl{ grid-template-columns:1fr; }
+  .fr-incl__list{ grid-template-columns:1fr; }
+  .fr-fit__grid{ grid-template-columns:1fr; }
+}

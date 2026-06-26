@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Офіс FAKTOR — контакти та розташування</title>
+<!--
+  Сторінка одного офісу. Джерело дизайну:
+  статичні сторінки/Офіси/design_handoff_offices/Офіс FAKTOR.dc.html.
+  Структура: шапка-пігулка → блок .hf: breadcrumb → шапка (фото фасаду
+  + інфо-картка: бейдж, назва, адреса, телефон, графік, кнопки) →
+  мапа розташування → «Про офіс» → стрічка ексклюзивів →
+  split-форма «Зв'язатися з офісом» + месенджери → sitemap+SEO+футер.
+  Офіс обирається через ?o=<slug> (за замовч. arcadia-7), дані в JS.
+  Стилі: css/handoff.css + css/offices.css (.ofx-*). Канва 1440px.
+-->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/handoff.css">
+<link rel="stylesheet" href="css/offices.css">
+<script defer src="js/responsive.js"></script>
+</head>
+<body>
+<div class="page">
+<div class="frame">
+
+  <!-- ===================== HEADER (спільний) ===================== -->
+  <header class="cat-header">
+    <nav class="nav">
+      <span class="nav__logo"><a href="index.html"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></a></span>
+      <div class="nav__links">
+        <a href="novobudovy.html">Новобудови</a><a href="catalog.html">Квартири</a><a href="#">Будинки</a><a href="#">Комерційна</a><a href="developers.html">Забудовники</a>
+      </div>
+      <div class="nav__right">
+        <span class="nav__icon" title="Подзвонити"><img src="img/icons/phone-call.svg" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Обране"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
+        <span class="nav__lang">UA / USD <img src="img/icons/small-arrow.svg" class="cd" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Меню"><img src="img/icons/menu.svg" width="24" height="24" alt=""></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== ОФІС ===================== -->
+  <section class="hf">
+    <div class="hf__in">
+
+      <div class="hf-crumbs">
+        <a href="index.html">Головна</a> › <a href="offices.html">Офіси</a> › <span class="is-cur" id="ofx-crumb">FAKTOR Arcadia 7</span>
+      </div>
+
+      <!-- HEAD -->
+      <div class="ofx-head">
+        <div class="ofx-photo">
+          <div class="of-photo">
+            <img class="of-photo__logo" src="img/logos/Faktor Sign Navi.svg" alt="Фасад офісу" id="ofx-photo-alt">
+            <div class="of-photo__badge">фото фасаду офісу · CRM</div>
+          </div>
+        </div>
+        <div class="ofx-info">
+          <span class="ofx-badge">Офіс мережі FAKTOR</span>
+          <h1 id="ofx-name">FAKTOR Arcadia 7</h1>
+          <div class="ofx-row"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#001738" stroke-width="1.7"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span id="ofx-addr">Одеса, Приморський р-н, вул. Генуезька, 7</span></div>
+          <div class="ofx-row ofx-row--mid"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#001738" stroke-width="1.7"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg><a id="ofx-tel" href="tel:+380733808455">+38 (073) 380 84 55</a></div>
+          <div class="ofx-row ofx-row--mid ofx-row--time"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#9aa1ad" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Щодня 09:00 – 19:00</div>
+          <div class="ofx-btns">
+            <a class="ofx-call" id="ofx-call" href="tel:+380733808455"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>Зателефонувати</a>
+            <a class="ofx-route" id="ofx-route" href="#" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11l18-8-8 18-2-8z"/></svg>Прокласти маршрут</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAP -->
+      <h2 class="ofx-sectitle">Розташування</h2>
+      <div class="ofx-map">
+        <div class="of-map__grid"></div>
+        <div class="of-map__sea" style="width:32%"></div>
+        <div class="ofx-map__pin"><span class="ofx-map__shape"><span class="ofx-map__dot"></span></span></div>
+        <a class="ofx-map__btn" id="ofx-mapbtn" href="#" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11l18-8-8 18-2-8z"/></svg>Маршрут</a>
+        <div class="of-map__note" style="right:auto;left:18px">Leaflet / OpenStreetMap — підключає розробник</div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="ofx-about">
+        <h2>Про офіс</h2>
+        <p id="ofx-about">Офіс FAKTOR Arcadia 7 працює в серці Аркадії — одному з найпопулярніших районів Одеси біля моря. Тут зосереджені сучасні новобудови, апартаменти й видові квартири. Команда офісу спеціалізується на курортній і преміальній нерухомості та супроводжує угоди від першого перегляду до підпису договору.</p>
+      </div>
+
+      <!-- EXCLUSIVES -->
+      <div style="margin-top:48px;">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px;">
+          <div>
+            <h2 style="margin:0;font-size:24px;font-weight:800;letter-spacing:-.012em;color:var(--about-ink);">Ексклюзивні об'єкти офісу</h2>
+            <p style="margin:8px 0 0;font-size:14px;color:var(--about-muted);" id="ofx-exsub">Пропозиції, які веде безпосередньо FAKTOR Arcadia 7</p>
+          </div>
+          <a href="catalog.html" style="font-size:13.5px;font-weight:600;color:var(--about-ink);text-decoration:none;white-space:nowrap;">Усі об'єкти →</a>
+        </div>
+        <div class="ofx-ribbon" id="ofx-ribbon"></div>
+      </div>
+
+      <!-- FORM -->
+      <div class="hf-split" style="margin-top:48px;">
+        <div class="hf-form">
+          <h2 id="ofx-formtitle">Зв'язатися з офісом</h2>
+          <p class="hf-form__sub" id="ofx-formsub">Залиште контакти — фахівець FAKTOR Arcadia 7 зв'яжеться з вами найближчим часом.</p>
+          <div class="hf-form__row">
+            <div class="hf-field"><label class="hf-field__label">Ім'я *</label><input class="hf-in" type="text" placeholder="Ваше ім'я"></div>
+            <div class="hf-field"><label class="hf-field__label">Телефон *</label><input class="hf-in" type="tel" placeholder="+380 __ ___ __ __"></div>
+          </div>
+          <div class="hf-field">
+            <label class="hf-field__label">Коментар</label>
+            <textarea class="hf-in" rows="3" placeholder="Опишіть ваш запит"></textarea>
+          </div>
+          <button class="hf-btn hf-btn--dark hf-btn--block" type="button">Надіслати</button>
+        </div>
+        <div class="hf-side">
+          <div class="hf-side__t">Або напишіть у месенджер</div>
+          <p class="hf-side__sub">Швидко відповімо на запитання про об'єкти та роботу офісу.</p>
+          <div class="hf-mess">
+            <a href="#" class="hf-mess__item">
+              <span class="hf-mess__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3L2.9 11.6c-1 .4-1 1.8 0 2.1l4.8 1.5 1.8 5.7c.3.9 1.4 1.1 2 .4l2.6-2.6 4.7 3.5c.7.5 1.7.1 1.9-.7l3-15.6c.2-1-.8-1.9-1.8-1.6z"/></svg></span>
+              <span><span class="hf-mess__name">Telegram</span><span class="hf-mess__sub" id="ofx-tg">@faktor_arcadia</span></span>
+            </a>
+            <a href="#" class="hf-mess__item">
+              <span class="hf-mess__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.3-.1.6.4.7 1 1.3 1.6 1.7.3.2.6.4 1 .1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.2.5.4.1.3.1.7-.1 1.2z"/></svg></span>
+              <span><span class="hf-mess__name">WhatsApp</span><span class="hf-mess__sub" id="ofx-wa">+38 (073) 380 84 55</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== SITEMAP (спільний) ===================== -->
+  <div class="container">
+    <div class="footer-divider"></div>
+    <nav class="sitemap">
+      <div class="col">
+        <h5 class="t24">Квартири</h5>
+        <a href="catalog.html">1-кімнатні</a><a href="catalog.html">2-кімнатні</a><a href="catalog.html">3-кімнатні</a><a href="catalog.html">4-кімнатні</a><a href="catalog.html">5+ кімнатні</a><a href="catalog.html">Студії</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Будинки і дачі</h5>
+        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a><a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Комерційна</h5>
+        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a><a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a><a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Райони Одеси</h5>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+        <a href="#" class="gap">Локації</a>
+        <a href="#">Аркадія</a><a href="#">Фонтан</a><a href="#">Таїрова</a><a href="#">Центр</a><a href="#">Черемушки</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Новобудови</h5>
+        <a href="novobudovy.html">Усі ЖК</a><a href="developers.html">Забудовники</a><a href="novobudovy.html">1-кімнатні</a><a href="novobudovy.html">2-кімнатні</a><a href="novobudovy.html">3-кімнатні</a><a href="novobudovy.html">Багатокімнатні</a>
+        <a href="#" class="gap">Зарубіжна нерухомість</a>
+        <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===================== SEO (спільний) ===================== -->
+  <div class="seo">
+    <div class="seo__in">
+      <h3 class="t15">Офіс агентства нерухомості FAKTOR в Одесі</h3>
+      <p class="t15">Завітайте до офісу мережі «FAKTOR» — наша команда ріелторів допоможе підібрати, продати чи орендувати нерухомість в Одесі та супроводить угоду від першого перегляду до підпису договору. У кожному офісі ви отримаєте безкоштовну консультацію, перевірку юридичної чистоти об'єкта та доступ до ексклюзивних пропозицій, які веде безпосередньо цей офіс. Зателефонуйте, напишіть у месенджер або прокладіть маршрут — і приходьте у зручний час.</p>
+      <a href="#" class="seo__more t15">Читати повністю</a>
+    </div>
+  </div>
+
+  <!-- ===================== DARK FOOTER (спільний) ===================== -->
+  <footer class="dark">
+    <div class="container">
+      <div class="dark__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+      <div class="dark__cols">
+        <div>
+          <h5 class="t15">Контакти</h5>
+          <a href="#">+38 (073) 355 98 54</a><a href="#">Telegram</a><a href="#">Канал “Нові об'єкти Одеси”</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
+        </div>
+        <div>
+          <h5 class="t15">Компанія</h5>
+          <a href="about.html">Про нас</a><a href="#">Курси рієлторів</a><a href="career.html">Кар'єра</a><a href="franchise.html">Франшиза</a><a href="blog.html">Блог</a><a href="owners.html">Продати об'єкт</a>
+        </div>
+        <div>
+          <h5 class="t15">Продаж</h5>
+          <a href="catalog.html">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="novobudovy.html">Новобудови</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Аренда</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Зарубіжна нерухомість</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Сервіси</h5>
+          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a><a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
+        </div>
+      </div>
+      <div class="dark__bottom">
+        <a href="privacy.html">Політика конфіденційності</a>
+        <a href="#">Умови користувача</a>
+        <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
+        <span></span>
+        <a href="#">Вхід для агентів</a>
+        <div class="dark__switch">
+          <span class="sw">USD <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+          <span class="sw">UA <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<style>
+/* стрічка ексклюзивів — горизонтальний скрол */
+.ofx-ribbon{ display:flex; gap:22px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; -webkit-overflow-scrolling:touch; }
+.ofx-ribbon::-webkit-scrollbar{ height:8px; }
+.ofx-ribbon::-webkit-scrollbar-thumb{ background:var(--about-fieldbd); border-radius:999px; }
+.ofx-prop{ scroll-snap-align:start; flex:0 0 300px; background:var(--about-surface); border:1px solid var(--about-line); border-radius:var(--about-r-md); overflow:hidden; box-shadow:var(--about-shadow); text-decoration:none; color:inherit; transition:transform .18s ease, box-shadow .18s ease; }
+.ofx-prop:hover{ transform:translateY(-4px); box-shadow:var(--about-card-hover); }
+.ofx-prop:hover .ofx-pprice{ text-decoration:underline; }
+.ofx-prop__img{ position:relative; aspect-ratio:16/11; background:var(--placeholder); overflow:hidden; }
+.ofx-prop__img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.ofx-prop__excl{ position:absolute; top:12px; left:12px; background:var(--about-ink); color:#fff; font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:6px 11px; border-radius:999px; }
+.ofx-prop__body{ padding:16px 18px 20px; }
+.ofx-pprice{ font-size:21px; font-weight:700; color:var(--about-head); letter-spacing:-.01em; }
+.ofx-prop__zhk{ margin-top:8px; font-size:14.5px; font-weight:600; color:var(--about-head); }
+.ofx-prop__addr{ margin-top:5px; font-size:12.5px; color:var(--about-crumb); line-height:1.45; min-height:34px; }
+.ofx-prop__stats{ display:flex; gap:15px; margin-top:12px; font-size:13px; font-weight:600; color:var(--about-head); }
+</style>
+
+<script>
+/* Офіс: вибір за ?o=slug, заповнення даних, ексклюзиви */
+(function(){
+  var PH = 'img/decor/property-placeholder.png';
+  var OFFICES = {
+    'manhattan':  { name:'FAKTOR Manhattan',   addr:'Одеса, Київський р-н, вул. Філатова Академіка, 2/2', tel:'+38 (073) 380 84 51', tg:'@faktor_manhattan' },
+    'kanatna':    { name:'FAKTOR Kanatna',      addr:'Одеса, Приморський р-н, вул. Канатна, 79',           tel:'+38 (073) 380 84 52', tg:'@faktor_kanatna' },
+    'apart-royal':{ name:'FAKTOR Apart Royal',  addr:'Одеса, Приморський р-н, вул. Мала Арнаутська, 71',   tel:'+38 (073) 380 84 53', tg:'@faktor_royal' },
+    'soborna':    { name:'FAKTOR Soborna',      addr:'Одеса, Приморський р-н, площа Віри Холодної, 3',     tel:'+38 (073) 380 84 54', tg:'@faktor_soborna' },
+    'arcadia-7':  { name:'FAKTOR Arcadia 7',    addr:'Одеса, Приморський р-н, вул. Генуезька, 7',          tel:'+38 (073) 380 84 55', tg:'@faktor_arcadia',
+      about:'Офіс FAKTOR Arcadia 7 працює в серці Аркадії — одному з найпопулярніших районів Одеси біля моря. Тут зосереджені сучасні новобудови, апартаменти й видові квартири. Команда офісу спеціалізується на курортній і преміальній нерухомості та супроводжує угоди від першого перегляду до підпису договору.' },
+    'arcadia-9':  { name:'FAKTOR Arcadia 9',    addr:'Одеса, Приморський р-н, вул. Генуезька, 9',          tel:'+38 (073) 380 84 56', tg:'@faktor_arcadia9' }
+  };
+  var EXCL = [
+    { price:'$ 515 000', zhk:'ЖК OZONE', addr:'Приморський р-н, вул. Віце-Адмірала Азарова', stats:['3 кімн.','5/9','147 м²'] },
+    { price:'$ 280 000', zhk:'ЖК Аркадія Сіті', addr:'Приморський р-н, Французький бульвар', stats:['2 кімн.','8/16','74 м²'] },
+    { price:'$ 192 000', zhk:'Арт-резиденція Garden City', addr:'Приморський р-н, вул. Генуезька', stats:['1 кімн.','4/12','52 м²'] },
+    { price:'$ 640 000', zhk:'ЖК Perlyna More', addr:'Приморський р-н, Гагарінське плато', stats:['4 кімн.','12/18','186 м²'] },
+    { price:'$ 124 000', zhk:'ЖК Modern', addr:'Приморський р-н, вул. Канатна', stats:['1 кімн.','6/10','46 м²'] }
+  ];
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function getParam(){ var m = location.search.match(/[?&]o=([^&]+)/); return m ? decodeURIComponent(m[1]) : 'arcadia-7'; }
+  var o = OFFICES[getParam()] || OFFICES['arcadia-7'];
+  var telH = 'tel:' + o.tel.replace(/[^\d+]/g,'');
+  var route = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(o.addr);
+  document.title = o.name + ' — контакти та розташування | FAKTOR';
+  function set(id, v){ var el = document.getElementById(id); if (el) el.textContent = v; }
+  set('ofx-crumb', o.name); set('ofx-name', o.name); set('ofx-addr', o.addr);
+  set('ofx-tel', o.tel); set('ofx-tg', o.tg); set('ofx-wa', o.tel);
+  set('ofx-formsub', 'Залиште контакти — фахівець ' + o.name + ' зв’яжеться з вами найближчим часом.');
+  set('ofx-exsub', 'Пропозиції, які веде безпосередньо ' + o.name);
+  if (o.about) set('ofx-about', o.about);
+  document.getElementById('ofx-photo-alt').alt = 'Фасад ' + o.name;
+  document.getElementById('ofx-tel').setAttribute('href', telH);
+  document.getElementById('ofx-call').setAttribute('href', telH);
+  document.getElementById('ofx-route').setAttribute('href', route);
+  document.getElementById('ofx-mapbtn').setAttribute('href', route);
+
+  document.getElementById('ofx-ribbon').innerHTML = EXCL.map(function(e){
+    return '<a class="ofx-prop" href="catalog.html">'+
+      '<div class="ofx-prop__img"><img src="'+PH+'" loading="lazy" alt="Ексклюзив '+esc(e.zhk)+'"><span class="ofx-prop__excl">Ексклюзив</span></div>'+
+      '<div class="ofx-prop__body">'+
+        '<div class="ofx-pprice">'+esc(e.price)+'</div>'+
+        '<div class="ofx-prop__zhk">'+esc(e.zhk)+'</div>'+
+        '<div class="ofx-prop__addr">'+esc(e.addr)+'</div>'+
+        '<div class="ofx-prop__stats">'+e.stats.map(function(s){ return '<span>'+esc(s)+'</span>'; }).join('')+'</div>'+
+      '</div></a>';
+  }).join('');
+})();
+</script>
+</body>
+</html>

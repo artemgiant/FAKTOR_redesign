@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Блог про нерухомість — поради, аналітика, гайди | FAKTOR</title>
+<!--
+  Сторінка «Блог» (список статей). Джерело дизайну:
+  статичні сторінки/Блог про нерухомість/design_handoff_blog/Блог FAKTOR.dc.html.
+  Структура: шапка-пігулка → блок .hf: breadcrumb → центрований
+  заголовок → пошук → чипи-категорії → featured-стаття → сітка
+  статей (дані в JS) → «Показати ще» → empty → блок підписки →
+  sitemap + SEO + футер (спільні). Картка статті → article.html.
+  Стилі: css/handoff.css (.hf-*) + css/blog.css (.bl-*).
+-->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/handoff.css">
+<link rel="stylesheet" href="css/blog.css">
+<script defer src="js/responsive.js"></script>
+</head>
+<body>
+<div class="page">
+<div class="frame">
+
+  <!-- ===================== HEADER (спільний) ===================== -->
+  <header class="cat-header">
+    <nav class="nav">
+      <span class="nav__logo"><a href="index.html"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></a></span>
+      <div class="nav__links">
+        <a href="novobudovy.html">Новобудови</a><a href="catalog.html">Квартири</a><a href="#">Будинки</a><a href="#">Комерційна</a><a href="developers.html">Забудовники</a>
+      </div>
+      <div class="nav__right">
+        <span class="nav__icon" title="Подзвонити"><img src="img/icons/phone-call.svg" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Обране"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
+        <span class="nav__lang">UA / USD <img src="img/icons/small-arrow.svg" class="cd" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Меню"><img src="img/icons/menu.svg" width="24" height="24" alt=""></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== БЛОГ (список) ===================== -->
+  <section class="hf">
+    <div class="hf__in">
+
+      <div class="hf-crumbs">Головна&nbsp;&nbsp;›&nbsp;&nbsp;<b>Блог</b></div>
+
+      <div class="bl-hero" style="margin-top:26px;">
+        <h1>Блог про нерухомість</h1>
+        <p>Поради, аналітика та гайди для тих, хто купує, продає чи орендує нерухомість</p>
+      </div>
+
+      <div class="bl-search" id="bl-search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9aa1ad" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="bl-input" placeholder="Пошук статей…">
+        <button class="bl-search__clear" id="bl-clear" type="button" aria-label="Очистити"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+
+      <div class="bl-chips" id="bl-chips"></div>
+
+      <div id="bl-featured"></div>
+      <div class="bl-grid" id="bl-grid"></div>
+
+      <div class="bl-more" id="bl-more" style="display:none;">
+        <button type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 5v14M5 12h14"/></svg>Показати ще статті</button>
+      </div>
+
+      <div class="bl-empty" id="bl-empty" style="display:none;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c2c8d2" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <div class="bl-empty__t">Статей не знайдено</div>
+        <div class="bl-empty__sub">Спробуйте змінити запит або оберіть іншу категорію</div>
+        <button class="bl-empty__btn" id="bl-reset" type="button">Скинути фільтри</button>
+      </div>
+
+      <!-- subscribe -->
+      <div class="bl-sub">
+        <div>
+          <div class="bl-sub__t">Отримуйте добірку статей і нові об'єкти</div>
+          <div class="bl-sub__sub">Корисні гайди про нерухомість і свіжі пропозиції.</div>
+        </div>
+        <form id="bl-subform">
+          <input type="email" placeholder="Ваш email">
+          <button type="submit" id="bl-subbtn">Підписатися</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== SITEMAP (спільний) ===================== -->
+  <div class="container">
+    <div class="footer-divider"></div>
+    <nav class="sitemap">
+      <div class="col">
+        <h5 class="t24">Квартири</h5>
+        <a href="catalog.html">1-кімнатні</a><a href="catalog.html">2-кімнатні</a><a href="catalog.html">3-кімнатні</a><a href="catalog.html">4-кімнатні</a><a href="catalog.html">5+ кімнатні</a><a href="catalog.html">Студії</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Будинки і дачі</h5>
+        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a><a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Комерційна</h5>
+        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a><a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a><a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Райони Одеси</h5>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+        <a href="#" class="gap">Локації</a>
+        <a href="#">Аркадія</a><a href="#">Фонтан</a><a href="#">Таїрова</a><a href="#">Центр</a><a href="#">Черемушки</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Новобудови</h5>
+        <a href="novobudovy.html">Усі ЖК</a><a href="developers.html">Забудовники</a><a href="novobudovy.html">1-кімнатні</a><a href="novobudovy.html">2-кімнатні</a><a href="novobudovy.html">3-кімнатні</a><a href="novobudovy.html">Багатокімнатні</a>
+        <a href="#" class="gap">Зарубіжна нерухомість</a>
+        <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===================== SEO (спільний) ===================== -->
+  <div class="seo">
+    <div class="seo__in">
+      <h3 class="t15">Блог про нерухомість в Одесі — поради, аналітика та гайди FAKTOR</h3>
+      <p class="t15">Блог агентства «FAKTOR» — це корисні матеріали для тих, хто купує, продає чи орендує нерухомість в Одесі. Тут ми збираємо покрокові інструкції, юридичні чек-листи, аналітику ринку та практичні поради: як купити квартиру, перевірити документи, вигідно продати об'єкт, обрати між новобудовою і вторинкою чи безпечно орендувати житло. Усі статті готують фахівці агентства на основі реального досвіду угод. Шукайте потрібну тему через пошук або фільтр категорій — і ухвалюйте рішення про нерухомість усвідомлено.</p>
+      <a href="#" class="seo__more t15">Читати повністю</a>
+    </div>
+  </div>
+
+  <!-- ===================== DARK FOOTER (спільний) ===================== -->
+  <footer class="dark">
+    <div class="container">
+      <div class="dark__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+      <div class="dark__cols">
+        <div>
+          <h5 class="t15">Контакти</h5>
+          <a href="#">+38 (073) 355 98 54</a><a href="#">Telegram</a><a href="#">Канал “Нові об'єкти Одеси”</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
+        </div>
+        <div>
+          <h5 class="t15">Компанія</h5>
+          <a href="about.html">Про нас</a><a href="#">Курси рієлторів</a><a href="career.html">Кар'єра</a><a href="franchise.html">Франшиза</a><a href="blog.html">Блог</a><a href="owners.html">Продати об'єкт</a>
+        </div>
+        <div>
+          <h5 class="t15">Продаж</h5>
+          <a href="catalog.html">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="novobudovy.html">Новобудови</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Аренда</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Зарубіжна нерухомість</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Сервіси</h5>
+          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a><a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
+        </div>
+      </div>
+      <div class="dark__bottom">
+        <a href="privacy.html">Політика конфіденційності</a>
+        <a href="#">Умови користувача</a>
+        <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
+        <span></span>
+        <a href="#">Вхід для агентів</a>
+        <div class="dark__switch">
+          <span class="sw">USD <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+          <span class="sw">UA <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<script>
+/* Блог: пошук + фільтр категорій + featured + сітка + «показати ще» */
+(function(){
+  var CATS = [
+    {id:'all',name:'Усі'},{id:'buyers',name:'Поради покупцям'},{id:'sellers',name:'Поради продавцям'},
+    {id:'new',name:'Новобудови'},{id:'rent',name:'Оренда'},{id:'invest',name:'Інвестиції'},
+    {id:'legal',name:'Юридичні питання'},{id:'news',name:'Новини ринку'}
+  ];
+  var catName = {}; CATS.forEach(function(c){ catName[c.id]=c.name; });
+  var ARTICLES = [
+    { cat:'buyers',  title:'Як купити квартиру в Одесі: покрокова інструкція', excerpt:'Бюджет, вибір району, новобудова чи вторинка, перевірка документів і угода — сім зрозумілих кроків до власної квартири.', date:'18 червня 2026', read:'8 хв читання', img:'купівля квартири', featured:true, href:'article.html' },
+    { cat:'legal',   title:'Як перевірити квартиру перед купівлею: чек-лист', excerpt:'Право власності, обтяження, борги, співвласники та історія прав — повний чек-лист, що убезпечує покупця.', date:'14 червня 2026', read:'7 хв читання', img:'перевірка документів', href:'article.html' },
+    { cat:'sellers', title:'Як швидко і вигідно продати квартиру в Одесі', excerpt:'Правильна ціна, передпродажна підготовка, реклама на цільову аудиторію та переговори на вашому боці.', date:'10 червня 2026', read:'7 хв читання', img:'продаж квартири', href:'article.html' },
+    { cat:'new',     title:'Новобудова чи вторинка: що обрати у 2026', excerpt:'Чесне порівняння плюсів і мінусів обох варіантів — щоб зробити усвідомлений і вигідний вибір.', date:'5 червня 2026', read:'6 хв читання', img:'новобудова Одеси', href:'article.html' },
+    { cat:'rent',    title:'Оренда квартири: як не натрапити на шахраїв', excerpt:'Типові схеми обману, ознаки шахрая, перевірка власника, депозит і договір — безпечна оренда крок за кроком.', date:'1 червня 2026', read:'6 хв читання', img:'оренда житла', href:'article.html' },
+    { cat:'invest',  title:'Інвестиції в нерухомість Одеси: з чого почати', excerpt:'Як обрати об’єкт під дохід, оцінити окупність і ризики та сформувати стратегію інвестування в житло.', date:'27 травня 2026', read:'9 хв читання', img:'інвестиції', href:'article.html' },
+    { cat:'buyers',  title:'Іпотека та держпрограми: як купити житло в розстрочку', excerpt:'Які програми діють, кому доступні та як зібрати документи — практичний розбір способів фінансування.', date:'22 травня 2026', read:'7 хв читання', img:'іпотека', href:'article.html' },
+    { cat:'legal',   title:'Завдаток і аванс: у чому різниця та що повертається', excerpt:'Юридичні нюанси попередніх домовленостей при купівлі — щоб не втратити гроші через формулювання.', date:'18 травня 2026', read:'5 хв читання', img:'завдаток', href:'article.html' },
+    { cat:'news',    title:'Ринок нерухомості Одеси: тренди сезону', excerpt:'Як змінюються ціни, попит і пропозиція в різних районах міста — короткий огляд ситуації.', date:'14 травня 2026', read:'6 хв читання', img:'ринок Одеси', href:'article.html' },
+    { cat:'sellers', title:'Передпродажна підготовка квартири: що дає приріст до ціни', excerpt:'Мінімальні вкладення, які реально впливають на швидкість і суму продажу.', date:'9 травня 2026', read:'5 хв читання', img:'підготовка до продажу', href:'article.html' },
+    { cat:'rent',    title:'Договір оренди: що обов’язково прописати', excerpt:'Строк, оплата, депозит, відповідальність за ремонт — пункти, що захищають обидві сторони.', date:'4 травня 2026', read:'6 хв читання', img:'договір оренди', href:'article.html' },
+    { cat:'new',     title:'Як перевірити надійність забудовника', excerpt:'Дозвільні документи, здані об’єкти, терміни й репутація — на що дивитися перед купівлею новобудови.', date:'29 квітня 2026', read:'7 хв читання', img:'забудовник', href:'article.html' }
+  ];
+
+  var state = { q:'', cat:'all', visible:6 };
+  var chipsEl = document.getElementById('bl-chips');
+  var featEl = document.getElementById('bl-featured');
+  var gridEl = document.getElementById('bl-grid');
+  var moreEl = document.getElementById('bl-more');
+  var emptyEl = document.getElementById('bl-empty');
+  var input = document.getElementById('bl-input');
+  var clearBtn = document.getElementById('bl-clear');
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function renderChips(){
+    chipsEl.innerHTML = CATS.map(function(c){ return '<button class="bl-chip'+(state.cat===c.id?' is-active':'')+'" data-id="'+c.id+'">'+esc(c.name)+'</button>'; }).join('');
+    chipsEl.querySelectorAll('.bl-chip').forEach(function(b){ b.addEventListener('click', function(){ state.cat=b.getAttribute('data-id'); state.visible=6; renderChips(); render(); }); });
+  }
+  function card(a){
+    return '<a class="bl-card" href="'+a.href+'">'+
+      '<div class="bl-img"><span class="bl-imglabel">'+esc(a.img)+'</span></div>'+
+      '<div class="bl-card__body">'+
+        '<span class="bl-chip--soft">'+esc(catName[a.cat])+'</span>'+
+        '<h3 class="bl-ttl bl-card__t">'+esc(a.title)+'</h3>'+
+        '<p class="bl-card__exc">'+esc(a.excerpt)+'</p>'+
+        '<div class="bl-meta"><span>'+esc(a.date)+'</span><span class="bl-dot"></span><span>'+esc(a.read)+'</span></div>'+
+      '</div></a>';
+  }
+  function render(){
+    var q = state.q.trim().toLowerCase();
+    var filtering = (state.cat!=='all' || q);
+    var list = ARTICLES.filter(function(a){
+      if (state.cat!=='all' && a.cat!==state.cat) return false;
+      if (q && (a.title+' '+a.excerpt).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    // featured лише без фільтра/пошуку
+    var feat = ARTICLES.filter(function(a){ return a.featured; })[0];
+    if (!filtering && feat){
+      featEl.innerHTML =
+        '<a class="bl-card bl-feat" href="'+feat.href+'">'+
+          '<div class="bl-img"><span class="bl-imglabel">обкладинка 16:9 · '+esc(feat.img)+'</span></div>'+
+          '<div class="bl-feat__body">'+
+            '<div class="bl-feat__top"><span class="bl-chip--solid">'+esc(catName[feat.cat])+'</span><span class="bl-feat__badge">Головна стаття</span></div>'+
+            '<h2 class="bl-ttl">'+esc(feat.title)+'</h2>'+
+            '<p class="bl-feat__exc">'+esc(feat.excerpt)+'</p>'+
+            '<div class="bl-feat__meta"><span>'+esc(feat.date)+'</span><span class="bl-dot"></span><span>'+esc(feat.read)+'</span></div>'+
+            '<span class="hf-btn hf-btn--dark bl-feat__btn">Читати<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'+
+          '</div></a>';
+      list = list.filter(function(a){ return a!==feat; });
+    } else { featEl.innerHTML=''; }
+
+    if (!list.length && !featEl.innerHTML){ gridEl.innerHTML=''; moreEl.style.display='none'; emptyEl.style.display='block'; return; }
+    emptyEl.style.display='none';
+    var shown = list.slice(0, state.visible);
+    gridEl.innerHTML = shown.map(card).join('');
+    moreEl.style.display = (state.visible < list.length) ? 'flex' : 'none';
+  }
+  input.addEventListener('input', function(){ state.q=input.value; state.visible=6; clearBtn.classList.toggle('is-show', !!input.value); render(); });
+  clearBtn.addEventListener('click', function(){ input.value=''; state.q=''; clearBtn.classList.remove('is-show'); render(); input.focus(); });
+  moreEl.querySelector('button').addEventListener('click', function(){ state.visible+=6; render(); });
+  document.getElementById('bl-reset').addEventListener('click', function(){ state.q=''; state.cat='all'; state.visible=6; input.value=''; clearBtn.classList.remove('is-show'); renderChips(); render(); });
+  document.getElementById('bl-subform').addEventListener('submit', function(e){ e.preventDefault(); document.getElementById('bl-subbtn').textContent='Готово ✓'; });
+
+  renderChips(); render();
+})();
+</script>
+</body>
+</html>

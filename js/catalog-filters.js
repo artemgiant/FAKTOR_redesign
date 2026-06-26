@@ -138,16 +138,16 @@
   function cleanLabel(l){ return l.split(',')[0].trim(); }
   function unitFor(f){ if(/price/i.test(f.id)) return '$'; if(f.id==='areaPlot') return 'сот.'; if(f.id==='floor'||f.id==='floors') return ''; return 'м²'; }
   var ICONS = {
-    chevron:'<svg class="ff-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5b6470" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>',
-    chevronUp:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 15l-6-6-6 6"/></svg>',
-    chevronDn:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>',
-    pin:'<svg class="fk-ic-pin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.35-7-10a7 7 0 0 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>',
-    sliders:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M7 12h10M10 18h4"/></svg>',
-    reset:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>',
-    x:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg>',
-    chipX:'<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg>',
-    check:'<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>',
-    drill:'<svg class="fk-locrow__drill" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>'
+    chevron:'<img class="ff-chev" src="img/icons/chevron-down-gray.svg" width="13" height="13" alt="">',
+    chevronUp:'<img src="img/icons/chevron-up.svg" width="13" height="13" alt="">',
+    chevronDn:'<img src="img/icons/chevron-down.svg" width="13" height="13" alt="">',
+    pin:'<img class="fk-ic-pin" src="img/icons/pin.svg" width="18" height="18" alt="">',
+    sliders:'<img src="img/icons/sliders.svg" width="17" height="17" alt="">',
+    reset:'<img src="img/icons/reset.svg" width="14" height="14" alt="">',
+    x:'<img src="img/icons/close.svg" width="13" height="13" alt="">',
+    chipX:'<img src="img/icons/chip-x.svg" width="9" height="9" alt="">',
+    check:'<img src="img/icons/check-white.svg" width="11" height="11" alt="">',
+    drill:'<img class="fk-locrow__drill" src="img/icons/arrow-right.svg" width="15" height="15" alt="">'
   };
 
   function mount(root, opts) {
@@ -221,7 +221,7 @@
         '<div class="fk-field fk-loc__field'+(state.locOpen?' is-open':'')+'" data-action="loc-field">'+
           ICONS.pin+'<span class="fk-chips">'+locChipsHTML()+'</span>'+
           '<input class="fk-in fk-loc__in" data-focus="location" data-action="location" type="text" value="'+esc(state.location)+'" placeholder="'+esc(ph)+'" autocomplete="off">'+
-          '<svg class="fk-ic-cd" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>'+
+          '<img class="fk-ic-cd" src="img/icons/chevron-down.svg" width="14" height="14" alt="">'+
         '</div>'+
         (state.locOpen ? locPop() : '')+
       '</div>';
@@ -241,7 +241,7 @@
       var list = '<div class="fk-list">'+locRows().map(function(r){
         if(r.header) return '<div class="fk-loc-head">'+esc(r.label)+'</div>';
         var checked = state.locSel.indexOf(r.label)>-1;
-        var box = r.selectable ? '<span class="fk-box'+(checked?' is-checked':'')+'">'+(checked?'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>':'')+'</span>' : '';
+        var box = r.selectable ? '<span class="fk-box'+(checked?' is-checked':'')+'">'+(checked?'<img src="img/icons/check-white.svg" width="12" height="12" alt="">':'')+'</span>' : '';
         var pre = r.pre!==undefined ? r.pre : r.label;
         var lbl = '<span class="fk-locrow__label"><span>'+esc(pre)+'</span>'+(r.mid?'<span class="hl">'+esc(r.mid)+'</span>':'')+(r.post?'<span>'+esc(r.post)+'</span>':'')+(r.sub?'<span class="sub">, '+esc(r.sub)+'</span>':'')+'</span>';
         var cnt = '<span class="fk-locrow__count">'+fmtNum(r.count)+'</span>';

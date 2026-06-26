@@ -1,0 +1,60 @@
+/* =====================================================================
+   FAKTOR — сторінка «Політика конфіденційності» (privacy.html)
+   Джерело: статичні сторінки/ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ/handoff-privacy/
+   Юридичний текстовий документ: sticky-зміст (TOC) ліворуч + 10
+   розділів праворуч, контакти, дата оновлення, кнопка «нагору».
+   Спільний контейнер .hf (css/handoff.css). Префікс .pp-.
+   УВАГА: тіло пунктів — ПЛЕЙСХОЛДЕРИ (.pp-ph): підставити реальний
+   текст політики з faktor24.com/privacy-policy, зберігши структуру.
+   ===================================================================== */
+
+.pp-head{ border-bottom:1px solid var(--about-line); padding-bottom:26px; margin-bottom:34px; }
+.pp-head h1{ margin:14px 0 0; font-size:34px; font-weight:800; letter-spacing:-.015em; line-height:1.12; color:var(--about-ink); }
+.pp-head__sub{ margin:10px 0 0; font-size:14.5px; color:var(--about-muted); }
+
+.pp-grid{ display:grid; grid-template-columns:264px 1fr; gap:46px; max-width:1180px; }
+
+/* TOC */
+.pp-toc{ position:sticky; top:18px; align-self:start; }
+.pp-toc__title{ font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--about-muted-2); margin-bottom:14px; }
+.pp-toc__list{ counter-reset:pp; }
+.pp-toc__list a{
+  display:flex; gap:10px; font-size:13px; line-height:1.4; color:var(--about-muted);
+  padding:9px 12px; border-radius:8px; border-left:2px solid transparent; text-decoration:none; transition:all .15s;
+}
+.pp-toc__list a:before{ counter-increment:pp; content:counter(pp) "."; font-weight:700; color:var(--about-muted-3); }
+.pp-toc__list a:hover{ background:var(--about-bg); color:var(--about-ink); }
+.pp-toc__list a.is-active{ background:var(--about-chip); color:var(--about-ink); font-weight:600; border-left-color:var(--about-ink); }
+.pp-toc__list a.is-active:before{ color:var(--about-ink); }
+
+/* контент */
+.pp-content{ max-width:780px; }
+.pp-sec{ scroll-margin-top:24px; padding-top:8px; margin-top:40px; }
+.pp-sec:first-child{ margin-top:0; }
+.pp-h2{ display:flex; gap:12px; align-items:baseline; font-size:21px; font-weight:800; color:var(--about-ink); letter-spacing:-.01em; line-height:1.25; margin:0 0 16px; padding-bottom:14px; border-bottom:1px solid var(--about-line); }
+.pp-h2 > span{ color:var(--about-muted-3); font-weight:800; }
+.pp-item{ margin:0 0 13px; font-size:14.5px; line-height:1.62; color:var(--about-ink-3); text-wrap:pretty; }
+.pp-item b{ color:var(--about-ink); font-weight:600; }
+.pp-sub{ margin:0 0 11px; padding-left:22px; font-size:14px; line-height:1.6; color:var(--about-muted); text-wrap:pretty; }
+.pp-num{ color:var(--about-ink); font-weight:600; margin-right:6px; }
+.pp-ph{ color:var(--about-muted-2); font-size:13px; }   /* плейсхолдер для розробника */
+
+/* контакти */
+.pp-contacts{ margin-top:30px; padding:22px 24px; background:var(--about-bg); border:1px solid var(--about-line); border-radius:14px; }
+.pp-contacts a{ color:var(--about-ink); font-weight:600; text-decoration:none; }
+
+.pp-updated{ margin-top:34px; padding-top:20px; border-top:1px solid var(--about-line); font-size:13px; color:var(--about-muted-2); }
+
+/* кнопка «нагору» */
+.pp-top{
+  position:fixed; right:26px; bottom:26px; width:46px; height:46px; border-radius:50%;
+  background:var(--about-ink); color:var(--white); border:none; cursor:pointer;
+  display:none; align-items:center; justify-content:center; z-index:40;
+  box-shadow:0 6px 18px rgba(0,23,56,.28);
+}
+.pp-top.is-show{ display:inline-flex; }
+
+@media (max-width:980px){
+  .pp-grid{ grid-template-columns:1fr; gap:0; }
+  .pp-toc{ position:static; margin-bottom:24px; }
+}

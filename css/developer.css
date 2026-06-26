@@ -26,9 +26,10 @@
 .dev-head__meta{margin-top:11px;display:flex;flex-wrap:wrap;gap:18px;font-size:13.5px;color:var(--secondary);}
 .dev-head__meta span{display:inline-flex;align-items:center;gap:7px;}
 .dev-head__meta svg{flex:none;color:var(--gold);}
+.dev-head__meta img{flex:none;}
 .dev-head__cta{flex:none;display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 26px;background:var(--navy);color:var(--white);font-size:14px;font-weight:var(--fw-bold);text-decoration:none;transition:background .15s;}
 .dev-head__cta:hover{background:var(--navy-hover);}
-.dev-head__cta svg{flex:none;}
+.dev-head__cta svg,.dev-head__cta img{flex:none;}
 
 /* ---------- СЕКЦІЙНІ ЗАГОЛОВКИ ---------- */
 .dev-sec{margin-top:48px;}
@@ -62,7 +63,7 @@
 .dev-sales__hours{margin-top:6px;font-size:13px;color:var(--addr);}
 .dev-call{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;height:52px;background:var(--navy);color:var(--white);font-size:14px;font-weight:var(--fw-semibold);text-decoration:none;transition:background .15s;}
 .dev-call:hover{background:var(--navy-hover);}
-.dev-call svg{flex:none;}
+.dev-call svg,.dev-call img{flex:none;}
 
 /* картка форми «Призначити огляд» */
 .dev-form__title{font-size:19px;font-weight:var(--fw-bold);color:var(--navy);letter-spacing:-0.01em;}
@@ -83,6 +84,7 @@ textarea.dev-fin{resize:vertical;min-height:88px;}
 .dev-map__shore{position:absolute;right:33%;top:0;bottom:0;width:64px;background:linear-gradient(90deg,transparent,rgba(159,192,236,.34));}
 .dev-pin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;}
 .dev-pin svg{fill:var(--navy);filter:drop-shadow(0 2px 3px rgba(0,23,56,.3));}
+.dev-pin img{filter:drop-shadow(0 2px 3px rgba(0,23,56,.3));}
 .dev-pin__bubble{background:var(--navy);color:var(--white);font-size:11px;font-weight:var(--fw-bold);padding:4px 8px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,23,56,.25);margin-bottom:3px;}
 .dev-map__attr{position:absolute;left:18px;bottom:18px;background:var(--white);border:1px solid var(--dev-border);font-size:12.5px;color:var(--secondary);padding:9px 13px;}
 

@@ -1,0 +1,208 @@
+/* =====================================================================
+   FAKTOR — СПІЛЬНИЙ ШАР КОНТЕНТ-СТОРІНОК (hifi-хендофи)
+   Джерело: статичні сторінки/ (Власникам, Кар'єра, Франшиза, Офіси,
+   Блог, FAQ, Політика) — усі поділяють ту саму дизайн-мову, що й
+   «Про компанію»: navy #001738, hero-градієнт, заокруглені картки,
+   м'які тіні, форми з білими полями, темні блоки месенджерів.
+
+   Цей файл містить КОМПОНЕНТИ, що повторюються на кількох сторінках:
+   контейнер .hf, breadcrumb, hero, заголовки секцій, картки (іконка+
+   текст), нумеровані кроки, форми/поля, сегменти, месенджери, кнопки.
+   Усе через токени --about-* (css/tokens.css). Шрифт — спільний
+   --font-base (як інші Montserrat-прототипи проекту). Сторінкові
+   відмінності — у власних css/<page>.css з префіксом сторінки.
+
+   Префікс класів: .hf-*  (handoff). Канва 1440px, zoom — responsive.js.
+   ===================================================================== */
+
+/* ---------- секція-обгортка ---------- */
+.hf{
+  background:var(--about-bg);
+  padding:30px 40px 80px;
+  color:var(--about-ink);
+  font-family:var(--font-base);
+}
+.hf__in{ max-width:1200px; margin:0 auto; }
+.hf__in--narrow{ max-width:860px; }     /* FAQ / стаття — вужча колонка читання */
+.hf h1,.hf h2,.hf h3,.hf p{ margin:0; }
+
+/* ---------- breadcrumb ---------- */
+.hf-crumbs{ font-size:12.5px; color:var(--about-crumb); display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.hf-crumbs a{ color:var(--about-crumb); text-decoration:none; }
+.hf-crumbs a:hover{ color:var(--about-muted); }
+.hf-crumbs b,.hf-crumbs .is-cur{ color:var(--about-muted); font-weight:400; }
+
+/* ---------- центрований заголовок секції ---------- */
+.hf-head{ text-align:center; max-width:640px; margin:0 auto; }
+.hf-head h2{ font-size:28px; font-weight:800; letter-spacing:-.01em; }
+.hf-head p{ margin-top:12px; font-size:14.5px; color:var(--about-muted); line-height:1.55; }
+
+/* eyebrow / pill-label */
+.hf-eyebrow{ font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--about-muted-2); }
+.hf-pill{
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--about-accent); background:var(--about-w-08);
+  padding:7px 14px; border-radius:999px;
+}
+
+/* ---------- HERO (темний градієнт) ---------- */
+.hf-hero{
+  position:relative; margin-top:18px; overflow:hidden;
+  border-radius:var(--about-r-lg); padding:64px 56px; color:var(--white);
+  background:var(--about-grad); box-shadow:var(--about-shadow);
+}
+.hf-hero__deco{ position:absolute; border:1px solid var(--about-w-07); border-radius:50%; }
+.hf-hero__deco--tr{ right:-40px; top:-40px; width:280px; height:280px; }
+.hf-hero__deco--br{ right:80px; bottom:-90px; width:220px; height:220px; border-color:var(--about-w-06); }
+.hf-hero__body{ position:relative; max-width:680px; }
+.hf-hero h1{ margin-top:20px; font-size:44px; font-weight:800; line-height:1.07; letter-spacing:-.015em; }
+.hf-hero__sub{ margin-top:16px; font-size:18px; font-weight:600; color:var(--about-hero-sub); line-height:1.4; }
+.hf-hero__lead{ margin-top:18px; font-size:14.5px; line-height:1.65; color:var(--about-w-74); max-width:640px; }
+.hf-hero__cta{ display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+
+/* ---------- кнопки ---------- */
+.hf-btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px; text-decoration:none;
+  font-family:var(--font-base); font-size:14.5px; font-weight:700; padding:15px 28px;
+  border:none; border-radius:var(--about-r-btn); cursor:pointer; transition:opacity .15s ease;
+}
+.hf-btn svg{ width:17px; height:17px; }
+.hf-btn:hover{ opacity:.92; }
+.hf-btn--light{ background:var(--white); color:var(--about-ink); }
+.hf-btn--dark{ background:var(--about-ink); color:var(--white); }
+.hf-btn--ghost{ background:var(--about-w-08); color:var(--white); font-weight:600; padding:15px 26px; border:1px solid var(--about-w-28); }
+.hf-btn--block{ width:100%; }
+
+/* ---------- картки (іконка зверху + заголовок + опис) ---------- */
+.hf-grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:32px; }
+.hf-grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:32px; }
+
+.hf-card{
+  background:var(--about-surface); border:1px solid var(--about-line);
+  border-radius:var(--about-r-md); padding:26px 24px; box-shadow:var(--about-shadow);
+}
+.hf-card__ico{
+  width:50px; height:50px; flex:none; border-radius:var(--about-r-sm);
+  background:var(--about-ink); color:var(--white);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.hf-card__t{ margin-top:16px; font-size:16px; font-weight:700; color:var(--about-ink); }
+.hf-card__n{ margin-top:7px; font-size:13.5px; line-height:1.55; color:var(--about-muted); }
+
+/* картка-послуга: іконка + текст у рядок, світла плашка */
+.hf-svc{
+  display:flex; gap:14px; align-items:flex-start;
+  background:var(--about-surface); border:1px solid var(--about-line);
+  border-radius:var(--about-r-md); padding:24px 22px; box-shadow:var(--about-shadow);
+}
+.hf-svc__ico{
+  width:42px; height:42px; flex:none; border-radius:var(--about-r-btn);
+  background:var(--about-chip); color:var(--about-ink);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.hf-svc__t{ font-size:14.5px; font-weight:700; color:var(--about-ink); line-height:1.3; }
+
+/* ---------- нумеровані кроки (кружок-номер) ---------- */
+.hf-step{
+  background:var(--about-surface); border:1px solid var(--about-line);
+  border-radius:var(--about-r-md); padding:26px 22px; box-shadow:var(--about-shadow);
+}
+.hf-step__n{
+  width:42px; height:42px; flex:none; border-radius:50%;
+  background:var(--about-ink); color:var(--white);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:800;
+}
+.hf-step__t{ margin-top:15px; font-size:15px; font-weight:700; color:var(--about-ink); line-height:1.3; }
+.hf-step__n2{ margin-top:6px; font-size:13px; line-height:1.5; color:var(--about-muted); }
+
+/* варіант кроку з номером у рядку із заголовком (owners) */
+.hf-step--row .hf-step__head{ display:flex; align-items:center; gap:12px; }
+.hf-step--row .hf-step__n{ width:40px; height:40px; font-size:15px; }
+.hf-step--row .hf-step__t{ margin-top:0; }
+.hf-step--row .hf-step__n2{ margin-top:12px; }
+
+/* ---------- секційні відступи ---------- */
+.hf-sec{ margin-top:56px; }
+.hf-sec--lg{ margin-top:72px; }
+
+/* ---------- ФОРМИ ---------- */
+/* split: ліворуч біла форма, праворуч темна панель месенджерів */
+.hf-split{
+  margin-top:56px; display:grid; grid-template-columns:1.15fr .85fr; gap:0;
+  border-radius:var(--about-r-lg); overflow:hidden; box-shadow:var(--about-shadow);
+  scroll-margin-top:20px;
+}
+.hf-form{ background:var(--about-surface); padding:40px 42px; }
+.hf-form h2{ font-size:24px; font-weight:800; letter-spacing:-.01em; }
+.hf-form__sub{ margin-top:10px; font-size:13.5px; color:var(--about-muted); line-height:1.55; }
+.hf-form__row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px; }
+.hf-field{ margin-top:14px; }
+.hf-field__label,.hf-form__row .hf-field__label{ display:block; font-size:12px; font-weight:600; color:var(--about-muted); margin-bottom:7px; }
+.hf-form__row .hf-field{ margin-top:0; }
+
+.hf-in{
+  width:100%; border:1px solid var(--about-fieldbd); border-radius:10px;
+  padding:13px 15px; font-family:var(--font-base); font-size:14px;
+  color:var(--about-ink); background:var(--white);
+}
+.hf-in::placeholder{ color:var(--about-muted-2); }
+.hf-in:focus{ outline:none; border-color:var(--about-ink); }
+textarea.hf-in{ resize:vertical; }
+select.hf-in{ appearance:none; -webkit-appearance:none; cursor:pointer; }
+.hf-select{ position:relative; }
+.hf-select svg{ position:absolute; right:14px; top:50%; transform:translateY(-50%); pointer-events:none; }
+
+/* сегмент-перемикач (Продаж/Оренда) */
+.hf-seg{
+  border:1px solid var(--about-fieldbd); background:var(--white); color:var(--about-muted);
+  font-family:var(--font-base); font-size:13.5px; font-weight:600;
+  padding:11px 18px; border-radius:999px; cursor:pointer; transition:all .15s;
+}
+.hf-seg.is-active{ background:var(--about-ink); color:var(--white); border-color:var(--about-ink); }
+
+.hf-form .hf-btn{ margin-top:18px; }
+
+/* права темна панель — месенджери */
+.hf-side{
+  background:var(--about-ink); color:var(--white); padding:40px 38px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.hf-side__t{ font-size:19px; font-weight:700; line-height:1.3; }
+.hf-side__sub{ margin:12px 0 24px; font-size:13.5px; color:var(--about-w-72); line-height:1.55; }
+.hf-mess{ display:flex; flex-direction:column; gap:12px; }
+.hf-mess__item{
+  display:flex; align-items:center; gap:13px;
+  background:var(--about-w-08); border:1px solid var(--about-w-14);
+  border-radius:12px; padding:14px 18px; text-decoration:none; color:var(--white);
+}
+.hf-mess__ico{
+  width:38px; height:38px; flex:none; border-radius:10px;
+  background:var(--white); color:var(--about-ink);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.hf-mess__name{ display:block; font-size:14.5px; font-weight:600; }
+.hf-mess__sub{ font-size:12.5px; color:var(--about-w-60); }
+
+/* ---------- темний CTA-блок у рядок (FAQ contact) ---------- */
+.hf-cta-row{
+  margin-top:26px; display:flex; align-items:center; justify-content:space-between;
+  gap:24px; flex-wrap:wrap; background:var(--about-ink); border-radius:var(--about-r-md);
+  padding:30px 34px; color:var(--white); box-shadow:var(--about-shadow);
+}
+.hf-cta-row__t{ font-size:18px; font-weight:700; }
+.hf-cta-row__sub{ margin-top:6px; font-size:14px; color:var(--about-w-72); }
+.hf-cta-row .hf-btn{ flex:none; }
+
+/* ---------- адаптив: на вузьких — split в одну колонку ----------
+   (проект фіксований 1440px + zoom; ці брейки спрацюють лише якщо
+   сторінку дивитися без zoom-обгортки, але лишаємо для коректності) */
+@media (max-width:980px){
+  .hf-grid3,.hf-grid4{ grid-template-columns:1fr 1fr; }
+  .hf-split{ grid-template-columns:1fr; }
+  .hf-form__row{ grid-template-columns:1fr; }
+}
+@media (max-width:620px){
+  .hf-grid3,.hf-grid4{ grid-template-columns:1fr; }
+}

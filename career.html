@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Кар'єра в FAKTOR — вакансії агентства нерухомості</title>
+<!--
+  Сторінка «Кар'єра». Джерело дизайну:
+  статичні сторінки/Карьера/handoff-career/career-block.html.
+  Структура: шапка-пігулка → блок .hf (breadcrumb → hero → «Що ми
+  пропонуємо» 6 карток → смуга цифр (смугастий фон) → вакансії (таби
+  + карта, дані в JS JOBS) → «Як стати частиною команди» 4 кроки →
+  split-форма заявки + месенджери) → sitemap + SEO + футер (спільні).
+  Стилі: css/handoff.css (.hf-*) + css/career.css (.cr-*).
+  Канва 1440px, zoom — responsive.js.
+-->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/handoff.css">
+<link rel="stylesheet" href="css/career.css">
+<script defer src="js/responsive.js"></script>
+</head>
+<body>
+<div class="page">
+<div class="frame">
+
+  <!-- ===================== HEADER (спільний) ===================== -->
+  <header class="cat-header">
+    <nav class="nav">
+      <span class="nav__logo"><a href="index.html"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></a></span>
+      <div class="nav__links">
+        <a href="novobudovy.html">Новобудови</a><a href="catalog.html">Квартири</a><a href="#">Будинки</a><a href="#">Комерційна</a><a href="developers.html">Забудовники</a>
+      </div>
+      <div class="nav__right">
+        <span class="nav__icon" title="Подзвонити"><img src="img/icons/phone-call.svg" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Обране"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
+        <span class="nav__lang">UA / USD <img src="img/icons/small-arrow.svg" class="cd" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Меню"><img src="img/icons/menu.svg" width="24" height="24" alt=""></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== КАР'ЄРА ===================== -->
+  <section class="hf">
+    <div class="hf__in">
+
+      <div class="hf-crumbs">Головна&nbsp;&nbsp;›&nbsp;&nbsp;<b>Кар'єра</b></div>
+
+      <!-- HERO -->
+      <div class="hf-hero">
+        <div class="hf-hero__deco hf-hero__deco--tr"></div>
+        <div class="hf-hero__deco hf-hero__deco--br"></div>
+        <div class="hf-hero__body">
+          <div class="hf-pill">Ми наймаємо</div>
+          <h1>Кар'єра в FAKTOR</h1>
+          <div class="hf-hero__sub">Будуйте кар'єру в одному з провідних агентств нерухомості</div>
+          <p class="hf-hero__lead">Компанія розширюється — відкриті позиції для агентів і керівників. Розглядаємо кандидатів як з досвідом, так і без нього: забезпечуємо навчання, інструменти та підтримку для виходу на стабільний результат.</p>
+          <div class="hf-hero__cta">
+            <a href="#cr-form" class="hf-btn hf-btn--light">Пройти співбесіду<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="#cr-jobs" class="hf-btn hf-btn--ghost">Дивитись вакансії</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHAT WE OFFER (6) -->
+      <div class="hf-sec">
+        <div class="hf-head">
+          <h2>Що ми пропонуємо</h2>
+          <p>Умови, що допомагають вийти на стабільний дохід і рости професійно</p>
+        </div>
+        <div class="hf-grid3">
+          <div class="hf-card">
+            <div class="hf-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <div class="hf-card__t">Дохід без обмежень</div>
+            <div class="hf-card__n">Прозора система мотивації — заробіток залежить від результату</div>
+          </div>
+          <div class="hf-card">
+            <div class="hf-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></div>
+            <div class="hf-card__t">Навчання та сертифікація</div>
+            <div class="hf-card__n">Тренінги, семінари й практика під супроводом наставника</div>
+          </div>
+          <div class="hf-card">
+            <div class="hf-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18"/><path d="M9 21v-6h6v6"/></svg></div>
+            <div class="hf-card__t">Офіси в різних районах</div>
+            <div class="hf-card__n">Комфортні умови праці та зручне розташування</div>
+          </div>
+          <div class="hf-card">
+            <div class="hf-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11H4z"/><path d="M14 4v5h5"/><path d="M8 13h6M8 16h4"/></svg></div>
+            <div class="hf-card__t">Юридична й рекламна підтримка</div>
+            <div class="hf-card__n">Беремо на себе документи, маркетинг і CRM</div>
+          </div>
+          <div class="hf-card">
+            <div class="hf-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h7v7"/></svg></div>
+            <div class="hf-card__t">Кар'єрне зростання</div>
+            <div class="hf-card__n">Шлях від агента до керівника філії</div>
+          </div>
+          <div class="hf-card">
+            <div class="hf-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="hf-card__t">Стабільна компанія</div>
+            <div class="hf-card__n">Понад 10 років на ринку нерухомості</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NUMBERS -->
+      <div class="cr-nums">
+        <div><div class="cr-nums__num">10+</div><div class="cr-nums__lbl">років на ринку</div></div>
+        <div><div class="cr-nums__num">150+</div><div class="cr-nums__lbl">ріелторів у команді</div></div>
+        <div><div class="cr-nums__num">10 000+</div><div class="cr-nums__lbl">об'єктів у базі</div></div>
+        <div><div class="cr-nums__num">Офіси</div><div class="cr-nums__lbl">у різних районах міста</div></div>
+      </div>
+
+      <!-- JOBS -->
+      <div id="cr-jobs" class="hf-sec cr-jobs">
+        <div class="hf-head">
+          <h2>Актуальні вакансії</h2>
+          <p>Оберіть позицію — і дізнайтесь про обов'язки та умови</p>
+        </div>
+        <div class="cr-tabs" id="cr-tabs"></div>
+        <div id="cr-card"></div>
+      </div>
+
+      <!-- HOW TO JOIN (4 steps) -->
+      <div class="hf-sec">
+        <div class="hf-head">
+          <h2>Як стати частиною команди</h2>
+          <p>Чотири прості кроки — від заявки до першої угоди</p>
+        </div>
+        <div class="hf-grid4">
+          <div class="hf-step"><div class="hf-step__n">1</div><div class="hf-step__t">Заявка або онлайн-співбесіда</div><div class="hf-step__n2">Залиште контакти чи пройдіть електронну співбесіду</div></div>
+          <div class="hf-step"><div class="hf-step__n">2</div><div class="hf-step__t">Співбесіда з керівником</div><div class="hf-step__n2">Знайомимось, обговорюємо очікування та умови</div></div>
+          <div class="hf-step"><div class="hf-step__n">3</div><div class="hf-step__t">Навчання та стажування</div><div class="hf-step__n2">Тренінги й практика під супроводом наставника</div></div>
+          <div class="hf-step"><div class="hf-step__n">4</div><div class="hf-step__t">Перша угода і дохід</div><div class="hf-step__n2">Виходите на стабільний результат із підтримкою команди</div></div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div id="cr-form" class="hf-split">
+        <div class="hf-form">
+          <h2>Залишити заявку</h2>
+          <p class="hf-form__sub">Заповніть форму — зв'яжемося з вами та запросимо на співбесіду</p>
+          <div class="hf-form__row">
+            <div class="hf-field"><label class="hf-field__label">Ім'я *</label><input class="hf-in" type="text" placeholder="Ваше ім'я"></div>
+            <div class="hf-field"><label class="hf-field__label">Телефон *</label><input class="hf-in" type="tel" placeholder="+380 __ ___ __ __"></div>
+          </div>
+          <div class="hf-field">
+            <label class="hf-field__label">Вакансія</label>
+            <div class="hf-select">
+              <select class="hf-in" id="cr-vac"><option>Директор</option><option>Адміністратор</option><option selected>Ріелтор</option><option>Інше</option></select>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--about-muted)"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="hf-field">
+            <label class="hf-field__label">Коментар</label>
+            <textarea class="hf-in" rows="3" placeholder="Кілька слів про себе та досвід"></textarea>
+          </div>
+          <button class="hf-btn hf-btn--dark hf-btn--block" type="button">Надіслати заявку</button>
+        </div>
+        <div class="hf-side">
+          <div class="hf-side__t">Або напишіть нам напряму</div>
+          <p class="hf-side__sub">Відповімо на запитання про вакансії, умови та графік у зручному месенджері.</p>
+          <div class="hf-mess">
+            <a href="#" class="hf-mess__item">
+              <span class="hf-mess__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3L2.9 11.6c-1 .4-1 1.8 0 2.1l4.8 1.5 1.8 5.7c.3.9 1.4 1.1 2 .4l2.6-2.6 4.7 3.5c.7.5 1.7.1 1.9-.7l3-15.6c.2-1-.8-1.9-1.8-1.6z"/></svg></span>
+              <span><span class="hf-mess__name">Telegram</span><span class="hf-mess__sub">@faktor_career</span></span>
+            </a>
+            <a href="#" class="hf-mess__item">
+              <span class="hf-mess__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.3-.1.6.4.7 1 1.3 1.6 1.7.3.2.6.4 1 .1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.2.5.4.1.3.1.7-.1 1.2z"/></svg></span>
+              <span><span class="hf-mess__name">WhatsApp</span><span class="hf-mess__sub">+38 (073) 380 84 54</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== SITEMAP (спільний) ===================== -->
+  <div class="container">
+    <div class="footer-divider"></div>
+    <nav class="sitemap">
+      <div class="col">
+        <h5 class="t24">Квартири</h5>
+        <a href="catalog.html">1-кімнатні</a><a href="catalog.html">2-кімнатні</a><a href="catalog.html">3-кімнатні</a><a href="catalog.html">4-кімнатні</a><a href="catalog.html">5+ кімнатні</a><a href="catalog.html">Студії</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Будинки і дачі</h5>
+        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a><a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Комерційна</h5>
+        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a><a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a><a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Райони Одеси</h5>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+        <a href="#" class="gap">Локації</a>
+        <a href="#">Аркадія</a><a href="#">Фонтан</a><a href="#">Таїрова</a><a href="#">Центр</a><a href="#">Черемушки</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Новобудови</h5>
+        <a href="novobudovy.html">Усі ЖК</a><a href="developers.html">Забудовники</a><a href="novobudovy.html">1-кімнатні</a><a href="novobudovy.html">2-кімнатні</a><a href="novobudovy.html">3-кімнатні</a><a href="novobudovy.html">Багатокімнатні</a>
+        <a href="#" class="gap">Зарубіжна нерухомість</a>
+        <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===================== SEO (спільний) ===================== -->
+  <div class="seo">
+    <div class="seo__in">
+      <h3 class="t15">Робота в агентстві нерухомості FAKTOR — вакансії в Одесі</h3>
+      <p class="t15">Агентство «FAKTOR» розширює команду й запрошує на роботу ріелторів, адміністраторів і керівників — як із досвідом, так і без нього. Ми забезпечуємо навчання, наставництво, юридичну та рекламну підтримку, CRM і комфортні офіси в різних районах міста. Прозора система мотивації дозволяє вийти на стабільний дохід, а кар'єрний шлях — вирости від агента до керівника філії. Залиште заявку або оберіть вакансію — і станьте частиною команди, що понад 10 років працює на ринку нерухомості.</p>
+      <a href="#" class="seo__more t15">Читати повністю</a>
+    </div>
+  </div>
+
+  <!-- ===================== DARK FOOTER (спільний) ===================== -->
+  <footer class="dark">
+    <div class="container">
+      <div class="dark__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+      <div class="dark__cols">
+        <div>
+          <h5 class="t15">Контакти</h5>
+          <a href="#">+38 (073) 355 98 54</a><a href="#">Telegram</a><a href="#">Канал “Нові об'єкти Одеси”</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
+        </div>
+        <div>
+          <h5 class="t15">Компанія</h5>
+          <a href="about.html">Про нас</a><a href="#">Курси рієлторів</a><a href="career.html">Кар'єра</a><a href="franchise.html">Франшиза</a><a href="blog.html">Блог</a><a href="owners.html">Продати об'єкт</a>
+        </div>
+        <div>
+          <h5 class="t15">Продаж</h5>
+          <a href="catalog.html">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="novobudovy.html">Новобудови</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Аренда</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Зарубіжна нерухомість</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Сервіси</h5>
+          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a><a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
+        </div>
+      </div>
+      <div class="dark__bottom">
+        <a href="privacy.html">Політика конфіденційності</a>
+        <a href="#">Умови користувача</a>
+        <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
+        <span></span>
+        <a href="#">Вхід для агентів</a>
+        <div class="dark__switch">
+          <span class="sw">USD <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+          <span class="sw">UA <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<script>
+/* Кар'єра: рендер табів вакансій + карти; кнопка «Відгукнутися» → форма */
+(function(){
+  var navy = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#001738" stroke-width="2"><path d="M8 12.5l2.5 2.5L16 9"/><circle cx="12" cy="12" r="9.5"/></svg>';
+  var green = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f8a4c" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>';
+  var JOBS = [
+    { title:'Директор', tag:'Керівна позиція', meta:'Повна зайнятість · досвід в управлінні',
+      duties:['Керівництво операційною діяльністю філії агентства','Організація та проведення угод','Контроль якості обслуговування клієнтів','Взаємодія з партнерами та клієнтами агентства','Підбір, навчання та розвиток команди ріелторів','Виконання планів продажу'],
+      offers:['Роботу в надійній та стабільній компанії','Тренінги та семінари','Рекламну, юридичну підтримку','Престижну та високооплачувану професію','Кар’єру та професійний розвиток','Комфортні умови праці, офіси в різних районах міста','Підтримку колег і наставників'] },
+    { title:'Адміністратор', tag:'Офіс', meta:'Повна зайнятість · можливий старт без досвіду',
+      duties:['Організація та контроль роботи офісу','Ведення клієнтської бази, прийом дзвінків, реклама','Зустріч та інформування відвідувачів','Привітність та вміння вирішувати конфліктні ситуації','Участь в організації господарської діяльності офісу','Виконання інших адміністративних задач за потреби'],
+      offers:['Роботу в надійній та стабільній компанії','Тренінги та семінари','Рекламну, юридичну підтримку','Престижну та високооплачувану професію'] },
+    { title:'Ріелтор', tag:'Продажі', meta:'Гнучкий графік · навчання з нуля',
+      duties:['Консультація клієнтів щодо купівлі/продажу нерухомості','Визначення потреб власників і покупців, формування оптимальних рішень','Ведення та оновлення бази об’єктів','Підбір об’єктів нерухомості для клієнтів','Показ об’єктів, що відповідають запитам покупців','Супровід наявних клієнтів і залучення нових'],
+      offers:['Роботу в надійній та стабільній компанії','Тренінги та семінари','Рекламну, юридичну підтримку','Престижну та високооплачувану професію','Кар’єру та професійний розвиток','Комфортні умови праці, офіси в різних районах міста','Підтримку колег і наставників'] }
+  ];
+  var tabsEl = document.getElementById('cr-tabs');
+  var cardEl = document.getElementById('cr-card');
+  var active = 2; // Ріелтор за замовчуванням
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function li(text, ico){ return '<div class="cr-li">'+ico+'<span>'+esc(text)+'</span></div>'; }
+  function render(){
+    tabsEl.innerHTML = JOBS.map(function(j,i){ return '<button class="cr-tab'+(i===active?' is-active':'')+'" data-i="'+i+'">'+esc(j.title)+'</button>'; }).join('');
+    var j = JOBS[active];
+    cardEl.innerHTML =
+      '<div class="cr-job">'+
+        '<div class="cr-job__top"><span class="cr-job__tag">'+esc(j.tag)+'</span></div>'+
+        '<div class="cr-job__title">'+esc(j.title)+'</div>'+
+        '<div class="cr-job__meta">'+esc(j.meta)+'</div>'+
+        '<div class="cr-job__grid">'+
+          '<div><div class="cr-col__h">Обов’язки</div>'+j.duties.map(function(d){ return li(d, navy); }).join('')+'</div>'+
+          '<div><div class="cr-col__h">Що ми пропонуємо</div>'+j.offers.map(function(o){ return li(o, green); }).join('')+'</div>'+
+        '</div>'+
+        '<a href="#cr-form" class="hf-btn hf-btn--dark cr-job__cta">Відгукнутися<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>'+
+      '</div>';
+    tabsEl.querySelectorAll('.cr-tab').forEach(function(b){ b.addEventListener('click', function(){ active = +b.getAttribute('data-i'); render(); }); });
+    var vac = document.getElementById('cr-vac');
+    cardEl.querySelector('.cr-job__cta').addEventListener('click', function(e){
+      e.preventDefault();
+      if (vac){ for (var k=0;k<vac.options.length;k++){ if (vac.options[k].text===j.title){ vac.selectedIndex=k; break; } } }
+      document.getElementById('cr-form').scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  }
+  render();
+  document.querySelector('a[href="#cr-jobs"]').addEventListener('click', function(e){ e.preventDefault(); document.getElementById('cr-jobs').scrollIntoView({ behavior:'smooth', block:'start' }); });
+  document.querySelector('a[href="#cr-form"].hf-btn--light').addEventListener('click', function(e){ e.preventDefault(); document.getElementById('cr-form').scrollIntoView({ behavior:'smooth', block:'start' }); });
+})();
+</script>
+</body>
+</html>

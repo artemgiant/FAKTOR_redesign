@@ -25,7 +25,7 @@
 /* пігулкові кнопки дій — як CTA сайту (r-pill), на світлому фоні */
 .fav-act{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 22px;border:1px solid var(--border-field);background:var(--white);color:var(--navy);font-family:var(--font-base);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);border-radius:var(--r-pill);cursor:pointer;transition:border-color .15s,color .15s;}
 .fav-act:hover{border-color:var(--navy);}
-.fav-act svg{flex:none;}
+.fav-act svg,.fav-act img{flex:none;}
 .fav-act--danger{color:var(--danger);border-color:var(--danger-bd);}
 .fav-act--danger:hover{border-color:var(--danger);}
 
@@ -83,7 +83,7 @@
 .fav-agent__office{margin-top:6px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);color:var(--muted);}
 .fav-agent__call{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;height:52px;background:var(--navy);color:var(--white);font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-medium);border-radius:var(--r-ctrl);}
 .fav-agent__call:hover{background:var(--navy-hover);}
-.fav-agent__call svg{flex:none;}
+.fav-agent__call svg,.fav-agent__call img{flex:none;}
 
 /* ---------------- сайдбар: «Замовити перегляд» ---------------- */
 .fav-form{background:var(--soft);padding:26px;border-radius:var(--r-card);}

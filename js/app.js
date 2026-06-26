@@ -292,7 +292,7 @@ const EXCL = [
         `<span class="fk-chip" data-i="${i}">
           <span class="fk-chip__kind">${esc(KIND[kindOf(l)] || '')}</span>
           <span class="fk-chip__label">${esc(l)}</span>
-          <button type="button" class="fk-chip__x" data-rm="${esc(l)}" aria-label="Прибрати"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <button type="button" class="fk-chip__x" data-rm="${esc(l)}" aria-label="Прибрати"><img src="img/icons/chip-x.svg" width="9" height="9" alt=""></button>
         </span>`).join('') +
       (hidden > 0 ? `<span class="fk-chip-more" data-more="1">+${hidden}</span>` : '');
 
@@ -326,12 +326,12 @@ const EXCL = [
       if(r.header) return `<div class="fk-loc-head">${esc(r.label)}</div>`;
       const checked = st.locSel.includes(r.label);
       const box = r.selectable
-        ? `<span class="fk-box${checked?' is-checked':''}">${checked?'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>':''}</span>`
+        ? `<span class="fk-box${checked?' is-checked':''}">${checked?'<img src="img/icons/check-white.svg" width="12" height="12" alt="">':''}</span>`
         : '';
       const pre = r.pre !== undefined ? r.pre : r.label;
       const label = `<span class="fk-locrow__label"><span>${esc(pre)}</span>${r.mid?`<span class="hl">${esc(r.mid)}</span>`:''}${r.post?`<span>${esc(r.post)}</span>`:''}${r.sub?`<span class="sub">, ${esc(r.sub)}</span>`:''}</span>`;
       const count = `<span class="fk-locrow__count">${fmtNum(r.count)}</span>`;
-      const drill = (!r.selectable) ? `<svg class="fk-locrow__drill" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>` : '';
+      const drill = (!r.selectable) ? `<img class="fk-locrow__drill" src="img/icons/arrow-right.svg" width="15" height="15" alt="">` : '';
       return `<label class="fk-locrow" data-row="${esc(r.label)}">${box}${label}${count}${drill}</label>`;
     }).join('');
   }

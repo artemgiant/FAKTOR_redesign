@@ -54,7 +54,7 @@
       <p class="hero__sub">Понад 10 000 об’єктів та повний супровід угоди</p>
       <div class="hero__cta">
         <a href="catalog.html" class="hero__btn hero__btn--primary">Купити нерухомість</a>
-        <a href="#" class="hero__btn hero__btn--ghost">Продати нерухомість</a>
+        <a href="owners.html" class="hero__btn hero__btn--ghost">Продати нерухомість</a>
       </div>
     </div>
 
@@ -66,10 +66,10 @@
       <!-- 1. ЛОКАЦІЯ — мультивибір із пікером (geo / local) -->
       <div class="fk-loc">
         <div class="fk-field fk-loc__field">
-          <svg class="fk-ic-pin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.35-7-10a7 7 0 0 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+          <img class="fk-ic-pin" src="img/icons/pin.svg" width="18" height="18" alt="">
           <span class="fk-chips"></span>
           <input class="fk-in fk-loc__in" type="text" placeholder="Місто, район, вулиця або ЖК…" autocomplete="off">
-          <svg class="fk-ic-cd" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          <img class="fk-ic-cd" src="img/icons/chevron-down.svg" width="14" height="14" alt="">
         </div>
         <div class="fk-pop fk-loc__pop" hidden>
           <div class="fk-tabs">
@@ -83,16 +83,16 @@
       </div>
 
       <!-- 2. ТИП УГОДИ -->
-      <div class="fk-sel-wrap fk-sel-wrap--type">
-        <select class="fk-field fk-sel fk-type"></select>
-        <svg class="fk-ic-cd" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      <div class="fk-sel-wrap fk-sel-wrap--type fk-field">
+        <select class="fk-sel fk-type"></select>
+        <img class="fk-ic-cd" src="img/icons/chevron-down.svg" width="14" height="14" alt="">
       </div>
 
       <!-- 3. ЦІНА — валюта + від/до -->
       <div class="fk-field fk-price">
         <div class="fk-sel-wrap fk-sel-wrap--cur">
           <select class="fk-sel fk-cur"></select>
-          <svg class="fk-ic-cd" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          <img class="fk-ic-cd" src="img/icons/chevron-down.svg" width="12" height="12" alt="">
         </div>
         <span class="fk-div" aria-hidden="true"></span>
         <input class="fk-in fk-price__from" type="text" placeholder="Ціна від" inputmode="numeric">
@@ -102,7 +102,7 @@
 
       <!-- 4. ЗНАЙТИ -->
       <button class="btn fk-search" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Знайти
+        <img src="img/icons/search.svg" width="18" height="18" alt="">Знайти
       </button>
 
     </div>
@@ -243,8 +243,8 @@
             <span class="fr-cnt">127 відгуків</span>
           </div>
           <div class="fr-arrows">
-            <button class="fr-arrow" data-dir="-1" aria-label="Назад"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <button class="fr-arrow" data-dir="1" aria-label="Далі"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+            <button class="fr-arrow" data-dir="-1" aria-label="Назад"><img src="img/icons/chevron-left.svg" width="18" height="18" alt=""></button>
+            <button class="fr-arrow" data-dir="1" aria-label="Далі"><img src="img/icons/chevron-right.svg" width="18" height="18" alt=""></button>
           </div>
         </div>
       </div>
@@ -318,7 +318,7 @@
           <div class="fa-card__photo"><img src="img/photos/agents/q-shevchenko.png" alt="Шевченко Ольга"></div>
           <div class="fa-card__body">
             <h3 class="fa-card__name">Шевченко Ольга</h3>
-            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Manhattan</span>
+            <span class="fa-card__office"><img src="img/icons/pin-fill.svg" alt="">FAKTOR Manhattan</span>
             <a class="fa-card__phone" href="tel:+380951379300">+38 (095) 137-93-00</a>
           </div>
         </article>
@@ -327,7 +327,7 @@
           <div class="fa-card__photo"><img src="img/photos/agents/q-bardanova.png" alt="Барданова Альона"></div>
           <div class="fa-card__body">
             <h3 class="fa-card__name">Барданова Альона</h3>
-            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Arcadia</span>
+            <span class="fa-card__office"><img src="img/icons/pin-fill.svg" alt="">FAKTOR Arcadia</span>
             <a class="fa-card__phone" href="tel:+380971477258">+38 (097) 147-72-58</a>
           </div>
         </article>
@@ -336,7 +336,7 @@
           <div class="fa-card__photo"><img src="img/photos/agents/q-tsalker.png" alt="Цалькер Олена"></div>
           <div class="fa-card__body">
             <h3 class="fa-card__name">Цалькер Олена</h3>
-            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Manhattan</span>
+            <span class="fa-card__office"><img src="img/icons/pin-fill.svg" alt="">FAKTOR Manhattan</span>
             <a class="fa-card__phone" href="tel:+380674831023">+38 (067) 483-10-23</a>
           </div>
         </article>
@@ -345,7 +345,7 @@
           <div class="fa-card__photo"><img src="img/photos/agents/q-ignat.png" alt="Ігнат Анна"></div>
           <div class="fa-card__body">
             <h3 class="fa-card__name">Ігнат Анна</h3>
-            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Manhattan</span>
+            <span class="fa-card__office"><img src="img/icons/pin-fill.svg" alt="">FAKTOR Manhattan</span>
             <a class="fa-card__phone" href="tel:+380685023075">+38 (068) 502-30-75</a>
           </div>
         </article>
@@ -354,7 +354,7 @@
           <div class="fa-card__photo"><img src="img/photos/agents/q-grek.png" alt="Грек Лілія"></div>
           <div class="fa-card__body">
             <h3 class="fa-card__name">Грек Лілія</h3>
-            <span class="fa-card__office"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>FAKTOR Arcadia</span>
+            <span class="fa-card__office"><img src="img/icons/pin-fill.svg" alt="">FAKTOR Arcadia</span>
             <a class="fa-card__phone" href="tel:+380966346964">+38 (096) 634-69-64</a>
           </div>
         </article>
@@ -429,7 +429,7 @@
         </div>
         <div>
           <h5 class="t15">Компанія</h5>
-          <a href="#">Про нас</a><a href="#">Курси рієлторів</a><a href="#">Кар'єра</a><a href="#">Франшиза</a><a href="#">Блог</a><a href="#">Продати об'єкт</a>
+          <a href="about.html">Про нас</a><a href="#">Курси рієлторів</a><a href="career.html">Кар'єра</a><a href="franchise.html">Франшиза</a><a href="blog.html">Блог</a><a href="owners.html">Продати об'єкт</a>
         </div>
         <div>
           <h5 class="t15">Продаж</h5>
@@ -449,7 +449,7 @@
         </div>
       </div>
       <div class="dark__bottom">
-        <a href="#">Політика конфіденційності</a>
+        <a href="privacy.html">Політика конфіденційності</a>
         <a href="#">Умови користувача</a>
         <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
         <span></span>

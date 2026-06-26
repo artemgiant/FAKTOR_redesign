@@ -12,6 +12,7 @@
 /* ---------------- термін здачі (пігулка в шапці ЖК) ---------------- */
 .zhk-deadline{margin-top:12px;display:inline-flex;align-items:center;gap:7px;font-size:var(--fs-sm);letter-spacing:var(--ls-sm);font-weight:var(--fw-semibold);color:var(--dark);background:var(--soft);border:1px solid var(--line);padding:8px 15px;border-radius:100px;}
 .zhk-deadline svg{flex:0 0 auto;color:var(--navy);}
+.zhk-deadline img{flex:0 0 auto;}
 
 /* ---------------- плашка: FAKTOR — офіційний партнер ---------------- */
 .zhk-partner{display:flex;gap:18px;align-items:center;background:var(--navy);color:var(--white);padding:24px 28px;margin-top:26px;border-radius:var(--r-card);}
@@ -32,7 +33,7 @@
 .zhk-buy{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 24px;}
 .zhk-buy__item{display:flex;gap:14px;align-items:flex-start;}
 .zhk-buy__badge{width:44px;height:44px;flex:none;border-radius:50%;background:var(--navy);color:var(--white);display:inline-flex;align-items:center;justify-content:center;font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-bold);}
-.zhk-buy__badge svg{display:block;}
+.zhk-buy__badge svg,.zhk-buy__badge img{display:block;}
 .zhk-buy__h{font-size:var(--fs-base);letter-spacing:var(--ls-base);font-weight:var(--fw-bold);color:var(--dark);}
 .zhk-buy__t{margin-top:4px;font-size:var(--fs-sm);line-height:var(--lh-base);letter-spacing:var(--ls-sm);color:var(--muted);}
 

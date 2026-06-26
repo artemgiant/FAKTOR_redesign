@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Про компанію — агентство нерухомості FAKTOR</title>
+<!--
+  Сторінка «Про компанію». Джерело дизайну:
+  статичні сторінки/Про компанію/design_handoff_about_company/
+  («Про компанію FAKTOR.dc.html», hifi-хендоф). Структура:
+  шапка-пігулка (спільна) → блок .ab (breadcrumb → hero → смуга 5 фактів →
+  місія 2 кол. → переваги 3×3 → таймлайн 5 кроків → послуги 3×3 →
+  темний блок «Команда» → два фінальні CTA «Власникам»/«Кар'єра») →
+  sitemap + SEO + темний футер (спільні з головною/каталогом).
+  Стилі блоку — css/about.css (+ токени --about-* у css/tokens.css);
+  шрифт спільний --font-base, як решта Montserrat-прототипів проекту.
+  Канва 1440px, без адаптиву (zoom-підгонка через js/responsive.js).
+  Іконки — інлайнові stroke-SVG (24×24, з support.js хендофа).
+-->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/about.css">
+<script defer src="js/responsive.js"></script>
+</head>
+<body>
+<div class="page">
+<div class="frame">
+
+  <!-- ===================== HEADER (пігулка, спільний) ===================== -->
+  <header class="cat-header">
+    <nav class="nav">
+      <span class="nav__logo"><a href="index.html"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></a></span>
+      <div class="nav__links">
+        <a href="novobudovy.html">Новобудови</a><a href="catalog.html">Квартири</a><a href="#">Будинки</a><a href="#">Комерційна</a><a href="developers.html">Забудовники</a>
+      </div>
+      <div class="nav__right">
+        <span class="nav__icon" title="Подзвонити"><img src="img/icons/phone-call.svg" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Обране"><img src="img/icons/fav.svg" width="24" height="24" alt=""></span>
+        <span class="nav__lang">UA / USD <img src="img/icons/small-arrow.svg" class="cd" width="18" height="18" alt=""></span>
+        <span class="nav__icon" title="Меню"><img src="img/icons/menu.svg" width="24" height="24" alt=""></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== ПРО КОМПАНІЮ: блок контенту ===================== -->
+  <section class="ab">
+    <div class="ab__in">
+
+      <!-- breadcrumb -->
+      <div class="ab-crumbs">Головна&nbsp;&nbsp;›&nbsp;&nbsp;<b>Про компанію</b></div>
+
+      <!-- HERO -->
+      <div class="ab-hero">
+        <div class="ab-hero__deco ab-hero__deco--tr"></div>
+        <div class="ab-hero__deco ab-hero__deco--br"></div>
+        <div class="ab-hero__body">
+          <div class="ab-pill">Агентство нерухомості</div>
+          <h1>Про компанію FAKTOR</h1>
+          <div class="ab-hero__sub">Агентство, якому довіряють найважливіші рішення про нерухомість</div>
+          <p class="ab-hero__lead">Понад 10 років супроводжуємо угоди від першої консультації до підпису договору. Усі напрями нерухомості, власний юридичний відділ і команда під кожного клієнта — щоб ви отримали результат, а не просто перегляди.</p>
+          <div class="ab-hero__cta">
+            <a href="#ab-cta" class="ab-btn ab-btn--light">Підібрати об'єкт<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="#ab-process" class="ab-btn ab-btn--ghost">Як ми працюємо</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- KEY FACTS STRIP -->
+      <div class="ab-facts">
+        <div class="ab-fact">
+          <div class="ab-fact__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/><path d="M12 7.5V12l3 1.8"/></svg></div>
+          <div><div class="ab-fact__t">10+ років</div><div class="ab-fact__n">на ринку нерухомості</div></div>
+        </div>
+        <div class="ab-fact">
+          <div class="ab-fact__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="ab-fact__t">150+ ріелторів</div><div class="ab-fact__n">мережа офісів зростає</div></div>
+        </div>
+        <div class="ab-fact">
+          <div class="ab-fact__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/><path d="M3 12h18"/><path d="M12 3c2.4 2.5 3.7 5.6 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.6-3.7-9s1.3-6.5 3.7-9z"/></svg></div>
+          <div><div class="ab-fact__t">Усі типи</div><div class="ab-fact__n">нерухомості + зарубіжна</div></div>
+        </div>
+        <div class="ab-fact">
+          <div class="ab-fact__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-2 2a1.5 1.5 0 0 1-2-2l1-1"/><path d="M3 11l4-4 4 2 3-1 6 6"/><path d="M21 13l-3 3-2-2"/><path d="M9 9l3 3"/></svg></div>
+          <div><div class="ab-fact__t">Без комісії</div><div class="ab-fact__n">прямо від забудовників</div></div>
+        </div>
+        <div class="ab-fact">
+          <div class="ab-fact__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-2.5 6a3 3 0 0 0 5 0L5 7z"/><path d="M19 7l-2.5 6a3 3 0 0 0 5 0L19 7z"/><path d="M8 21h8"/></svg></div>
+          <div><div class="ab-fact__t">Юрвідділ</div><div class="ab-fact__n">власний супровід угод</div></div>
+        </div>
+      </div>
+
+      <!-- MISSION -->
+      <div class="ab-mission">
+        <div>
+          <div class="ab-eyebrow">Наш підхід</div>
+          <h2>Доводимо угоду до результату</h2>
+        </div>
+        <div class="ab-mission__text">
+          <p>FAKTOR — це повний спектр послуг: продаж, оренда, новобудови, комерція та зарубіжна нерухомість. Єдине вікно для будь-якого запиту — ми не «показуємо об'єкти», а доводимо угоду до результату.</p>
+          <p>За кожним клієнтом — окремий ріелтор і команда підтримки: юристи та маркетинг. Працюємо прозоро, безпечно й завжди на боці клієнта — до завершеної угоди.</p>
+        </div>
+      </div>
+
+      <!-- VALUES (3×3) -->
+      <div class="ab-sec--tight">
+        <div class="ab-head">
+          <h2>Чому обирають FAKTOR</h2>
+          <p>Без обіцянок у цифрах — лише те, за що відповідаємо на кожній угоді</p>
+        </div>
+        <div class="ab-vals">
+          <div class="ab-val">
+            <div class="ab-val__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/><path d="M4 20h16"/></svg></div>
+            <div class="ab-val__t">Повний супровід</div>
+            <div class="ab-val__n">Від оцінки до підписання договору — поруч фахівець на кожному етапі</div>
+          </div>
+          <div class="ab-val">
+            <div class="ab-val__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-2.5 6a3 3 0 0 0 5 0L5 7z"/><path d="M19 7l-2.5 6a3 3 0 0 0 5 0L19 7z"/><path d="M8 21h8"/></svg></div>
+            <div class="ab-val__t">Власний юридичний відділ</div>
+            <div class="ab-val__n">Перевіряємо документи й чистоту об'єкта ще до угоди</div>
+          </div>
+          <div class="ab-val">
+            <div class="ab-val__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V5l9-2v18"/><path d="M12 21V8l8 2v11"/><path d="M3 21h18"/><path d="M7 8h2M7 12h2M7 16h2M16 12h1M16 16h1"/></svg></div>
+            <div class="ab-val__t">Новобудови без комісії</div>
+            <div class="ab-val__n">Працюємо із забудовниками напряму — ви купуєте за ціною забудовника, без націнки агентства</div>
+          </div>
+          <div class="ab-val">
+            <div class="ab-val__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z"/><path d="M3 11h18"/><path d="M7 15h3"/></svg></div>
+            <div class="ab-val__t">Фінансування</div>
+            <div class="ab-val__n">Допомога з розстрочкою, іпотекою та держпрограмами</div>
+          </div>
+          <div class="ab-val">
+            <div class="ab-val__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/><path d="M3 12h18"/><path d="M12 3c2.4 2.5 3.7 5.6 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.6-3.7-9s1.3-6.5 3.7-9z"/></svg></div>
+            <div class="ab-val__t">Усі типи нерухомості</div>
+            <div class="ab-val__n">Квартири, будинки, ділянки, комерція, зарубіжна — в одному місці</div>
+          </div>
+          <div class="ab-val">
+            <div class="ab-val__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-2 2a1.5 1.5 0 0 1-2-2l1-1"/><path d="M3 11l4-4 4 2 3-1 6 6"/><path d="M21 13l-3 3-2-2"/><path d="M9 9l3 3"/></svg></div>
+            <div class="ab-val__t">Партнери по всьому світу</div>
+            <div class="ab-val__n">Допомагаємо з нерухомістю не лише в Україні</div>
+          </div>
+          <div class="ab-val">
+            <div class="ab-val__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="ab-val__t">Чесні умови</div>
+            <div class="ab-val__n">Прозорі домовленості без прихованих платежів</div>
+          </div>
+          <div class="ab-val">
+            <div class="ab-val__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12a10 10 0 1 1-6-9.2"/><path d="M22 4l-9 9-3-3"/></svg></div>
+            <div class="ab-val__t">Результат, а не покази</div>
+            <div class="ab-val__n">Працюємо на завершену угоду, а не на кількість переглядів</div>
+          </div>
+          <div class="ab-val">
+            <div class="ab-val__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M7 11v4c0 1.5 2.5 3 5 3s5-1.5 5-3v-4"/></svg></div>
+            <div class="ab-val__t">Особистий ріелтор</div>
+            <div class="ab-val__n">За кожним клієнтом — окремий фахівець і команда підтримки</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROCESS TIMELINE -->
+      <div id="ab-process" class="ab-sec ab-process">
+        <div class="ab-head">
+          <h2>Як ми працюємо</h2>
+          <p>Зрозумілий процес, де на кожному етапі поруч ваш фахівець</p>
+        </div>
+        <div class="ab-tl">
+          <div class="ab-tl__line"></div>
+          <div class="ab-tl__list">
+            <div class="ab-step">
+              <div class="ab-step__n">1</div>
+              <div class="ab-step__card">
+                <div class="ab-step__t">Консультація та оцінка</div>
+                <div class="ab-step__n2">Розбираємо запит, аналізуємо ринок і формуємо стратегію угоди</div>
+              </div>
+            </div>
+            <div class="ab-step">
+              <div class="ab-step__n">2</div>
+              <div class="ab-step__card">
+                <div class="ab-step__t">Підготовка та реклама</div>
+                <div class="ab-step__n2">Продаючий опис, фото та відео, просування об'єкта на майданчиках</div>
+              </div>
+            </div>
+            <div class="ab-step">
+              <div class="ab-step__n">3</div>
+              <div class="ab-step__card">
+                <div class="ab-step__t">Покази та переговори</div>
+                <div class="ab-step__n2">Приводимо цільових клієнтів і відстоюємо ваші інтереси</div>
+              </div>
+            </div>
+            <div class="ab-step">
+              <div class="ab-step__n">4</div>
+              <div class="ab-step__card">
+                <div class="ab-step__t">Юридичне оформлення</div>
+                <div class="ab-step__n2">Власний юридичний відділ перевіряє документи — безпечна угода</div>
+              </div>
+            </div>
+            <div class="ab-step">
+              <div class="ab-step__n">5</div>
+              <div class="ab-step__card">
+                <div class="ab-step__t">Завершення угоди</div>
+                <div class="ab-step__n2">Супровід до підпису договору та після нього</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICES (3×3) -->
+      <div class="ab-sec">
+        <div class="ab-head">
+          <h2>Наші послуги</h2>
+          <p>Напрями, у яких ми супроводжуємо клієнтів від запиту до угоди</p>
+        </div>
+        <div class="ab-svc">
+          <div class="ab-svc__item">
+            <div class="ab-svc__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v11H3z"/><path d="M3 9h18"/><path d="M9 22V12h6v10"/></svg></div>
+            <div class="ab-svc__t">Продаж</div>
+          </div>
+          <div class="ab-svc__item">
+            <div class="ab-svc__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 22V12h6v10"/><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg></div>
+            <div class="ab-svc__t">Купівля</div>
+          </div>
+          <div class="ab-svc__item">
+            <div class="ab-svc__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9.5 20v-5h5v5"/><path d="M14 7l3.5 0 0 3.5"/></svg></div>
+            <div class="ab-svc__t">Оренда</div>
+          </div>
+          <div class="ab-svc__item">
+            <div class="ab-svc__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V5l9-2v18"/><path d="M12 21V8l8 2v11"/><path d="M3 21h18"/><path d="M7 8h2M7 12h2M7 16h2M16 12h1M16 16h1"/></svg></div>
+            <div class="ab-svc__t">Новобудови — прямо від забудовників</div>
+          </div>
+          <div class="ab-svc__item">
+            <div class="ab-svc__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16l-1.5 13H5.5L4 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></div>
+            <div class="ab-svc__t">Комерційна нерухомість</div>
+          </div>
+          <div class="ab-svc__item">
+            <div class="ab-svc__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/><path d="M3 12h18"/><path d="M12 3c2.4 2.5 3.7 5.6 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.6-3.7-9s1.3-6.5 3.7-9z"/></svg></div>
+            <div class="ab-svc__t">Зарубіжна нерухомість</div>
+          </div>
+          <div class="ab-svc__item">
+            <div class="ab-svc__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7h6"/><path d="M9 11h6"/><path d="M9 15h4"/><path d="M5 3h14v18l-3-2-2 2-2-2-2 2-3-2z"/></svg></div>
+            <div class="ab-svc__t">Оцінка об'єктів</div>
+          </div>
+          <div class="ab-svc__item">
+            <div class="ab-svc__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-2.5 6a3 3 0 0 0 5 0L5 7z"/><path d="M19 7l-2.5 6a3 3 0 0 0 5 0L19 7z"/><path d="M8 21h8"/></svg></div>
+            <div class="ab-svc__t">Юридичний супровід</div>
+          </div>
+          <div class="ab-svc__item">
+            <div class="ab-svc__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z"/><path d="M3 11h18"/><path d="M7 15h3"/></svg></div>
+            <div class="ab-svc__t">Фінансування — розстрочка, іпотека, держпрограми</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEAM (темний блок) -->
+      <div class="ab-team">
+        <div class="ab-team__grid">
+          <div>
+            <div class="ab-team__eyebrow">Команда</div>
+            <h2>Сильні фахівці, які працюють разом</h2>
+            <p class="ab-team__lead">За FAKTOR стоять досвідчені ріелтори, наставництво всередині команди та офіси в різних районах міста. Кожен клієнт отримує не одну людину, а команду підтримки.</p>
+          </div>
+          <div class="ab-team__list">
+            <div class="ab-trow">
+              <div class="ab-trow__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.4l6-.9z"/></svg></div>
+              <div><div class="ab-trow__t">150+ ріелторів</div><div class="ab-trow__n">Досвідчені фахівці, що ведуть угоди в усіх напрямах нерухомості</div></div>
+            </div>
+            <div class="ab-trow">
+              <div class="ab-trow__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M7 11v4c0 1.5 2.5 3 5 3s5-1.5 5-3v-4"/></svg></div>
+              <div><div class="ab-trow__t">Наставництво</div><div class="ab-trow__n">Сильні агенти діляться досвідом і підтримують команду</div></div>
+            </div>
+            <div class="ab-trow">
+              <div class="ab-trow__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18"/><path d="M9 21v-6h6v6"/></svg></div>
+              <div><div class="ab-trow__t">Мережа офісів, що зростає</div><div class="ab-trow__n">Офіси в різних районах — завжди поруч, де зручно клієнту</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TWO CTA CARDS (фінал) -->
+      <div id="ab-cta" class="ab-cta">
+        <div class="ab-cta__grid">
+
+          <!-- Картка 1: клієнтам (темна) → «Власникам» -->
+          <div class="ab-ctacard ab-ctacard--dark">
+            <div class="ab-ctacard__deco"></div>
+            <div class="ab-ctacard__body">
+              <div class="ab-ctacard__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-2 2a1.5 1.5 0 0 1-2-2l1-1"/><path d="M3 11l4-4 4 2 3-1 6 6"/><path d="M21 13l-3 3-2-2"/><path d="M9 9l3 3"/></svg></div>
+              <h3>Хочете купити або продати?</h3>
+              <p>Підберемо рішення під ваш запит і супроводимо угоду від А до Я — з юридичною безпекою та чесними умовами.</p>
+              <div class="ab-ctacard__spacer"></div>
+              <a href="#" class="ab-btn ab-btn--light">Власникам<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Картка 2: агентам (світла) → «Кар'єра» -->
+          <div class="ab-ctacard ab-ctacard--light">
+            <div class="ab-ctacard__deco"></div>
+            <div class="ab-ctacard__body">
+              <div class="ab-ctacard__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <h3>Хочете працювати з нами?</h3>
+              <p>Приєднуйтесь до команди — навчання, інструменти та підтримка для зростання від агента до керівника.</p>
+              <div class="ab-ctacard__spacer"></div>
+              <a href="#" class="ab-btn ab-btn--dark">Кар'єра у FAKTOR<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== SITEMAP (спільний) ===================== -->
+  <div class="container">
+    <div class="footer-divider"></div>
+    <nav class="sitemap">
+      <div class="col">
+        <h5 class="t24">Квартири</h5>
+        <a href="catalog.html">1-кімнатні</a><a href="catalog.html">2-кімнатні</a><a href="catalog.html">3-кімнатні</a><a href="catalog.html">4-кімнатні</a><a href="catalog.html">5+ кімнатні</a><a href="catalog.html">Студії</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Будинки і дачі</h5>
+        <a href="#">Будинки</a><a href="#">Дачі</a><a href="#">Котеджі</a><a href="#">Таунхауси</a><a href="#">Частина будинку</a><a href="#">Земельні ділянки</a>
+        <a href="#" class="gap">За районом</a>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Комерційна</h5>
+        <a href="#">Офіси</a><a href="#">Магазини</a><a href="#">Склади</a><a href="#">Кафе-бари, ресторани</a><a href="#">Готелі</a><a href="#">Виробничо-офісні</a><a href="#">Паркінги</a><a href="#">Готовий бізнес</a><a href="#">Земля комерційного призначення</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Райони Одеси</h5>
+        <a href="#">Приморський</a><a href="#">Київський</a><a href="#">Малиновський</a><a href="#">Суворовський</a>
+        <a href="#" class="gap">Локації</a>
+        <a href="#">Аркадія</a><a href="#">Фонтан</a><a href="#">Таїрова</a><a href="#">Центр</a><a href="#">Черемушки</a>
+      </div>
+      <div class="col">
+        <h5 class="t24">Новобудови</h5>
+        <a href="novobudovy.html">Усі ЖК</a><a href="developers.html">Забудовники</a><a href="novobudovy.html">1-кімнатні</a><a href="novobudovy.html">2-кімнатні</a><a href="novobudovy.html">3-кімнатні</a><a href="novobudovy.html">Багатокімнатні</a>
+        <a href="#" class="gap">Зарубіжна нерухомість</a>
+        <a href="#">Квартири</a><a href="#">Вілли, Будинки</a><a href="#">Комерційна</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===================== SEO (спільний) ===================== -->
+  <div class="seo">
+    <div class="seo__in">
+      <h3 class="t15">Про компанію FAKTOR — агентство нерухомості Одеси з повним супроводом угод</h3>
+      <p class="t15">FAKTOR — це агентство нерухомості повного циклу: продаж, оренда, новобудови, комерційна та зарубіжна нерухомість в одному вікні. Понад 10 років ми супроводжуємо клієнтів від першої консультації до підпису договору, спираючись на власний юридичний відділ, мережу з понад 150 ріелторів і прямі домовленості із забудовниками. Працюємо прозоро й безпечно: перевіряємо документи й чистоту об'єкта ще до угоди, допомагаємо з фінансуванням і доводимо кожну угоду до результату, а не до кількості переглядів.</p>
+      <a href="#" class="seo__more t15">Читати повністю</a>
+    </div>
+  </div>
+
+  <!-- ===================== DARK FOOTER (спільний) ===================== -->
+  <footer class="dark">
+    <div class="container">
+      <div class="dark__logo"><img src="img/icons/faktor-logo.svg" alt="FAKTOR"></div>
+      <div class="dark__cols">
+        <div>
+          <h5 class="t15">Контакти</h5>
+          <a href="#">+38 (073) 355 98 54</a><a href="#">Telegram</a><a href="#">Канал “Нові об'єкти Одеси”</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
+        </div>
+        <div>
+          <h5 class="t15">Компанія</h5>
+          <a href="about.html">Про нас</a><a href="#">Курси рієлторів</a><a href="#">Кар'єра</a><a href="#">Франшиза</a><a href="#">Блог</a><a href="#">Продати об'єкт</a>
+        </div>
+        <div>
+          <h5 class="t15">Продаж</h5>
+          <a href="catalog.html">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="novobudovy.html">Новобудови</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Аренда</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Земельні ділянки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Зарубіжна нерухомість</h5>
+          <a href="#">Квартири</a><a href="#">Приватні будинки</a><a href="#">Комерційна нерухомість</a>
+        </div>
+        <div>
+          <h5 class="t15">Сервіси</h5>
+          <a href="#">Підбір вторинки</a><a href="#">Підбір новобудови</a><a href="#">Кредитування</a><a href="#">Оцінка нерухомості</a><a href="#">Юридичні послуги</a>
+        </div>
+      </div>
+      <div class="dark__bottom">
+        <a href="#">Політика конфіденційності</a>
+        <a href="#">Умови користувача</a>
+        <span class="muted2">© 2015-2026 FAKTOR. Всі права захищено.</span>
+        <span></span>
+        <a href="#">Вхід для агентів</a>
+        <div class="dark__switch">
+          <span class="sw">USD <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+          <span class="sw">UA <img src="img/icons/small-arrow.svg" class="cd" width="16" height="16" alt="" style="filter:brightness(0) invert(1)"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div>
+</body>
+</html>

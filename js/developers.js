@@ -64,10 +64,10 @@
   };
 
   var ICONS = {
-    pin:'<svg class="fk-ic-pin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.35-7-10a7 7 0 0 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>',
-    chipX:'<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg>',
-    check:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>',
-    drill:'<svg class="fk-locrow__drill" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>'
+    pin:'<img class="fk-ic-pin" src="img/icons/pin.svg" width="18" height="18" alt="">',
+    chipX:'<img src="img/icons/chip-x.svg" width="9" height="9" alt="">',
+    check:'<img src="img/icons/check-white.svg" width="12" height="12" alt="">',
+    drill:'<img class="fk-locrow__drill" src="img/icons/arrow-right.svg" width="15" height="15" alt="">'
   };
 
   /* ---------------- стан ---------------- */
@@ -135,7 +135,7 @@
       '<div class="fk-field fk-loc__field'+(state.locOpen?' is-open':'')+'" data-action="loc-field">'+
         ICONS.pin+'<span class="fk-chips">'+locChipsHTML()+'</span>'+
         '<input class="fk-in fk-loc__in" data-focus="location" data-action="location" type="text" value="'+esc(state.location)+'" placeholder="'+esc(ph)+'" autocomplete="off">'+
-        '<svg class="fk-ic-cd" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>'+
+        '<img class="fk-ic-cd" src="img/icons/chevron-down.svg" width="14" height="14" alt="">'+
       '</div>'+
       (state.locOpen ? locPop() : '')+
     '</div>';

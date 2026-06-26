@@ -1,0 +1,70 @@
+/* =====================================================================
+   FAKTOR — сторінка «Питання та відповіді» (faq.html)
+   Джерело: статичні сторінки/Питання та відповіді/design_handoff_faq/
+   Спільні компоненти — css/handoff.css (.hf-*). Тут специфіка:
+   центрований заголовок-hero, пошук, чипи-категорії, акордеон Q&A,
+   empty-state. Дані Q&A — у JS. Префікс .fq-.
+   ===================================================================== */
+
+/* hero-заголовок (центрований, світлий — не темний градієнт) */
+.fq-hero{ text-align:center; }
+.fq-hero h1{ margin:0; font-size:38px; font-weight:800; letter-spacing:-.015em; line-height:1.1; color:var(--about-ink); }
+.fq-hero p{ margin:14px auto 0; max-width:600px; font-size:15.5px; color:var(--about-muted); line-height:1.6; }
+
+/* пошук */
+.fq-search{
+  margin-top:30px; display:flex; align-items:center; gap:12px;
+  background:var(--about-surface); border:1px solid var(--about-fieldbd2); border-radius:14px;
+  height:56px; padding:0 18px; box-shadow:var(--about-shadow);
+}
+.fq-search.is-focus{ border-color:var(--about-ink); }
+.fq-search input{ flex:1; border:none; background:transparent; font-family:var(--font-base); font-size:15px; color:var(--about-ink); }
+.fq-search input:focus{ outline:none; }
+.fq-search input::placeholder{ color:var(--about-muted-2); }
+.fq-search__clear{ background:none; border:none; padding:4px; cursor:pointer; color:var(--about-muted-2); display:none; }
+.fq-search__clear.is-show{ display:inline-flex; }
+
+/* чипи категорій */
+.fq-cats{ display:flex; flex-wrap:wrap; gap:9px; margin-top:18px; }
+.fq-chip{
+  padding:10px 18px; border-radius:999px; font-size:13.5px; font-weight:600; border:none;
+  cursor:pointer; transition:all .15s; white-space:nowrap; font-family:var(--font-base);
+  background:var(--about-chip2); color:var(--about-muted);
+}
+.fq-chip.is-active{ background:var(--about-ink); color:var(--white); }
+
+/* акордеон */
+.fq-acc{
+  margin-top:22px; background:var(--about-surface); border:1px solid var(--about-line);
+  border-radius:var(--about-r-md); box-shadow:var(--about-shadow); overflow:hidden;
+}
+.fq-row{ border-bottom:1px solid var(--about-chip2); }
+.fq-row:last-child{ border-bottom:none; }
+.fq-q{
+  width:100%; display:flex; align-items:center; gap:18px; padding:22px 26px;
+  background:none; border:none; cursor:pointer; text-align:left; font-family:var(--font-base);
+}
+.fq-q__main{ flex:1; }
+.fq-q__tag{ display:block; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--about-muted-2); margin-bottom:7px; }
+.fq-q__text{ display:block; font-size:16.5px; font-weight:700; line-height:1.4; color:var(--about-q); }
+.fq-row.is-open .fq-q__text{ color:var(--about-ink); }
+.fq-q__chev{
+  width:30px; height:30px; flex:none; border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  background:var(--about-chip); color:var(--about-muted); transition:transform .28s ease, background .2s, color .2s;
+}
+.fq-row.is-open .fq-q__chev{ background:var(--about-ink); color:var(--white); transform:rotate(180deg); }
+.fq-ans{ max-height:0; overflow:hidden; opacity:0; transition:max-height .34s ease, opacity .25s ease; }
+.fq-row.is-open .fq-ans{ max-height:900px; opacity:1; }
+.fq-ans p{ padding:0 64px 24px 26px; margin:0; font-size:14.5px; line-height:1.7; color:var(--about-muted); text-wrap:pretty; }
+
+/* empty state */
+.fq-empty{ text-align:center; padding:54px 20px; color:var(--about-crumb); }
+.fq-empty svg{ margin-bottom:14px; }
+.fq-empty__t{ font-size:16px; font-weight:700; color:var(--about-muted); }
+.fq-empty__sub{ margin-top:8px; font-size:14px; }
+.fq-empty__btn{
+  margin-top:18px; border:1px solid var(--about-fieldbd); background:var(--white);
+  color:var(--about-ink); font-family:var(--font-base); font-size:13.5px; font-weight:600;
+  padding:11px 22px; border-radius:999px; cursor:pointer;
+}
