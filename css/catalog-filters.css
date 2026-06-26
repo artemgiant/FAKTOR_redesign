@@ -80,15 +80,6 @@
 .ff-search{ flex:0 0 auto; height:var(--ff-h); padding:0 24px; border:none; border-radius:var(--ff-r); background:var(--ff-navy); color:#fff; font-family:var(--font-base); font-size:13.5px; font-weight:var(--fw-bold); letter-spacing:.02em; text-transform:uppercase; cursor:pointer; transition:background .15s; }
 .ff-search:hover{ background:#062a5c; }
 
-/* ── РЯД ПОПУЛЯРНИХ ЗАПИТІВ (під головним рядком) ──────────────────────
-   1:1 із хендофом: «Популярні запити:» · пресети-текстові посилання ·
-   «Скинути фільтри» (притиснута праворуч). Клік по пресету ПЕРЕМИКАЄ
-   відповідні поля й підсвічує активний (логіка у novobudovy-filters.js). */
-.ff-prerow{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:16px; }
-.ff-prerow__label{ font-size:13.5px; font-weight:var(--fw-bold); color:var(--ff-navy); white-space:nowrap; }
-.ff-pre{ text-decoration:none; font-size:13.5px; font-weight:var(--fw-semibold); color:var(--ff-muted); transition:color .15s; cursor:pointer; white-space:nowrap; }
-.ff-pre:hover{ color:var(--ff-navy); }
-.ff-pre.is-on{ color:var(--ff-navy); }
 .ff-reset{ margin-left:auto; border:none; background:none; color:var(--ff-navy); font-family:var(--font-base); font-size:13.5px; font-weight:var(--fw-bold); cursor:pointer; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; }
 .ff-reset:hover{ color:var(--ff-muted); }
 
@@ -141,6 +132,7 @@
 .ff-il{ display:flex; flex-wrap:wrap; gap:9px; }
 .ff-il a{ display:inline-flex; align-items:center; background:#f1f3f7; color:#3b434f; border:1px solid #e6e9ef; border-radius:var(--ff-pill); padding:8px 16px; font-size:12.5px; font-weight:var(--fw-medium); text-decoration:none; transition:background .15s, color .15s; }
 .ff-il a:hover{ background:var(--ff-chip); color:var(--ff-navy); }
+.ff-il a.is-on{ background:var(--ff-navy); border-color:var(--ff-navy); color:#fff; }
 
 /* ── ПІКЕР ЛОКАЦІЙ — точкові оверрайди під палітру хендофу ──────────────
    Базові .fk-* лежать у style.css і СПІЛЬНІ з головною (там навбар-пошук).

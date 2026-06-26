@@ -3,7 +3,7 @@
    Самодостатній модуль, склонований із js/catalog-filters.js та
    спеціалізований під новобудови: головний рядок (тип угоди ·
    тип нерухомості · ЛОКАЦІЯ · ВАЛЮТА+ціна · «Фільтри» · «Знайти»),
-   рядок «Популярні запити» з пресетами та скиданням, розкривна панель
+   ряд скидання, блок «Популярні підбірки» (пресети-чипи), розкривна панель
    ЖК-фільтрів (11 полів за хендофом «Каталог новобудов FAKTOR»: Категорія
    комплексу, Тип об’єкта, Клас житла, Стан, Рік здачі, Поверховість,
    Опалення, Площа, Ціна за м², Кількість кімнат, Особливості)
@@ -60,9 +60,9 @@
     { id: 'features',  kind: 'tags',   label: 'Особливості', tags: FEATURES }
   ];
 
-  // Популярні запити (з хендофу «Каталог новобудов FAKTOR»). Це готові пресети
-  // фільтрів: клік ПЕРЕМИКАЄ відповідні поля й підсвічує активний пресет (без
-  // авто-пошуку) — як у дизайні. kind: 'tags' | 'rooms' | 'ptype' | <id селекта>.
+  // Популярні підбірки (з хендофу «Каталог новобудов FAKTOR»). Це готові пресети
+  // фільтрів, показані як чипи-підбірки (стиль .ff-il, як у каталозі): клік
+  // ПЕРЕМИКАЄ відповідні поля й підсвічує активний. kind: 'tags' | 'rooms' | 'ptype' | <id селекта>.
   var PRESETS = [
     { label: 'Елітні ЖК',       kind: 'hclass',    vals: ['Преміум / Люкс'] },
     { label: 'Біля моря',       kind: 'tags',      vals: ['Перша лінія моря'] },
@@ -281,13 +281,12 @@
           '<button class="ff-more" data-action="toggle-add">'+ICONS.sliders+'Фільтри'+(addCount()?'<span class="ff-badge">'+addCount()+'</span>':'')+'</button>'+
           '<button class="ff-search" data-action="search">Знайти</button>'+
         '</div>'+
-        '<div class="ff-prerow">'+
-          '<span class="ff-prerow__label">Популярні запити:</span>'+
-          PRESETS.map(function(p){ return '<a href="#" class="ff-pre'+(state.preset===p.label?' is-on':'')+'" data-action="preset" data-val="'+esc(p.label)+'">'+esc(p.label)+'</a>'; }).join('')+
-          '<button class="ff-reset" data-action="reset">'+ICONS.x+'Скинути фільтри</button>'+
+        '<div class="ff-controls">'+
+          '<button class="ff-reset" data-action="reset">'+ICONS.reset+'Скинути всі фільтри</button>'+
         '</div>'+
         '<div class="ff-add'+(state.addOpen?' open':'')+'"><div class="ff-add-inner"><div class="ff-addgrid">'+FIELDS.map(addField).join('')+'</div></div></div>'+
-        (selectedChips().length?'<div class="ff-selected"><span class="ff-selected-label">Обрані фільтри:</span>'+selectedChips().map(function(c){ return '<span class="ff-selchip">'+esc(c.label)+'<button data-action="remove" data-rm="'+esc(c.rm)+'">'+ICONS.x+'</button></span>'; }).join('')+'</div>':'');
+        (selectedChips().length?'<div class="ff-selected"><span class="ff-selected-label">Обрані фільтри:</span>'+selectedChips().map(function(c){ return '<span class="ff-selchip">'+esc(c.label)+'<button data-action="remove" data-rm="'+esc(c.rm)+'">'+ICONS.x+'</button></span>'; }).join('')+'</div>':'')+
+        '<div class="ff-il-title">Популярні підбірки</div><div class="ff-il">'+PRESETS.map(function(p){ return '<a href="#" class="'+(state.preset===p.label?'is-on':'')+'" data-action="preset" data-val="'+esc(p.label)+'">'+esc(p.label)+'</a>'; }).join('')+'</div>';
 
       var ae=document.activeElement, fk=ae&&ae.getAttribute&&ae.getAttribute('data-focus'), pos=fk?ae.selectionStart:null;
       root.innerHTML = html;
@@ -298,7 +297,7 @@
 
     function toggleSel(id,v){ var a=(state.selects[id]||[]).slice(), i=a.indexOf(v); if(i>-1) a.splice(i,1); else a.push(v); state.selects[id]=a; }
 
-    // Популярні запити: клік ПЕРЕМИКАЄ пресет (вмикає / вимикає його поля) і
+    // Популярні підбірки: клік ПЕРЕМИКАЄ пресет (вмикає / вимикає його поля) і
     // підсвічує активний — як у хендофі. Повторний клік по активному знімає його.
     function presetByLabel(label){ for(var i=0;i<PRESETS.length;i++){ if(PRESETS[i].label===label) return PRESETS[i]; } return null; }
     function applyPreset(label){
