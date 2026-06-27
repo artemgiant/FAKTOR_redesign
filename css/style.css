@@ -207,7 +207,7 @@ img{display:block;max-width:100%;}
 .hero__cta{margin-top:32px;display:flex;justify-content:center;gap:15px;}
 .hero__btn{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 38px;border-radius:var(--r-pill);font-family:var(--font-base);font-weight:var(--fw-medium);font-size:var(--fs-base);line-height:var(--lh-none);letter-spacing:var(--ls-base);cursor:pointer;transition:opacity .2s;}
 .hero__btn:hover{opacity:.92;}
-.hero__btn--primary{background:var(--white);color:var(--navy);}
+.hero__btn--primary{background:var(--white);color:var(--navy);font-weight:var(--fw-bold);}
 .hero__btn--ghost{background:var(--white-06);color:var(--white);border:1.5px solid var(--white-60);}
 
 /* =================== КАРТКИ =================== */
@@ -296,8 +296,9 @@ img{display:block;max-width:100%;}
 .excl{position:relative;width:var(--content-fixed);margin:48px auto 0;height:620px;overflow:hidden;
   transform:scale(var(--excl-scale));transform-origin:top center;
   margin-bottom:calc(620px * (var(--excl-scale) - 1));}
-.excl__img{position:absolute;top:0;left:227px;width:435px;height:568px;border-radius:var(--r-card);background:linear-gradient(135deg,var(--excl-ph-1),var(--excl-ph-2));}
-.excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:var(--r-card);background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;opacity:.7;}
+.excl__img{position:absolute;top:0;left:227px;width:435px;height:568px;border-radius:var(--r-card);overflow:hidden;background:linear-gradient(135deg,var(--excl-ph-1),var(--excl-ph-2));}
+.excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:var(--r-card);overflow:hidden;background:var(--placeholder);opacity:.7;}
+.excl__img>img,.excl__thumb>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit;}
 .excl__thumb--r{left:1202px;}
 .excl__thumb--l{left:-69px;}
 .excl__info{position:absolute;top:154px;left:748px;width:437px;}

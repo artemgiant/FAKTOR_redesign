@@ -330,7 +330,7 @@
         '</div>'+
         '<div class="ff-add'+(state.addOpen?' open':'')+'"><div class="ff-add-inner"><div class="ff-addgrid">'+fieldsFor(state.category).map(addField).join('')+'</div></div></div>'+
         (selectedChips().length?'<div class="ff-selected"><span class="ff-selected-label">Обрані фільтри:</span>'+selectedChips().map(function(c){ return '<span class="ff-selchip">'+esc(c.label)+'<button data-action="remove" data-rm="'+esc(c.rm)+'">'+ICONS.x+'</button></span>'; }).join('')+'</div>':'')+
-        '<div class="ff-il-title">Популярні підбірки</div><div class="ff-il">'+((INTERLINKS[state.category]||{})[state.deal==='Купити'?'buy':'rent']||[]).map(function(t){ return '<a href="#" data-action="interlink" data-val="'+esc(t)+'">'+esc(t)+'</a>'; }).join('')+'</div>';
+        '<div class="ff-il"><span class="ff-il-title">Популярні підбірки:</span>'+((INTERLINKS[state.category]||{})[state.deal==='Купити'?'buy':'rent']||[]).map(function(t){ return '<a href="#" data-action="interlink" data-val="'+esc(t)+'">'+esc(t)+'</a>'; }).join('')+'</div>';
 
       var ae=document.activeElement, fk=ae&&ae.getAttribute&&ae.getAttribute('data-focus'), pos=fk?ae.selectionStart:null;
       root.innerHTML = html;

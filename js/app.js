@@ -132,7 +132,13 @@ const EXCL = [
 (function initExclusive(){
   const el = s => document.querySelector(s);
   const grad = g => `linear-gradient(135deg,${g[0]},${g[1]})`;
-  const bg = o => o.img ? `center/cover no-repeat url("${o.img}")` : grad(o.g);
+  /* фото — окремий <img object-fit:cover>, щоб не спотворювалось під transform:scale;
+     якщо фото немає — ховаємо <img> і лишаємо градієнт-плейсхолдер на контейнері */
+  const setPhoto = (sel, o) => {
+    const box = el(sel), img = box.querySelector('img');
+    if(o.img){ img.src = o.img; img.style.display = ''; box.style.background = grad(o.g); }
+    else { img.removeAttribute('src'); img.style.display = 'none'; box.style.background = grad(o.g); }
+  };
   const dotsBox = el('.excl__dots');
   dotsBox.innerHTML = EXCL.map((_, k) => `<i${k === 0 ? ' class="on"' : ''}></i>`).join('');
   const dots = dotsBox.querySelectorAll('i');
@@ -144,9 +150,9 @@ const EXCL = [
     el('.excl .price-xl').textContent = o.price;
     el('.excl__name').textContent     = o.name;
     el('.excl__addr').textContent     = o.addr;
-    el('.excl__img').style.background      = bg(o);
-    el('.excl__thumb--l').style.background = bg(p);
-    el('.excl__thumb--r').style.background = bg(n);
+    setPhoto('.excl__img', o);
+    setPhoto('.excl__thumb--l', p);
+    setPhoto('.excl__thumb--r', n);
     const tg = document.querySelectorAll('.excl__tags .pill-tag');
     o.tags.forEach((t, k) => { if(tg[k]) tg[k].textContent = t; });
     dots.forEach((d, k) => d.classList.toggle('on', k === e));
