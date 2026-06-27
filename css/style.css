@@ -112,7 +112,7 @@ img{display:block;max-width:100%;}
    Один горизонтальний рядок, контролі заввишки 44px (як у решти hero).
    Кольори/радіуси — через токени; пікер локацій будується в app.js.
    ============================================================ */
-.searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1180px;display:flex;align-items:center;gap:14px;z-index:5; margin-top:64px}
+.searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1180px;display:flex;align-items:center;gap:14px;z-index:5; margin-top:30px}
 
 /* спільна «оболонка» контролю: поле/селект/ціна */
 .fk-field{height:44px;background:var(--field);border:1px solid var(--border-field);border-radius:var(--r-field);
@@ -214,7 +214,12 @@ img{display:block;max-width:100%;}
 /* Усі картки на головній зведені до однієї висоти (--card-h), щоб ряди й секції
    були вирівняні. Виняток — картки агентів (.fa-card) у блоці «Топ агенти»,
    які мають власну розмітку й сюди не входять. */
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start;}
+/* minmax(0,1fr), а не 1fr: дозволяє колонці стискатись ВУЖЧЕ за вміст. Інакше
+   nowrap-назва картки (.card__title) задає min-content і розпирає колонку — за
+   вузького контейнера картки вилазять за край. min-width:0 на картці вмикає
+   ellipsis (текст обрізається, а не штовхає сусідів). */
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;align-items:start;}
+.grid4 > *{min-width:0;}
 
 /* суцільна картка (Новобудови / Забудовники) */
 .card-solid{position:relative;height:var(--card-h);background:var(--soft);border-radius:var(--r-card);overflow:hidden;display:flex;flex-direction:column;}
@@ -282,7 +287,15 @@ img{display:block;max-width:100%;}
    ліва частина (фото, ліва стрілка, крапки) лишилась на місці, права (інфо, праве
    прев'ю, права стрілка) підтягнута всередину. Бічні прев'ю визирають по 142px із
    КРАЇВ КОНТЕЙНЕРА; overflow:hidden обрізає їх локально саме по межах контейнера. */
-.excl{position:relative;width:var(--content);margin:48px auto 0;height:620px;overflow:hidden;}
+/* .excl — слайдер на АБСОЛЮТНИХ координатах (left:227/748/1202px під 1344px).
+   Ширину НЕ звужуємо (праві елементи вилізли б) — натомість стискаємо весь блок
+   через transform:scale(--excl-scale), щоб він візуально зрівнявся з вужчою
+   колонкою контенту на малих екранах, зберігши пропорції. scale не змінює
+   зайнятий у потоці простір, тож від'ємним margin-bottom прибираємо порожнечу,
+   що лишається під стиснутим блоком (620px × (1 − scale)). */
+.excl{position:relative;width:var(--content-fixed);margin:48px auto 0;height:620px;overflow:hidden;
+  transform:scale(var(--excl-scale));transform-origin:top center;
+  margin-bottom:calc(620px * (var(--excl-scale) - 1));}
 .excl__img{position:absolute;top:0;left:227px;width:435px;height:568px;border-radius:var(--r-card);background:linear-gradient(135deg,var(--excl-ph-1),var(--excl-ph-2));}
 .excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:var(--r-card);background:var(--placeholder) var(--placeholder-img) center/cover no-repeat;opacity:.7;}
 .excl__thumb--r{left:1202px;}
@@ -415,11 +428,11 @@ img{display:block;max-width:100%;}
 /* =================== АДАПТИВ · підгонка 1440-макета =================== */
 /* Макет зафіксований на 1440px. На вужчих екранах (13" ноутбуки тощо)
    пропорційно зменшуємо весь .frame через zoom — композиція 1:1, без
-   горизонтального скролу. js/responsive.js уточнює масштаб до точного
-   заповнення ширини; ці кроки — миттєвий фолбек без стрибка (і коли JS
-   вимкнено). Кожен крок підібрано так, щоб zoom×1440 влазив у нижню межу
-   свого діапазону навіть зі скролбаром. Порядок: від ширшого до вужчого —
-   спрацьовує найвужчий збіг. */
+   горизонтального скролу. Усе на CSS (без JS): ступінчастий zoom за шириною
+   вікна. Кожен крок підібрано так, щоб zoom×1440 влазив у нижню межу свого
+   діапазону навіть зі скролбаром. Порядок: від ширшого до вужчого —
+   спрацьовує найвужчий збіг. --nav-counter = 1/zoom на кожному кроці —
+   контр-масштабує навбар, щоб він лишався 1:1 поверх стиснутого фрейма. */
 
 /* Вертикальний ритм окремо від zoom: zoom стискає лише ширину-композицію, тож
    на ноутбуках сторінка лишається дуже високою. На вужчих екранах стискаємо
@@ -430,15 +443,27 @@ img{display:block;max-width:100%;}
 @media (max-width:1200px){ :root{ --sec-gap: 88px; --sec-gap-half:44px; --sec-head-gap:24px; } }
 @media (max-width: 960px){ :root{ --sec-gap: 72px; --sec-gap-half:36px; --sec-head-gap:20px; } }
 
-@media (max-width:1439px){ .frame{ zoom:.93; } }   /* 1367–1439 */
-@media (max-width:1366px){ .frame{ zoom:.87; } }   /* 1281–1366 (типові 13") */
-@media (max-width:1280px){ .frame{ zoom:.82; } }   /* 1201–1280 */
-@media (max-width:1200px){ .frame{ zoom:.76; } }   /* 1121–1200 */
-@media (max-width:1120px){ .frame{ zoom:.69; } }   /* 1025–1120 */
-@media (max-width:1024px){ .frame{ zoom:.65; } }   /*  961–1024 */
-@media (max-width: 960px){ .frame{ zoom:.58; } }   /*  861–960  */
-@media (max-width: 860px){ .frame{ zoom:.52; } }   /*  769–860  */
-@media (max-width: 768px){ .frame{ zoom:.46; } }   /*  ≤768 (нижче — планшет/моб., окрема історія) */
+/* =================== ШИРИНА КОНТЕНТУ ПО ДІАПАЗОНАХ ===================
+   Базове --content (для >1600px) — у tokens.css. Тут перевизначаєш ширину
+   колонки на кожному діапазоні монітора. ОДИН РЯДОК = ОДИН ДІАПАЗОН.
+   Просто став потрібну ширину в px. Менше = вужчі картки + ширші поля.
+   .excl і навбар підлаштуються самі. Порядок: від ширшого до вужчого. */
+@media (max-width:1600px){ :root{ --content:1280px; } }  /* великі ноути / 1440–1600 */
+@media (max-width:1440px){ :root{ --content:1200px; } }  /* 14–15" / 1367–1440 */
+@media (max-width:1366px){ :root{ --content:1140px; } }  /* типові 13" / 1281–1366 */
+@media (max-width:1280px){ :root{ --content:1080px; } }  /* 1201–1280 */
+@media (max-width:1120px){ :root{ --content:1000px; } }  /* 1025–1120 */
+@media (max-width: 960px){ :root{ --content: 900px; } }  /*  ≤960 */
+
+@media (max-width:1439px){ .frame{ zoom:.93; } :root{ --nav-counter:1.075; } }  /* 1367–1439 */
+@media (max-width:1366px){ .frame{ zoom:.87; } :root{ --nav-counter:1.149; } }  /* 1281–1366 (типові 13") */
+@media (max-width:1280px){ .frame{ zoom:.82; } :root{ --nav-counter:1.220; } }  /* 1201–1280 */
+@media (max-width:1200px){ .frame{ zoom:.76; } :root{ --nav-counter:1.316; } }  /* 1121–1200 */
+@media (max-width:1120px){ .frame{ zoom:.69; } :root{ --nav-counter:1.449; } }  /* 1025–1120 */
+@media (max-width:1024px){ .frame{ zoom:.65; } :root{ --nav-counter:1.538; } }  /*  961–1024 */
+@media (max-width: 960px){ .frame{ zoom:.58; } :root{ --nav-counter:1.724; } }  /*  861–960  */
+@media (max-width: 860px){ .frame{ zoom:.52; } :root{ --nav-counter:1.923; } }  /*  769–860  */
+@media (max-width: 768px){ .frame{ zoom:.46; } :root{ --nav-counter:2.174; } }  /*  ≤768 (нижче — планшет/моб., окрема історія) */
 
 /* =================== ЕКСКЛЮЗИВНІ: АДАПТАЦІЯ ПО ВИСОТІ (13") ===================
    .excl зверстано в абсолютних координатах із фіксованою height:620px (центр-фото
@@ -488,3 +513,9 @@ img{display:block;max-width:100%;}
   .dark{position:relative;isolation:isolate;}
   .dark::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;margin-left:-50vw;background:var(--navy);z-index:-1;}
 }
+
+/*!* >>> ТИМЧАСОВА ПІДСВІТКА КОНТЕЙНЕРА — щоб бачити межі й поля. Прибрати потім.*/
+/*   Червона рамка = край .container; підпис показує його ширину. *!*/
+/*.container{outline:2px solid red !important; position:relative;}*/
+/*.container::before{content:"container"; position:absolute; top:0; left:0;*/
+/*  background:red; color:#fff; font:11px/1.4 monospace; padding:1px 5px; z-index:9999;}*/
