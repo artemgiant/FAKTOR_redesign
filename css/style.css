@@ -296,8 +296,10 @@ img{display:block;max-width:100%;}
 .excl{position:relative;width:var(--content-fixed);margin:48px auto 0;height:620px;overflow:hidden;
   transform:scale(var(--excl-scale));transform-origin:top center;
   margin-bottom:calc(620px * (var(--excl-scale) - 1));}
-.excl__img{position:absolute;top:0;left:227px;width:435px;height:568px;border-radius:var(--r-card);overflow:hidden;background:linear-gradient(135deg,var(--excl-ph-1),var(--excl-ph-2));}
-.excl__thumb{position:absolute;top:151px;width:211px;height:266px;border-radius:var(--r-card);overflow:hidden;background:var(--placeholder);opacity:.7;}
+/* aspect-ratio тримає пропорцію фото при зміні height у max-height брейкпоінтах:
+   ширина виводиться з висоти, тож фото не сплющується, а зменшується цілком */
+.excl__img{position:absolute;top:0;left:227px;width:435px;height:568px;aspect-ratio:435/568;border-radius:var(--r-card);overflow:hidden;background:linear-gradient(135deg,var(--excl-ph-1),var(--excl-ph-2));}
+.excl__thumb{position:absolute;top:151px;width:211px;height:266px;aspect-ratio:211/266;border-radius:var(--r-card);overflow:hidden;background:var(--placeholder);opacity:.7;}
 .excl__img>img,.excl__thumb>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit;}
 .excl__thumb--r{left:1202px;}
 .excl__thumb--l{left:-69px;}
@@ -475,16 +477,16 @@ img{display:block;max-width:100%;}
    пропорційно (top/height/dots), горизонталь не чіпаємо. */
 @media (max-height:820px){
   .excl{height:492px;margin-top:36px;}
-  .excl__img{height:450px;}
-  .excl__thumb{top:120px;height:211px;}
+  .excl__img{height:450px;width:auto;}      /* width:auto → пропорція з aspect-ratio */
+  .excl__thumb{top:120px;height:211px;width:auto;}
   .excl__info{top:122px;}
   .excl__arrow{top:206px;}
   .excl__dots{top:416px;}
 }
 @media (max-height:720px){   /* 1366×768 та нижче — стискаємо ще щільніше */
   .excl{height:430px;margin-top:28px;}
-  .excl__img{height:394px;}
-  .excl__thumb{top:105px;height:184px;}
+  .excl__img{height:394px;width:auto;}
+  .excl__thumb{top:105px;height:184px;width:auto;}
   .excl__info{top:106px;}
   .excl__arrow{top:180px;}
   .excl__dots{top:364px;}
