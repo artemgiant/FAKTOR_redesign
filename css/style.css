@@ -516,6 +516,6 @@ img{display:block;max-width:100%;}
 
 /* >>> ТИМЧАСОВА ПІДСВІТКА КОНТЕЙНЕРА — щоб бачити межі й поля. Прибрати потім.
    Червона рамка = край .container; підпис показує його ширину. */
-.container{outline:2px solid red !important; position:relative;}
-.container::before{content:"container"; position:absolute; top:0; left:0;
-  background:red; color:#fff; font:11px/1.4 monospace; padding:1px 5px; z-index:9999;}
+/*.container{outline:2px solid red !important; position:relative;}*/
+/*.container::before{content:"container"; position:absolute; top:0; left:0;*/
+/*  background:red; color:#fff; font:11px/1.4 monospace; padding:1px 5px; z-index:9999;}*/
