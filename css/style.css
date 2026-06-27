@@ -85,7 +85,7 @@ img{display:block;max-width:100%;}
     linear-gradient(180deg, rgba(10,18,32,.38) 0%, rgba(13,22,38,.26) 45%, rgba(10,18,32,.42) 100%),
     var(--hero-bg-fallback) url("../img/photos/faktor-hero-1440x580.png") center/cover no-repeat;}
 .hero__white{position:absolute;left:0;right:0;top:580px;bottom:0;background:var(--white);z-index:2;}
-.hero__wave{position:absolute;left:0;top:472px;width:1440px;height:108px;z-index:2;}
+.hero__wave{position:absolute;left:0;top:502px;width:1440px;height:108px;z-index:2;}
 .hero__wave svg{display:block;width:1440px;height:108px;}
 
 /* Навбар живе всередині .frame, який стискається zoom-ом під вузькі екрани. Але
@@ -112,7 +112,7 @@ img{display:block;max-width:100%;}
    Один горизонтальний рядок, контролі заввишки 44px (як у решти hero).
    Кольори/радіуси — через токени; пікер локацій будується в app.js.
    ============================================================ */
-.searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1180px;display:flex;align-items:center;gap:14px;z-index:5; margin-top:34px}
+.searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1180px;display:flex;align-items:center;gap:14px;z-index:5; margin-top:64px}
 
 /* спільна «оболонка» контролю: поле/селект/ціна */
 .fk-field{height:44px;background:var(--field);border:1px solid var(--border-field);border-radius:var(--r-field);
