@@ -81,14 +81,24 @@ img{display:block;max-width:100%;}
 .hero{position:relative;height:1180px;}
 .hero__bg{position:absolute;top:0;left:0;right:0;height:580px;z-index:1;
   background:
-    radial-gradient(95% 95% at 50% 45%, rgba(13,22,38,.45) 0%, rgba(13,22,38,.74) 100%),
-    linear-gradient(180deg, rgba(10,18,32,.62) 0%, rgba(13,22,38,.48) 45%, rgba(10,18,32,.66) 100%),
+    radial-gradient(95% 95% at 50% 45%, rgba(41, 98, 177, 0.26) 0%, rgba(35, 110, 196, 0.48) 100%),
+    linear-gradient(180deg, rgba(10,18,32,.38) 0%, rgba(13,22,38,.26) 45%, rgba(10,18,32,.42) 100%),
     var(--hero-bg-fallback) url("../img/photos/faktor-hero-1440x580.png") center/cover no-repeat;}
 .hero__white{position:absolute;left:0;right:0;top:580px;bottom:0;background:var(--white);z-index:2;}
 .hero__wave{position:absolute;left:0;top:472px;width:1440px;height:108px;z-index:2;}
 .hero__wave svg{display:block;width:1440px;height:108px;}
 
-.nav{position:fixed;top:24px;left:50%;transform:translateX(-50%);width:890px;height:56px;background:var(--white);border-radius:var(--r-nav);display:flex;align-items:center;padding:0 20px;gap:24px;box-shadow:0 10px 34px var(--ink-08);z-index:5;}
+/* Навбар живе всередині .frame, який стискається zoom-ом під вузькі екрани. Але
+   навбар не повинен дрібнішати разом із макетом — він тримає реальні 890px і
+   звужується ЛИШЕ коли вікно само дістає до його країв. responsive.js віддає
+   --nav-counter = 1/zoom (фолбек 1 — у tokens.css на :root, НЕ тут, інакше
+   локальне значення затінить живе від JS). scale(1/zoom) нейтралізує zoom
+   фрейма → навбар рендериться 1:1. top теж множимо на counter, щоб 24px
+   лишались справжніми 24px від краю після множення zoom-ом.
+   width задаємо у frame-просторі, але рендер = width × zoom × counter = width
+   (zoom і counter скорочуються), тож тут БЕЗ counter: поки вікно ширше за навбар
+   — рівно 890px; щойно впритул — (вікно − 40px), майже вся ширина, поля ~20px. */
+.nav{position:fixed;top:calc(24px * var(--nav-counter));left:50%;transform:translateX(-50%) scale(var(--nav-counter));transform-origin:top center;width:min(890px, calc(100vw - 40px));height:56px;background:var(--white);border-radius:var(--r-nav);display:flex;align-items:center;padding:0 20px;gap:24px;box-shadow:0 10px 34px var(--ink-08);z-index:5;}
 .nav__logo{display:flex;align-items:center;}
 .nav__logo img{height:16px;width:auto;display:block;}
 .nav__links{display:flex;gap:24px;margin-left:24px;}
@@ -102,7 +112,7 @@ img{display:block;max-width:100%;}
    Один горизонтальний рядок, контролі заввишки 44px (як у решти hero).
    Кольори/радіуси — через токени; пікер локацій будується в app.js.
    ============================================================ */
-.searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1180px;display:flex;align-items:center;gap:14px;z-index:5;}
+.searchbar{position:absolute;top:504px;left:50%;transform:translateX(-50%);width:1180px;display:flex;align-items:center;gap:14px;z-index:5; margin-top:34px}
 
 /* спільна «оболонка» контролю: поле/селект/ціна */
 .fk-field{height:44px;background:var(--field);border:1px solid var(--border-field);border-radius:var(--r-field);
@@ -429,6 +439,35 @@ img{display:block;max-width:100%;}
 @media (max-width: 960px){ .frame{ zoom:.58; } }   /*  861–960  */
 @media (max-width: 860px){ .frame{ zoom:.52; } }   /*  769–860  */
 @media (max-width: 768px){ .frame{ zoom:.46; } }   /*  ≤768 (нижче — планшет/моб., окрема історія) */
+
+/* =================== ЕКСКЛЮЗИВНІ: АДАПТАЦІЯ ПО ВИСОТІ (13") ===================
+   .excl зверстано в абсолютних координатах із фіксованою height:620px (центр-фото
+   568px). zoom стискає лише ширину-композицію, тож на НИЗЬКИХ екранах (13" ноутбуки
+   ~800px фізичної висоти) секція лишається завеликою по вертикалі й змушує зайвий
+   скрол. Тригер max-height (а не max-width) реагує саме на коротке вікно — MacBook
+   13", типові 1280×800 / 1366×768. Усю вертикальну геометрію стиснуто ~×0.79
+   пропорційно (top/height/dots), горизонталь не чіпаємо. */
+@media (max-height:820px){
+  .excl{height:492px;margin-top:36px;}
+  .excl__img{height:450px;}
+  .excl__thumb{top:120px;height:211px;}
+  .excl__info{top:122px;}
+  .excl__arrow{top:206px;}
+  .excl__dots{top:416px;}
+}
+@media (max-height:720px){   /* 1366×768 та нижче — стискаємо ще щільніше */
+  .excl{height:430px;margin-top:28px;}
+  .excl__img{height:394px;}
+  .excl__thumb{top:105px;height:184px;}
+  .excl__info{top:106px;}
+  .excl__arrow{top:180px;}
+  .excl__dots{top:364px;}
+  /* шрифти інфо-блоку фіксовані й zoom-ом не стискаються — на короткому фото
+     підтискаємо внутрішні відступи, щоб кнопка не вилазила нижче знімка */
+  .excl__info .price-xl{margin-bottom:16px;}
+  .excl__addr{margin-bottom:16px;}
+  .excl__specs{margin-bottom:24px;}
+}
 
 /* =================== FULL-BLEED ФОНІВ (екрани > 1440) ===================
    Макет зафіксований на 1440px (.frame центрований). На вузьких екранах він

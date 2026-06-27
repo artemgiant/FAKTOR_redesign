@@ -21,7 +21,13 @@
     // clientWidth уже без вертикального скролбара — тож зворотного зв'язку немає
     frame.style.zoom = '';
     var avail = document.documentElement.clientWidth;
-    frame.style.zoom = Math.min(1, avail / DESIGN_WIDTH);
+    var z = Math.min(1, avail / DESIGN_WIDTH);
+    frame.style.zoom = z;
+    // навбар не масштабуємо разом із фреймом — він тримає реальні 890px і
+    // починає звужуватись лише коли вікно само впритул (див. .nav у style.css).
+    // віддаємо CSS обернений коефіцієнт, щоб контр-масштабувати навбар 1:1
+    // (transform:scale всередині zoom-фрейма = z × s, тож s = 1/z → рендер 1:1).
+    document.documentElement.style.setProperty('--nav-counter', 1 / z);
   }
 
   if (document.readyState !== 'loading') fit();

@@ -191,8 +191,8 @@ const EXCL = [
 
   /* --- стан --- */
   const st = {
-    dealType:'Продаж квартир', currency:'USD', priceFrom:'', priceTo:'',
-    locOpen:false, locMode:'local', locCat:'all', locSel:[], locPath:[], location:'', chipVisible:99,
+    dealType:'Новобудови', currency:'USD', priceFrom:'', priceTo:'',
+    locOpen:false, locMode:'local', locCat:'all', locSel:['Одеська область'], locPath:[], location:'', chipVisible:99,
   };
 
   /* --- посилання на DOM --- */
