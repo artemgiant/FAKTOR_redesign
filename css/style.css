@@ -184,9 +184,15 @@ img{display:block;max-width:100%;}
 .hw--3{transform:translateX(-19px);}
 .hw--4{transform:translateX(47px);}
 
-/* контент на фото: H1 + підзаголовок + CTA (ТЗ §3,5) */
+/* контент на фото: eyebrow + H1 + підзаголовок + CTA (ТЗ §3,5) */
 .hero__content{position:absolute;left:0;right:0;top:80px;height:424px;z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 24px;}
-.hero__h1{font-family:var(--font-brand);font-size:clamp(26px,3.7vw,50px);font-weight:var(--fw-bold);line-height:1.08;letter-spacing:-.015em;color:var(--white);white-space:nowrap;}
+/* надзаголовок «Купівля · Продаж · Супровід»: декоративні лінії по боках + крапки-роздільники */
+.hero__eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px;font-size:var(--fs-sm);letter-spacing:.22em;text-transform:uppercase;color:var(--white-60);}
+.hero__eyebrow::before,.hero__eyebrow::after{content:"";width:34px;height:1px;background:var(--white-60);}
+.hero__eyebrow span{position:relative;}
+.hero__eyebrow span+span{padding-left:30px;}
+.hero__eyebrow span+span::before{content:"";position:absolute;left:13px;top:50%;width:3px;height:3px;border-radius:50%;background:var(--white-60);transform:translateY(-50%);}
+.hero__h1{font-family:var(--font-brand);font-size:clamp(26px,3.7vw,50px);font-weight:var(--fw-bold);line-height:1.12;letter-spacing:-.015em;color:var(--white);}
 .hero__sub{margin:18px auto 0;max-width:560px;font-size:var(--fs-lg);line-height:var(--lh-relaxed);color:var(--white-82);}
 .hero__cta{margin-top:32px;display:flex;justify-content:center;gap:15px;}
 .hero__btn{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 38px;border-radius:var(--r-pill);font-family:var(--font-base);font-weight:var(--fw-medium);font-size:var(--fs-base);line-height:var(--lh-none);letter-spacing:var(--ls-base);cursor:pointer;transition:opacity .2s;}
